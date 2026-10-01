@@ -1320,7 +1320,7 @@ void Motion::restore_feedrate_and_scaling() {
     //SERIAL_ECHOLNPGM("Motion limits in: ", target.x, ", ", target.y, ", ", target.z);
     //SERIAL_EOL();
 
-    if (!soft_endstop._enabled) return;
+    if (!soft_endstop.enabled()) return;
 
     #if IS_KINEMATIC
 
@@ -2742,7 +2742,7 @@ void Motion::prepare_line_to_destination() {
           #endif
         }
 
-      #endif // NUM_Z_STEPPERS >= 3
+      #endif // Z_MULTI_ENDSTOPS
 
       // Reset flags for X, Y, Z motor locking
       switch (axis) {

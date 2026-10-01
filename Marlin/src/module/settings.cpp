@@ -289,6 +289,10 @@ typedef struct SettingsDataStruct {
     xyz_pos_t probe_offset;                             // M851 X Y Z
   #endif
 
+  #if HAS_LEVELING_TEMP_EDIT
+    Temperature::leveling_temp_t leveling_temp;         // thermalManager.leveling_temp
+  #endif
+
   //
   // ABL_PLANAR
   //
@@ -1070,6 +1074,14 @@ void MarlinSettings::postprocess() {
       #endif
       EEPROM_WRITE(zpo);
     }
+    #endif
+
+    //
+    // Leveling preheat temperatures
+    //
+    #if HAS_LEVELING_TEMP_EDIT
+      _FIELD_TEST(leveling_temp);
+      EEPROM_WRITE(thermalManager.leveling_temp);
     #endif
 
     //
@@ -2148,6 +2160,14 @@ void MarlinSettings::postprocess() {
       #endif
 
       //
+      // Leveling preheat temperatures
+      //
+      #if HAS_LEVELING_TEMP_EDIT
+        _FIELD_TEST(leveling_temp);
+        EEPROM_READ(thermalManager.leveling_temp);
+      #endif
+
+      //
       // Planar Bed Leveling matrix
       //
       {
@@ -3190,7 +3210,7 @@ void MarlinSettings::postprocess() {
     #define MESH_STORE_SIZE sizeof(TERN(OPTIMIZED_MESH_STORAGE, mesh_store_t, bedlevel.z_values))
 
     uint16_t MarlinSettings::calc_num_meshes() {
-      return MIN(MAX_SAVED_MESHES, (meshes_end - meshes_start_index()) / MESH_STORE_SIZE);
+      return _MIN(uint16_t(MAX_SAVED_MESHES), uint16_t((meshes_end - meshes_start_index()) / MESH_STORE_SIZE));
     }
 
     int MarlinSettings::mesh_slot_offset(const int8_t slot) {
@@ -3511,6 +3531,11 @@ void MarlinSettings::reset() {
       probe.offset.set(NUM_AXIS_LIST(0, 0, dpo[Z_AXIS], 0, 0, 0, 0, 0, 0));
     #endif
   #endif
+
+  //
+  // Leveling preheat temperatures
+  //
+  TERN_(HAS_LEVELING_TEMP_EDIT, thermalManager.reset_leveling_temp());
 
   //
   // Z Stepper Auto-alignment points
