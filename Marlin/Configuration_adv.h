@@ -57,6 +57,16 @@
 // @section temperature
 
 /**
+ * ADC Reference Voltage (MKS TinyBee / ESP32)
+ *
+ * A tensao de referencia do ADC varia de placa para placa e pode deslocar a
+ * leitura de temperatura em mais de 10 C. Com os termistores DESCONECTADOS,
+ * meca a tensao (VDDA) no 2o pino do conector TH1/TH2 e coloque o valor aqui.
+ * O valor abaixo e o padrao de pins_MKS_TINYBEE.h - ajuste apos medir.
+ */
+#define ADC_REFERENCE_VOLTAGE 2.565
+
+/**
  * Thermocouple sensors are quite sensitive to noise.  Any noise induced in
  * the sensor wires, such as by stepper motor wires run in parallel to them,
  * may result in the thermocouple sensor reporting spurious errors.  This
@@ -2853,7 +2863,7 @@
  * Currently handles M108, M112, M410, M876
  * NOTE: Not yet implemented for all platforms.
  */
-//#define EMERGENCY_PARSER
+//#define EMERGENCY_PARSER   // Nao implementado no HAL ESP32
 
 /**
  * Realtime Reporting (requires EMERGENCY_PARSER)
@@ -3086,7 +3096,7 @@
  *
  * Enable PARK_HEAD_ON_PAUSE to add the G-code M125 Pause and Park.
  */
-//#define ADVANCED_PAUSE_FEATURE
+//#define ADVANCED_PAUSE_FEATURE   // Requer LCD com menu ou EMERGENCY_PARSER - indisponivel nesta placa
 #if ENABLED(ADVANCED_PAUSE_FEATURE)
   #define PAUSE_PARK_RETRACT_FEEDRATE         60  // (mm/s) Initial retract feedrate.
   #define PAUSE_PARK_RETRACT_LENGTH            2  // (mm) Initial retract.
