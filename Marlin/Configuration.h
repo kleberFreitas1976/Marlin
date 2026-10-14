@@ -157,7 +157,7 @@
 #define Z_DRIVER_TYPE  TMC2209_STANDALONE
 //#define X2_DRIVER_TYPE A4988
 //#define Y2_DRIVER_TYPE A4988
-//#define Z2_DRIVER_TYPE A4988
+#define Z2_DRIVER_TYPE TMC2209_STANDALONE  // Motor Z da ESQUERDA, ligado no driver E1
 //#define Z3_DRIVER_TYPE A4988
 //#define Z4_DRIVER_TYPE A4988
 //#define I_DRIVER_TYPE  A4988
@@ -1283,13 +1283,19 @@
 #endif
 
 /**
- * MKS TinyBee: a placa so possui 3 conectores de fim de curso (X, Y, Z).
- * Os finais de curso MAX sao mapeados aqui para pinos livres do header EXP2,
- * o que desabilita o uso do cartao SD/SPI do display. Confira a fiacao.
+ * Fiacao dos fins de curso (apenas os 3 conectores da placa, todos NF):
+ *   X -> X_MIN em serie com X_MAX  (home no minimo)
+ *   Y -> Y_MIN em serie com Y_MAX  (home no minimo)
+ *   Z -> Z_MIN em serie com Z_MAX  (home no minimo, Z_MIN = camada 0)
+ *
+ * Em ligacao serie NF, qualquer sensor que abrir dispara o mesmo sinal. A
+ * distincao e feita pelo sentido do movimento: no homing so o sensor daquele
+ * extremo pode ser alcancado.
+ *
+ * Para separar o sensor MAX do eixo Z num pino proprio (e assim saber qual dos
+ * dois disparou), descomente a linha abaixo e ligue o Z_MAX no EXP2_03:
  */
-#define X_MAX_PIN 14   // EXP2_03
-#define Y_MAX_PIN 19   // EXP2_01
-#define Z_MAX_PIN 23   // EXP2_06
+//#define Z_OTHR_PIN 14   // EXP2_03 - sensor Z MAX em pino separado
 
 /**
  * Endstop "Hit" State
@@ -1479,7 +1485,7 @@
 //#define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN   // Desabilitado: Z-MIN e um endstop real; o probe tem pino proprio
 
 // Force the use of the probe for Z-axis homing
-//#define USE_PROBE_FOR_Z_HOMING
+#define USE_PROBE_FOR_Z_HOMING   // G28 Z usa o probe do servo, nao o sensor de camada 0
 
 /**
  * Z_MIN_PROBE_PIN
@@ -1534,7 +1540,7 @@
  */
 #define Z_PROBE_SERVO_NR 0
 #ifdef Z_PROBE_SERVO_NR
-  #define Z_SERVO_ANGLES { 45, 0 }        // Z Servo Deploy (45deg = ativo) and Stow (0deg = off) angles
+  #define Z_SERVO_ANGLES { 35, 0 }        // Angulos medidos na maquina: 35 = braco ativo (baixo), 0 = recolhido (livre)
   //#define Z_SERVO_MEASURE_ANGLE 45      // Use if the servo must move to a "free" position for measuring after deploy
   #define Z_SERVO_INTERMEDIATE_STOW       // Stow the probe between points
   //#define Z_SERVO_DEACTIVATE_AFTER_STOW // Deactivate the servo when probe is stowed
@@ -1744,11 +1750,13 @@
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
-#define PROBING_MARGIN 10
+// Mesa 200x200 com parafusos de 10x10mm nos 4 cantos. Margem de 15mm mantem
+// os 9 pontos da malha 3x3 em 15 / 100 / 185, fora da area dos parafusos.
+#define PROBING_MARGIN 15
 
 // X and Y axis travel speed between probes.
 // Leave undefined to use the average of the current XY homing feedrate.
-#define XY_PROBE_FEEDRATE    (133*60) // (mm/min)
+#define XY_PROBE_FEEDRATE     (60*60) // (mm/min) 60mm/s. O padrao de 133mm/s roncava (perda de passos em 12V).
 
 // Feedrate for the first approach when double-probing (MULTIPLE_PROBING == 2)
 #define Z_PROBE_FEEDRATE_FAST  (4*60) // (mm/min)
@@ -1904,7 +1912,7 @@
 
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
 #define INVERT_X_DIR false
-#define INVERT_Y_DIR true
+#define INVERT_Y_DIR false  // CoreXY: motor B (conector Y). Corrigido apos teste de direcao.
 #define INVERT_Z_DIR false
 //#define INVERT_I_DIR false
 //#define INVERT_J_DIR false
@@ -1935,7 +1943,7 @@
  */
 //#define Z_IDLE_HEIGHT Z_HOME_POS
 
-//#define Z_CLEARANCE_FOR_HOMING  4   // (mm) Minimal Z height before homing (G28) for Z clearance above the bed, clamps, ...
+#define Z_CLEARANCE_FOR_HOMING  4   // (mm) Levanta o Z antes do G28 de X/Y, para nao arrastar o bico na mesa
                                       // You'll need this much clearance above Z_MAX_POS to avoid grinding.
 
 //#define Z_AFTER_HOMING         10   // (mm) Height to move to after homing (if Z was homed)
@@ -1945,9 +1953,9 @@
 
 // Direction of endstops when homing; 1=MAX, -1=MIN
 // :[-1,1]
-#define X_HOME_DIR -1
+#define X_HOME_DIR  1   // X faz home no MAXIMO (direita). O probe bate no lado minimo.
 #define Y_HOME_DIR -1
-#define Z_HOME_DIR -1
+#define Z_HOME_DIR -1   // Z faz home no MINIMO (sensor de camada 0)
 //#define I_HOME_DIR -1
 //#define J_HOME_DIR -1
 //#define K_HOME_DIR -1
@@ -1973,14 +1981,14 @@
 // @section geometry
 
 // The size of the printable area
-#define X_BED_SIZE 210
-#define Y_BED_SIZE 210
+#define X_BED_SIZE 200
+#define Y_BED_SIZE 200
 
 // Travel limits (linear=mm, rotational=°) after homing, corresponding to endstop positions.
-#define X_MIN_POS 0
-#define Y_MIN_POS 0
+#define X_MIN_POS -15   // Limite fisico a esquerda (sensor X min), 15mm fora da mesa
+#define Y_MIN_POS -5    // Home do Y fica 5mm fora da mesa (a frente da borda)
 #define Z_MIN_POS 0
-#define X_MAX_POS X_BED_SIZE
+#define X_MAX_POS 205        // Home do X (direita) fica 5mm alem da borda da mesa
 #define Y_MAX_POS Y_BED_SIZE
 #define Z_MAX_POS 250
 //#define I_MIN_POS 0
@@ -2440,7 +2448,7 @@
  * - Allows Z homing only when XY positions are known and trusted.
  * - If stepper drivers sleep, XY homing may be required again before Z homing.
  */
-//#define Z_SAFE_HOMING
+#define Z_SAFE_HOMING   // Exigido ao referenciar Z pelo probe: vai ao centro da mesa antes
 
 #if ENABLED(Z_SAFE_HOMING)
   #define Z_SAFE_HOMING_X_POINT X_CENTER  // (mm) X point for Z homing

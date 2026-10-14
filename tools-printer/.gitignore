@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+
+# Os logs SAO versionados de proposito: sao o registro da calibracao,
+# feita possivelmente em outro computador. Nao ignore esta pasta.

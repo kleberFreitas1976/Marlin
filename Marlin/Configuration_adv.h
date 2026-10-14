@@ -697,6 +697,9 @@
  */
 //#define FAST_PWM_FAN    // Increase the fan PWM frequency. Removes the PWM noise but increases heating in the FET/Arduino
 #if ENABLED(FAST_PWM_FAN)
+  // ATENCAO (TinyBee): FAST_PWM_FAN e BLOQUEADO nesta placa pelo Marlin
+  // (HAL/ESP32/inc/SanityCheck.h:47). As ventoinhas ficam no expansor I2S e o
+  // PWM e gerado por software em ticks de 4us, que nao sustentam alta frequencia.
   //#define FAST_PWM_FAN_FREQUENCY 31400  // Define here to override the defaults below
   //#define USE_OCR2A_AS_TOP
   #ifndef FAST_PWM_FAN_FREQUENCY
@@ -1314,8 +1317,8 @@
  *
  * Tune with M593 D<factor> F<frequency>
  */
-//#define INPUT_SHAPING_X
-//#define INPUT_SHAPING_Y
+//#define INPUT_SHAPING_X   // CoreXY exige X e Y habilitados JUNTOS
+//#define INPUT_SHAPING_Y   // Habilitar so apos acertar correias e passos/mm, e calibrar com M593
 //#define INPUT_SHAPING_Z
 #if ANY(INPUT_SHAPING_X, INPUT_SHAPING_Y, INPUT_SHAPING_Z)
   #if ENABLED(INPUT_SHAPING_X)
@@ -4632,7 +4635,14 @@
  * Marlin's own WiFi on an ESP32 build. ESP3D_WIFISUPPORT is ESP32 only.
  */
 //#define WIFISUPPORT         // Marlin embedded WiFi management. Not needed for simple WiFi serial port.
-//#define ESP3D_WIFISUPPORT   // ESP3D Library WiFi management (https://github.com/luc-github/ESP3DLib)
+// Para a placa ja subir conectada na SUA rede (em vez de virar ponto de acesso),
+// crie o arquivo Marlin/Configuration_Secure.h com:
+//     #pragma once
+//     #define WIFI_SSID "sua_rede"
+//     #define WIFI_PWD  "sua_senha"
+// e descomente a linha abaixo. Esse arquivo ja esta no .gitignore.
+//#include "Configuration_Secure.h"
+#define ESP3D_WIFISUPPORT   // ESP3D Library WiFi management (https://github.com/luc-github/ESP3DLib)
 
 #if ENABLED(WIFISUPPORT)
   /**
@@ -4660,7 +4670,7 @@
    * The network is configured at runtime with '[ESP100]' / '[ESP101]' and stored on the ESP,
    * so WIFI_SSID / WIFI_PWD don't apply either.
    */
-  //#define WIFI_CUSTOM_COMMAND // Accept ESP3D '[ESP...]' commands from the host
+  #define WIFI_CUSTOM_COMMAND // Accept ESP3D '[ESP...]' commands from the host
 #endif
 
 // @section multi-material
