@@ -1489,7 +1489,7 @@
 //#define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN   // Desabilitado: Z-MIN é um fim de curso real; o probe tem pino próprio
 
 // Força o uso do probe para o homing do eixo Z
-//#define USE_PROBE_FOR_Z_HOMING
+#define USE_PROBE_FOR_Z_HOMING   // G28 Z usa o probe do servo, não o sensor de camada 0
 
 /**
  * Z_MIN_PROBE_PIN
@@ -1544,7 +1544,7 @@
  */
 #define Z_PROBE_SERVO_NR 0
 #ifdef Z_PROBE_SERVO_NR
-  #define Z_SERVO_ANGLES { 45, 0 }        // Ângulos de descida (45° = ativo) e recolhimento (0° = desligado) do servo de Z
+  #define Z_SERVO_ANGLES { 35, 0 }        // Medidos na máquina: 35 = braço ativo (baixo), 0 = recolhido (livre)
   //#define Z_SERVO_MEASURE_ANGLE 45      // Use se o servo precisar ir para uma posição "livre" para medir após descer
   #define Z_SERVO_INTERMEDIATE_STOW       // Recolhe o probe entre os pontos
   //#define Z_SERVO_DEACTIVATE_AFTER_STOW // Desativa o servo quando o probe está recolhido
@@ -1742,7 +1742,11 @@
  *     |    [-]    |
  *     O-- FRENTE -+
  */
-#define NOZZLE_TO_PROBE_OFFSET { 10, 10, 0 } // (mm) Distância X, Y, Z da ponta do bico ao ponto de disparo do probe
+// Medido com paquímetro:
+//   X = -38 : probe 38mm à ESQUERDA do bico
+//   Y = +10 : probe 10mm ATRÁS do bico
+//   Z =   0 : PROVISÓRIO, ainda falta medir (probe abaixo do bico = negativo)
+#define NOZZLE_TO_PROBE_OFFSET { -38, 10, 0 } // (mm) X, Y, Z da ponta do bico ao ponto de disparo
 
 // Habilite e defina para usar uma ferramenta específica na sondagem. Desabilite para permitir qualquer ferramenta.
 #define PROBING_TOOL 0
@@ -1754,11 +1758,12 @@
 
 // A maioria dos probes deve ficar longe das bordas da mesa, mas
 // com NOZZLE_AS_PROBE este valor pode ser negativo, para uma área de sondagem maior.
-#define PROBING_MARGIN 10
+// Parafusos de 10x10mm nos 4 cantos: a margem mantém os pontos da malha fora deles.
+#define PROBING_MARGIN 15
 
 // Velocidade de deslocamento dos eixos X e Y entre as sondagens.
 // Deixe indefinido para usar a média da velocidade de homing XY atual.
-#define XY_PROBE_FEEDRATE    (133*60) // (mm/min)
+#define XY_PROBE_FEEDRATE     (60*60) // (mm/min) 60mm/s. O padrão de 133mm/s roncava (perda de passos em 12V).
 
 // Velocidade da primeira aproximação na sondagem dupla (MULTIPLE_PROBING == 2)
 #define Z_PROBE_FEEDRATE_FAST  (4*60) // (mm/min)
@@ -1830,8 +1835,8 @@
  *     Mas: 'M851 Z+1' com uma folga (CLEARANCE) de 2  =>  2mm da mesa ao bico.
  */
 #define Z_CLEARANCE_DEPLOY_PROBE   10 // (mm) Folga de Z para acionar/recolher o probe
-#define Z_CLEARANCE_BETWEEN_PROBES  5 // (mm) Folga de Z entre pontos de sondagem
-#define Z_CLEARANCE_MULTI_PROBE     5 // (mm) Folga de Z entre sondagens múltiplas
+#define Z_CLEARANCE_BETWEEN_PROBES  8 // (mm) 8 > 4mm dos parafusos de fixação da mesa
+#define Z_CLEARANCE_MULTI_PROBE     8 // (mm) 8 > 4mm dos parafusos de fixação da mesa
 #define Z_PROBE_ERROR_TOLERANCE     3 // (mm) Tolerância para disparo antecipado (<= -probe.offset.z + ZPET)
 //#define Z_AFTER_PROBING           5 // (mm) Posição Z depois de concluída a sondagem
 
@@ -1914,7 +1919,7 @@
 
 // Inverte o sentido do motor. Altere (ou inverta o conector do motor) se um eixo andar para o lado errado.
 #define INVERT_X_DIR false
-#define INVERT_Y_DIR true
+#define INVERT_Y_DIR false  // CoreXY: motor B (conector Y). Corrigido após teste de direção.
 #define INVERT_Z_DIR false
 //#define INVERT_I_DIR false
 //#define INVERT_J_DIR false
@@ -1935,8 +1940,8 @@
 
 // @section homing
 
-//#define NO_MOTION_BEFORE_HOMING // Impede movimento até que todos os eixos tenham feito homing. Habilite também HOME_AFTER_DEACTIVATE para mais segurança.
-//#define HOME_AFTER_DEACTIVATE   // Exige novo homing depois que os motores forem desativados. Habilite também NO_MOTION_BEFORE_HOMING para mais segurança.
+#define NO_MOTION_BEFORE_HOMING   // Sem G28 o Marlin não sabe onde está: os limites de software não valem.
+#define HOME_AFTER_DEACTIVATE     // Após M18/timeout o carro pode ter sido movido à mão: exige novo G28.
 
 /**
  * Defina Z_IDLE_HEIGHT se o eixo Z se mover sozinho quando os motores forem desligados.
@@ -1945,17 +1950,16 @@
  */
 //#define Z_IDLE_HEIGHT Z_HOME_POS
 
-//#define Z_CLEARANCE_FOR_HOMING  4   // (mm) Altura Z mínima antes do homing (G28), para dar folga sobre a mesa, presilhas, ...
-                                      // Você precisa dessa folga acima do Z_MAX_POS para não raspar.
+#define Z_CLEARANCE_FOR_HOMING  8   // (mm) Sobe antes do G28 de X/Y. 8 > 4mm dos parafusos da mesa.
 
-//#define Z_AFTER_HOMING         10   // (mm) Altura para onde ir depois do homing (se o Z tiver sido referenciado)
+#define Z_AFTER_HOMING         10   // (mm) Termina todo G28 numa altura segura
 //#define XY_AFTER_HOMING { 10, 10 }  // (mm) Posição XY para onde ir depois do homing (e de levantar o Z)
 
 //#define EVENT_GCODE_AFTER_HOMING "M300 P440 S200"  // Comandos a executar depois do G28 (e do movimento até XY_AFTER_HOMING)
 
 // Sentido dos fins de curso no homing; 1=MAX, -1=MIN
 // :[-1,1]
-#define X_HOME_DIR -1
+#define X_HOME_DIR  1   // X faz home no MÁXIMO (direita). O probe bate no lado mínimo.
 #define Y_HOME_DIR -1
 #define Z_HOME_DIR -1   // Z faz home no MÍNIMO (sensor de camada 0)
 //#define I_HOME_DIR -1
@@ -2734,3 +2738,1136 @@
  *   M77 - Para o temporizador
  */
 #define PRINTJOB_TIMER_AUTOSTART
+
+// @section stats
+
+/**
+ * Contador de impressões
+ *
+ * Acompanha dados estatísticos, como:
+ *
+ *  - Total de impressões
+ *  - Total de impressões bem-sucedidas
+ *  - Total de impressões que falharam
+ *  - Tempo total imprimindo
+ *
+ * Veja as estatísticas atuais com M78.
+ */
+//#define PRINTCOUNTER
+#if ENABLED(PRINTCOUNTER)
+  #define PRINTCOUNTER_SAVE_INTERVAL 60 // (minutos) Intervalo de gravação na EEPROM durante a impressão. 0 grava só no fim.
+#endif
+
+// @section security
+
+/**
+ * Senha
+ *
+ * Define uma senha numérica para a impressora, que pode ser pedida:
+ *
+ *  - Quando a impressora liga
+ *  - Ao abrir o menu 'Imprimir da mídia'
+ *  - Quando a impressão pelo SD termina ou é abortada
+ *
+ * Os seguintes G-codes podem ser usados:
+ *
+ *  M510 - Bloqueia a impressora. Impede todos os comandos exceto o M511.
+ *  M511 - Desbloqueia a impressora.
+ *  M512 - Define, altera e remove a senha.
+ *
+ * Se você esquecer a senha e ficar bloqueado, será preciso regravar o firmware
+ * com o recurso desabilitado, zerar a EEPROM e (opcionalmente) regravar o
+ * firmware de novo com o recurso habilitado.
+ */
+//#define PASSWORD_FEATURE
+#if ENABLED(PASSWORD_FEATURE)
+  #define PASSWORD_LENGTH 4                 // (nº) Quantidade de dígitos (1-9). Recomenda-se 3 ou 4
+  #define PASSWORD_ON_STARTUP
+  #define PASSWORD_UNLOCK_GCODE             // Desbloqueia com M511 P<senha>. Desabilite para impedir ataque de força bruta.
+  #define PASSWORD_CHANGE_GCODE             // Altera a senha com M512 P<antiga> S<nova>.
+  //#define PASSWORD_ON_SD_PRINT_MENU       // Isso não impede a execução de G-codes
+  //#define PASSWORD_AFTER_SD_PRINT_END
+  //#define PASSWORD_AFTER_SD_PRINT_ABORT
+  //#include "Configuration_Secure.h"       // Arquivo externo com PASSWORD_DEFAULT_VALUE
+#endif
+
+// @section media
+
+/**
+ * CARTÃO SD
+ *
+ * O suporte a cartão SD vem desabilitado por padrão. Se a sua placa tem slot
+ * de SD, você precisa descomentar a opção abaixo, senão não funciona.
+ */
+//#define SDSUPPORT
+
+/**
+ * CARTÃO SD: HABILITAR CRC
+ *
+ * Usa verificação por CRC e novas tentativas na comunicação com o SD.
+ */
+#if ENABLED(SDSUPPORT)
+  //#define SD_CHECK_AND_RETRY
+#endif
+
+// @section interface
+
+/**
+ * IDIOMA DO LCD
+ *
+ * Seleciona o idioma exibido no LCD. Estes idiomas estão disponíveis:
+ *
+ *   en, an, bg, ca, cz, da, de, el, el_CY, es, eu, fi, fr, gl, hg, hr, hu, id, it,
+ *   jp_kana, ko_KR, nl, pl, pt, pt_br, ro, ru, sk, sv, tr, uk, vi, zh_CN, zh_TW
+ *
+ * (pt_br = português do Brasil)
+ *
+ * :{ 'en':'English', 'an':'Aragonese', 'bg':'Bulgarian', 'ca':'Catalan', 'cz':'Czech', 'da':'Danish', 'de':'German', 'el':'Greek (Greece)', 'el_CY':'Greek (Cyprus)', 'es':'Spanish', 'eu':'Basque-Euskera', 'fi':'Finnish', 'fr':'French', 'gl':'Galician', 'hg':'Hinglish (Hindi-Latin)', 'hr':'Croatian', 'hu':'Hungarian', 'id':'Indonesian', 'it':'Italian', 'jp_kana':'Japanese', 'ko_KR':'Korean (South Korea)', 'nl':'Dutch', 'pl':'Polish', 'pt':'Portuguese', 'pt_br':'Portuguese (Brazilian)', 'ro':'Romanian', 'ru':'Russian', 'sk':'Slovak', 'sv':'Swedish', 'tr':'Turkish', 'uk':'Ukrainian', 'vi':'Vietnamese', 'zh_CN':'Chinese (Simplified)', 'zh_TW':'Chinese (Traditional)' }
+ */
+#define LCD_LANGUAGE en
+
+/**
+ * Conjunto de caracteres do LCD
+ *
+ * Obs.: esta opção NÃO se aplica a displays gráficos.
+ *
+ * Todos os LCDs de caractere fornecem ASCII mais uma destas
+ * extensões de idioma:
+ *
+ *  - JAPANESE ... a mais comum
+ *  - WESTERN  ... com mais caracteres acentuados
+ *  - CYRILLIC ... para o idioma russo
+ *
+ * Para descobrir qual extensão está instalada no seu controlador:
+ *
+ *  - Compile e grave com LCD_LANGUAGE definido como 'test'
+ *  - Clique no controlador para ver o menu do LCD
+ *  - O LCD vai exibir texto em japonês, ocidental ou cirílico
+ *
+ * Veja https://marlinfw.org/docs/development/lcd_language.html
+ *
+ * :['JAPANESE', 'WESTERN', 'CYRILLIC']
+ */
+#define DISPLAY_CHARSET_HD44780 JAPANESE
+
+/**
+ * Estilo da tela de informações (0:Clássico, 1:Průša, 2:CNC)
+ *
+ * :[0:'Classic', 1:'Průša', 2:'CNC']
+ */
+#define LCD_INFO_SCREEN_STYLE 0
+
+/**
+ * Itens de menu do LCD
+ *
+ * Desabilita todos os menus e exibe apenas a tela de status, ou apenas remove
+ * alguns itens supérfluos para recuperar espaço.
+ */
+//#define NO_LCD_MENUS
+//#define SLIM_LCD_MENUS
+
+//
+// AJUSTES DO ENCODER
+//
+// Esta opção sobrepõe o número padrão de pulsos do encoder necessários para
+// produzir um passo. Deve ser aumentado em encoders de alta resolução.
+//
+//#define ENCODER_PULSES_PER_STEP 4
+
+//
+// Use esta opção para sobrepor o número de sinais de passo necessários para
+// mover entre o item anterior e o próximo do menu.
+//
+//#define ENCODER_STEPS_PER_MENU_ITEM 1
+
+/**
+ * Opções de sentido do encoder
+ *
+ * Teste primeiro o comportamento do seu encoder com as duas opções desabilitadas.
+ *
+ *  Edição de valor E navegação invertidas? Habilite REVERSE_ENCODER_DIRECTION.
+ *  Só a navegação invertida?               Habilite REVERSE_MENU_DIRECTION.
+ *  Só a edição de valor invertida?         Habilite AS DUAS opções.
+ */
+
+//
+// Esta opção inverte o sentido do encoder em todos os lugares.
+//
+//  Habilite se girar no SENTIDO HORÁRIO faz os valores DIMINUÍREM
+//
+//#define REVERSE_ENCODER_DIRECTION
+
+//
+// Esta opção inverte o sentido do encoder na navegação dos menus do LCD.
+//
+//  Se o sentido horário normalmente desce, passa a subir.
+//  Se o sentido horário normalmente sobe, passa a descer.
+//
+//#define REVERSE_MENU_DIRECTION
+
+//
+// Esta opção inverte o sentido do encoder na tela de seleção.
+//
+//  Se o sentido horário normalmente vai para a esquerda, passa a ir para a direita.
+//  Se normalmente vai para a direita, passa a ir para a esquerda.
+//
+//#define REVERSE_SELECT_DIRECTION
+
+//
+// Filtro de ruído (EMI) do encoder
+//
+// Esta opção aumenta a amostragem do encoder para filtrar cliques fantasmas
+// causados por interferência eletromagnética.
+//
+//#define ENCODER_NOISE_FILTER
+#if ENABLED(ENCODER_NOISE_FILTER)
+  #define ENCODER_SAMPLES 10
+#endif
+
+//
+// Homing de eixo individual
+//
+// Adiciona itens de homing por eixo (Home X, Home Y e Home Z) ao menu do LCD.
+//
+//#define INDIVIDUAL_AXIS_HOMING_MENU
+//#define INDIVIDUAL_AXIS_HOMING_SUBMENU
+
+//
+// ALTO-FALANTE / BUZZER
+//
+// Se você tem um alto-falante capaz de produzir tons, habilite aqui.
+// Por padrão o Marlin assume um buzzer de frequência fixa.
+//
+//#define SPEAKER
+
+//
+// Duração e frequência do som de retorno da interface.
+// Zere estes valores para desabilitar o retorno sonoro nos menus do LCD.
+//
+// Obs.: teste a saída de áudio com o G-code:
+//  M300 S<frequência Hz> P<duração ms>
+//
+//#define LCD_FEEDBACK_FREQUENCY_DURATION_MS 2
+//#define LCD_FEEDBACK_FREQUENCY_HZ 5000
+
+//
+// Tamanho da fila de tons, usada para que os bipes não bloqueiem a execução.
+// O padrão é 4, ou sobreponha aqui. Custa 4 bytes de SRAM por entrada.
+//
+//#define TONE_QUEUE_LENGTH 4
+
+//
+// Uma sequência de tons tocada na inicialização, em pares de tom (Hz) e duração (ms).
+// Silêncio entre os tons.
+//
+//#define STARTUP_TUNE { 698, 300, 0, 50, 523, 50, 0, 25, 494, 50, 0, 25, 523, 100, 0, 50, 554, 300, 0, 100, 523, 300 }
+
+/**
+ * ===========================================================================
+ *  NOTA SOBRE O CATÁLOGO DE DISPLAYS, A PARTIR DAQUI
+ * ===========================================================================
+ * As seções seguintes são um catálogo de controladores de LCD: centenas de
+ * linhas que são, em sua maioria, nomes de produto, números de modelo e URLs —
+ * que não se traduzem. Aqui foram traduzidas as NOTAS e instruções (requisitos
+ * de biblioteca, avisos de fiação, passos de gravação), mantendo intactos os
+ * nomes comerciais e os endereços.
+ *
+ * Para esta máquina, nada deste catálogo está ativo: a MKS TFT24 opera em modo
+ * serial, pela SERIAL_PORT_2, e não como display nativo do Marlin.
+ * ===========================================================================
+ */
+//=============================================================================
+//=================== Selecao de LCD / Controlador ===========================
+//===================      (LCDs de caractere)      ===========================
+//=============================================================================
+// @section lcd
+
+//
+// RepRapDiscount Smart Controller.
+// https://reprap.org/wiki/RepRapDiscount_Smart_Controller
+//
+// Obs.: normalmente vendido com placa branca.
+//
+//#define REPRAP_DISCOUNT_SMART_CONTROLLER
+
+//
+// GT2560 (YHCB2004) LCD Display
+//
+// Exige as bibliotecas softwarewire de Testato/Koepel e a
+// LiquidCrystal_AIP31068 de Andriy Golovnya.
+//
+//#define YHCB2004
+
+//
+// Original RADDS LCD Display+Encoder+SDCardReader
+// https://web.archive.org/web/20200719145306/doku.radds.org/dokumentation/lcd-display/
+//
+//#define RADDS_DISPLAY
+
+//
+// ULTIMAKER Controller.
+//
+//#define ULTIMAKERCONTROLLER
+
+//
+// ULTIPANEL as seen on Thingiverse.
+//
+//#define ULTIPANEL
+
+//
+// PanelOne from T3P3 (via RAMPS 1.4 AUX2/AUX3)
+// https://reprap.org/wiki/PanelOne
+//
+//#define PANEL_ONE
+
+//
+// GADGETS3D G3D LCD/SD Controller
+// https://reprap.org/wiki/RAMPS_1.3/1.4_GADGETS3D_Shield_with_Panel
+//
+// Obs.: normalmente vendido com placa azul.
+//
+//#define G3D_PANEL
+
+//
+// RigidBot Panel V1.0
+//
+//#define RIGIDBOT_PANEL
+
+//
+// Makeboard 3D Printer Parts 3D Printer Mini Display 1602 Mini Controller
+// https://www.aliexpress.com/item/32765887917.html
+//
+//#define MAKEBOARD_MINI_2_LINE_DISPLAY_1602
+
+/**
+ * ANET and Tronxy 20x4 Controller
+ * LCD2004 display with 5 analog buttons.
+ *
+ * NOTE: Requires ADC_KEYPAD_PIN to be assigned to an analog pin.
+ * This LCD is known to be susceptible to electrical interference which
+ * scrambles the display. Press any button to clear it up.
+ */
+//#define ZONESTAR_LCD
+
+//
+// LCD generico de caractere 16x2, 16x4, 20x2 ou 20x4.
+//
+//#define ULTRA_LCD
+
+//=============================================================================
+//=================== Selecao de LCD / Controlador ===========================
+//============  (LCDs por I2C e por registrador de deslocamento)  =============
+//=============================================================================
+
+//
+// TIPO DE CONTROLADOR: I2C
+//
+// Obs.: estes controladores exigem a instalacao da biblioteca LiquidCrystal_I2C
+// library. For more info: https://github.com/kiyoshigawa/LiquidCrystal_I2C
+//
+
+//
+// Elefu RA Board Control Panel
+// https://web.archive.org/web/20140823033947/www.elefu.com/index.php?route=product/product&product_id=53
+//
+//#define RA_CONTROL_PANEL
+
+//
+// Sainsmart (YwRobot) LCD Displays
+//
+// Estes exigem a biblioteca LiquidCrystal_I2C:
+//   https://github.com/MarlinFirmware/New-LiquidCrystal
+//   https://github.com/fmalpartida/New-LiquidCrystal/wiki
+//
+//#define LCD_SAINSMART_I2C_1602
+//#define LCD_SAINSMART_I2C_2004
+
+//
+// Generic LCM1602 LCD adapter
+//
+//#define LCM1602
+
+//
+// PANELOLU2 LCD with status LEDs,
+// separate encoder and click inputs.
+//
+// Obs.: este controlador exige a biblioteca LiquidTWI2 v1.2.3 ou posterior.
+// For more info: https://github.com/lincomatic/LiquidTWI2
+//
+// Note: The PANELOLU2 encoder click input can either be directly connected to
+// a pin (if BTN_ENC defined to != -1) or read through I2C (when BTN_ENC == -1).
+//
+//#define LCD_I2C_PANELOLU2
+
+//
+// Panucatt VIKI LCD with status LEDs,
+// integrated click & L/R/U/D buttons, separate encoder inputs.
+//
+//#define LCD_I2C_VIKI
+
+//
+// TIPO DE CONTROLADOR: paineis com registrador de deslocamento
+//
+
+//
+// 2-wire Non-latching LCD SR from https://github.com/fmalpartida/New-LiquidCrystal/wiki/schematics#user-content-ShiftRegister_connection
+// LCD configuration: https://reprap.org/wiki/SAV_3D_LCD
+//
+//#define SAV_3DLCD
+
+//
+// 3-wire SR LCD with strobe using 74HC4094
+// https://github.com/mikeshub/SailfishLCD
+// Usa o codigo diretamente do Sailfish
+//
+//#define FF_INTERFACEBOARD
+
+//
+// LCD e interface da MightyBoard
+//
+//#define MIGHTYBOARD_LCD
+#if ENABLED(MIGHTYBOARD_LCD)
+  //#define MIGHTYBOARD_DEBUG               // Lightweight debug output for buttons and encoder
+  //#define MIGHTYBOARD_DISABLE_ENC_PULLUP  // Enable if the encoder button is unreliable
+  //#define MIGHTYBOARD_BUTTON_PULLUPS      // Enable if other buttons are unreliable
+  //#define MIGHTYBOARD_BACK_STATUS_BUTTONS // Use LEFT/RIGHT buttons for Back / Home.
+                                            // Otherwise they act like encoder down / up.
+#endif
+
+//
+// Painel TFT GLCD com a interface do Marlin
+// Painel ligado a placa principal por SPI ou I2C.
+// See https://github.com/Serhiy-K/TFTGLCDAdapter
+//
+//#define TFTGLCD_PANEL_SPI
+//#define TFTGLCD_PANEL_I2C
+
+//=============================================================================
+//=================== Selecao de LCD / Controlador ===========================
+//===================        (LCDs graficos)        ===========================
+//=============================================================================
+
+//
+// TIPO DE CONTROLADOR: grafico 128x64 (DOGM)
+//
+// IMPORTANTE: a biblioteca U8glib e necessaria para display grafico!
+//            https://github.com/olikraus/U8glib_Arduino
+//
+// OBS.: se o LCD nao responder, pode ser necessario inverter os conectores.
+//
+
+//
+// RepRapDiscount FULL GRAPHIC Smart Controller
+// https://reprap.org/wiki/RepRapDiscount_Full_Graphic_Smart_Controller
+//
+//#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
+
+//
+// K.3D Full Graphic Smart Controller
+//
+//#define K3D_FULL_GRAPHIC_SMART_CONTROLLER
+
+//
+// ReprapWorld Graphical LCD
+// https://reprapworld.com/electronics/3d-printer-modules/autonomous-printing/graphical-lcd-screen-v1-0/
+//
+//#define REPRAPWORLD_GRAPHICAL_LCD
+
+//
+// Ative uma destas se voce tem um Panucatt Devices
+// Viki 2.0 ou mini Viki com LCD grafico
+// https://www.panucatt.com
+//
+//#define VIKI2
+//#define miniVIKI
+
+//
+// Alfawise Ex8 printer LCD marked as WYH L12864 COG
+//
+//#define WYH_L12864
+
+//
+// MakerLab Mini Panel with graphic
+// controller and SD support - https://reprap.org/wiki/Mini_panel
+//
+//#define MINIPANEL
+
+//
+// MaKr3d Makr-Panel with graphic controller and SD support.
+// https://reprap.org/wiki/MaKrPanel
+//
+//#define MAKRPANEL
+
+//
+// Adafruit ST7565 Full Graphic Controller.
+// https://github.com/eboston/Adafruit-ST7565-Full-Graphic-Controller/
+//
+//#define ELB_FULL_GRAPHIC_CONTROLLER
+
+//
+// BQ LCD Smart Controller shipped by
+// default with the BQ Hephestos 2 and Witbox 2.
+//
+//#define BQ_LCD_SMART_CONTROLLER
+
+//
+// Cartesio UI
+// https://web.archive.org/web/20180605050442/mauk.cc/webshop/cartesio-shop/electronics/user-interface
+//
+//#define CARTESIO_UI
+
+//
+// LCD for Melzi Card with Graphical LCD
+//
+//#define LCD_FOR_MELZI
+
+//
+// Original Ulticontroller from Ultimaker 2 printer with SSD1309 I2C display and encoder
+// https://github.com/Ultimaker/Ultimaker2/tree/master/1249_Ulticontroller_Board_(x1)
+//
+//#define ULTI_CONTROLLER
+
+//
+// MKS MINI12864 with graphic controller and SD support
+// https://reprap.org/wiki/MKS_MINI_12864
+//
+//#define MKS_MINI_12864
+
+//
+// MKS MINI12864 V3 is an alias for FYSETC_MINI_12864_2_1. Type A/B. NeoPixel RGB Backlight.
+//
+//#define MKS_MINI_12864_V3
+
+//
+// MKS LCD12864A/B with graphic controller and SD support. Follows MKS_MINI_12864 pinout.
+// https://www.aliexpress.com/item/33018110072.html
+//
+//#define MKS_LCD12864A
+//#define MKS_LCD12864B
+
+//
+// FYSETC variant of the MINI12864 graphic controller with SD support
+// https://wiki.fysetc.com/docs/Mini12864Panel
+//
+//#define FYSETC_MINI_12864_X_X    // Type C/D/E/F. No tunable RGB Backlight by default
+//#define FYSETC_MINI_12864_1_2    // Type C/D/E/F. Simple RGB Backlight (always on)
+//#define FYSETC_MINI_12864_2_0    // Type A/B. Discreet RGB Backlight
+//#define FYSETC_MINI_12864_2_1    // Type A/B. NeoPixel RGB Backlight
+//#define FYSETC_GENERIC_12864_1_1 // Larger display with basic ON/OFF backlight.
+
+//
+// BigTreeTech Mini 12864 V1.0 / V2.0 is an alias for FYSETC_MINI_12864_2_1. Type A/B. NeoPixel RGB Backlight.
+// https://github.com/bigtreetech/MINI-12864
+//
+//#define BTT_MINI_12864
+
+//
+// BEEZ MINI 12864 is an alias for FYSETC_MINI_12864_2_1. Type A/B. NeoPixel RGB Backlight.
+//
+//#define BEEZ_MINI_12864
+
+//
+// Display de fabrica da Creality CR-10 / CR-7 / Ender-3
+// https://marlinfw.org/docs/hardware/controllers.html#cr10_stockdisplay
+//
+// Conecte no EXP1 em placas RAMPS e compativeis.
+//
+//#define CR10_STOCKDISPLAY
+
+//
+// Ender-2 OEM display, a variant of the MKS_MINI_12864
+//
+//#define ENDER2_STOCKDISPLAY
+
+//
+// ANET and Tronxy 128×64 Full Graphics Controller as used on Anet A6
+//
+//#define ANET_FULL_GRAPHICS_LCD
+
+//
+// GUCOCO CTC 128×64 Full Graphics Controller as used on GUCOCO CTC A10S
+//
+//#define CTC_A10S_A13
+
+//
+// AZSMZ 12864 LCD with SD
+// https://www.aliexpress.com/item/32837222770.html
+//
+//#define AZSMZ_12864
+
+//
+// Silvergate GLCD controller
+// https://github.com/android444/Silvergate
+//
+//#define SILVER_GATE_GLCD_CONTROLLER
+
+//
+// eMotion Tech LCD with SD
+// https://www.reprap-france.com/produit/1234568748-ecran-graphique-128-x-64-points-2-1
+//
+//#define EMOTION_TECH_LCD
+
+//=============================================================================
+//============================  Displays OLED  ================================
+//=============================================================================
+
+//
+// SSD1306 OLED full graphics generic display
+//
+//#define U8GLIB_SSD1306
+
+//
+// SAV OLEd LCD module support using either SSD1306 or SH1106 based LCD modules
+//
+//#define SAV_3DGLCD
+#if ENABLED(SAV_3DGLCD)
+  #define U8GLIB_SSD1306
+  //#define U8GLIB_SH1106
+#endif
+
+//
+// TinyBoy2 128x64 OLED / Encoder Panel
+//
+//#define OLED_PANEL_TINYBOY2
+
+//
+// MKS OLED 1.3" 128×64 Full Graphics Controller
+// https://reprap.org/wiki/MKS_12864OLED
+//
+// Display OLED pequeno, mas muito nitido
+//
+//#define MKS_12864OLED          // Uses the SH1106 controller
+//#define MKS_12864OLED_SSD1306  // Uses the SSD1306 controller
+
+//
+// Zonestar OLED 128×64 Full Graphics Controller
+//
+//#define ZONESTAR_12864LCD           // Graphical (DOGM) with ST7920 controller
+//#define ZONESTAR_12864OLED          // 1.3" OLED with SH1106 controller
+//#define ZONESTAR_12864OLED_SSD1306  // 0.96" OLED with SSD1306 controller
+
+//
+// Einstart S OLED SSD1306
+//
+//#define U8GLIB_SH1106_EINSTART
+
+//
+// Overlord OLED display/controller with i2c buzzer and LEDs
+//
+//#define OVERLORD_OLED
+
+//
+// FYSETC OLED 2.42" 128×64 Full Graphics Controller with WS2812 RGB
+// Where to find : https://www.aliexpress.com/item/4000345255731.html
+//#define FYSETC_242_OLED_12864   // Uses the SSD1309 controller
+
+//
+// K.3D SSD1309 OLED 2.42" 128×64 Full Graphics Controller
+//
+//#define K3D_242_OLED_CONTROLLER   // Software SPI
+
+//=============================================================================
+//=================== Displays de interface extensivel ========================
+//=============================================================================
+
+/**
+ * Display de toque DGUS com DWIN OS. (Escolha um.)
+ *
+ * ORIGIN (Marlin DWIN_SET)
+ *  - Download https://github.com/coldtobi/Marlin_DGUS_Resources
+ *  - Copy the downloaded DWIN_SET folder to the SD card.
+ *  - Product: https://www.aliexpress.com/item/32993409517.html
+ *
+ * FYSETC (Supplier default)
+ *  - Download https://github.com/FYSETC/FYSTLCD-2.0
+ *  - Copy the downloaded SCREEN folder to the SD card.
+ *  - Product: https://www.aliexpress.com/item/32961471929.html
+ *
+ * HIPRECY (Supplier default)
+ *  - Download https://github.com/HiPrecy/Touch-Lcd-LEO
+ *  - Copy the downloaded DWIN_SET folder to the SD card.
+ *
+ * MKS (MKS-H43) (Supplier default)
+ *  - Download https://github.com/makerbase-mks/MKS-H43
+ *  - Copy the downloaded DWIN_SET folder to the SD card.
+ *  - Product: https://www.aliexpress.com/item/1005002008179262.html
+ *
+ * RELOADED (T5UID1)
+ *  - Download https://github.com/Neo2003/DGUS-reloaded/releases
+ *  - Copy the downloaded DWIN_SET folder to the SD card.
+ *
+ * IA_CREALITY (T5UID1)
+ *  - Download https://github.com/InsanityAutomation/Marlin/raw/CrealityDwin_2.0/TM3D_Combined480272_Landscape_V7.7z
+ *  - Copy the downloaded DWIN_SET folder to the SD card.
+ *
+ * E3S1PRO (T5L)
+ *  - Download https://github.com/CrealityOfficial/Ender-3S1/archive/3S1_Plus_Screen.zip
+ *  - Copy the downloaded DWIN_SET folder to the SD card.
+ *
+ * Grave o display com os DGUS Displays for Marlin:
+ *  - Format the SD card to FAT32 with an allocation size of 4kb.
+ *  - Download files as specified for your type of display.
+ *  - Plug the microSD card into the back of the display.
+ *  - Boot the display and wait for the update to complete.
+ *
+ * :[ 'ORIGIN', 'FYSETC', 'HYPRECY', 'MKS', 'RELOADED', 'IA_CREALITY', 'E3S1PRO' ]
+ */
+//#define DGUS_LCD_UI ORIGIN
+#if DGUS_UI_IS(MKS)
+  #define USE_MKS_GREEN_UI
+#elif DGUS_UI_IS(IA_CREALITY)
+  //#define LCD_SCREEN_ROTATE 90          // Portrait Mode or 800x480 displays
+  //#define IA_CREALITY_BOOT_DELAY 1500   // (ms)
+#endif
+
+//
+// LCD for Malyan M200/M300 printers
+//
+//#define MALYAN_LCD
+
+//
+// Touch UI for FTDI EVE (FT800/FT810) displays
+// See Configuration_adv.h for all configuration options.
+//
+//#define TOUCH_UI_FTDI_EVE
+
+//
+// Touch-screen LCD for Anycubic Chiron
+//
+//#define ANYCUBIC_LCD_CHIRON
+
+//
+// Touch-screen LCD for Anycubic i3 Mega
+//
+//#define ANYCUBIC_LCD_I3MEGA
+#if ENABLED(ANYCUBIC_LCD_I3MEGA)
+  //#define ANYCUBIC_LCD_GCODE_EXT  // Add ".gcode" to menu entries for DGUS clone compatibility
+#endif
+
+//
+// Touch-screen LCD for Anycubic Vyper
+//
+//#define ANYCUBIC_LCD_VYPER
+
+//
+// Sovol SV-06 Resistive Touch Screen
+//
+//#define SOVOL_SV06_RTS
+
+//
+// 320x240 Nextion 2.8" serial TFT Resistive Touch Screen NX3224T028
+//
+//#define NEXTION_TFT
+
+//
+// Elegoo Neptune 3 Pro / Plus / Max TJC Touch Screen
+// Requires a 6x6 (Pro), 7x7 (Plus), or 7x9 (Max) bilinear leveling grid.
+//
+//#define ELEGOO_NEPTUNE_3_TFT
+
+//
+// Third-party or vendor-customized controller interfaces.
+// Sources should be installed in 'src/lcd/extui'.
+//
+//#define EXTENSIBLE_UI
+
+#if ENABLED(EXTENSIBLE_UI)
+  //#define EXTUI_LOCAL_BEEPER // Enables use of local Beeper pin with external display
+#endif
+
+//=============================================================================
+//=============================== Graphical TFTs ==============================
+//=============================================================================
+
+/**
+ * Specific TFT Model Presets. Enable one of the following options
+ * or enable TFT_GENERIC and set sub-options.
+ */
+
+//
+// 480x320, 3.5", SPI Display with Rotary Encoder from MKS
+// Usually paired with MKS Robin Nano V2 & V3
+// https://github.com/makerbase-mks/MKS-TFT-Hardware/tree/master/MKS%20TS35
+//
+//#define MKS_TS35_V2_0
+
+//
+// MKS TS24-R V2.1 (2.4" 320x240 ST7789V) as shipped with the MKS DLC32
+//
+//#define MKS_TS24_R_V2_1
+
+//
+// 320x240, 2.4", FSMC Display From MKS
+// Usually paired with MKS Robin Nano V1.2
+//
+//#define MKS_ROBIN_TFT24
+
+//
+// 320x240, 2.8", FSMC Display From MKS
+// Usually paired with MKS Robin Nano V1.2
+//
+//#define MKS_ROBIN_TFT28
+
+//
+// 320x240, 3.2", FSMC Display From MKS
+// Usually paired with MKS Robin Nano V1.2
+//
+//#define MKS_ROBIN_TFT32
+
+//
+// 480x320, 3.5", FSMC Display From MKS
+// Usually paired with MKS Robin Nano V1.2
+//
+//#define MKS_ROBIN_TFT35
+
+//
+// 480x272, 4.3", FSMC Display From MKS
+//
+//#define MKS_ROBIN_TFT43
+
+//
+// 320x240, 3.2", FSMC Display From MKS
+// Usually paired with MKS Robin
+//
+//#define MKS_ROBIN_TFT_V1_1R
+
+//
+// 480x320, 3.5", FSMC Stock Display from Tronxy
+//
+//#define TFT_TRONXY_X5SA
+
+//
+// 480x320, 3.5", FSMC Stock Display from AnyCubic
+//
+//#define ANYCUBIC_TFT35
+
+//
+// 320x240, 2.8", FSMC Stock Display from Longer/Alfawise
+//
+//#define LONGER_LK_TFT28
+
+//
+// 320x240, 2.8", FSMC Stock Display from ET4
+//
+//#define ANET_ET4_TFT28
+
+//
+// 480x320, 3.5", FSMC Stock Display from ET5
+//
+//#define ANET_ET5_TFT35
+
+//
+// 1024x600, 7", RGB Stock Display with Rotary Encoder from BIQU BX
+// https://github.com/bigtreetech/BIQU-BX/tree/master/Hardware
+//
+//#define BIQU_BX_TFT70
+
+//
+// 480x320, 3.5", SPI Stock Display with Rotary Encoder from BIQU B1 SE Series
+// https://github.com/bigtreetech/TFT35-SPI/tree/master/v1
+//
+//#define BTT_TFT35_SPI_V1_0
+
+//
+// Generic TFT with detailed options
+//
+//#define TFT_GENERIC
+#if ENABLED(TFT_GENERIC)
+  // :[ 'AUTO', 'ST7735', 'ST7789', 'ST7796', 'R61505', 'ILI9328', 'ILI9341', 'ILI9488' ]
+  #define TFT_DRIVER AUTO
+
+  // Interface. Enable one of the following options:
+  //#define TFT_INTERFACE_FSMC
+  //#define TFT_INTERFACE_SPI
+
+  // TFT Resolution. Enable one of the following options:
+  //#define TFT_RES_320x240
+  //#define TFT_RES_480x272
+  //#define TFT_RES_480x320
+  //#define TFT_RES_1024x600
+#endif
+
+/**
+ * TFT UI - User Interface Selection. Enable one of the following options:
+ *
+ *   TFT_CLASSIC_UI - Emulated DOGM - 128x64 Upscaled
+ *   TFT_COLOR_UI   - Marlin Default Menus, Touch Friendly, using full TFT capabilities
+ *   TFT_LVGL_UI    - A Modern UI using LVGL
+ *
+ *   For LVGL_UI also copy the 'assets' folder from the build directory to the
+ *   root of your SD card, together with the compiled firmware.
+ */
+//#define TFT_CLASSIC_UI
+//#define TFT_COLOR_UI
+//#define TFT_LVGL_UI
+
+#if ENABLED(TFT_COLOR_UI)
+  /**
+   * TFT Font for Color UI. Choose one of the following:
+   *
+   * NOTOSANS  - Default font with anti-aliasing. Supports Latin Extended and non-Latin characters.
+   * UNIFONT   - Lightweight font, no anti-aliasing. Supports Latin Extended and non-Latin characters.
+   * HELVETICA - Lightweight font, no anti-aliasing. Supports Basic Latin (0x0020-0x007F) and Latin-1 Supplement (0x0080-0x00FF) characters only.
+   * :['NOTOSANS', 'UNIFONT', 'HELVETICA']
+   */
+  #define TFT_FONT  NOTOSANS
+
+  /**
+   * TFT Theme for Color UI. Choose one of the following or add a new one to 'Marlin/src/lcd/tft/themes' directory
+   *
+   * BLUE_MARLIN  - Default theme with 'midnight blue' background
+   * BLACK_MARLIN - Theme with 'black' background
+   * ANET_BLACK   - Theme used for Anet ET4/5
+   * :['BLUE_MARLIN', 'BLACK_MARLIN', 'ANET_BLACK']
+   */
+  #define TFT_THEME BLACK_MARLIN
+
+  //#define TFT_SHARED_IO   // I/O is shared between TFT display and other devices. Disable async data transfer.
+
+  #define COMPACT_MARLIN_BOOT_LOGO  // Use compressed data to save Flash space
+#endif
+
+#if ENABLED(TFT_LVGL_UI)
+  //#define MKS_WIFI_MODULE // MKS WiFi module
+#endif
+
+/**
+ * TFT Rotation. Set to one of the following values:
+ *
+ *   TFT_ROTATE_90,  TFT_ROTATE_90_MIRROR_X,  TFT_ROTATE_90_MIRROR_Y,
+ *   TFT_ROTATE_180, TFT_ROTATE_180_MIRROR_X, TFT_ROTATE_180_MIRROR_Y,
+ *   TFT_ROTATE_270, TFT_ROTATE_270_MIRROR_X, TFT_ROTATE_270_MIRROR_Y,
+ *   TFT_MIRROR_X, TFT_MIRROR_Y, TFT_NO_ROTATION
+ *
+ * :{ 'TFT_NO_ROTATION':'None', 'TFT_ROTATE_90':'90°', 'TFT_ROTATE_90_MIRROR_X':'90° (Mirror X)', 'TFT_ROTATE_90_MIRROR_Y':'90° (Mirror Y)', 'TFT_ROTATE_180':'180°', 'TFT_ROTATE_180_MIRROR_X':'180° (Mirror X)', 'TFT_ROTATE_180_MIRROR_Y':'180° (Mirror Y)', 'TFT_ROTATE_270':'270°', 'TFT_ROTATE_270_MIRROR_X':'270° (Mirror X)', 'TFT_ROTATE_270_MIRROR_Y':'270° (Mirror Y)', 'TFT_MIRROR_X':'Mirror X', 'TFT_MIRROR_Y':'Mirror Y' }
+ */
+//#define TFT_ROTATION TFT_NO_ROTATION
+
+//=============================================================================
+//============================  Other Controllers  ============================
+//=============================================================================
+
+//
+// Ender-3 v2 OEM display. A DWIN display with Rotary Encoder.
+//
+//#define DWIN_CREALITY_LCD           // Creality UI
+//#define DWIN_LCD_PROUI              // Pro UI by MRiscoC
+//#define DWIN_CREALITY_LCD_JYERSUI   // Jyers UI by Jacob Myers
+//#define DWIN_MARLINUI_PORTRAIT      // MarlinUI (portrait orientation)
+//#define DWIN_MARLINUI_LANDSCAPE     // MarlinUI (landscape orientation)
+
+#if ENABLED(DWIN_CREALITY_LCD)
+  //#define USE_STRING_HEADINGS       // Use string headings for Creality UI instead of images
+  //#define USE_STRING_TITLES         // Use string titles for Creality UI instead of images
+#endif
+
+//
+// Touch Screen Settings
+//
+//#define TOUCH_SCREEN
+#if ENABLED(TOUCH_SCREEN)
+  #define BUTTON_DELAY_EDIT      50 // (ms) Button repeat delay for edit screens
+  #define BUTTON_DELAY_MENU     250 // (ms) Button repeat delay for menus
+
+  #if ANY(TFT_CLASSIC_UI, TFT_COLOR_UI)
+    //#define NO_BACK_MENU_ITEM     // Don't display a top menu item to go back to the parent menu
+  #endif
+
+  #define TOUCH_SCREEN_CALIBRATION
+
+  //#define TOUCH_CALIBRATION_X 12316
+  //#define TOUCH_CALIBRATION_Y -8981
+  //#define TOUCH_OFFSET_X        -43
+  //#define TOUCH_OFFSET_Y        257
+  //#define TOUCH_ORIENTATION TOUCH_LANDSCAPE
+
+  #if ALL(TOUCH_SCREEN_CALIBRATION, EEPROM_SETTINGS)
+    #define TOUCH_CALIBRATION_AUTO_SAVE // Auto save successful calibration values to EEPROM
+  #endif
+
+  #if ENABLED(TFT_COLOR_UI)
+    //#define SINGLE_TOUCH_NAVIGATION
+  #endif
+#endif
+
+//
+// RepRapWorld REPRAPWORLD_KEYPAD v1.1
+// https://reprapworld.com/products/electronics/ramps/keypad_v1_0_fully_assembled/
+//
+//#define REPRAPWORLD_KEYPAD
+#if ENABLED(REPRAPWORLD_KEYPAD)
+  //#define REPRAPWORLD_KEYPAD_MOVE_STEP 10.0 // (mm) Distance to move per key-press
+#endif
+
+//
+// EasyThreeD ET-4000+ with button input and status LED
+//
+//#define EASYTHREED_UI
+
+//=============================================================================
+//=============================== Extra Features ==============================
+//=============================================================================
+
+// @section fans
+
+// Set number of user-controlled fans. Disable to use all board-defined fans.
+// :[1,2,3,4,5,6,7,8]
+//#define NUM_M106_FANS 1
+
+/**
+ * Use software PWM to drive the fan, as for the heaters. This uses a very low frequency
+ * which is not as annoying as with the hardware PWM. On the other hand, if this frequency
+ * is too low, you should also increment SOFT_PWM_SCALE.
+ */
+//#define FAN_SOFT_PWM
+
+/**
+ * Incrementing this by 1 will double the software PWM frequency, affecting heaters, and
+ * the fan if FAN_SOFT_PWM is enabled. However, control resolution will be halved for each
+ * increment; at zero value, there are 128 effective control positions.
+ * :[0,1,2,3,4,5,6,7]
+ */
+#define SOFT_PWM_SCALE 0
+
+/**
+ * If SOFT_PWM_SCALE is set to a value higher than 0, dithering can be used to mitigate the
+ * associated resolution loss. If enabled, some of the PWM cycles are stretched so on average
+ * the desired duty cycle is attained.
+ */
+//#define SOFT_PWM_DITHER
+
+// @section extras
+
+// Support for the BariCUDA Paste Extruder
+//#define BARICUDA
+
+// @section lights
+
+/**
+ * Temperature status LEDs that display the hotend and bed temperature.
+ * If all hotends, bed temperature, and target temperature are under 54C
+ * the BLUE led is on. Otherwise the RED led is on. (1C hysteresis)
+ */
+//#define TEMP_STAT_LEDS
+
+// Support for BlinkM/CyzRgb
+//#define BLINKM
+
+// Support for PCA9632 PWM LED driver
+//#define PCA9632
+
+// Support for PCA9533 PWM LED driver
+//#define PCA9533
+
+/**
+ * RGB LED / LED Strip Control
+ *
+ * Enable support for an RGB LED connected to 5V digital pins, or
+ * an RGB Strip connected to MOSFETs controlled by digital pins.
+ *
+ * Adds the M150 command to set the LED (or LED strip) color.
+ * If pins are PWM capable (e.g., 4, 5, 6, 11) then a range of
+ * luminance values can be set from 0 to 255.
+ * For NeoPixel LED an overall brightness parameter is also available.
+ *
+ *  === CAUTION ===
+ *  LED Strips require a MOSFET Chip between PWM lines and LEDs,
+ *  as the Arduino cannot handle the current the LEDs will require.
+ *  Failure to follow this precaution can destroy your Arduino!
+ *
+ *  NOTE: A separate 5V power supply is required! The NeoPixel LED needs
+ *  more current than the Arduino 5V linear regulator can produce.
+ *
+ *  Requires PWM frequency between 50 <> 100Hz (Check HAL or variant)
+ *  Use FAST_PWM_FAN, if possible, to reduce fan noise.
+ */
+
+// LED Type. Enable only one of the following two options:
+//#define RGB_LED
+//#define RGBW_LED
+
+#if ANY(RGB_LED, RGBW_LED)
+  //#define RGB_LED_R_PIN 34
+  //#define RGB_LED_G_PIN 43
+  //#define RGB_LED_B_PIN 35
+  //#define RGB_LED_W_PIN -1
+#endif
+
+#if ANY(RGB_LED, RGBW_LED, PCA9632)
+  //#define RGB_STARTUP_TEST              // For PWM pins, fade between all colors
+  #if ENABLED(RGB_STARTUP_TEST)
+    #define RGB_STARTUP_TEST_INNER_MS 10  // (ms) Reduce or increase fading speed
+  #endif
+#endif
+
+// Support for Adafruit NeoPixel LED driver
+//#define NEOPIXEL_LED
+#if ENABLED(NEOPIXEL_LED)
+  #define NEOPIXEL_TYPE          NEO_GRBW // NEO_GRBW, NEO_RGBW, NEO_GRB, NEO_RBG, etc.
+                                          // See https://github.com/adafruit/Adafruit_NeoPixel/blob/master/Adafruit_NeoPixel.h
+  //#define NEOPIXEL_PIN                4 // LED driving pin
+  //#define NEOPIXEL2_TYPE  NEOPIXEL_TYPE
+  //#define NEOPIXEL2_PIN               5
+  #define NEOPIXEL_PIXELS              30 // Number of LEDs in the strip. (Longest strip when NEOPIXEL2_SEPARATE is disabled.)
+  #define NEOPIXEL_IS_SEQUENTIAL          // Sequential display for temperature change - LED by LED. Disable to change all LEDs at once.
+  #define NEOPIXEL_BRIGHTNESS         127 // Initial brightness (0-255)
+  //#define NEOPIXEL_STARTUP_TEST         // Cycle through colors at startup
+
+  // Support for second Adafruit NeoPixel LED driver controlled with M150 S1 ...
+  //#define NEOPIXEL2_SEPARATE
+  #if ENABLED(NEOPIXEL2_SEPARATE)
+    #define NEOPIXEL2_PIXELS           15 // Number of LEDs in the second strip
+    #define NEOPIXEL2_BRIGHTNESS      127 // Initial brightness (0-255)
+    #define NEOPIXEL2_STARTUP_TEST        // Cycle through colors at startup
+    #define NEOPIXEL_M150_DEFAULT      -1 // Default strip for M150 without 'S'. Use -1 to set all by default.
+  #else
+    //#define NEOPIXEL2_INSERIES          // Default behavior is NeoPixel 2 in parallel
+  #endif
+
+  // Use some of the NeoPixel LEDs for static (background) lighting
+  //#define NEOPIXEL_BKGD_INDEX_FIRST   0 // Index of the first background LED
+  //#define NEOPIXEL_BKGD_INDEX_LAST    5 // Index of the last background LED
+  //#define NEOPIXEL_BKGD_COLOR         { 255, 255, 255, 0 }  // R, G, B, W
+  //#define NEOPIXEL_BKGD_TIMEOUT_COLOR {  25,  25,  25, 0 }  // R, G, B, W
+  //#define NEOPIXEL_BKGD_ALWAYS_ON       // Keep the backlight on when other NeoPixels are off
+#endif
+
+/**
+ * Printer Event LEDs
+ *
+ * During printing, the LEDs will reflect the printer status:
+ *
+ *  - Gradually change from blue to violet as the heated bed gets to target temp
+ *  - Gradually change from violet to red as the hotend gets to temperature
+ *  - Change to white to illuminate work surface
+ *  - Change to green once print has finished
+ *  - Turn off after the print has finished and the user has pushed a button
+ */
+#if ANY(BLINKM, RGB_LED, RGBW_LED, PCA9632, PCA9533, NEOPIXEL_LED)
+  #define PRINTER_EVENT_LEDS
+#endif
+
+// @section servos
+
+/**
+ * Number of servos
+ *
+ * For some servo-related options NUM_SERVOS will be set automatically.
+ * Set this manually if there are extra servos needing manual control.
+ * Set to 0 to turn off servo support.
+ */
+#define NUM_SERVOS 1 // Note: Servo index starts with 0 for M280-M282 commands
+
+// (ms) Delay before the next move will start, to give the servo time to reach its target angle.
+// 300ms is a good value but you can try less delay.
+// If the servo can't reach the requested position, increase it.
+#define SERVO_DELAY { 300 }
+
+// Only power servos during movement, otherwise leave off to prevent jitter
+#define DEACTIVATE_SERVOS_AFTER_MOVE
+
+// Edit servo angles with M281 and save to EEPROM with M500
+//#define EDITABLE_SERVO_ANGLES
+
+// Disable servo with M282 to reduce power consumption, noise, and heat when not in use
+//#define SERVO_DETACH_GCODE

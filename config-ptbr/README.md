@@ -15,9 +15,22 @@ futuras do Marlin (`git merge`). Para o Git ignorá-la por completo, adicione a
 linha `config-ptbr/` em `.git/info/exclude` — isso é local e não altera nenhum
 arquivo versionado.
 
-| Arquivo | Original correspondente |
-|---|---|
-| `Configuration.pt-BR.h` | `Marlin/Configuration.h` |
-| `Configuration_adv.pt-BR.h` | `Marlin/Configuration_adv.h` |
+| Arquivo | Original | Estado |
+|---|---|---|
+| `Configuration.pt-BR.h` | `Marlin/Configuration.h` | **completo** |
+| `Configuration_adv.pt-BR.h` | `Marlin/Configuration_adv.h` | ainda não iniciado |
+
+## Verificação de fidelidade
+
+O `Configuration.pt-BR.h` foi conferido automaticamente contra o original:
+**477 defines ativos nos dois arquivos, sem nenhum faltando nem divergente.**
+Os valores refletem o firmware gravado na placa.
+
+Se você alterar o `Marlin/Configuration.h`, a cópia traduzida fica defasada.
+Para reconferir, compare os `#define` ativos dos dois arquivos.
+
+No catálogo de displays (a última parte do arquivo) foram traduzidas as notas
+e instruções, mantendo nomes de produto, modelos e URLs no original — não há
+o que traduzir neles.
 
 Traduzido a partir do Marlin bugfix-2.1.x, `STRING_DISTRIBUTION_DATE 2026-10-01`.
