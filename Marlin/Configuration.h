@@ -1828,8 +1828,8 @@
  *     But: 'M851 Z+1' with a CLEARANCE of 2  =>  2mm from bed to nozzle.
  */
 #define Z_CLEARANCE_DEPLOY_PROBE   10 // (mm) Z Clearance for Deploy/Stow
-#define Z_CLEARANCE_BETWEEN_PROBES  5 // (mm) Z Clearance between probe points
-#define Z_CLEARANCE_MULTI_PROBE     5 // (mm) Z Clearance between multiple probes
+#define Z_CLEARANCE_BETWEEN_PROBES  8 // (mm) 8 > 4mm dos parafusos de fixacao da mesa
+#define Z_CLEARANCE_MULTI_PROBE     8 // (mm) 8 > 4mm dos parafusos de fixacao da mesa
 #define Z_PROBE_ERROR_TOLERANCE     3 // (mm) Tolerance for early trigger (<= -probe.offset.z + ZPET)
 //#define Z_AFTER_PROBING           5 // (mm) Z position after probing is done
 
@@ -1933,8 +1933,8 @@
 
 // @section homing
 
-//#define NO_MOTION_BEFORE_HOMING // Inhibit movement until all axes have been homed. Also enable HOME_AFTER_DEACTIVATE for extra safety.
-//#define HOME_AFTER_DEACTIVATE   // Require rehoming after steppers are deactivated. Also enable NO_MOTION_BEFORE_HOMING for extra safety.
+#define NO_MOTION_BEFORE_HOMING   // Sem G28, o Marlin nao sabe onde esta: os limites de software nao valem.
+#define HOME_AFTER_DEACTIVATE     // Apos M18/timeout o carro pode ter sido movido a mao: exige novo G28.
 
 /**
  * Set Z_IDLE_HEIGHT if the Z-Axis moves on its own when steppers are disabled.
@@ -1943,10 +1943,10 @@
  */
 //#define Z_IDLE_HEIGHT Z_HOME_POS
 
-#define Z_CLEARANCE_FOR_HOMING  4   // (mm) Levanta o Z antes do G28 de X/Y, para nao arrastar o bico na mesa
+#define Z_CLEARANCE_FOR_HOMING  8   // (mm) Sobe antes do G28 de X/Y. 8 > 4mm dos parafusos da mesa.
                                       // You'll need this much clearance above Z_MAX_POS to avoid grinding.
 
-//#define Z_AFTER_HOMING         10   // (mm) Height to move to after homing (if Z was homed)
+#define Z_AFTER_HOMING         10   // (mm) Termina todo G28 numa altura segura
 //#define XY_AFTER_HOMING { 10, 10 }  // (mm) Move to an XY position after homing (and raising Z)
 
 //#define EVENT_GCODE_AFTER_HOMING "M300 P440 S200"  // Commands to run after G28 (and move to XY_AFTER_HOMING)
@@ -1981,15 +1981,24 @@
 // @section geometry
 
 // The size of the printable area
-#define X_BED_SIZE 200
-#define Y_BED_SIZE 200
+// Medido na maquina (16/10/2026), com o bico posicionado nas bordas:
+//   X: borda esquerda e direita da area util
+//   Y: borda da frente e do fundo (o fundo e tambem o limite mecanico, 2mm de folga)
+// As coordenadas foram deslocadas (+3 em X, -1 em Y) para as bordas caírem em zero,
+// porque o Marlin sempre assume a mesa comecando em 0 (X_MIN_BED = 0).
+#define X_BED_SIZE 201
+#define Y_BED_SIZE 193
 
 // Travel limits (linear=mm, rotational=°) after homing, corresponding to endstop positions.
-#define X_MIN_POS -15   // Limite fisico a esquerda (sensor X min), 15mm fora da mesa
-#define Y_MIN_POS -5    // Home do Y fica 5mm fora da mesa (a frente da borda)
+#define X_MIN_POS 0     // Borda esquerda da mesa. LIMITE ABSOLUTO: o probe bate no
+                        // mecanismo antes do sensor X min, que por isso nao protege
+                        // esse lado. Ha 5mm de folga fisica, deixados de reserva.
+                        // REVISAR se a montagem do probe mudar.
+#define Y_MIN_POS -6    // Posicao do sensor Y min (home), 6mm a frente da mesa.
+                        // Nao e escolha: o home no minimo fixa esta coordenada.
 #define Z_MIN_POS 0
-#define X_MAX_POS 205        // Home do X (direita) fica 5mm alem da borda da mesa
-#define Y_MAX_POS Y_BED_SIZE
+#define X_MAX_POS 208   // Posicao do sensor X max (home), 7mm alem da borda direita
+#define Y_MAX_POS 193   // Borda do fundo = limite mecanico (so 2mm de folga real)
 #define Z_MAX_POS 250
 //#define I_MIN_POS 0
 //#define I_MAX_POS 50
