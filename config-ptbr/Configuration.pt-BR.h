@@ -1958,3 +1958,779 @@
 #define X_HOME_DIR -1
 #define Y_HOME_DIR -1
 #define Z_HOME_DIR -1   // Z faz home no MÍNIMO (sensor de camada 0)
+//#define I_HOME_DIR -1
+//#define J_HOME_DIR -1
+//#define K_HOME_DIR -1
+//#define U_HOME_DIR -1
+//#define V_HOME_DIR -1
+//#define W_HOME_DIR -1
+
+/**
+ * Paradas de segurança
+ * Se um eixo tem fins de curso nas duas pontas, o indicado acima é usado para
+ * o homing, enquanto o outro pode servir para coisas como SD_ABORT_ON_ENDSTOP_HIT.
+ */
+//#define X_SAFETY_STOP
+//#define Y_SAFETY_STOP
+//#define Z_SAFETY_STOP
+//#define I_SAFETY_STOP
+//#define J_SAFETY_STOP
+//#define K_SAFETY_STOP
+//#define U_SAFETY_STOP
+//#define V_SAFETY_STOP
+//#define W_SAFETY_STOP
+
+// @section geometry
+
+// O tamanho da área imprimível
+// Medido na máquina, com o bico posicionado nas bordas:
+//   X: borda esquerda e direita da área útil
+//   Y: borda da frente e do fundo (o fundo é também o limite mecânico, 2mm de folga)
+// As coordenadas foram deslocadas (+3 em X, -1 em Y) para as bordas caírem em zero,
+// porque o Marlin sempre assume a mesa começando em 0 (X_MIN_BED = 0).
+#define X_BED_SIZE 201
+#define Y_BED_SIZE 193
+
+// Limites de curso (linear=mm, rotacional=°) após o homing, correspondendo às
+// posições dos fins de curso.
+#define X_MIN_POS 0     // Borda esquerda da mesa. LIMITE ABSOLUTO: o probe bate no
+                        // mecanismo antes do sensor X min, que por isso não protege
+                        // esse lado. Há 5mm de folga física, deixados de reserva.
+                        // REVISAR se a montagem do probe mudar.
+#define Y_MIN_POS -6    // Posição do sensor Y min (home), 6mm à frente da mesa.
+                        // Não é escolha: o home no mínimo fixa esta coordenada.
+#define Z_MIN_POS 0
+#define X_MAX_POS 208   // Posição do sensor X max (home), 7mm além da borda direita
+#define Y_MAX_POS 193   // Borda do fundo = limite mecânico (só 2mm de folga real)
+#define Z_MAX_POS 250
+//#define I_MIN_POS 0
+//#define I_MAX_POS 50
+//#define J_MIN_POS 0
+//#define J_MAX_POS 50
+//#define K_MIN_POS 0
+//#define K_MAX_POS 50
+//#define U_MIN_POS 0
+//#define U_MAX_POS 50
+//#define V_MIN_POS 0
+//#define V_MAX_POS 50
+//#define W_MIN_POS 0
+//#define W_MAX_POS 50
+
+/**
+ * Fins de curso por software
+ *
+ * - Impedem movimentos fora dos limites definidos da máquina.
+ * - Eixos individuais podem ser desabilitados, se desejado.
+ * - X e Y só se aplicam a robôs cartesianos.
+ * - Use 'M211' para ligar/desligar os fins de curso por software ou consultar o estado
+ */
+
+// Os fins de curso mínimos por software restringem o movimento ao limite inferior
+#define MIN_SOFTWARE_ENDSTOPS
+#if ENABLED(MIN_SOFTWARE_ENDSTOPS)
+  #define MIN_SOFTWARE_ENDSTOP_X
+  #define MIN_SOFTWARE_ENDSTOP_Y
+  #define MIN_SOFTWARE_ENDSTOP_Z
+  #define MIN_SOFTWARE_ENDSTOP_I
+  #define MIN_SOFTWARE_ENDSTOP_J
+  #define MIN_SOFTWARE_ENDSTOP_K
+  #define MIN_SOFTWARE_ENDSTOP_U
+  #define MIN_SOFTWARE_ENDSTOP_V
+  #define MIN_SOFTWARE_ENDSTOP_W
+#endif
+
+// Os fins de curso máximos por software restringem o movimento ao limite superior
+#define MAX_SOFTWARE_ENDSTOPS
+#if ENABLED(MAX_SOFTWARE_ENDSTOPS)
+  #define MAX_SOFTWARE_ENDSTOP_X
+  #define MAX_SOFTWARE_ENDSTOP_Y
+  #define MAX_SOFTWARE_ENDSTOP_Z
+  #define MAX_SOFTWARE_ENDSTOP_I
+  #define MAX_SOFTWARE_ENDSTOP_J
+  #define MAX_SOFTWARE_ENDSTOP_K
+  #define MAX_SOFTWARE_ENDSTOP_U
+  #define MAX_SOFTWARE_ENDSTOP_V
+  #define MAX_SOFTWARE_ENDSTOP_W
+#endif
+
+#if ANY(MIN_SOFTWARE_ENDSTOPS, MAX_SOFTWARE_ENDSTOPS)
+  //#define SOFT_ENDSTOPS_MENU_ITEM  // Liga/desliga os fins de curso por software pelo LCD
+#endif
+
+/**
+ * @section filament runout sensors
+ *
+ * Sensores de fim de filamento
+ * Fins de curso mecânicos ou ópticos são usados para verificar a presença do filamento.
+ *
+ * IMPORTANTE: o fim de filamento só dispara se o Marlin souber que há uma impressão
+ * em andamento. O Marlin sabe disso quando:
+ *  1. Uma impressão da mídia foi iniciada com M24.
+ *  2. O temporizador de impressão foi iniciado com M75.
+ *  3. Os aquecedores foram ligados e PRINTJOB_TIMER_AUTOSTART está habilitado.
+ *
+ * Placas baseadas em RAMPS usam o SERVO3_PIN para o primeiro sensor.
+ * Em outras placas pode ser necessário definir FIL_RUNOUT_PIN, FIL_RUNOUT2_PIN, etc.
+ */
+#define FILAMENT_RUNOUT_SENSOR
+#if ENABLED(FILAMENT_RUNOUT_SENSOR)
+  #define FIL_RUNOUT_ENABLED_DEFAULT true // Habilita o sensor no boot. Sobreponha com M412 seguido de M500.
+  #define NUM_RUNOUT_SENSORS   1          // Número de sensores, até um por extrusora. Defina um FIL_RUNOUT#_PIN para cada.
+
+  #define FIL_RUNOUT_STATE     LOW        // Estado do pino que indica que o filamento NÃO está presente.
+  #define FIL_RUNOUT_PULLUP               // Usa o pull-up interno nos pinos de fim de filamento.
+  //#define FIL_RUNOUT_PULLDOWN           // Usa o pull-down interno nos pinos de fim de filamento.
+  //#define WATCH_ALL_RUNOUT_SENSORS      // Executa o script em qualquer sensor que disparar, não só o da extrusora ativa.
+                                          // Isso é habilitado automaticamente para MIXING_EXTRUDER.
+
+  // Sobreponha individualmente se os sensores forem diferentes entre si
+  //#define FIL_RUNOUT1_STATE LOW
+  //#define FIL_RUNOUT1_PULLUP
+  //#define FIL_RUNOUT1_PULLDOWN
+
+  //#define FIL_RUNOUT2_STATE LOW
+  //#define FIL_RUNOUT2_PULLUP
+  //#define FIL_RUNOUT2_PULLDOWN
+
+  //#define FIL_RUNOUT3_STATE LOW
+  //#define FIL_RUNOUT3_PULLUP
+  //#define FIL_RUNOUT3_PULLDOWN
+
+  //#define FIL_RUNOUT4_STATE LOW
+  //#define FIL_RUNOUT4_PULLUP
+  //#define FIL_RUNOUT4_PULLDOWN
+
+  //#define FIL_RUNOUT5_STATE LOW
+  //#define FIL_RUNOUT5_PULLUP
+  //#define FIL_RUNOUT5_PULLDOWN
+
+  //#define FIL_RUNOUT6_STATE LOW
+  //#define FIL_RUNOUT6_PULLUP
+  //#define FIL_RUNOUT6_PULLDOWN
+
+  //#define FIL_RUNOUT7_STATE LOW
+  //#define FIL_RUNOUT7_PULLUP
+  //#define FIL_RUNOUT7_PULLDOWN
+
+  //#define FIL_RUNOUT8_STATE LOW
+  //#define FIL_RUNOUT8_PULLUP
+  //#define FIL_RUNOUT8_PULLDOWN
+
+  // Comandos a executar quando acabar o filamento.
+  // Com vários sensores, use o marcador %c para a ferramenta atual (ex.: "M600 T%c")
+  // OBS.: depois de 'M412 H1' quem trata o fim de filamento é o host, e este script não se aplica.
+  #define FILAMENT_RUNOUT_SCRIPT "M25"   // M600 exige ADVANCED_PAUSE_FEATURE (indisponível sem LCD com menu)
+
+  // Após detectar o fim do filamento, continua imprimindo este comprimento antes
+  // de executar o script. Útil para sensor instalado no fim de um tubo de
+  // alimentação. Custa 4 bytes de SRAM por sensor, mais 4 bytes de overhead.
+  //#define FILAMENT_RUNOUT_DISTANCE_MM 25
+
+  #ifdef FILAMENT_RUNOUT_DISTANCE_MM
+    // Habilite esta opção para usar um disco encoder que alterna o pino conforme
+    // o filamento se move. (Garanta um FILAMENT_MOTION_DISTANCE_MM grande o
+    // bastante para evitar falsos positivos.)
+    //#define FILAMENT_MOTION_SENSOR
+
+    #if ENABLED(FILAMENT_MOTION_SENSOR)
+      //#define FILAMENT_SWITCH_AND_MOTION      // Define pinos separados abaixo para detectar o movimento
+      #if ENABLED(FILAMENT_SWITCH_AND_MOTION)
+
+        #define FILAMENT_MOTION_DISTANCE_MM 3.0 // (mm) Distância faltante para disparar (0 = sem detecção de entupimento)
+
+        #define NUM_MOTION_SENSORS   1          // Número de sensores, até um por extrusora. Defina um FIL_MOTION#_PIN para cada.
+        //#define FIL_MOTION1_PIN    -1
+
+        // Sobreponha individualmente se os sensores de movimento forem diferentes
+        //#define FIL_MOTION1_STATE LOW
+        //#define FIL_MOTION1_PULLUP
+        //#define FIL_MOTION1_PULLDOWN
+
+        //#define FIL_MOTION2_STATE LOW
+        //#define FIL_MOTION2_PULLUP
+        //#define FIL_MOTION2_PULLDOWN
+
+        //#define FIL_MOTION3_STATE LOW
+        //#define FIL_MOTION3_PULLUP
+        //#define FIL_MOTION3_PULLDOWN
+
+        //#define FIL_MOTION4_STATE LOW
+        //#define FIL_MOTION4_PULLUP
+        //#define FIL_MOTION4_PULLDOWN
+
+        //#define FIL_MOTION5_STATE LOW
+        //#define FIL_MOTION5_PULLUP
+        //#define FIL_MOTION5_PULLDOWN
+
+        //#define FIL_MOTION6_STATE LOW
+        //#define FIL_MOTION6_PULLUP
+        //#define FIL_MOTION6_PULLDOWN
+
+        //#define FIL_MOTION7_STATE LOW
+        //#define FIL_MOTION7_PULLUP
+        //#define FIL_MOTION7_PULLDOWN
+
+        //#define FIL_MOTION8_STATE LOW
+        //#define FIL_MOTION8_PULLUP
+        //#define FIL_MOTION8_PULLDOWN
+      #endif // FILAMENT_SWITCH_AND_MOTION
+    #endif // FILAMENT_MOTION_SENSOR
+  #endif // FILAMENT_RUNOUT_DISTANCE_MM
+#endif // FILAMENT_RUNOUT_SENSOR
+
+//===========================================================================
+//========================= Nivelamento de mesa =============================
+//===========================================================================
+// @section calibrate
+
+/**
+ * Escolha uma das opções abaixo para habilitar o nivelamento de mesa por G29.
+ * Os parâmetros e o comportamento do G29 mudam conforme a sua escolha.
+ *
+ *  Se usar um probe para referenciar o Z, habilite também o Z_SAFE_HOMING!
+ *
+ * - AUTO_BED_LEVELING_3POINT
+ *   Sonda 3 pontos arbitrários da mesa (que não sejam colineares).
+ *   Você especifica as coordenadas XY dos 3 pontos.
+ *   O resultado é um único plano inclinado. Melhor para mesa plana.
+ *
+ * - AUTO_BED_LEVELING_LINEAR
+ *   Sonda vários pontos numa grade.
+ *   Você especifica o retângulo e a densidade dos pontos.
+ *   O resultado é um único plano inclinado. Melhor para mesa plana.
+ *
+ * - AUTO_BED_LEVELING_BILINEAR
+ *   Sonda vários pontos numa grade.
+ *   Você especifica o retângulo e a densidade dos pontos.
+ *   O resultado é uma malha, melhor para mesas grandes ou irregulares.
+ *
+ * - AUTO_BED_LEVELING_UBL (Unified Bed Leveling)
+ *   Um sistema abrangente de nivelamento, que combina recursos e vantagens dos
+ *   demais. O UBL também inclui geração, validação e edição de malha integradas.
+ *
+ * - MESH_BED_LEVELING
+ *   Sonda uma grade manualmente.
+ *   O resultado é uma malha, adequada a mesas grandes ou irregulares. (Veja BILINEAR.)
+ *   Para máquinas sem probe, oferece um método de nivelar por etapas, ajustando
+ *   a altura Z manualmente em cada ponto da grade.
+ *   Com um controlador de LCD o processo é guiado passo a passo.
+ */
+//#define AUTO_BED_LEVELING_3POINT
+//#define AUTO_BED_LEVELING_LINEAR
+#define AUTO_BED_LEVELING_BILINEAR
+//#define AUTO_BED_LEVELING_UBL
+//#define MESH_BED_LEVELING
+
+/**
+ * Comandos a executar no início da sondagem do G29,
+ * depois de trocar para a PROBING_TOOL.
+ */
+//#define EVENT_GCODE_BEFORE_G29 "M300 P440 S200"
+
+/**
+ * Comandos a executar no fim da sondagem do G29.
+ * Útil para retrair ou tirar o probe de Z do caminho.
+ */
+//#define EVENT_GCODE_AFTER_G29 "G1 Z10 F12000\nG1 X15 Y330\nG1 Z0.5\nG1 Z10"
+
+/**
+ * Normalmente o G28 termina com o nivelamento desabilitado. Habilite uma destas
+ * opções para restaurar o estado anterior do nivelamento ou para sempre
+ * habilitá-lo logo após o G28.
+ */
+//#define RESTORE_LEVELING_AFTER_G28
+//#define ENABLE_LEVELING_AFTER_G28
+
+/**
+ * O nivelamento automático precisa de pré-aquecimento
+ */
+//#define PREHEAT_BEFORE_LEVELING
+#if ENABLED(PREHEAT_BEFORE_LEVELING)
+  #define LEVELING_NOZZLE_TEMP 120   // (°C) Por enquanto vale só para o E0
+  #define LEVELING_BED_TEMP     50
+#endif
+
+/**
+ * Habilita o registro detalhado de G28, G29, M48, etc.
+ * Ligue com o comando 'M111 S32'.
+ * OBS.: consome bastante flash!
+ */
+//#define DEBUG_LEVELING_FEATURE
+
+#if ANY(MESH_BED_LEVELING, AUTO_BED_LEVELING_UBL, PROBE_MANUALLY)
+  // Define uma altura para o início do ajuste manual
+  #define MANUAL_PROBE_START_Z 0.2  // (mm) Comente para usar a última altura medida
+#endif
+
+#if ANY(MESH_BED_LEVELING, AUTO_BED_LEVELING_BILINEAR, AUTO_BED_LEVELING_UBL)
+  /**
+   * Reduz gradualmente a correção do nivelamento até uma certa altura, a partir
+   * da qual o movimento passa a ser paralelo ao plano XY da máquina.
+   * A altura pode ser definida com M420 Z<altura>
+   */
+  #define ENABLE_LEVELING_FADE_HEIGHT
+  #if ENABLED(ENABLE_LEVELING_FADE_HEIGHT)
+    #define DEFAULT_LEVELING_FADE_HEIGHT 10.0 // (mm) Altura padrão de desvanecimento.
+  #endif
+
+  /**
+   * Em máquinas cartesianas, em vez de dividir os movimentos nas fronteiras da
+   * malha, quebra-os em segmentos curtos como numa Delta. Isso acompanha o
+   * contorno da mesa mais de perto que movimentos retos de ponta a ponta.
+   */
+  #define SEGMENT_LEVELED_MOVES
+  #define LEVELED_SEGMENT_LENGTH 5.0 // (mm) Comprimento de todos os segmentos (exceto o último)
+
+  /**
+   * Habilita a ferramenta de padrão de validação de malha G26.
+   */
+  //#define G26_MESH_VALIDATION
+  #if ENABLED(G26_MESH_VALIDATION)
+    #define MESH_TEST_NOZZLE_SIZE    0.4  // (mm) Diâmetro do bico principal.
+    #define MESH_TEST_LAYER_HEIGHT   0.2  // (mm) Altura de camada padrão do G26.
+    #define MESH_TEST_HOTEND_TEMP  205    // (°C) Temperatura padrão do bico no G26.
+    #define MESH_TEST_BED_TEMP      60    // (°C) Temperatura padrão da mesa no G26.
+    #define G26_XY_FEEDRATE         20    // (mm/s) Velocidade dos movimentos XY do G26.
+    #define G26_XY_FEEDRATE_TRAVEL 100    // (mm/s) Velocidade de deslocamento XY do G26.
+    #define G26_RETRACT_MULTIPLIER   1.0  // Retração (G26 Q) usada por padrão entre elementos do teste.
+  #endif
+
+  #define MAX_SAVED_MESHES    100         // Máximo de malhas gravadas na EEPROM. Use 0 para desabilitar.
+
+#endif
+
+#if ANY(AUTO_BED_LEVELING_LINEAR, AUTO_BED_LEVELING_BILINEAR)
+
+  // Define o número de pontos da grade por dimensão.
+  #define GRID_MAX_POINTS_X 3
+  #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
+
+  // Sonda ao longo do eixo Y, avançando o X a cada coluna
+  //#define PROBE_Y_FIRST
+
+  #if ENABLED(AUTO_BED_LEVELING_BILINEAR)
+
+    #if DISABLED(USE_PROBE_FOR_Z_HOMING) && ALL(FIX_MOUNTED_PROBE, Z_SAFE_HOMING)
+      // Se o seu home de Z (M206) estiver bem calibrado, habilite para estabelecer
+      // o Z0 do probe antes de cada G29
+      //#define PROBE_Z0_BEFORE_G29
+    #endif
+
+    // Além da grade sondada, continuar a inclinação implícita?
+    // O padrão é manter a altura da borda mais próxima.
+    //#define EXTRAPOLATE_BEYOND_GRID
+
+    //
+    // Subdivisão da grade pelo método Catmull-Rom.
+    // Sintetiza pontos intermediários para produzir uma malha mais detalhada.
+    //
+    //#define ABL_BILINEAR_SUBDIVISION
+    #if ENABLED(ABL_BILINEAR_SUBDIVISION)
+      // Número de subdivisões entre os pontos sondados
+      #define BILINEAR_SUBDIVISIONS 3
+    #endif
+
+  #endif
+
+#elif ENABLED(AUTO_BED_LEVELING_UBL)
+
+  //===========================================================================
+  //====================== Nivelamento unificado (UBL) ========================
+  //===========================================================================
+
+  //#define MESH_EDIT_GFX_OVERLAY   // Exibe uma sobreposição gráfica durante a edição da malha
+
+  #define MESH_INSET 1              // (mm) Define os limites da malha como uma região recuada da mesa
+  #define GRID_MAX_POINTS_X 10      // Não use mais que 15 pontos por eixo: limitação da implementação.
+  #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
+
+  //#define UBL_HILBERT_CURVE       // Usa distribuição de Hilbert para percorrer menos ao sondar vários pontos
+
+  //#define UBL_TILT_ON_MESH_POINTS         // Usa os pontos de malha mais próximos no G29 J, para melhor referência de Z
+  //#define UBL_TILT_ON_MESH_POINTS_3POINT  // Usa os pontos mais próximos no G29 J0 (3 pontos)
+
+  #define UBL_MESH_EDIT_MOVES_Z     // Usuários experientes preferem o bico sem movimento
+  #define UBL_SAVE_ACTIVE_ON_M500   // Grava a malha ativa no slot atual ao executar M500
+
+  //#define UBL_Z_RAISE_WHEN_OFF_MESH 2.5 // (mm) Correção de altura Z quando o bico está fora da malha
+
+  //#define UBL_MESH_WIZARD         // Executa vários comandos em sequência para obter uma malha completa
+
+  /**
+   * Sondagem proibida dentro da região de um obstáculo.
+   */
+  //#define AVOID_OBSTACLES
+  #if ENABLED(AVOID_OBSTACLES)
+    #define CLIP_W  23  // (mm) Largura da presilha da mesa, com alguns mm de folga sobre o tamanho real
+    #define CLIP_H  14  // (mm) Altura da presilha da mesa, com alguns mm de folga sobre o tamanho real
+
+    // Retângulos de obstáculo, definidos como { X1, Y1, X2, Y2 }
+    #define OBSTACLE1 { (X_BED_SIZE) / 4     - (CLIP_W) / 2,                       0, (X_BED_SIZE) / 4     + (CLIP_W) / 2, CLIP_H }     // (mm)
+    #define OBSTACLE2 { (X_BED_SIZE) * 3 / 4 - (CLIP_W) / 2,                       0, (X_BED_SIZE) * 3 / 4 + (CLIP_W) / 2, CLIP_H }     // (mm)
+    #define OBSTACLE3 { (X_BED_SIZE) / 4     - (CLIP_W) / 2, (Y_BED_SIZE) - (CLIP_H), (X_BED_SIZE) / 4     + (CLIP_W) / 2, Y_BED_SIZE } // (mm)
+    #define OBSTACLE4 { (X_BED_SIZE) * 3 / 4 - (CLIP_W) / 2, (Y_BED_SIZE) - (CLIP_H), (X_BED_SIZE) * 3 / 4 + (CLIP_W) / 2, Y_BED_SIZE } // (mm)
+
+    // A grade sondada precisa ser recuada para o G29 J. Isso não é problema, pois
+    // ela só é usada para calcular uma transformação linear da própria malha.
+    #define G29J_MESH_TILT_MARGIN ((CLIP_H) + 1)    // (mm)
+  #endif
+
+#elif ENABLED(MESH_BED_LEVELING)
+
+  //===========================================================================
+  //================================= Malha ===================================
+  //===========================================================================
+
+  #define MESH_INSET 10          // (mm) Define os limites da malha como uma região recuada da mesa
+  #define GRID_MAX_POINTS_X 3
+  #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
+
+  //#define MESH_G28_REST_ORIGIN // Após referenciar todos os eixos ('G28' ou 'G28 XYZ'), deixa o Z em Z_MIN_POS
+
+#endif // BED_LEVELING
+
+/**
+ * Adiciona um submenu de nivelamento de mesa para ABL ou MBL.
+ * Inclui um procedimento guiado se a sondagem manual estiver habilitada.
+ */
+//#define LCD_BED_LEVELING
+
+#if ENABLED(LCD_BED_LEVELING)
+  #define MESH_EDIT_Z_STEP  0.025 // (mm) Tamanho do passo ao sondar o eixo Z manualmente.
+  #define LCD_PROBE_Z_RANGE 4     // (mm) Faixa de Z, centrada em Z_MIN_POS, para o ajuste pelo LCD
+  //#define MESH_EDIT_MENU        // Adiciona um menu para editar os pontos da malha
+#endif
+
+// Adiciona um item de menu para percorrer os cantos da mesa no ajuste manual
+//#define LCD_BED_TRAMMING
+
+#if ENABLED(LCD_BED_TRAMMING)
+  #define BED_TRAMMING_INSET_LFRB { 30, 30, 30, 30 } // (mm) Recuos: esquerda, frente, direita, fundo
+  #define BED_TRAMMING_HEIGHT      0.0        // (mm) Altura Z do bico nos pontos de ajuste
+  #define BED_TRAMMING_Z_HOP       4.0        // (mm) Subida de Z entre os pontos
+  //#define BED_TRAMMING_INCLUDE_CENTER       // Vai ao centro depois do último canto
+  //#define BED_TRAMMING_USE_PROBE
+  #if ENABLED(BED_TRAMMING_USE_PROBE)
+    #define BED_TRAMMING_PROBE_TOLERANCE 0.1  // (mm)
+    #define BED_TRAMMING_VERIFY_RAISED        // Depois que o ajuste dispara o probe, sonda de novo para conferir
+    //#define BED_TRAMMING_AUDIO_FEEDBACK
+  #endif
+
+  /**
+   * Ordem do nivelamento pelos cantos
+   *
+   * Defina 2 ou 4 pontos. Com 2 pontos, o 3º é o centro da borda oposta.
+   *
+   *  LF  esquerda-frente    RF  direita-frente
+   *  LB  esquerda-fundo     RB  direita-fundo
+   *
+   * Exemplos:
+   *
+   *      Padrão         {LF,RB,LB,RF}         {LF,RF}           {LB,LF}
+   *  LB --------- RB   LB --------- RB    LB --------- RB   LB --------- RB
+   *  |  4       3  |   | 3         2 |    |     <3>     |   | 1           |
+   *  |             |   |             |    |             |   |          <3>|
+   *  |  1       2  |   | 1         4 |    | 1         2 |   | 2           |
+   *  LF --------- RF   LF --------- RF    LF --------- RF   LF --------- RF
+   */
+  #define BED_TRAMMING_LEVELING_ORDER { LF, RF, RB, LB }
+#endif
+
+// @section homing
+
+// O centro da mesa fica em (X=0, Y=0)
+//#define BED_CENTER_AT_0_0
+
+// Define a posição de home manualmente. Deixe indefinido para ajuste automático.
+// Em DELTA, é o centro-topo do volume cartesiano de impressão.
+//#define MANUAL_X_HOME_POS 0
+//#define MANUAL_Y_HOME_POS 0
+//#define MANUAL_Z_HOME_POS 0
+//#define MANUAL_I_HOME_POS 0
+//#define MANUAL_J_HOME_POS 0
+//#define MANUAL_K_HOME_POS 0
+//#define MANUAL_U_HOME_POS 0
+//#define MANUAL_V_HOME_POS 0
+//#define MANUAL_W_HOME_POS 0
+
+/**
+ * Use o "Z Safe Homing" para evitar referenciar o Z com o probe fora da mesa.
+ *
+ * - Move o probe (ou o bico) para um ponto XY definido antes de referenciar o Z.
+ * - Só permite referenciar o Z quando as posições XY são conhecidas e confiáveis.
+ * - Se os drivers dormirem, pode ser necessário referenciar XY de novo antes do Z.
+ */
+#define Z_SAFE_HOMING   // Exigido ao referenciar Z pelo probe: vai ao centro da mesa antes
+
+#if ENABLED(Z_SAFE_HOMING)
+  #define Z_SAFE_HOMING_X_POINT X_CENTER  // (mm) Ponto X para referenciar o Z
+  #define Z_SAFE_HOMING_Y_POINT Y_CENTER  // (mm) Ponto Y para referenciar o Z
+  //#define Z_SAFE_HOMING_POINT_ABSOLUTE  // Ignora os offsets de home (M206) nessa posição
+#endif
+
+// Velocidades de homing (linear=mm/min, rotacional=°/min)
+#define HOMING_FEEDRATE_MM_M { (50*60), (50*60), (4*60) }
+
+// Edita as velocidades de homing com M210 e pelos menus do MarlinUI
+//#define EDITABLE_HOMING_FEEDRATE
+
+// Valida que os fins de curso realmente dispararam nos movimentos de homing
+#define VALIDATE_HOMING_ENDSTOPS
+
+// @section calibrate
+
+/**
+ * Compensação de distorção (skew) da mesa
+ *
+ * Este recurso corrige desalinhamento nos eixos XYZ.
+ *
+ * Para obter a distorção no plano XY:
+ *  1. Imprima um quadrado de teste (ex.: https://www.thingiverse.com/thing:2563185)
+ *  2. Para XY_DIAG_AC meça a diagonal de A a C
+ *  3. Para XY_DIAG_BD meça a diagonal de B a D
+ *  4. Para XY_SIDE_AD meça a aresta de A a D
+ *
+ * O Marlin calcula os fatores de distorção a partir dessas medidas.
+ * Eles também podem ser calculados e definidos manualmente:
+ *
+ *  - Calcule AB     : SQRT(2*AC*AC+2*BD*BD-4*AD*AD)/2
+ *  - XY_SKEW_FACTOR : TAN(PI/2-ACOS((AC*AC-AB*AB-AD*AD)/(2*AB*AD)))
+ *
+ * Se quiser, repita o mesmo procedimento para XZ e YZ.
+ * Use estes diagramas como referência:
+ *
+ *    Y                     Z                     Z
+ *    ^     B-------C       ^     B-------C       ^     B-------C
+ *    |    /       /        |    /       /        |    /       /
+ *    |   /       /         |   /       /         |   /       /
+ *    |  A-------D          |  A-------D          |  A-------D
+ *    +-------------->X     +-------------->X     +-------------->Y
+ *     XY_SKEW_FACTOR        XZ_SKEW_FACTOR        YZ_SKEW_FACTOR
+ */
+//#define SKEW_CORRECTION
+
+#if ENABLED(SKEW_CORRECTION)
+  // Informe aqui todas as medidas de comprimento:
+  #define XY_DIAG_AC 282.8427124746
+  #define XY_DIAG_BD 282.8427124746
+  #define XY_SIDE_AD 200
+
+  // Ou defina o fator de distorção XY diretamente:
+  //#define XY_SKEW_FACTOR 0.0
+
+  //#define SKEW_CORRECTION_FOR_Z
+  #if ENABLED(SKEW_CORRECTION_FOR_Z)
+    #define XZ_DIAG_AC 282.8427124746
+    #define XZ_DIAG_BD 282.8427124746
+    #define YZ_DIAG_AC 282.8427124746
+    #define YZ_DIAG_BD 282.8427124746
+    #define YZ_SIDE_AD 200
+
+    // Ou defina os fatores de distorção de Z diretamente:
+    //#define XZ_SKEW_FACTOR 0.0
+    //#define YZ_SKEW_FACTOR 0.0
+  #endif
+
+  // Habilite esta opção para ajustar a distorção em tempo de execução com M852
+  //#define SKEW_CORRECTION_GCODE
+#endif
+
+//=============================================================================
+//========================== Recursos adicionais ==============================
+//=============================================================================
+
+// @section eeprom
+
+/**
+ * EEPROM
+ *
+ * Armazenamento persistente, que preserva ajustes configuráveis entre reinícios.
+ *
+ *   M500 - Grava os ajustes na EEPROM.
+ *   M501 - Lê os ajustes da EEPROM. (ou seja, descarta alterações não salvas)
+ *   M502 - Restaura os ajustes de "fábrica". (Siga com M500 para inicializar a EEPROM.)
+ */
+#define EEPROM_SETTINGS       // Armazenamento persistente com M500 e M501
+//#define DISABLE_M503        // Economiza ~2700 bytes de flash. Não desabilite em versão final!
+#define EEPROM_CHITCHAT       // Dá retorno nos comandos de EEPROM. Desabilite para economizar flash.
+#define EEPROM_BOOT_SILENT    // Mantém o M503 silencioso, reportando só erros na primeira carga
+#if ENABLED(EEPROM_SETTINGS)
+  //#define EEPROM_AUTO_INIT  // Inicializa a EEPROM automaticamente em caso de erro.
+  //#define EEPROM_INIT_NOW   // Inicializa a EEPROM no primeiro boot após uma nova compilação.
+#endif
+
+// @section host
+
+//
+// Host Keepalive
+//
+// Quando habilitado, o Marlin envia ao host uma mensagem de status "ocupado"
+// a cada poucos segundos, enquanto não puder aceitar comandos.
+//
+#define HOST_KEEPALIVE_FEATURE        // Desabilite se o seu host não lida bem com mensagens de keepalive
+#define DEFAULT_KEEPALIVE_INTERVAL 2  // Segundos entre as mensagens de "ocupado". Ajuste com M113.
+#define BUSY_WHILE_HEATING            // Alguns hosts exigem mensagens de "ocupado" até durante o aquecimento
+
+// @section units
+
+//
+// Suporte ao modo em polegadas (G20/G21)
+//
+//#define INCH_MODE_SUPPORT
+
+//
+// Suporte ao M149, que define as unidades de temperatura
+//
+//#define TEMPERATURE_UNITS_SUPPORT
+
+// @section temperature presets
+
+//
+// Constantes de pré-aquecimento - até 10 são suportadas sem alterações no código
+//
+#define PREHEAT_1_LABEL       "PLA"
+#define PREHEAT_1_TEMP_HOTEND 180
+#define PREHEAT_1_TEMP_BED     70
+#define PREHEAT_1_TEMP_CHAMBER 35
+#define PREHEAT_1_FAN_SPEED     0 // Valor de 0 a 255
+
+#define PREHEAT_2_LABEL       "ABS"
+#define PREHEAT_2_TEMP_HOTEND 240
+#define PREHEAT_2_TEMP_BED    110
+#define PREHEAT_2_TEMP_CHAMBER 35
+#define PREHEAT_2_FAN_SPEED     0 // Valor de 0 a 255
+
+/**
+ * @section nozzle park
+ *
+ * Estacionamento do bico
+ *
+ * Estaciona o bico na posição XYZ informada, em ociosidade ou no G27.
+ *
+ * O parâmetro "P" controla a ação aplicada ao eixo Z:
+ *
+ *    P0  (Padrão) Se o Z estiver abaixo da altura de estacionamento, levanta o bico.
+ *    P1  Sempre levanta o bico até a altura de estacionamento.
+ *    P2  Levanta o bico pelo valor de estacionamento, limitado a Z_MAX_POS.
+ */
+#define NOZZLE_PARK_FEATURE
+
+#if ENABLED(NOZZLE_PARK_FEATURE)
+  // Informe a posição de estacionamento como { X, Y, Z_subida }
+  #define NOZZLE_PARK_POINT { (X_MIN_POS + 10), (Y_MAX_POS - 10), 20 }
+  #define NOZZLE_PARK_MOVE          0   // Movimento: 0 = XY, 1 = só X, 2 = só Y, 3 = X antes de Y, 4 = Y antes de X
+  #define NOZZLE_PARK_Z_RAISE_MIN   2   // (mm) Sempre levanta o Z pelo menos esta distância
+  #define NOZZLE_PARK_XY_FEEDRATE 100   // (mm/s) Velocidade dos eixos X e Y (usada também no eixo Z de delta)
+  #define NOZZLE_PARK_Z_FEEDRATE    5   // (mm/s) Velocidade do eixo Z (não usada em impressoras delta)
+#endif
+
+/**
+ * @section nozzle clean
+ *
+ * Recurso de limpeza do bico
+ *
+ * Adiciona o comando G12, que executa um processo de limpeza do bico.
+ *
+ * Parâmetros:
+ *   P  Padrão
+ *   S  Passadas / repetições
+ *   T  Triângulos (só no P1)
+ *
+ * Padrões:
+ *   P0  Linha reta (padrão). Este processo exige um material tipo esponja
+ *       numa posição fixa da mesa. O "S" especifica as passadas (ou seja,
+ *       movimentos de ida e volta) entre os pontos inicial e final.
+ *
+ *   P1  Padrão ziguezague entre (X0, Y0) e (X1, Y1). O "T" especifica o número
+ *       de triângulos do ziguezague e o "S" define o número de passadas.
+ *       Os ziguezagues são feitos na dimensão mais estreita.
+ *       Por exemplo, "G12 P1 S1 T3" executa:
+ *
+ *          --
+ *         |  (X0, Y1) |     /\        /\        /\     | (X1, Y1)
+ *         |           |    /  \      /  \      /  \    |
+ *       A |           |   /    \    /    \    /    \   |
+ *         |           |  /      \  /      \  /      \  |
+ *         |  (X0, Y0) | /        \/        \/        \ | (X1, Y0)
+ *          --         +--------------------------------+
+ *                       |________|_________|_________|
+ *                           T1        T2        T3
+ *
+ *   P2  Padrão circular com o centro em NOZZLE_CLEAN_CIRCLE_MIDDLE.
+ *       O "R" especifica o raio e o "S" a quantidade de passadas.
+ *       Antes de começar, o bico vai para NOZZLE_CLEAN_START_POINT.
+ *
+ *   Ressalva: o Z final deve ser igual ao Z inicial.
+ */
+//#define NOZZLE_CLEAN_FEATURE
+
+#if ENABLED(NOZZLE_CLEAN_FEATURE)
+  #define NOZZLE_CLEAN_PATTERN_LINE     // Disponibiliza o 'G12 P0' - padrão linear simples
+  #define NOZZLE_CLEAN_PATTERN_ZIGZAG   // Disponibiliza o 'G12 P1' - padrão em ziguezague
+  #define NOZZLE_CLEAN_PATTERN_CIRCLE   // Disponibiliza o 'G12 P2' - padrão circular
+
+  // Padrão usado quando o 'P' não é informado no G12. Um dos habilitados acima.
+  #define NOZZLE_CLEAN_DEFAULT_PATTERN 0
+
+  #define NOZZLE_CLEAN_STROKES     12   // Número padrão de repetições do padrão
+
+  #if ENABLED(NOZZLE_CLEAN_PATTERN_ZIGZAG)
+    #define NOZZLE_CLEAN_TRIANGLES  3   // Número padrão de triângulos
+  #endif
+
+  // Informe as posições de cada ferramenta como { { X, Y, Z }, { X, Y, Z } }
+  // Sistema de hotend duplo pode usar { {  -20, (Y_BED_SIZE / 2), (Z_MIN_POS + 1) },  {  420, (Y_BED_SIZE / 2), (Z_MIN_POS + 1) }}
+  #define NOZZLE_CLEAN_START_POINT { {  30, 30, (Z_MIN_POS + 1) } }
+  #define NOZZLE_CLEAN_END_POINT   { { 100, 60, (Z_MIN_POS + 1) } }
+
+  #if ENABLED(NOZZLE_CLEAN_PATTERN_CIRCLE)
+    #define NOZZLE_CLEAN_CIRCLE_RADIUS 6.5                      // (mm) Raio do padrão circular
+    #define NOZZLE_CLEAN_CIRCLE_FN 10                           // Número de segmentos do círculo
+    #define NOZZLE_CLEAN_CIRCLE_MIDDLE NOZZLE_CLEAN_START_POINT // Ponto central do círculo
+  #endif
+
+  // Move o bico de volta à posição inicial depois da limpeza
+  #define NOZZLE_CLEAN_GOBACK
+
+  // Para estação de purga/limpeza sempre na altura do pórtico (portanto sem movimento de Z)
+  //#define NOZZLE_CLEAN_NO_Z
+
+  // Para estação de purga/limpeza montada no eixo X
+  //#define NOZZLE_CLEAN_NO_Y
+
+  // Exige temperatura mínima do hotend para a limpeza
+  #define NOZZLE_CLEAN_MIN_TEMP 170
+  //#define NOZZLE_CLEAN_HEATUP       // Aquece o bico em vez de pular a limpeza
+
+  // Script de G-code explícito de limpeza, aplicado a um G12 sem argumentos.
+  //#define WIPE_SEQUENCE_COMMANDS "G1 X-17 Y25 Z10 F4000\nG1 Z1\nM114\nG1 X-17 Y25\nG1 X-17 Y95\nG1 X-17 Y25\nG1 X-17 Y95\nG1 X-17 Y25\nG1 X-17 Y95\nG1 X-17 Y25\nG1 X-17 Y95\nG1 X-17 Y25\nG1 X-17 Y95\nG1 X-17 Y25\nG1 X-17 Y95\nG1 Z15\nM400\nG0 X-10.0 Y-9.0"
+
+#endif
+
+// @section host
+
+/**
+ * Temporizador de impressão
+ *
+ * Inicia e para automaticamente o temporizador nos comandos M104/M109/M140/M190/M141/M191.
+ * O temporizador só é parado se a temperatura alvo da mesa/câmara estiver abaixo
+ * de BED_MINTEMP/CHAMBER_MINTEMP.
+ *
+ *   M104 (bico, sem esperar)    - temp alta = nada,          temp baixa = para o timer
+ *   M109 (bico, esperando)      - temp alta = inicia o timer, temp baixa = para o timer
+ *   M140 (mesa, sem esperar)    - temp alta = nada,          temp baixa = para o timer
+ *   M190 (mesa, esperando)      - temp alta = inicia o timer, temp baixa = nada
+ *   M141 (câmara, sem esperar)  - temp alta = nada,          temp baixa = para o timer
+ *   M191 (câmara, esperando)    - temp alta = inicia o timer, temp baixa = nada
+ *
+ * Para M104/M109, "temp alta" é qualquer valor acima de EXTRUDE_MINTEMP / 2.
+ * Para M140/M190, é qualquer valor acima de BED_MINTEMP.
+ * Para M141/M191, é qualquer valor acima de CHAMBER_MINTEMP.
+ *
+ * O temporizador também pode ser controlado pelos comandos:
+ *
+ *   M75 - Inicia o temporizador de impressão
+ *   M76 - Pausa o temporizador
+ *   M77 - Para o temporizador
+ */
+#define PRINTJOB_TIMER_AUTOSTART
