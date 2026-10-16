@@ -18,7 +18,7 @@ arquivo versionado.
 | Arquivo | Original | Estado |
 |---|---|---|
 | `Configuration.pt-BR.h` | `Marlin/Configuration.h` | **completo** |
-| `Configuration_adv.pt-BR.h` | `Marlin/Configuration_adv.h` | ainda não iniciado |
+| `Configuration_adv.pt-BR.h` | `Marlin/Configuration_adv.h` | **incompleto** — só as ~210 primeiras linhas |
 
 ## Verificação de fidelidade
 
