@@ -1738,7 +1738,11 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#define NOZZLE_TO_PROBE_OFFSET { 10, 10, 0 } // (mm) X, Y, Z distance from Nozzle tip to Probe trigger-point
+// Medido com paquimetro:
+//   X = -38 : probe 38mm a ESQUERDA do bico
+//   Y = +10 : probe 10mm ATRAS do bico
+//   Z =   0 : PROVISORIO, ainda falta medir (probe abaixo do bico = negativo)
+#define NOZZLE_TO_PROBE_OFFSET { -38, 10, 0 } // (mm) X, Y, Z da ponta do bico ao ponto de disparo
 
 // Enable and set to use a specific tool for probing. Disable to allow any tool.
 #define PROBING_TOOL 0

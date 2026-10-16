@@ -8580,3 +8580,219 @@
 03:23:43 [rx] X:-3.00 Y:194.00 Z:4.00 E:0.00 Count A:-240B:15520 Z:1600
 03:23:43 [ok] ok
 03:26:57 [sys] Desconectado.
+03:33:40 [ok] Conectado em COM18 @ 250000.
+03:33:40 [tx] >> M115
+03:33:40 [tx] >> M119
+03:33:40 [rx] FIRMWARE_NAME:Marlin bugfix-2.1.x (Oct 16 2026 03:30:23) SOURCE_CODE_URL:github.com/MarlinFirmware/Marlin PROTOCOL_VERSION:1.0 MACHINE_TYPE:CoreXY TinyBee KINEMATICS:COREXYCartesian EXTRUDER_COUNT:1 UUID:cede2a2f-41a2-4748-9b12-c55c62f367ff
+03:33:40 [rx] Cap:SERIAL_XON_XOFF:0
+03:33:40 [rx] Cap:BINARY_FILE_TRANSFER:0
+03:33:40 [rx] Cap:EEPROM:1
+03:33:40 [rx] Cap:VOLUMETRIC:1
+03:33:40 [rx] Cap:AUTOREPORT_POS:0
+03:33:40 [rx] Cap:AUTOREPORT_TEMP:1
+03:33:40 [rx] Cap:PROGRESS:0
+03:33:40 [rx] Cap:PRINT_JOB:1
+03:33:40 [rx] Cap:AUTOLEVEL:1
+03:33:40 [rx] Cap:RUNOUT:1
+03:33:40 [rx] Cap:Z_PROBE:1
+03:33:40 [rx] Cap:LEVELING_DATA:1
+03:33:40 [rx] Cap:BUILD_PERCENT:0
+03:33:40 [rx] Cap:SOFTWARE_POWER:0
+03:33:40 [rx] Cap:TOGGLE_LIGHTS:0
+03:33:40 [rx] Cap:CASE_LIGHT_BRIGHTNESS:0
+03:33:40 [rx] Cap:EMERGENCY_PARSER:0
+03:33:40 [rx] Cap:HOST_ACTION_COMMANDS:1
+03:33:40 [rx] Cap:PROMPT_SUPPORT:1
+03:33:40 [rx] Cap:SDCARD:0
+03:33:40 [rx] Cap:REPEAT:0
+03:33:40 [rx] Cap:SD_WRITE:0
+03:33:40 [rx] Cap:AUTOREPORT_SD_STATUS:0
+03:33:40 [rx] Cap:LONG_FILENAME:0
+03:33:40 [rx] Cap:LFN_WRITE:0
+03:33:40 [rx] Cap:CUSTOM_FIRMWARE_UPLOAD:0
+03:33:40 [rx] Cap:EXTENDED_M20:0
+03:33:40 [rx] Cap:THERMAL_PROTECTION:1
+03:33:40 [rx] Cap:MOTION_MODES:0
+03:33:40 [rx] Cap:ARCS:1
+03:33:40 [rx] Cap:BABYSTEPPING:0
+03:33:40 [rx] Cap:EP_BABYSTEP:0
+03:33:40 [rx] Cap:CHAMBER_TEMPERATURE:0
+03:33:40 [rx] Cap:COOLER_TEMPERATURE:0
+03:33:40 [rx] Cap:MEATPACK:0
+03:33:40 [rx] Cap:CONFIG_EXPORT:0
+03:33:40 [ok] ok
+03:33:40 [rx] Reporting endstop status
+03:33:40 [rx] x_max: open
+03:33:40 [rx] y_min: open
+03:33:40 [rx] z_probe: TRIGGERED
+03:33:40 [rx] filament: open
+03:33:40 [ok] ok
+03:34:01 [tx] >> G28 Y
+03:34:03 [sys] echo:busy: processing
+03:34:05 [sys] echo:busy: processing
+03:34:07 [sys] echo:busy: processing
+03:34:08 [rx] X:208.00 Y:-6.00 Z:8.00 E:0.00 Count A:16160B:17120 Z:3200
+03:34:08 [ok] ok
+03:34:16 [tx] >> G28 X
+03:34:18 [sys] echo:busy: processing
+03:34:20 [sys] echo:busy: processing
+03:34:21 [rx] X:208.00 Y:-6.00 Z:8.00 E:0.00 Count A:16160B:17120 Z:3200
+03:34:21 [ok] ok
+03:34:33 [tx] >> G91
+03:34:33 [tx] >> G1 X-50 F600
+03:34:33 [tx] >> G90
+03:34:33 [tx] >> M114
+03:34:33 [ok] ok
+03:34:33 [sys] echo:Home Z First
+03:34:33 [rx] //action:notification Home Z First
+03:34:33 [ok] ok
+03:34:33 [ok] ok
+03:34:33 [rx] X:208.00 Y:-6.00 Z:8.00 E:0.00 Count A:16640B:-480 Z:3200
+03:34:33 [ok] ok
+03:34:42 [tx] >> G91
+03:34:42 [tx] >> G1 X-50 F600
+03:34:42 [tx] >> G90
+03:34:42 [tx] >> M114
+03:34:42 [ok] ok
+03:34:42 [sys] echo:Home Z First
+03:34:42 [rx] //action:notification Home Z First
+03:34:42 [ok] ok
+03:34:42 [ok] ok
+03:34:42 [rx] X:208.00 Y:-6.00 Z:8.00 E:0.00 Count A:16640B:-480 Z:3200
+03:34:42 [ok] ok
+03:34:44 [tx] >> G91
+03:34:44 [tx] >> G1 X50 F600
+03:34:44 [tx] >> G90
+03:34:44 [tx] >> M114
+03:34:45 [ok] ok
+03:34:45 [sys] echo:Home Z First
+03:34:45 [rx] //action:notification Home Z First
+03:34:45 [ok] ok
+03:34:45 [ok] ok
+03:34:45 [rx] X:208.00 Y:-6.00 Z:8.00 E:0.00 Count A:16640B:-480 Z:3200
+03:34:45 [ok] ok
+03:35:04 [tx] >> G91
+03:35:04 [tx] >> G1 X-50 F600
+03:35:04 [tx] >> G90
+03:35:04 [tx] >> M114
+03:35:04 [ok] ok
+03:35:04 [sys] echo:Home Z First
+03:35:04 [rx] //action:notification Home Z First
+03:35:04 [ok] ok
+03:35:04 [ok] ok
+03:35:04 [rx] X:208.00 Y:-6.00 Z:8.00 E:0.00 Count A:16640B:-480 Z:3200
+03:35:04 [ok] ok
+03:35:12 [tx] >> G28 Z
+03:35:14 [sys] echo:busy: processing
+03:35:16 [sys] echo:busy: processing
+03:35:18 [sys] echo:busy: processing
+03:35:20 [sys] echo:busy: processing
+03:35:22 [sys] echo:busy: processing
+03:35:24 [sys] echo:busy: processing
+03:35:26 [sys] echo:busy: processing
+03:35:28 [sys] echo:busy: processing
+03:35:28 [rx] X:90.00 Y:86.00 Z:10.00 E:0.00 Count A:14080B:320 Z:4000
+03:35:28 [ok] ok
+03:35:33 [tx] >> G91
+03:35:33 [tx] >> G1 X-10 F600
+03:35:33 [tx] >> G90
+03:35:33 [tx] >> M114
+03:35:33 [ok] ok
+03:35:33 [ok] ok
+03:35:33 [ok] ok
+03:35:33 [rx] X:80.00 Y:86.00 Z:10.00 E:0.00 Count A:6400B:6880 Z:4000
+03:35:33 [ok] ok
+03:35:33 [tx] >> G91
+03:35:33 [tx] >> G1 X-10 F600
+03:35:33 [tx] >> G90
+03:35:33 [tx] >> M114
+03:35:34 [ok] ok
+03:35:34 [ok] ok
+03:35:34 [ok] ok
+03:35:34 [rx] X:70.00 Y:86.00 Z:10.00 E:0.00 Count A:5600B:6880 Z:4000
+03:35:34 [ok] ok
+03:35:35 [tx] >> G91
+03:35:35 [tx] >> G1 X-10 F600
+03:35:35 [tx] >> G90
+03:35:35 [tx] >> M114
+03:35:36 [ok] ok
+03:35:36 [ok] ok
+03:35:36 [ok] ok
+03:35:36 [rx] X:60.00 Y:86.00 Z:10.00 E:0.00 Count A:4800B:6880 Z:4000
+03:35:36 [ok] ok
+03:35:38 [tx] >> G91
+03:35:38 [tx] >> G1 X-10 F600
+03:35:38 [tx] >> G90
+03:35:38 [tx] >> M114
+03:35:38 [ok] ok
+03:35:38 [ok] ok
+03:35:38 [ok] ok
+03:35:38 [rx] X:50.00 Y:86.00 Z:10.00 E:0.00 Count A:4000B:6880 Z:4000
+03:35:38 [ok] ok
+03:35:40 [tx] >> G91
+03:35:40 [tx] >> G1 X-10 F600
+03:35:40 [tx] >> G90
+03:35:40 [tx] >> M114
+03:35:40 [ok] ok
+03:35:40 [ok] ok
+03:35:40 [ok] ok
+03:35:40 [rx] X:40.00 Y:86.00 Z:10.00 E:0.00 Count A:3200B:6880 Z:4000
+03:35:40 [ok] ok
+03:35:53 [tx] >> M114
+03:35:53 [rx] X:40.00 Y:86.00 Z:10.00 E:0.00 Count A:3200B:6880 Z:4000
+03:35:53 [ok] ok
+03:36:06 [sys] Desconectado.
+03:45:14 [err] Nao conectado.
+03:45:19 [ok] Conectado em COM18 @ 250000.
+03:45:19 [tx] >> M115
+03:45:19 [tx] >> M119
+03:45:19 [rx] FIRMWARE_NAME:Marlin bugfix-2.1.x (Oct 16 2026 03:30:23) SOURCE_CODE_URL:github.com/MarlinFirmware/Marlin PROTOCOL_VERSION:1.0 MACHINE_TYPE:CoreXY TinyBee KINEMATICS:COREXYCartesian EXTRUDER_COUNT:1 UUID:cede2a2f-41a2-4748-9b12-c55c62f367ff
+03:45:19 [rx] Cap:SERIAL_XON_XOFF:0
+03:45:19 [rx] Cap:BINARY_FILE_TRANSFER:0
+03:45:19 [rx] Cap:EEPROM:1
+03:45:19 [rx] Cap:VOLUMETRIC:1
+03:45:19 [rx] Cap:AUTOREPORT_POS:0
+03:45:19 [rx] Cap:AUTOREPORT_TEMP:1
+03:45:19 [rx] Cap:PROGRESS:0
+03:45:19 [rx] Cap:PRINT_JOB:1
+03:45:19 [rx] Cap:AUTOLEVEL:1
+03:45:19 [rx] Cap:RUNOUT:1
+03:45:19 [rx] Cap:Z_PROBE:1
+03:45:19 [rx] Cap:LEVELING_DATA:1
+03:45:19 [rx] Cap:BUILD_PERCENT:0
+03:45:19 [rx] Cap:SOFTWARE_POWER:0
+03:45:19 [rx] Cap:TOGGLE_LIGHTS:0
+03:45:19 [rx] Cap:CASE_LIGHT_BRIGHTNESS:0
+03:45:19 [rx] Cap:EMERGENCY_PARSER:0
+03:45:19 [rx] Cap:HOST_ACTION_COMMANDS:1
+03:45:19 [rx] Cap:PROMPT_SUPPORT:1
+03:45:19 [rx] Cap:SDCARD:0
+03:45:19 [rx] Cap:REPEAT:0
+03:45:19 [rx] Cap:SD_WRITE:0
+03:45:19 [rx] Cap:AUTOREPORT_SD_STATUS:0
+03:45:19 [rx] Cap:LONG_FILENAME:0
+03:45:19 [rx] Cap:LFN_WRITE:0
+03:45:19 [rx] Cap:CUSTOM_FIRMWARE_UPLOAD:0
+03:45:19 [rx] Cap:EXTENDED_M20:0
+03:45:19 [rx] Cap:THERMAL_PROTECTION:1
+03:45:19 [rx] Cap:MOTION_MODES:0
+03:45:19 [rx] Cap:ARCS:1
+03:45:19 [rx] Cap:BABYSTEPPING:0
+03:45:19 [rx] Cap:EP_BABYSTEP:0
+03:45:19 [rx] Cap:CHAMBER_TEMPERATURE:0
+03:45:19 [rx] Cap:COOLER_TEMPERATURE:0
+03:45:19 [rx] Cap:MEATPACK:0
+03:45:19 [rx] Cap:CONFIG_EXPORT:0
+03:45:19 [ok] ok
+03:45:19 [rx] Reporting endstop status
+03:45:19 [rx] x_max: open
+03:45:19 [rx] y_min: open
+03:45:19 [rx] z_probe: TRIGGERED
+03:45:19 [rx] filament: open
+03:45:19 [ok] ok
+03:45:26 [tx] >> G28 X
+03:45:28 [sys] echo:busy: processing
+03:45:30 [rx] X:208.00 Y:86.00 Z:10.00 E:0.00 Count A:23520B:9760 Z:4000
+03:45:30 [ok] ok
+03:46:08 [sys] Desconectado.
+# sessao encerrada Fri Oct 16 03:47:41 2026

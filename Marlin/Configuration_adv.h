@@ -2592,8 +2592,15 @@
  * the probe to be unable to reach any points.
  */
 #if PROBE_SELECTED && !IS_KINEMATIC
-  //#define PROBING_MARGIN_LEFT PROBING_MARGIN
-  //#define PROBING_MARGIN_RIGHT PROBING_MARGIN
+  /**
+   * Margens assimetricas por limitacao FISICA, nao por escolha:
+   * o probe fica 38mm a esquerda do bico, entao o probe so alcanca ate
+   * X = X_MAX_POS - 38 = 170 numa mesa que vai ate 201.
+   * RIGHT 34 poe o ponto direito em 167, exigindo o bico em 205 (3mm de folga).
+   * Reduzir este valor exigiria remontar o probe mais perto do bico.
+   */
+  #define PROBING_MARGIN_LEFT 15
+  #define PROBING_MARGIN_RIGHT 34
   //#define PROBING_MARGIN_FRONT PROBING_MARGIN
   //#define PROBING_MARGIN_BACK PROBING_MARGIN
 #endif
