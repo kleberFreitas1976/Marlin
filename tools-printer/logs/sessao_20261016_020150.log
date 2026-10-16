@@ -1,0 +1,3943 @@
+# Console Marlin - sessao iniciada Fri Oct 16 02:01:50 2026
+02:01:50 [sys] Console pronto. Clique em 'Localizar placa' para comecar.
+02:01:50 [sys] Log desta sessao: C:\tmp\Marlin\tools-printer\logs\sessao_20261016_020150.log
+02:02:32 [ok] Conectado em COM18 @ 250000.
+02:02:32 [tx] >> M115
+02:02:32 [tx] >> M119
+02:02:32 [rx] FIRMWARE_NAME:Marlin bugfix-2.1.x (Oct 13 2026 03:26:22) SOURCE_CODE_URL:github.com/MarlinFirmware/Marlin PROTOCOL_VERSION:1.0 MACHINE_TYPE:CoreXY TinyBee KINEMATICS:COREXYCartesian EXTRUDER_COUNT:1 UUID:cede2a2f-41a2-4748-9b12-c55c62f367ff
+02:02:32 [rx] Cap:SERIAL_XON_XOFF:0
+02:02:32 [rx] Cap:BINARY_FILE_TRANSFER:0
+02:02:32 [rx] Cap:EEPROM:1
+02:02:32 [rx] Cap:VOLUMETRIC:1
+02:02:32 [rx] Cap:AUTOREPORT_POS:0
+02:02:32 [rx] Cap:AUTOREPORT_TEMP:1
+02:02:32 [rx] Cap:PROGRESS:0
+02:02:32 [rx] Cap:PRINT_JOB:1
+02:02:32 [rx] Cap:AUTOLEVEL:1
+02:02:32 [rx] Cap:RUNOUT:1
+02:02:32 [rx] Cap:Z_PROBE:1
+02:02:32 [rx] Cap:LEVELING_DATA:1
+02:02:32 [rx] Cap:BUILD_PERCENT:0
+02:02:32 [rx] Cap:SOFTWARE_POWER:0
+02:02:32 [rx] Cap:TOGGLE_LIGHTS:0
+02:02:32 [rx] Cap:CASE_LIGHT_BRIGHTNESS:0
+02:02:32 [rx] Cap:EMERGENCY_PARSER:0
+02:02:32 [rx] Cap:HOST_ACTION_COMMANDS:1
+02:02:32 [rx] Cap:PROMPT_SUPPORT:1
+02:02:32 [rx] Cap:SDCARD:0
+02:02:32 [rx] Cap:REPEAT:0
+02:02:32 [rx] Cap:SD_WRITE:0
+02:02:32 [rx] Cap:AUTOREPORT_SD_STATUS:0
+02:02:32 [rx] Cap:LONG_FILENAME:0
+02:02:32 [rx] Cap:LFN_WRITE:0
+02:02:32 [rx] Cap:CUSTOM_FIRMWARE_UPLOAD:0
+02:02:32 [rx] Cap:EXTENDED_M20:0
+02:02:32 [rx] Cap:THERMAL_PROTECTION:1
+02:02:32 [rx] Cap:MOTION_MODES:0
+02:02:32 [rx] Cap:ARCS:1
+02:02:32 [rx] Cap:BABYSTEPPING:0
+02:02:32 [rx] Cap:EP_BABYSTEP:0
+02:02:32 [rx] Cap:CHAMBER_TEMPERATURE:0
+02:02:32 [rx] Cap:COOLER_TEMPERATURE:0
+02:02:32 [rx] Cap:MEATPACK:0
+02:02:32 [rx] Cap:CONFIG_EXPORT:0
+02:02:32 [ok] ok
+02:02:32 [rx] Reporting endstop status
+02:02:32 [rx] x_max: TRIGGERED
+02:02:32 [rx] y_min: open
+02:02:32 [rx] z_probe: TRIGGERED
+02:02:32 [rx] filament: open
+02:02:32 [ok] ok
+02:02:45 [tx] >> G28 X
+02:02:46 [rx] X:205.00 Y:29.00 Z:64.00 E:0.00 Count A:18720B:14080 Z:25600
+02:02:46 [ok] ok
+02:02:52 [tx] >> G28 Y
+02:02:54 [rx] X:205.00 Y:-5.00 Z:64.00 E:0.00 Count A:16000B:16800 Z:25600
+02:02:54 [ok] ok
+02:03:19 [tx] >> M155 S2
+02:03:19 [sys] Monitoramento ligado.
+02:03:19 [ok] ok
+02:03:19 [rx] Reporting endstop status
+02:03:19 [rx] x_max: TRIGGERED
+02:03:19 [rx] y_min: TRIGGERED
+02:03:19 [rx] z_probe: TRIGGERED
+02:03:19 [rx] filament: open
+02:03:19 [ok] ok
+02:03:21 [temp]  T:29.40 /0.00 B:29.20 /0.00 @:0 B@:0
+02:03:22 [rx] Reporting endstop status
+02:03:22 [rx] x_max: TRIGGERED
+02:03:22 [rx] y_min: TRIGGERED
+02:03:22 [rx] z_probe: TRIGGERED
+02:03:22 [rx] filament: open
+02:03:22 [ok] ok
+02:03:23 [temp]  T:29.32 /0.00 B:28.52 /0.00 @:0 B@:0
+02:03:25 [temp]  T:28.86 /0.00 B:28.61 /0.00 @:0 B@:0
+02:03:25 [rx] Reporting endstop status
+02:03:25 [rx] x_max: TRIGGERED
+02:03:25 [rx] y_min: TRIGGERED
+02:03:25 [rx] z_probe: TRIGGERED
+02:03:25 [rx] filament: open
+02:03:25 [ok] ok
+02:03:27 [temp]  T:29.32 /0.00 B:28.52 /0.00 @:0 B@:0
+02:03:28 [rx] Reporting endstop status
+02:03:28 [rx] x_max: TRIGGERED
+02:03:28 [rx] y_min: TRIGGERED
+02:03:28 [rx] z_probe: TRIGGERED
+02:03:28 [rx] filament: open
+02:03:28 [ok] ok
+02:03:29 [temp]  T:29.57 /0.00 B:29.12 /0.00 @:0 B@:0
+02:03:31 [temp]  T:29.18 /0.00 B:29.29 /0.00 @:0 B@:0
+02:03:31 [rx] Reporting endstop status
+02:03:31 [rx] x_max: TRIGGERED
+02:03:31 [rx] y_min: TRIGGERED
+02:03:31 [rx] z_probe: TRIGGERED
+02:03:31 [rx] filament: open
+02:03:31 [ok] ok
+02:03:33 [temp]  T:29.23 /0.00 B:28.89 /0.00 @:0 B@:0
+02:03:34 [rx] Reporting endstop status
+02:03:34 [rx] x_max: TRIGGERED
+02:03:34 [rx] y_min: TRIGGERED
+02:03:34 [rx] z_probe: TRIGGERED
+02:03:34 [rx] filament: open
+02:03:34 [ok] ok
+02:03:35 [temp]  T:29.37 /0.00 B:29.15 /0.00 @:0 B@:0
+02:03:38 [temp]  T:29.55 /0.00 B:29.35 /0.00 @:0 B@:0
+02:03:38 [rx] Reporting endstop status
+02:03:38 [rx] x_max: TRIGGERED
+02:03:38 [rx] y_min: TRIGGERED
+02:03:38 [rx] z_probe: TRIGGERED
+02:03:38 [rx] filament: open
+02:03:38 [ok] ok
+02:03:39 [temp]  T:29.35 /0.00 B:29.20 /0.00 @:0 B@:0
+02:03:41 [rx] Reporting endstop status
+02:03:41 [rx] x_max: TRIGGERED
+02:03:41 [rx] y_min: TRIGGERED
+02:03:41 [rx] z_probe: TRIGGERED
+02:03:41 [rx] filament: open
+02:03:41 [ok] ok
+02:03:41 [temp]  T:29.49 /0.00 B:29.12 /0.00 @:0 B@:0
+02:03:44 [temp]  T:29.77 /0.00 B:28.89 /0.00 @:0 B@:0
+02:03:44 [rx] Reporting endstop status
+02:03:44 [rx] x_max: TRIGGERED
+02:03:44 [rx] y_min: TRIGGERED
+02:03:44 [rx] z_probe: TRIGGERED
+02:03:44 [rx] filament: open
+02:03:44 [ok] ok
+02:03:45 [temp]  T:29.77 /0.00 B:28.95 /0.00 @:0 B@:0
+02:03:47 [rx] Reporting endstop status
+02:03:47 [rx] x_max: TRIGGERED
+02:03:47 [rx] y_min: TRIGGERED
+02:03:47 [rx] z_probe: TRIGGERED
+02:03:47 [rx] filament: open
+02:03:47 [ok] ok
+02:03:47 [temp]  T:29.80 /0.00 B:28.55 /0.00 @:0 B@:0
+02:03:49 [temp]  T:29.94 /0.00 B:29.40 /0.00 @:0 B@:0
+02:03:50 [rx] Reporting endstop status
+02:03:50 [rx] x_max: TRIGGERED
+02:03:50 [rx] y_min: TRIGGERED
+02:03:50 [rx] z_probe: TRIGGERED
+02:03:50 [rx] filament: open
+02:03:50 [ok] ok
+02:03:51 [temp]  T:29.94 /0.00 B:29.32 /0.00 @:0 B@:0
+02:03:53 [rx] Reporting endstop status
+02:03:53 [rx] x_max: TRIGGERED
+02:03:53 [rx] y_min: TRIGGERED
+02:03:53 [rx] z_probe: TRIGGERED
+02:03:53 [rx] filament: open
+02:03:53 [ok] ok
+02:03:53 [temp]  T:29.18 /0.00 B:28.49 /0.00 @:0 B@:0
+02:03:55 [temp]  T:29.52 /0.00 B:28.66 /0.00 @:0 B@:0
+02:03:56 [rx] Reporting endstop status
+02:03:56 [rx] x_max: TRIGGERED
+02:03:56 [rx] y_min: TRIGGERED
+02:03:56 [rx] z_probe: TRIGGERED
+02:03:56 [rx] filament: open
+02:03:56 [ok] ok
+02:03:57 [temp]  T:29.29 /0.00 B:28.98 /0.00 @:0 B@:0
+02:03:59 [rx] Reporting endstop status
+02:03:59 [rx] x_max: TRIGGERED
+02:03:59 [rx] y_min: TRIGGERED
+02:03:59 [rx] z_probe: TRIGGERED
+02:03:59 [rx] filament: open
+02:03:59 [ok] ok
+02:03:59 [temp]  T:29.55 /0.00 B:29.03 /0.00 @:0 B@:0
+02:04:01 [temp]  T:29.43 /0.00 B:27.76 /0.00 @:0 B@:0
+02:04:02 [rx] Reporting endstop status
+02:04:02 [rx] x_max: TRIGGERED
+02:04:02 [rx] y_min: TRIGGERED
+02:04:02 [rx] z_probe: TRIGGERED
+02:04:02 [rx] filament: open
+02:04:02 [ok] ok
+02:04:03 [temp]  T:29.46 /0.00 B:28.95 /0.00 @:0 B@:0
+02:04:05 [rx] Reporting endstop status
+02:04:05 [rx] x_max: TRIGGERED
+02:04:05 [rx] y_min: TRIGGERED
+02:04:05 [rx] z_probe: TRIGGERED
+02:04:05 [rx] filament: open
+02:04:05 [ok] ok
+02:04:05 [temp]  T:29.35 /0.00 B:29.46 /0.00 @:0 B@:0
+02:04:07 [temp]  T:29.23 /0.00 B:29.23 /0.00 @:0 B@:0
+02:04:08 [rx] Reporting endstop status
+02:04:08 [rx] x_max: TRIGGERED
+02:04:08 [rx] y_min: TRIGGERED
+02:04:08 [rx] z_probe: TRIGGERED
+02:04:08 [rx] filament: open
+02:04:08 [ok] ok
+02:04:09 [temp]  T:29.32 /0.00 B:28.89 /0.00 @:0 B@:0
+02:04:11 [tx] >> G91
+02:04:11 [tx] >> G1 Y10 F600
+02:04:11 [tx] >> G90
+02:04:11 [tx] >> M114
+02:04:11 [rx] Reporting endstop status
+02:04:11 [rx] x_max: TRIGGERED
+02:04:11 [rx] y_min: TRIGGERED
+02:04:11 [rx] z_probe: TRIGGERED
+02:04:11 [rx] filament: open
+02:04:11 [ok] ok
+02:04:11 [ok] ok
+02:04:11 [ok] ok
+02:04:11 [ok] ok
+02:04:11 [rx] X:205.00 Y:5.00 Z:64.00 E:0.00 Count A:16400B:400 Z:25600
+02:04:11 [ok] ok
+02:04:11 [temp]  T:29.15 /0.00 B:29.18 /0.00 @:0 B@:0
+02:04:13 [temp]  T:29.12 /0.00 B:28.75 /0.00 @:0 B@:0
+02:04:14 [rx] Reporting endstop status
+02:04:14 [rx] x_max: TRIGGERED
+02:04:14 [rx] y_min: open
+02:04:14 [rx] z_probe: TRIGGERED
+02:04:14 [rx] filament: open
+02:04:14 [ok] ok
+02:04:15 [temp]  T:29.49 /0.00 B:28.35 /0.00 @:0 B@:0
+02:04:17 [rx] Reporting endstop status
+02:04:17 [rx] x_max: TRIGGERED
+02:04:17 [rx] y_min: open
+02:04:17 [rx] z_probe: TRIGGERED
+02:04:17 [rx] filament: open
+02:04:17 [ok] ok
+02:04:17 [temp]  T:29.86 /0.00 B:28.69 /0.00 @:0 B@:0
+02:04:19 [temp]  T:29.18 /0.00 B:28.41 /0.00 @:0 B@:0
+02:04:20 [rx] Reporting endstop status
+02:04:20 [rx] x_max: TRIGGERED
+02:04:20 [rx] y_min: open
+02:04:20 [rx] z_probe: TRIGGERED
+02:04:20 [rx] filament: open
+02:04:20 [ok] ok
+02:04:21 [temp]  T:29.23 /0.00 B:28.98 /0.00 @:0 B@:0
+02:04:23 [rx] Reporting endstop status
+02:04:23 [rx] x_max: TRIGGERED
+02:04:23 [rx] y_min: open
+02:04:23 [rx] z_probe: TRIGGERED
+02:04:23 [rx] filament: open
+02:04:23 [ok] ok
+02:04:23 [temp]  T:29.12 /0.00 B:28.95 /0.00 @:0 B@:0
+02:04:25 [temp]  T:29.01 /0.00 B:29.18 /0.00 @:0 B@:0
+02:04:26 [rx] Reporting endstop status
+02:04:26 [rx] x_max: TRIGGERED
+02:04:26 [rx] y_min: open
+02:04:26 [rx] z_probe: TRIGGERED
+02:04:26 [rx] filament: open
+02:04:26 [ok] ok
+02:04:27 [temp]  T:29.37 /0.00 B:29.01 /0.00 @:0 B@:0
+02:04:29 [rx] Reporting endstop status
+02:04:29 [rx] x_max: TRIGGERED
+02:04:29 [rx] y_min: open
+02:04:29 [rx] z_probe: TRIGGERED
+02:04:29 [rx] filament: open
+02:04:29 [ok] ok
+02:04:29 [temp]  T:29.32 /0.00 B:28.58 /0.00 @:0 B@:0
+02:04:31 [temp]  T:29.40 /0.00 B:28.95 /0.00 @:0 B@:0
+02:04:32 [rx] Reporting endstop status
+02:04:32 [rx] x_max: TRIGGERED
+02:04:32 [rx] y_min: open
+02:04:32 [rx] z_probe: TRIGGERED
+02:04:32 [rx] filament: open
+02:04:32 [ok] ok
+02:04:33 [temp]  T:28.92 /0.00 B:28.61 /0.00 @:0 B@:0
+02:04:34 [tx] >> G91
+02:04:34 [tx] >> G1 Y10 F600
+02:04:34 [tx] >> G90
+02:04:34 [tx] >> M114
+02:04:34 [ok] ok
+02:04:34 [ok] ok
+02:04:34 [err] Error:Serial status mismatch
+02:04:34 [ok] ok
+02:04:34 [rx] X:205.00 Y:15.00 Z:64.00 E:0.00 Count A:16400B:1200 Z:25600
+02:04:34 [ok] ok
+02:04:35 [rx] Reporting endstop status
+02:04:35 [rx] x_max: TRIGGERED
+02:04:35 [rx] y_min: open
+02:04:35 [rx] z_probe: TRIGGERED
+02:04:35 [rx] filament: open
+02:04:35 [ok] ok
+02:04:35 [tx] >> G91
+02:04:35 [tx] >> G1 Y10 F600
+02:04:35 [tx] >> G90
+02:04:35 [tx] >> M114
+02:04:35 [temp]  T:29.66 /0.00 B:28.95 /0.00 @:0 B@:0
+02:04:35 [ok] ok
+02:04:35 [ok] ok
+02:04:35 [ok] ok
+02:04:35 [rx] X:205.00 Y:25.00 Z:64.00 E:0.00 Count A:16400B:2000 Z:25600
+02:04:35 [ok] ok
+02:04:37 [tx] >> G91
+02:04:37 [tx] >> G1 Y10 F600
+02:04:37 [tx] >> G90
+02:04:37 [tx] >> M114
+02:04:37 [ok] ok
+02:04:37 [ok] ok
+02:04:37 [ok] ok
+02:04:37 [rx] X:205.00 Y:35.00 Z:64.00 E:0.00 Count A:16400B:2800 Z:25600
+02:04:37 [ok] ok
+02:04:37 [temp]  T:28.89 /0.00 B:29.01 /0.00 @:0 B@:0
+02:04:38 [rx] Reporting endstop status
+02:04:38 [rx] x_max: TRIGGERED
+02:04:38 [rx] y_min: open
+02:04:38 [rx] z_probe: TRIGGERED
+02:04:38 [rx] filament: open
+02:04:38 [ok] ok
+02:04:39 [tx] >> G91
+02:04:39 [tx] >> G1 Y10 F600
+02:04:39 [tx] >> G90
+02:04:39 [tx] >> M114
+02:04:39 [ok] ok
+02:04:39 [ok] ok
+02:04:39 [ok] ok
+02:04:39 [rx] X:205.00 Y:45.00 Z:64.00 E:0.00 Count A:16400B:3600 Z:25600
+02:04:39 [ok] ok
+02:04:39 [temp]  T:29.18 /0.00 B:29.12 /0.00 @:0 B@:0
+02:04:41 [tx] >> G91
+02:04:41 [tx] >> G1 Y10 F600
+02:04:41 [tx] >> G90
+02:04:41 [tx] >> M114
+02:04:41 [ok] ok
+02:04:41 [ok] ok
+02:04:41 [ok] ok
+02:04:41 [rx] X:205.00 Y:55.00 Z:64.00 E:0.00 Count A:16400B:4400 Z:25600
+02:04:41 [ok] ok
+02:04:41 [rx] Reporting endstop status
+02:04:41 [rx] x_max: TRIGGERED
+02:04:41 [rx] y_min: open
+02:04:41 [rx] z_probe: TRIGGERED
+02:04:41 [rx] filament: open
+02:04:41 [ok] ok
+02:04:41 [temp]  T:29.40 /0.00 B:28.95 /0.00 @:0 B@:0
+02:04:43 [temp]  T:29.43 /0.00 B:28.78 /0.00 @:0 B@:0
+02:04:44 [rx] Reporting endstop status
+02:04:44 [rx] x_max: TRIGGERED
+02:04:44 [rx] y_min: open
+02:04:44 [rx] z_probe: TRIGGERED
+02:04:44 [rx] filament: open
+02:04:44 [ok] ok
+02:04:45 [temp]  T:29.35 /0.00 B:28.66 /0.00 @:0 B@:0
+02:04:47 [rx] Reporting endstop status
+02:04:47 [rx] x_max: TRIGGERED
+02:04:47 [rx] y_min: open
+02:04:47 [rx] z_probe: TRIGGERED
+02:04:47 [rx] filament: open
+02:04:47 [ok] ok
+02:04:47 [temp]  T:29.23 /0.00 B:28.78 /0.00 @:0 B@:0
+02:04:49 [temp]  T:29.09 /0.00 B:28.81 /0.00 @:0 B@:0
+02:04:50 [rx] Reporting endstop status
+02:04:50 [rx] x_max: TRIGGERED
+02:04:50 [rx] y_min: open
+02:04:50 [rx] z_probe: TRIGGERED
+02:04:50 [rx] filament: open
+02:04:50 [ok] ok
+02:04:51 [temp]  T:29.80 /0.00 B:28.81 /0.00 @:0 B@:0
+02:04:53 [rx] Reporting endstop status
+02:04:53 [rx] x_max: TRIGGERED
+02:04:53 [rx] y_min: open
+02:04:53 [rx] z_probe: TRIGGERED
+02:04:53 [rx] filament: open
+02:04:53 [ok] ok
+02:04:53 [temp]  T:28.98 /0.00 B:29.89 /0.00 @:0 B@:0
+02:04:55 [temp]  T:29.03 /0.00 B:28.81 /0.00 @:0 B@:0
+02:04:56 [rx] Reporting endstop status
+02:04:56 [rx] x_max: TRIGGERED
+02:04:56 [rx] y_min: open
+02:04:56 [rx] z_probe: TRIGGERED
+02:04:56 [rx] filament: open
+02:04:56 [ok] ok
+02:04:57 [temp]  T:29.43 /0.00 B:28.41 /0.00 @:0 B@:0
+02:04:59 [rx] Reporting endstop status
+02:04:59 [rx] x_max: TRIGGERED
+02:04:59 [rx] y_min: open
+02:04:59 [rx] z_probe: TRIGGERED
+02:04:59 [rx] filament: open
+02:04:59 [ok] ok
+02:04:59 [temp]  T:29.57 /0.00 B:29.52 /0.00 @:0 B@:0
+02:05:01 [temp]  T:29.29 /0.00 B:29.09 /0.00 @:0 B@:0
+02:05:02 [rx] Reporting endstop status
+02:05:02 [rx] x_max: TRIGGERED
+02:05:02 [rx] y_min: open
+02:05:02 [rx] z_probe: TRIGGERED
+02:05:02 [rx] filament: open
+02:05:02 [ok] ok
+02:05:03 [temp]  T:29.43 /0.00 B:28.72 /0.00 @:0 B@:0
+02:05:05 [rx] Reporting endstop status
+02:05:05 [rx] x_max: TRIGGERED
+02:05:05 [rx] y_min: open
+02:05:05 [rx] z_probe: TRIGGERED
+02:05:05 [rx] filament: open
+02:05:05 [ok] ok
+02:05:05 [temp]  T:29.32 /0.00 B:29.40 /0.00 @:0 B@:0
+02:05:07 [temp]  T:29.43 /0.00 B:29.18 /0.00 @:0 B@:0
+02:05:08 [rx] Reporting endstop status
+02:05:08 [rx] x_max: TRIGGERED
+02:05:08 [rx] y_min: open
+02:05:08 [rx] z_probe: TRIGGERED
+02:05:08 [rx] filament: open
+02:05:08 [ok] ok
+02:05:09 [temp]  T:29.37 /0.00 B:28.72 /0.00 @:0 B@:0
+02:05:11 [rx] Reporting endstop status
+02:05:11 [rx] x_max: TRIGGERED
+02:05:11 [rx] y_min: open
+02:05:11 [rx] z_probe: TRIGGERED
+02:05:11 [rx] filament: open
+02:05:11 [ok] ok
+02:05:11 [temp]  T:29.26 /0.00 B:28.66 /0.00 @:0 B@:0
+02:05:13 [temp]  T:29.86 /0.00 B:29.55 /0.00 @:0 B@:0
+02:05:14 [rx] Reporting endstop status
+02:05:14 [rx] x_max: TRIGGERED
+02:05:14 [rx] y_min: open
+02:05:14 [rx] z_probe: TRIGGERED
+02:05:14 [rx] filament: open
+02:05:14 [ok] ok
+02:05:15 [temp]  T:29.60 /0.00 B:29.12 /0.00 @:0 B@:0
+02:05:17 [rx] Reporting endstop status
+02:05:17 [rx] x_max: TRIGGERED
+02:05:17 [rx] y_min: open
+02:05:17 [rx] z_probe: TRIGGERED
+02:05:17 [rx] filament: open
+02:05:17 [ok] ok
+02:05:17 [temp]  T:29.29 /0.00 B:28.69 /0.00 @:0 B@:0
+02:05:19 [temp]  T:29.32 /0.00 B:28.98 /0.00 @:0 B@:0
+02:05:20 [rx] Reporting endstop status
+02:05:20 [rx] x_max: TRIGGERED
+02:05:20 [rx] y_min: open
+02:05:20 [rx] z_probe: TRIGGERED
+02:05:20 [rx] filament: open
+02:05:20 [ok] ok
+02:05:21 [temp]  T:29.43 /0.00 B:28.61 /0.00 @:0 B@:0
+02:05:23 [rx] Reporting endstop status
+02:05:23 [rx] x_max: TRIGGERED
+02:05:23 [rx] y_min: open
+02:05:23 [rx] z_probe: TRIGGERED
+02:05:23 [rx] filament: open
+02:05:23 [ok] ok
+02:05:23 [temp]  T:28.95 /0.00 B:29.57 /0.00 @:0 B@:0
+02:05:25 [temp]  T:29.91 /0.00 B:29.20 /0.00 @:0 B@:0
+02:05:26 [rx] Reporting endstop status
+02:05:26 [rx] x_max: TRIGGERED
+02:05:26 [rx] y_min: open
+02:05:26 [rx] z_probe: TRIGGERED
+02:05:26 [rx] filament: open
+02:05:26 [ok] ok
+02:05:27 [temp]  T:29.40 /0.00 B:29.20 /0.00 @:0 B@:0
+02:05:29 [temp]  T:29.86 /0.00 B:28.86 /0.00 @:0 B@:0
+02:05:29 [rx] Reporting endstop status
+02:05:29 [rx] x_max: TRIGGERED
+02:05:29 [rx] y_min: open
+02:05:29 [rx] z_probe: TRIGGERED
+02:05:29 [rx] filament: open
+02:05:29 [ok] ok
+02:05:31 [temp]  T:29.20 /0.00 B:28.75 /0.00 @:0 B@:0
+02:05:32 [rx] Reporting endstop status
+02:05:32 [rx] x_max: TRIGGERED
+02:05:32 [rx] y_min: open
+02:05:32 [rx] z_probe: TRIGGERED
+02:05:32 [rx] filament: open
+02:05:33 [ok] ok
+02:05:33 [temp]  T:29.20 /0.00 B:29.40 /0.00 @:0 B@:0
+02:05:36 [temp]  T:29.26 /0.00 B:29.23 /0.00 @:0 B@:0
+02:05:36 [rx] Reporting endstop status
+02:05:36 [rx] x_max: TRIGGERED
+02:05:36 [rx] y_min: open
+02:05:36 [rx] z_probe: TRIGGERED
+02:05:36 [rx] filament: open
+02:05:36 [ok] ok
+02:05:37 [temp]  T:29.03 /0.00 B:29.23 /0.00 @:0 B@:0
+02:05:39 [rx] Reporting endstop status
+02:05:39 [rx] x_max: TRIGGERED
+02:05:39 [rx] y_min: open
+02:05:39 [rx] z_probe: TRIGGERED
+02:05:39 [rx] filament: open
+02:05:39 [ok] ok
+02:05:39 [temp]  T:29.40 /0.00 B:29.03 /0.00 @:0 B@:0
+02:05:42 [temp]  T:29.55 /0.00 B:28.98 /0.00 @:0 B@:0
+02:05:42 [rx] Reporting endstop status
+02:05:42 [rx] x_max: TRIGGERED
+02:05:42 [rx] y_min: open
+02:05:42 [rx] z_probe: TRIGGERED
+02:05:42 [rx] filament: open
+02:05:42 [ok] ok
+02:05:43 [temp]  T:29.18 /0.00 B:29.32 /0.00 @:0 B@:0
+02:05:45 [rx] Reporting endstop status
+02:05:45 [rx] x_max: TRIGGERED
+02:05:45 [rx] y_min: open
+02:05:45 [rx] z_probe: TRIGGERED
+02:05:45 [rx] filament: open
+02:05:45 [ok] ok
+02:05:45 [temp]  T:29.35 /0.00 B:29.57 /0.00 @:0 B@:0
+02:05:48 [temp]  T:29.26 /0.00 B:29.01 /0.00 @:0 B@:0
+02:05:48 [rx] Reporting endstop status
+02:05:48 [rx] x_max: TRIGGERED
+02:05:48 [rx] y_min: open
+02:05:48 [rx] z_probe: TRIGGERED
+02:05:48 [rx] filament: open
+02:05:48 [ok] ok
+02:05:49 [temp]  T:29.09 /0.00 B:28.47 /0.00 @:0 B@:0
+02:05:51 [rx] Reporting endstop status
+02:05:51 [rx] x_max: TRIGGERED
+02:05:51 [rx] y_min: open
+02:05:51 [rx] z_probe: TRIGGERED
+02:05:51 [rx] filament: open
+02:05:51 [ok] ok
+02:05:51 [temp]  T:29.29 /0.00 B:28.55 /0.00 @:0 B@:0
+02:05:53 [temp]  T:29.49 /0.00 B:28.98 /0.00 @:0 B@:0
+02:05:54 [rx] Reporting endstop status
+02:05:54 [rx] x_max: TRIGGERED
+02:05:54 [rx] y_min: open
+02:05:54 [rx] z_probe: TRIGGERED
+02:05:54 [rx] filament: open
+02:05:54 [ok] ok
+02:05:55 [temp]  T:29.35 /0.00 B:29.15 /0.00 @:0 B@:0
+02:05:57 [rx] Reporting endstop status
+02:05:57 [rx] x_max: TRIGGERED
+02:05:57 [rx] y_min: open
+02:05:57 [rx] z_probe: TRIGGERED
+02:05:57 [rx] filament: open
+02:05:57 [ok] ok
+02:05:57 [temp]  T:29.43 /0.00 B:28.64 /0.00 @:0 B@:0
+02:05:59 [temp]  T:29.43 /0.00 B:29.60 /0.00 @:0 B@:0
+02:06:00 [rx] Reporting endstop status
+02:06:00 [rx] x_max: TRIGGERED
+02:06:00 [rx] y_min: open
+02:06:00 [rx] z_probe: TRIGGERED
+02:06:00 [rx] filament: open
+02:06:00 [ok] ok
+02:06:01 [temp]  T:29.23 /0.00 B:28.98 /0.00 @:0 B@:0
+02:06:03 [rx] Reporting endstop status
+02:06:03 [rx] x_max: TRIGGERED
+02:06:03 [rx] y_min: open
+02:06:03 [rx] z_probe: TRIGGERED
+02:06:03 [rx] filament: open
+02:06:03 [ok] ok
+02:06:03 [temp]  T:29.32 /0.00 B:28.75 /0.00 @:0 B@:0
+02:06:05 [temp]  T:29.18 /0.00 B:28.49 /0.00 @:0 B@:0
+02:06:06 [rx] Reporting endstop status
+02:06:06 [rx] x_max: TRIGGERED
+02:06:06 [rx] y_min: open
+02:06:06 [rx] z_probe: TRIGGERED
+02:06:06 [rx] filament: open
+02:06:06 [ok] ok
+02:06:07 [temp]  T:29.40 /0.00 B:29.03 /0.00 @:0 B@:0
+02:06:09 [rx] Reporting endstop status
+02:06:09 [rx] x_max: TRIGGERED
+02:06:09 [rx] y_min: open
+02:06:09 [rx] z_probe: TRIGGERED
+02:06:09 [rx] filament: open
+02:06:09 [ok] ok
+02:06:09 [temp]  T:29.74 /0.00 B:28.95 /0.00 @:0 B@:0
+02:06:11 [temp]  T:29.63 /0.00 B:28.07 /0.00 @:0 B@:0
+02:06:12 [rx] Reporting endstop status
+02:06:12 [rx] x_max: TRIGGERED
+02:06:12 [rx] y_min: open
+02:06:12 [rx] z_probe: TRIGGERED
+02:06:12 [rx] filament: open
+02:06:12 [ok] ok
+02:06:13 [temp]  T:29.15 /0.00 B:28.78 /0.00 @:0 B@:0
+02:06:15 [rx] Reporting endstop status
+02:06:15 [rx] x_max: TRIGGERED
+02:06:15 [rx] y_min: open
+02:06:15 [rx] z_probe: TRIGGERED
+02:06:15 [rx] filament: open
+02:06:15 [ok] ok
+02:06:15 [temp]  T:29.63 /0.00 B:28.66 /0.00 @:0 B@:0
+02:06:17 [temp]  T:29.43 /0.00 B:28.89 /0.00 @:0 B@:0
+02:06:18 [rx] Reporting endstop status
+02:06:18 [rx] x_max: TRIGGERED
+02:06:18 [rx] y_min: open
+02:06:18 [rx] z_probe: TRIGGERED
+02:06:18 [rx] filament: open
+02:06:18 [ok] ok
+02:06:19 [temp]  T:29.32 /0.00 B:28.92 /0.00 @:0 B@:0
+02:06:21 [rx] Reporting endstop status
+02:06:21 [rx] x_max: TRIGGERED
+02:06:21 [rx] y_min: open
+02:06:21 [rx] z_probe: TRIGGERED
+02:06:21 [rx] filament: open
+02:06:21 [ok] ok
+02:06:21 [temp]  T:29.52 /0.00 B:29.83 /0.00 @:0 B@:0
+02:06:23 [temp]  T:28.95 /0.00 B:28.69 /0.00 @:0 B@:0
+02:06:24 [rx] Reporting endstop status
+02:06:24 [rx] x_max: TRIGGERED
+02:06:24 [rx] y_min: open
+02:06:24 [rx] z_probe: TRIGGERED
+02:06:24 [rx] filament: open
+02:06:24 [ok] ok
+02:06:25 [temp]  T:29.60 /0.00 B:28.24 /0.00 @:0 B@:0
+02:06:27 [rx] Reporting endstop status
+02:06:27 [rx] x_max: TRIGGERED
+02:06:27 [rx] y_min: open
+02:06:27 [rx] z_probe: TRIGGERED
+02:06:27 [rx] filament: open
+02:06:27 [ok] ok
+02:06:27 [temp]  T:29.35 /0.00 B:29.60 /0.00 @:0 B@:0
+02:06:29 [temp]  T:29.32 /0.00 B:29.03 /0.00 @:0 B@:0
+02:06:30 [rx] Reporting endstop status
+02:06:30 [rx] x_max: TRIGGERED
+02:06:30 [rx] y_min: open
+02:06:30 [rx] z_probe: TRIGGERED
+02:06:30 [rx] filament: open
+02:06:30 [ok] ok
+02:06:31 [temp]  T:29.15 /0.00 B:28.58 /0.00 @:0 B@:0
+02:06:33 [rx] Reporting endstop status
+02:06:33 [rx] x_max: TRIGGERED
+02:06:33 [rx] y_min: open
+02:06:33 [rx] z_probe: TRIGGERED
+02:06:33 [rx] filament: open
+02:06:33 [ok] ok
+02:06:33 [temp]  T:29.49 /0.00 B:29.15 /0.00 @:0 B@:0
+02:06:35 [temp]  T:29.40 /0.00 B:29.32 /0.00 @:0 B@:0
+02:06:36 [rx] Reporting endstop status
+02:06:36 [rx] x_max: TRIGGERED
+02:06:36 [rx] y_min: open
+02:06:36 [rx] z_probe: TRIGGERED
+02:06:36 [rx] filament: open
+02:06:36 [ok] ok
+02:06:37 [temp]  T:29.20 /0.00 B:29.74 /0.00 @:0 B@:0
+02:06:39 [rx] Reporting endstop status
+02:06:39 [rx] x_max: TRIGGERED
+02:06:39 [rx] y_min: open
+02:06:39 [rx] z_probe: TRIGGERED
+02:06:39 [rx] filament: open
+02:06:39 [ok] ok
+02:06:39 [temp]  T:29.12 /0.00 B:29.15 /0.00 @:0 B@:0
+02:06:41 [temp]  T:29.18 /0.00 B:29.18 /0.00 @:0 B@:0
+02:06:42 [rx] Reporting endstop status
+02:06:42 [rx] x_max: TRIGGERED
+02:06:42 [rx] y_min: open
+02:06:42 [rx] z_probe: TRIGGERED
+02:06:42 [rx] filament: open
+02:06:42 [ok] ok
+02:06:43 [temp]  T:29.55 /0.00 B:29.01 /0.00 @:0 B@:0
+02:06:45 [rx] Reporting endstop status
+02:06:45 [rx] x_max: TRIGGERED
+02:06:45 [rx] y_min: open
+02:06:45 [rx] z_probe: TRIGGERED
+02:06:45 [rx] filament: open
+02:06:45 [ok] ok
+02:06:45 [temp]  T:29.40 /0.00 B:29.40 /0.00 @:0 B@:0
+02:06:47 [temp]  T:29.46 /0.00 B:29.32 /0.00 @:0 B@:0
+02:06:48 [rx] Reporting endstop status
+02:06:48 [rx] x_max: TRIGGERED
+02:06:48 [rx] y_min: open
+02:06:48 [rx] z_probe: TRIGGERED
+02:06:48 [rx] filament: open
+02:06:48 [ok] ok
+02:06:49 [temp]  T:29.35 /0.00 B:28.84 /0.00 @:0 B@:0
+02:06:51 [rx] Reporting endstop status
+02:06:51 [rx] x_max: TRIGGERED
+02:06:51 [rx] y_min: open
+02:06:51 [rx] z_probe: TRIGGERED
+02:06:51 [rx] filament: open
+02:06:51 [ok] ok
+02:06:51 [temp]  T:29.29 /0.00 B:29.32 /0.00 @:0 B@:0
+02:06:53 [temp]  T:29.23 /0.00 B:29.83 /0.00 @:0 B@:0
+02:06:54 [rx] Reporting endstop status
+02:06:54 [rx] x_max: TRIGGERED
+02:06:54 [rx] y_min: open
+02:06:54 [rx] z_probe: TRIGGERED
+02:06:54 [rx] filament: open
+02:06:54 [ok] ok
+02:06:55 [temp]  T:29.72 /0.00 B:28.98 /0.00 @:0 B@:0
+02:06:57 [rx] Reporting endstop status
+02:06:57 [rx] x_max: TRIGGERED
+02:06:57 [rx] y_min: open
+02:06:57 [rx] z_probe: TRIGGERED
+02:06:57 [rx] filament: open
+02:06:57 [ok] ok
+02:06:57 [temp]  T:29.32 /0.00 B:28.61 /0.00 @:0 B@:0
+02:06:59 [temp]  T:30.39 /0.00 B:28.66 /0.00 @:0 B@:0
+02:07:00 [rx] Reporting endstop status
+02:07:00 [rx] x_max: TRIGGERED
+02:07:00 [rx] y_min: open
+02:07:00 [rx] z_probe: TRIGGERED
+02:07:00 [rx] filament: open
+02:07:00 [ok] ok
+02:07:01 [temp]  T:29.18 /0.00 B:28.58 /0.00 @:0 B@:0
+02:07:03 [rx] Reporting endstop status
+02:07:03 [rx] x_max: TRIGGERED
+02:07:03 [rx] y_min: open
+02:07:03 [rx] z_probe: TRIGGERED
+02:07:03 [rx] filament: open
+02:07:03 [ok] ok
+02:07:03 [temp]  T:29.57 /0.00 B:28.89 /0.00 @:0 B@:0
+02:07:05 [temp]  T:29.18 /0.00 B:28.44 /0.00 @:0 B@:0
+02:07:06 [rx] Reporting endstop status
+02:07:06 [rx] x_max: TRIGGERED
+02:07:06 [rx] y_min: open
+02:07:06 [rx] z_probe: TRIGGERED
+02:07:06 [rx] filament: open
+02:07:06 [ok] ok
+02:07:07 [temp]  T:29.63 /0.00 B:29.15 /0.00 @:0 B@:0
+02:07:09 [rx] Reporting endstop status
+02:07:09 [rx] x_max: TRIGGERED
+02:07:09 [rx] y_min: open
+02:07:09 [rx] z_probe: TRIGGERED
+02:07:09 [rx] filament: open
+02:07:09 [ok] ok
+02:07:09 [temp]  T:29.20 /0.00 B:29.37 /0.00 @:0 B@:0
+02:07:11 [temp]  T:29.40 /0.00 B:28.84 /0.00 @:0 B@:0
+02:07:12 [rx] Reporting endstop status
+02:07:12 [rx] x_max: TRIGGERED
+02:07:12 [rx] y_min: open
+02:07:12 [rx] z_probe: TRIGGERED
+02:07:12 [rx] filament: open
+02:07:12 [ok] ok
+02:07:13 [temp]  T:29.52 /0.00 B:29.35 /0.00 @:0 B@:0
+02:07:15 [rx] Reporting endstop status
+02:07:15 [rx] x_max: TRIGGERED
+02:07:15 [rx] y_min: open
+02:07:15 [rx] z_probe: TRIGGERED
+02:07:15 [rx] filament: open
+02:07:15 [ok] ok
+02:07:15 [temp]  T:29.40 /0.00 B:28.86 /0.00 @:0 B@:0
+02:07:17 [temp]  T:29.80 /0.00 B:28.72 /0.00 @:0 B@:0
+02:07:18 [rx] Reporting endstop status
+02:07:18 [rx] x_max: TRIGGERED
+02:07:18 [rx] y_min: open
+02:07:18 [rx] z_probe: TRIGGERED
+02:07:18 [rx] filament: open
+02:07:18 [ok] ok
+02:07:19 [temp]  T:29.43 /0.00 B:28.47 /0.00 @:0 B@:0
+02:07:21 [rx] Reporting endstop status
+02:07:21 [rx] x_max: TRIGGERED
+02:07:21 [rx] y_min: open
+02:07:21 [rx] z_probe: TRIGGERED
+02:07:21 [rx] filament: open
+02:07:21 [ok] ok
+02:07:21 [temp]  T:29.49 /0.00 B:28.81 /0.00 @:0 B@:0
+02:07:23 [temp]  T:29.52 /0.00 B:29.06 /0.00 @:0 B@:0
+02:07:24 [rx] Reporting endstop status
+02:07:24 [rx] x_max: TRIGGERED
+02:07:24 [rx] y_min: open
+02:07:24 [rx] z_probe: TRIGGERED
+02:07:24 [rx] filament: open
+02:07:24 [ok] ok
+02:07:25 [temp]  T:29.40 /0.00 B:28.58 /0.00 @:0 B@:0
+02:07:27 [rx] Reporting endstop status
+02:07:27 [rx] x_max: TRIGGERED
+02:07:27 [rx] y_min: open
+02:07:27 [rx] z_probe: TRIGGERED
+02:07:27 [rx] filament: open
+02:07:27 [ok] ok
+02:07:27 [temp]  T:29.32 /0.00 B:29.03 /0.00 @:0 B@:0
+02:07:29 [temp]  T:29.26 /0.00 B:28.89 /0.00 @:0 B@:0
+02:07:30 [rx] Reporting endstop status
+02:07:30 [rx] x_max: TRIGGERED
+02:07:30 [rx] y_min: open
+02:07:30 [rx] z_probe: TRIGGERED
+02:07:30 [rx] filament: open
+02:07:30 [ok] ok
+02:07:31 [temp]  T:29.52 /0.00 B:28.55 /0.00 @:0 B@:0
+02:07:33 [rx] Reporting endstop status
+02:07:33 [rx] x_max: TRIGGERED
+02:07:33 [rx] y_min: open
+02:07:33 [rx] z_probe: TRIGGERED
+02:07:33 [rx] filament: open
+02:07:33 [ok] ok
+02:07:33 [temp]  T:29.18 /0.00 B:28.95 /0.00 @:0 B@:0
+02:07:35 [temp]  T:29.49 /0.00 B:28.92 /0.00 @:0 B@:0
+02:07:36 [rx] Reporting endstop status
+02:07:36 [rx] x_max: TRIGGERED
+02:07:36 [rx] y_min: open
+02:07:36 [rx] z_probe: TRIGGERED
+02:07:36 [rx] filament: open
+02:07:36 [ok] ok
+02:07:37 [temp]  T:29.26 /0.00 B:28.47 /0.00 @:0 B@:0
+02:07:39 [temp]  T:29.32 /0.00 B:28.92 /0.00 @:0 B@:0
+02:07:39 [rx] Reporting endstop status
+02:07:39 [rx] x_max: TRIGGERED
+02:07:39 [rx] y_min: open
+02:07:39 [rx] z_probe: TRIGGERED
+02:07:39 [rx] filament: open
+02:07:39 [ok] ok
+02:07:41 [temp]  T:28.95 /0.00 B:28.69 /0.00 @:0 B@:0
+02:07:42 [rx] Reporting endstop status
+02:07:42 [rx] x_max: TRIGGERED
+02:07:42 [rx] y_min: open
+02:07:42 [rx] z_probe: TRIGGERED
+02:07:42 [rx] filament: open
+02:07:42 [ok] ok
+02:07:43 [temp]  T:29.29 /0.00 B:29.06 /0.00 @:0 B@:0
+02:07:45 [sys] [CALIB] X: comandando +100 mm (passos/mm atual = 80)
+02:07:45 [tx] >> G91
+02:07:45 [tx] >> G1 X100 F600
+02:07:45 [tx] >> G90
+02:07:45 [tx] >> M400
+02:07:45 [ok] ok
+02:07:45 [ok] ok
+02:07:45 [ok] ok
+02:07:45 [ok] ok
+02:07:45 [temp]  T:29.06 /0.00 B:29.26 /0.00 @:0 B@:0
+02:07:45 [rx] Reporting endstop status
+02:07:45 [rx] x_max: TRIGGERED
+02:07:45 [rx] y_min: open
+02:07:45 [rx] z_probe: TRIGGERED
+02:07:45 [rx] filament: open
+02:07:45 [ok] ok
+02:07:47 [temp]  T:29.46 /0.00 B:29.37 /0.00 @:0 B@:0
+02:07:49 [rx] Reporting endstop status
+02:07:49 [rx] x_max: TRIGGERED
+02:07:49 [rx] y_min: open
+02:07:49 [rx] z_probe: TRIGGERED
+02:07:49 [rx] filament: open
+02:07:49 [ok] ok
+02:07:49 [temp]  T:28.64 /0.00 B:28.78 /0.00 @:0 B@:0
+02:07:52 [temp]  T:29.43 /0.00 B:28.86 /0.00 @:0 B@:0
+02:07:52 [rx] Reporting endstop status
+02:07:52 [rx] x_max: TRIGGERED
+02:07:52 [rx] y_min: open
+02:07:52 [rx] z_probe: TRIGGERED
+02:07:52 [rx] filament: open
+02:07:52 [ok] ok
+02:07:53 [temp]  T:28.66 /0.00 B:29.57 /0.00 @:0 B@:0
+02:07:55 [rx] Reporting endstop status
+02:07:55 [rx] x_max: TRIGGERED
+02:07:55 [rx] y_min: open
+02:07:55 [rx] z_probe: TRIGGERED
+02:07:55 [rx] filament: open
+02:07:55 [ok] ok
+02:07:55 [temp]  T:29.15 /0.00 B:28.75 /0.00 @:0 B@:0
+02:07:58 [temp]  T:28.86 /0.00 B:29.18 /0.00 @:0 B@:0
+02:07:58 [rx] Reporting endstop status
+02:07:58 [rx] x_max: TRIGGERED
+02:07:58 [rx] y_min: open
+02:07:58 [rx] z_probe: TRIGGERED
+02:07:58 [rx] filament: open
+02:07:58 [ok] ok
+02:07:59 [temp]  T:29.66 /0.00 B:28.98 /0.00 @:0 B@:0
+02:08:01 [rx] Reporting endstop status
+02:08:01 [rx] x_max: TRIGGERED
+02:08:01 [rx] y_min: open
+02:08:01 [rx] z_probe: TRIGGERED
+02:08:01 [rx] filament: open
+02:08:01 [ok] ok
+02:08:01 [temp]  T:29.37 /0.00 B:29.03 /0.00 @:0 B@:0
+02:08:03 [temp]  T:30.08 /0.00 B:29.03 /0.00 @:0 B@:0
+02:08:04 [rx] Reporting endstop status
+02:08:04 [rx] x_max: TRIGGERED
+02:08:04 [rx] y_min: open
+02:08:04 [rx] z_probe: TRIGGERED
+02:08:04 [rx] filament: open
+02:08:04 [ok] ok
+02:08:05 [temp]  T:29.46 /0.00 B:28.78 /0.00 @:0 B@:0
+02:08:07 [rx] Reporting endstop status
+02:08:07 [rx] x_max: TRIGGERED
+02:08:07 [rx] y_min: open
+02:08:07 [rx] z_probe: TRIGGERED
+02:08:07 [rx] filament: open
+02:08:07 [ok] ok
+02:08:07 [temp]  T:29.32 /0.00 B:29.32 /0.00 @:0 B@:0
+02:08:09 [temp]  T:29.20 /0.00 B:28.75 /0.00 @:0 B@:0
+02:08:10 [rx] Reporting endstop status
+02:08:10 [rx] x_max: TRIGGERED
+02:08:10 [rx] y_min: open
+02:08:10 [rx] z_probe: TRIGGERED
+02:08:10 [rx] filament: open
+02:08:10 [ok] ok
+02:08:11 [temp]  T:29.60 /0.00 B:28.89 /0.00 @:0 B@:0
+02:08:11 [sys] [CALIB] X: comandando -100 mm (passos/mm atual = 80)
+02:08:11 [tx] >> G91
+02:08:11 [tx] >> G1 X-100 F600
+02:08:11 [tx] >> G90
+02:08:11 [tx] >> M400
+02:08:12 [ok] ok
+02:08:12 [ok] ok
+02:08:12 [ok] ok
+02:08:13 [temp]  T:29.37 /0.00 B:28.24 /0.00 @:0 B@:0
+02:08:14 [sys] echo:busy: processing
+02:08:15 [temp]  T:29.43 /0.00 B:29.37 /0.00 @:0 B@:0
+02:08:16 [sys] echo:busy: processing
+02:08:17 [temp]  T:29.29 /0.00 B:29.40 /0.00 @:0 B@:0
+02:08:18 [sys] echo:busy: processing
+02:08:19 [temp]  T:29.43 /0.00 B:29.26 /0.00 @:0 B@:0
+02:08:20 [sys] echo:busy: processing
+02:08:21 [temp]  T:30.00 /0.00 B:28.75 /0.00 @:0 B@:0
+02:08:22 [sys] echo:busy: processing
+02:08:22 [ok] ok
+02:08:22 [rx] Reporting endstop status
+02:08:22 [rx] x_max: open
+02:08:22 [rx] y_min: open
+02:08:22 [rx] z_probe: TRIGGERED
+02:08:22 [rx] filament: open
+02:08:22 [ok] ok
+02:08:22 [rx] Reporting endstop status
+02:08:22 [rx] x_max: open
+02:08:22 [rx] y_min: open
+02:08:22 [rx] z_probe: TRIGGERED
+02:08:22 [rx] filament: open
+02:08:22 [ok] ok
+02:08:22 [rx] Reporting endstop status
+02:08:22 [rx] x_max: open
+02:08:22 [rx] y_min: open
+02:08:22 [rx] z_probe: TRIGGERED
+02:08:22 [rx] filament: open
+02:08:22 [ok] ok
+02:08:22 [rx] Reporting endstop status
+02:08:22 [rx] x_max: open
+02:08:22 [rx] y_min: open
+02:08:22 [rx] z_probe: TRIGGERED
+02:08:22 [rx] filament: open
+02:08:22 [ok] ok
+02:08:23 [temp]  T:30.21 /0.00 B:28.49 /0.00 @:0 B@:0
+02:08:25 [rx] Reporting endstop status
+02:08:25 [rx] x_max: open
+02:08:25 [rx] y_min: open
+02:08:25 [rx] z_probe: TRIGGERED
+02:08:25 [rx] filament: open
+02:08:25 [ok] ok
+02:08:25 [temp]  T:29.35 /0.00 B:28.15 /0.00 @:0 B@:0
+02:08:27 [temp]  T:29.66 /0.00 B:29.03 /0.00 @:0 B@:0
+02:08:28 [rx] Reporting endstop status
+02:08:28 [rx] x_max: open
+02:08:28 [rx] y_min: open
+02:08:28 [rx] z_probe: TRIGGERED
+02:08:28 [rx] filament: open
+02:08:28 [ok] ok
+02:08:29 [temp]  T:28.69 /0.00 B:29.03 /0.00 @:0 B@:0
+02:08:31 [rx] Reporting endstop status
+02:08:31 [rx] x_max: open
+02:08:31 [rx] y_min: open
+02:08:31 [rx] z_probe: TRIGGERED
+02:08:31 [rx] filament: open
+02:08:31 [ok] ok
+02:08:31 [temp]  T:29.01 /0.00 B:28.89 /0.00 @:0 B@:0
+02:08:33 [temp]  T:29.32 /0.00 B:29.91 /0.00 @:0 B@:0
+02:08:34 [rx] Reporting endstop status
+02:08:34 [rx] x_max: open
+02:08:34 [rx] y_min: open
+02:08:34 [rx] z_probe: TRIGGERED
+02:08:34 [rx] filament: open
+02:08:34 [ok] ok
+02:08:35 [temp]  T:29.29 /0.00 B:29.29 /0.00 @:0 B@:0
+02:08:37 [rx] Reporting endstop status
+02:08:37 [rx] x_max: open
+02:08:37 [rx] y_min: open
+02:08:37 [rx] z_probe: TRIGGERED
+02:08:37 [rx] filament: open
+02:08:37 [ok] ok
+02:08:37 [temp]  T:29.46 /0.00 B:28.84 /0.00 @:0 B@:0
+02:08:39 [temp]  T:29.32 /0.00 B:29.49 /0.00 @:0 B@:0
+02:08:40 [rx] Reporting endstop status
+02:08:40 [rx] x_max: open
+02:08:40 [rx] y_min: open
+02:08:40 [rx] z_probe: TRIGGERED
+02:08:40 [rx] filament: open
+02:08:40 [ok] ok
+02:08:41 [temp]  T:29.23 /0.00 B:29.18 /0.00 @:0 B@:0
+02:08:43 [rx] Reporting endstop status
+02:08:43 [rx] x_max: open
+02:08:43 [rx] y_min: open
+02:08:43 [rx] z_probe: TRIGGERED
+02:08:43 [rx] filament: open
+02:08:43 [ok] ok
+02:08:43 [temp]  T:29.55 /0.00 B:29.49 /0.00 @:0 B@:0
+02:08:45 [temp]  T:29.57 /0.00 B:29.06 /0.00 @:0 B@:0
+02:08:46 [rx] Reporting endstop status
+02:08:46 [rx] x_max: open
+02:08:46 [rx] y_min: open
+02:08:46 [rx] z_probe: TRIGGERED
+02:08:46 [rx] filament: open
+02:08:46 [ok] ok
+02:08:47 [temp]  T:29.32 /0.00 B:29.15 /0.00 @:0 B@:0
+02:08:49 [rx] Reporting endstop status
+02:08:49 [rx] x_max: open
+02:08:49 [rx] y_min: open
+02:08:49 [rx] z_probe: TRIGGERED
+02:08:49 [rx] filament: open
+02:08:49 [ok] ok
+02:08:49 [temp]  T:29.57 /0.00 B:29.23 /0.00 @:0 B@:0
+02:08:51 [temp]  T:29.35 /0.00 B:28.98 /0.00 @:0 B@:0
+02:08:52 [rx] Reporting endstop status
+02:08:52 [rx] x_max: open
+02:08:52 [rx] y_min: open
+02:08:52 [rx] z_probe: TRIGGERED
+02:08:52 [rx] filament: open
+02:08:52 [ok] ok
+02:08:53 [temp]  T:29.18 /0.00 B:29.03 /0.00 @:0 B@:0
+02:08:55 [rx] Reporting endstop status
+02:08:55 [rx] x_max: open
+02:08:55 [rx] y_min: open
+02:08:55 [rx] z_probe: TRIGGERED
+02:08:55 [rx] filament: open
+02:08:55 [ok] ok
+02:08:55 [temp]  T:29.23 /0.00 B:29.37 /0.00 @:0 B@:0
+02:08:57 [temp]  T:29.43 /0.00 B:29.01 /0.00 @:0 B@:0
+02:08:58 [rx] Reporting endstop status
+02:08:58 [rx] x_max: open
+02:08:58 [rx] y_min: open
+02:08:58 [rx] z_probe: TRIGGERED
+02:08:58 [rx] filament: open
+02:08:58 [ok] ok
+02:08:59 [temp]  T:29.43 /0.00 B:29.49 /0.00 @:0 B@:0
+02:09:01 [rx] Reporting endstop status
+02:09:01 [rx] x_max: open
+02:09:01 [rx] y_min: open
+02:09:01 [rx] z_probe: TRIGGERED
+02:09:01 [rx] filament: open
+02:09:01 [ok] ok
+02:09:01 [temp]  T:29.12 /0.00 B:28.86 /0.00 @:0 B@:0
+02:09:03 [temp]  T:28.98 /0.00 B:28.84 /0.00 @:0 B@:0
+02:09:04 [rx] Reporting endstop status
+02:09:04 [rx] x_max: open
+02:09:04 [rx] y_min: open
+02:09:04 [rx] z_probe: TRIGGERED
+02:09:04 [rx] filament: open
+02:09:04 [ok] ok
+02:09:05 [temp]  T:29.20 /0.00 B:28.75 /0.00 @:0 B@:0
+02:09:07 [rx] Reporting endstop status
+02:09:07 [rx] x_max: open
+02:09:07 [rx] y_min: open
+02:09:07 [rx] z_probe: TRIGGERED
+02:09:07 [rx] filament: open
+02:09:07 [ok] ok
+02:09:07 [temp]  T:29.32 /0.00 B:28.81 /0.00 @:0 B@:0
+02:09:09 [temp]  T:29.40 /0.00 B:29.26 /0.00 @:0 B@:0
+02:09:10 [rx] Reporting endstop status
+02:09:10 [rx] x_max: open
+02:09:10 [rx] y_min: open
+02:09:10 [rx] z_probe: TRIGGERED
+02:09:10 [rx] filament: open
+02:09:10 [ok] ok
+02:09:11 [temp]  T:29.77 /0.00 B:29.03 /0.00 @:0 B@:0
+02:09:13 [rx] Reporting endstop status
+02:09:13 [rx] x_max: open
+02:09:13 [rx] y_min: open
+02:09:13 [rx] z_probe: TRIGGERED
+02:09:13 [rx] filament: open
+02:09:13 [ok] ok
+02:09:13 [temp]  T:29.74 /0.00 B:29.09 /0.00 @:0 B@:0
+02:09:15 [temp]  T:29.09 /0.00 B:28.78 /0.00 @:0 B@:0
+02:09:16 [rx] Reporting endstop status
+02:09:16 [rx] x_max: open
+02:09:16 [rx] y_min: open
+02:09:16 [rx] z_probe: TRIGGERED
+02:09:16 [rx] filament: open
+02:09:16 [ok] ok
+02:09:17 [temp]  T:29.35 /0.00 B:29.46 /0.00 @:0 B@:0
+02:09:19 [rx] Reporting endstop status
+02:09:19 [rx] x_max: open
+02:09:19 [rx] y_min: open
+02:09:19 [rx] z_probe: TRIGGERED
+02:09:19 [rx] filament: open
+02:09:19 [ok] ok
+02:09:19 [temp]  T:28.92 /0.00 B:29.09 /0.00 @:0 B@:0
+02:09:21 [temp]  T:29.23 /0.00 B:28.47 /0.00 @:0 B@:0
+02:09:22 [rx] Reporting endstop status
+02:09:22 [rx] x_max: open
+02:09:22 [rx] y_min: open
+02:09:22 [rx] z_probe: TRIGGERED
+02:09:22 [rx] filament: open
+02:09:22 [ok] ok
+02:09:23 [temp]  T:29.20 /0.00 B:28.78 /0.00 @:0 B@:0
+02:09:25 [rx] Reporting endstop status
+02:09:25 [rx] x_max: open
+02:09:25 [rx] y_min: open
+02:09:25 [rx] z_probe: TRIGGERED
+02:09:25 [rx] filament: open
+02:09:25 [ok] ok
+02:09:25 [temp]  T:29.52 /0.00 B:29.15 /0.00 @:0 B@:0
+02:09:27 [temp]  T:29.29 /0.00 B:28.78 /0.00 @:0 B@:0
+02:09:28 [rx] Reporting endstop status
+02:09:28 [rx] x_max: open
+02:09:28 [rx] y_min: open
+02:09:28 [rx] z_probe: TRIGGERED
+02:09:28 [rx] filament: open
+02:09:28 [ok] ok
+02:09:29 [temp]  T:29.26 /0.00 B:29.72 /0.00 @:0 B@:0
+02:09:31 [temp]  T:29.77 /0.00 B:29.23 /0.00 @:0 B@:0
+02:09:31 [rx] Reporting endstop status
+02:09:31 [rx] x_max: open
+02:09:31 [rx] y_min: open
+02:09:31 [rx] z_probe: TRIGGERED
+02:09:31 [rx] filament: open
+02:09:31 [ok] ok
+02:09:33 [temp]  T:28.95 /0.00 B:28.44 /0.00 @:0 B@:0
+02:09:34 [rx] Reporting endstop status
+02:09:34 [rx] x_max: open
+02:09:34 [rx] y_min: open
+02:09:34 [rx] z_probe: TRIGGERED
+02:09:34 [rx] filament: open
+02:09:34 [ok] ok
+02:09:35 [temp]  T:29.57 /0.00 B:28.35 /0.00 @:0 B@:0
+02:09:37 [temp]  T:29.26 /0.00 B:28.84 /0.00 @:0 B@:0
+02:09:37 [rx] Reporting endstop status
+02:09:37 [rx] x_max: open
+02:09:37 [rx] y_min: open
+02:09:37 [rx] z_probe: TRIGGERED
+02:09:37 [rx] filament: open
+02:09:37 [ok] ok
+02:09:39 [temp]  T:29.06 /0.00 B:29.20 /0.00 @:0 B@:0
+02:09:40 [rx] Reporting endstop status
+02:09:40 [rx] x_max: open
+02:09:40 [rx] y_min: open
+02:09:41 [rx] z_probe: TRIGGERED
+02:09:41 [rx] filament: open
+02:09:41 [ok] ok
+02:09:41 [temp]  T:28.98 /0.00 B:29.37 /0.00 @:0 B@:0
+02:09:44 [temp]  T:29.18 /0.00 B:29.26 /0.00 @:0 B@:0
+02:09:44 [rx] Reporting endstop status
+02:09:44 [rx] x_max: open
+02:09:44 [rx] y_min: open
+02:09:44 [rx] z_probe: TRIGGERED
+02:09:44 [rx] filament: open
+02:09:44 [ok] ok
+02:09:45 [temp]  T:29.20 /0.00 B:28.78 /0.00 @:0 B@:0
+02:09:47 [rx] Reporting endstop status
+02:09:47 [rx] x_max: open
+02:09:47 [rx] y_min: open
+02:09:47 [rx] z_probe: TRIGGERED
+02:09:47 [rx] filament: open
+02:09:47 [ok] ok
+02:09:47 [temp]  T:29.55 /0.00 B:28.44 /0.00 @:0 B@:0
+02:09:50 [temp]  T:29.35 /0.00 B:28.84 /0.00 @:0 B@:0
+02:09:50 [rx] Reporting endstop status
+02:09:50 [rx] x_max: open
+02:09:50 [rx] y_min: open
+02:09:50 [rx] z_probe: TRIGGERED
+02:09:50 [rx] filament: open
+02:09:50 [ok] ok
+02:09:51 [temp]  T:29.46 /0.00 B:28.75 /0.00 @:0 B@:0
+02:09:53 [rx] Reporting endstop status
+02:09:53 [rx] x_max: open
+02:09:53 [rx] y_min: open
+02:09:53 [rx] z_probe: TRIGGERED
+02:09:53 [rx] filament: open
+02:09:53 [ok] ok
+02:09:53 [temp]  T:29.57 /0.00 B:28.78 /0.00 @:0 B@:0
+02:09:56 [temp]  T:29.57 /0.00 B:29.18 /0.00 @:0 B@:0
+02:09:56 [rx] Reporting endstop status
+02:09:56 [rx] x_max: open
+02:09:56 [rx] y_min: open
+02:09:56 [rx] z_probe: TRIGGERED
+02:09:56 [rx] filament: open
+02:09:56 [ok] ok
+02:09:57 [temp]  T:29.26 /0.00 B:29.23 /0.00 @:0 B@:0
+02:09:59 [rx] Reporting endstop status
+02:09:59 [rx] x_max: open
+02:09:59 [rx] y_min: open
+02:09:59 [rx] z_probe: TRIGGERED
+02:09:59 [rx] filament: open
+02:09:59 [ok] ok
+02:09:59 [temp]  T:29.46 /0.00 B:28.95 /0.00 @:0 B@:0
+02:10:01 [temp]  T:29.80 /0.00 B:29.23 /0.00 @:0 B@:0
+02:10:02 [rx] Reporting endstop status
+02:10:02 [rx] x_max: open
+02:10:02 [rx] y_min: open
+02:10:02 [rx] z_probe: TRIGGERED
+02:10:02 [rx] filament: open
+02:10:02 [ok] ok
+02:10:03 [temp]  T:29.37 /0.00 B:29.32 /0.00 @:0 B@:0
+02:10:05 [rx] Reporting endstop status
+02:10:05 [rx] x_max: open
+02:10:05 [rx] y_min: open
+02:10:05 [rx] z_probe: TRIGGERED
+02:10:05 [rx] filament: open
+02:10:05 [ok] ok
+02:10:05 [temp]  T:29.06 /0.00 B:28.81 /0.00 @:0 B@:0
+02:10:07 [temp]  T:29.43 /0.00 B:28.64 /0.00 @:0 B@:0
+02:10:08 [rx] Reporting endstop status
+02:10:08 [rx] x_max: open
+02:10:08 [rx] y_min: open
+02:10:08 [rx] z_probe: TRIGGERED
+02:10:08 [rx] filament: open
+02:10:08 [ok] ok
+02:10:09 [temp]  T:29.43 /0.00 B:29.52 /0.00 @:0 B@:0
+02:10:11 [rx] Reporting endstop status
+02:10:11 [rx] x_max: open
+02:10:11 [rx] y_min: open
+02:10:11 [rx] z_probe: TRIGGERED
+02:10:11 [rx] filament: open
+02:10:11 [ok] ok
+02:10:11 [temp]  T:29.09 /0.00 B:29.26 /0.00 @:0 B@:0
+02:10:13 [temp]  T:29.40 /0.00 B:29.55 /0.00 @:0 B@:0
+02:10:14 [rx] Reporting endstop status
+02:10:14 [rx] x_max: open
+02:10:14 [rx] y_min: open
+02:10:14 [rx] z_probe: TRIGGERED
+02:10:14 [rx] filament: open
+02:10:14 [ok] ok
+02:10:15 [temp]  T:30.23 /0.00 B:29.57 /0.00 @:0 B@:0
+02:10:17 [rx] Reporting endstop status
+02:10:17 [rx] x_max: open
+02:10:17 [rx] y_min: open
+02:10:17 [rx] z_probe: TRIGGERED
+02:10:17 [rx] filament: open
+02:10:17 [ok] ok
+02:10:17 [temp]  T:29.06 /0.00 B:29.23 /0.00 @:0 B@:0
+02:10:19 [temp]  T:29.40 /0.00 B:28.15 /0.00 @:0 B@:0
+02:10:20 [rx] Reporting endstop status
+02:10:20 [rx] x_max: open
+02:10:20 [rx] y_min: open
+02:10:20 [rx] z_probe: TRIGGERED
+02:10:20 [rx] filament: open
+02:10:20 [ok] ok
+02:10:21 [temp]  T:29.15 /0.00 B:29.09 /0.00 @:0 B@:0
+02:10:23 [rx] Reporting endstop status
+02:10:23 [rx] x_max: open
+02:10:23 [rx] y_min: open
+02:10:23 [rx] z_probe: TRIGGERED
+02:10:23 [rx] filament: open
+02:10:23 [ok] ok
+02:10:23 [temp]  T:29.35 /0.00 B:28.75 /0.00 @:0 B@:0
+02:10:25 [temp]  T:29.74 /0.00 B:28.64 /0.00 @:0 B@:0
+02:10:26 [rx] Reporting endstop status
+02:10:26 [rx] x_max: open
+02:10:26 [rx] y_min: open
+02:10:26 [rx] z_probe: TRIGGERED
+02:10:26 [rx] filament: open
+02:10:26 [ok] ok
+02:10:27 [temp]  T:29.35 /0.00 B:28.55 /0.00 @:0 B@:0
+02:10:29 [rx] Reporting endstop status
+02:10:29 [rx] x_max: open
+02:10:29 [rx] y_min: open
+02:10:29 [rx] z_probe: TRIGGERED
+02:10:29 [rx] filament: open
+02:10:29 [ok] ok
+02:10:29 [temp]  T:29.18 /0.00 B:29.23 /0.00 @:0 B@:0
+02:10:30 [sys] [CALIB] Y: comandando +100 mm (passos/mm atual = 80)
+02:10:30 [tx] >> G91
+02:10:30 [tx] >> G1 Y100 F600
+02:10:30 [tx] >> G90
+02:10:30 [tx] >> M400
+02:10:30 [ok] ok
+02:10:30 [ok] ok
+02:10:30 [ok] ok
+02:10:31 [temp]  T:29.91 /0.00 B:29.09 /0.00 @:0 B@:0
+02:10:32 [sys] echo:busy: processing
+02:10:33 [temp]  T:29.66 /0.00 B:29.18 /0.00 @:0 B@:0
+02:10:34 [sys] echo:busy: processing
+02:10:35 [temp]  T:29.26 /0.00 B:28.61 /0.00 @:0 B@:0
+02:10:36 [sys] echo:busy: processing
+02:10:37 [temp]  T:29.26 /0.00 B:28.98 /0.00 @:0 B@:0
+02:10:38 [sys] echo:busy: processing
+02:10:39 [temp]  T:29.60 /0.00 B:29.12 /0.00 @:0 B@:0
+02:10:40 [sys] echo:busy: processing
+02:10:40 [ok] ok
+02:10:40 [rx] Reporting endstop status
+02:10:40 [rx] x_max: open
+02:10:40 [rx] y_min: open
+02:10:40 [rx] z_probe: TRIGGERED
+02:10:40 [rx] filament: open
+02:10:40 [ok] ok
+02:10:40 [rx] Reporting endstop status
+02:10:40 [rx] x_max: open
+02:10:40 [rx] y_min: open
+02:10:40 [rx] z_probe: TRIGGERED
+02:10:40 [rx] filament: open
+02:10:40 [ok] ok
+02:10:40 [rx] Reporting endstop status
+02:10:40 [rx] x_max: open
+02:10:40 [rx] y_min: open
+02:10:40 [rx] z_probe: TRIGGERED
+02:10:40 [rx] filament: open
+02:10:40 [ok] ok
+02:10:41 [rx] Reporting endstop status
+02:10:41 [rx] x_max: open
+02:10:41 [rx] y_min: open
+02:10:41 [rx] z_probe: TRIGGERED
+02:10:41 [rx] filament: open
+02:10:41 [ok] ok
+02:10:41 [temp]  T:29.18 /0.00 B:28.32 /0.00 @:0 B@:0
+02:10:43 [temp]  T:29.23 /0.00 B:29.55 /0.00 @:0 B@:0
+02:10:44 [rx] Reporting endstop status
+02:10:44 [rx] x_max: open
+02:10:44 [rx] y_min: open
+02:10:44 [rx] z_probe: TRIGGERED
+02:10:44 [rx] filament: open
+02:10:44 [ok] ok
+02:10:45 [temp]  T:29.60 /0.00 B:29.37 /0.00 @:0 B@:0
+02:10:47 [rx] Reporting endstop status
+02:10:47 [rx] x_max: open
+02:10:47 [rx] y_min: open
+02:10:47 [rx] z_probe: TRIGGERED
+02:10:47 [rx] filament: open
+02:10:47 [ok] ok
+02:10:47 [temp]  T:29.32 /0.00 B:29.72 /0.00 @:0 B@:0
+02:10:49 [temp]  T:29.94 /0.00 B:29.01 /0.00 @:0 B@:0
+02:10:50 [rx] Reporting endstop status
+02:10:50 [rx] x_max: open
+02:10:50 [rx] y_min: open
+02:10:50 [rx] z_probe: TRIGGERED
+02:10:50 [rx] filament: open
+02:10:50 [ok] ok
+02:10:51 [temp]  T:29.40 /0.00 B:29.15 /0.00 @:0 B@:0
+02:10:53 [rx] Reporting endstop status
+02:10:53 [rx] x_max: open
+02:10:53 [rx] y_min: open
+02:10:53 [rx] z_probe: TRIGGERED
+02:10:53 [rx] filament: open
+02:10:53 [ok] ok
+02:10:53 [temp]  T:29.18 /0.00 B:28.69 /0.00 @:0 B@:0
+02:10:55 [temp]  T:29.77 /0.00 B:28.61 /0.00 @:0 B@:0
+02:10:56 [rx] Reporting endstop status
+02:10:56 [rx] x_max: open
+02:10:56 [rx] y_min: open
+02:10:56 [rx] z_probe: TRIGGERED
+02:10:56 [rx] filament: open
+02:10:56 [ok] ok
+02:10:57 [temp]  T:28.81 /0.00 B:28.30 /0.00 @:0 B@:0
+02:10:59 [rx] Reporting endstop status
+02:10:59 [rx] x_max: open
+02:10:59 [rx] y_min: open
+02:10:59 [rx] z_probe: TRIGGERED
+02:10:59 [rx] filament: open
+02:10:59 [ok] ok
+02:10:59 [temp]  T:29.74 /0.00 B:28.66 /0.00 @:0 B@:0
+02:11:01 [temp]  T:28.41 /0.00 B:28.98 /0.00 @:0 B@:0
+02:11:02 [rx] Reporting endstop status
+02:11:02 [rx] x_max: open
+02:11:02 [rx] y_min: open
+02:11:02 [rx] z_probe: TRIGGERED
+02:11:02 [rx] filament: open
+02:11:02 [ok] ok
+02:11:03 [temp]  T:29.32 /0.00 B:29.32 /0.00 @:0 B@:0
+02:11:05 [rx] Reporting endstop status
+02:11:05 [rx] x_max: open
+02:11:05 [rx] y_min: open
+02:11:05 [rx] z_probe: TRIGGERED
+02:11:05 [rx] filament: open
+02:11:05 [ok] ok
+02:11:05 [temp]  T:29.12 /0.00 B:29.06 /0.00 @:0 B@:0
+02:11:07 [temp]  T:29.29 /0.00 B:29.55 /0.00 @:0 B@:0
+02:11:08 [rx] Reporting endstop status
+02:11:08 [rx] x_max: open
+02:11:08 [rx] y_min: open
+02:11:08 [rx] z_probe: TRIGGERED
+02:11:08 [rx] filament: open
+02:11:08 [ok] ok
+02:11:09 [temp]  T:30.23 /0.00 B:29.49 /0.00 @:0 B@:0
+02:11:11 [rx] Reporting endstop status
+02:11:11 [rx] x_max: open
+02:11:11 [rx] y_min: open
+02:11:11 [rx] z_probe: TRIGGERED
+02:11:11 [rx] filament: open
+02:11:11 [ok] ok
+02:11:11 [temp]  T:29.43 /0.00 B:28.92 /0.00 @:0 B@:0
+02:11:13 [temp]  T:29.35 /0.00 B:29.29 /0.00 @:0 B@:0
+02:11:14 [rx] Reporting endstop status
+02:11:14 [rx] x_max: open
+02:11:14 [rx] y_min: open
+02:11:14 [rx] z_probe: TRIGGERED
+02:11:14 [rx] filament: open
+02:11:14 [ok] ok
+02:11:15 [temp]  T:29.26 /0.00 B:29.35 /0.00 @:0 B@:0
+02:11:17 [rx] Reporting endstop status
+02:11:17 [rx] x_max: open
+02:11:17 [rx] y_min: open
+02:11:17 [rx] z_probe: TRIGGERED
+02:11:17 [rx] filament: open
+02:11:17 [ok] ok
+02:11:17 [temp]  T:29.55 /0.00 B:28.92 /0.00 @:0 B@:0
+02:11:19 [temp]  T:29.29 /0.00 B:29.40 /0.00 @:0 B@:0
+02:11:20 [rx] Reporting endstop status
+02:11:20 [rx] x_max: open
+02:11:20 [rx] y_min: open
+02:11:20 [rx] z_probe: TRIGGERED
+02:11:20 [rx] filament: open
+02:11:20 [ok] ok
+02:11:21 [temp]  T:29.55 /0.00 B:28.58 /0.00 @:0 B@:0
+02:11:23 [rx] Reporting endstop status
+02:11:23 [rx] x_max: open
+02:11:23 [rx] y_min: open
+02:11:23 [rx] z_probe: TRIGGERED
+02:11:23 [rx] filament: open
+02:11:23 [ok] ok
+02:11:23 [temp]  T:29.52 /0.00 B:29.15 /0.00 @:0 B@:0
+02:11:25 [temp]  T:29.26 /0.00 B:29.12 /0.00 @:0 B@:0
+02:11:26 [rx] Reporting endstop status
+02:11:26 [rx] x_max: open
+02:11:26 [rx] y_min: open
+02:11:26 [rx] z_probe: TRIGGERED
+02:11:26 [rx] filament: open
+02:11:26 [ok] ok
+02:11:27 [temp]  T:29.32 /0.00 B:29.49 /0.00 @:0 B@:0
+02:11:29 [rx] Reporting endstop status
+02:11:29 [rx] x_max: open
+02:11:29 [rx] y_min: open
+02:11:29 [rx] z_probe: TRIGGERED
+02:11:29 [rx] filament: open
+02:11:29 [ok] ok
+02:11:29 [temp]  T:29.49 /0.00 B:28.75 /0.00 @:0 B@:0
+02:11:31 [temp]  T:29.37 /0.00 B:29.26 /0.00 @:0 B@:0
+02:11:32 [rx] Reporting endstop status
+02:11:32 [rx] x_max: open
+02:11:32 [rx] y_min: open
+02:11:32 [rx] z_probe: TRIGGERED
+02:11:32 [rx] filament: open
+02:11:32 [ok] ok
+02:11:33 [temp]  T:29.40 /0.00 B:29.60 /0.00 @:0 B@:0
+02:11:35 [temp]  T:29.57 /0.00 B:29.01 /0.00 @:0 B@:0
+02:11:35 [rx] Reporting endstop status
+02:11:35 [rx] x_max: open
+02:11:35 [rx] y_min: open
+02:11:35 [rx] z_probe: TRIGGERED
+02:11:35 [rx] filament: open
+02:11:35 [ok] ok
+02:11:37 [temp]  T:29.20 /0.00 B:28.95 /0.00 @:0 B@:0
+02:11:38 [rx] Reporting endstop status
+02:11:38 [rx] x_max: open
+02:11:38 [rx] y_min: open
+02:11:38 [rx] z_probe: TRIGGERED
+02:11:38 [rx] filament: open
+02:11:38 [ok] ok
+02:11:39 [temp]  T:29.60 /0.00 B:29.40 /0.00 @:0 B@:0
+02:11:41 [temp]  T:29.40 /0.00 B:28.81 /0.00 @:0 B@:0
+02:11:41 [rx] Reporting endstop status
+02:11:42 [rx] x_max: open
+02:11:42 [rx] y_min: open
+02:11:42 [rx] z_probe: TRIGGERED
+02:11:42 [rx] filament: open
+02:11:42 [ok] ok
+02:11:43 [temp]  T:29.23 /0.00 B:28.95 /0.00 @:0 B@:0
+02:11:45 [rx] Reporting endstop status
+02:11:45 [rx] x_max: open
+02:11:45 [rx] y_min: open
+02:11:45 [rx] z_probe: TRIGGERED
+02:11:45 [rx] filament: open
+02:11:45 [ok] ok
+02:11:45 [temp]  T:29.35 /0.00 B:29.23 /0.00 @:0 B@:0
+02:11:48 [temp]  T:29.23 /0.00 B:29.66 /0.00 @:0 B@:0
+02:11:48 [rx] Reporting endstop status
+02:11:48 [rx] x_max: open
+02:11:48 [rx] y_min: open
+02:11:48 [rx] z_probe: TRIGGERED
+02:11:48 [rx] filament: open
+02:11:48 [ok] ok
+02:11:49 [temp]  T:29.66 /0.00 B:28.89 /0.00 @:0 B@:0
+02:11:51 [rx] Reporting endstop status
+02:11:51 [rx] x_max: open
+02:11:51 [rx] y_min: open
+02:11:51 [rx] z_probe: TRIGGERED
+02:11:51 [rx] filament: open
+02:11:51 [ok] ok
+02:11:51 [temp]  T:29.74 /0.00 B:29.49 /0.00 @:0 B@:0
+02:11:54 [temp]  T:29.40 /0.00 B:29.29 /0.00 @:0 B@:0
+02:11:54 [rx] Reporting endstop status
+02:11:54 [rx] x_max: open
+02:11:54 [rx] y_min: open
+02:11:54 [rx] z_probe: TRIGGERED
+02:11:54 [rx] filament: open
+02:11:54 [ok] ok
+02:11:55 [temp]  T:29.46 /0.00 B:29.35 /0.00 @:0 B@:0
+02:11:57 [rx] Reporting endstop status
+02:11:57 [rx] x_max: open
+02:11:57 [rx] y_min: open
+02:11:57 [rx] z_probe: TRIGGERED
+02:11:57 [rx] filament: open
+02:11:57 [ok] ok
+02:11:57 [temp]  T:29.20 /0.00 B:29.77 /0.00 @:0 B@:0
+02:11:59 [temp]  T:29.66 /0.00 B:29.01 /0.00 @:0 B@:0
+02:12:00 [rx] Reporting endstop status
+02:12:00 [rx] x_max: open
+02:12:00 [rx] y_min: open
+02:12:00 [rx] z_probe: TRIGGERED
+02:12:00 [rx] filament: open
+02:12:00 [ok] ok
+02:12:01 [temp]  T:29.29 /0.00 B:29.80 /0.00 @:0 B@:0
+02:12:03 [rx] Reporting endstop status
+02:12:03 [rx] x_max: open
+02:12:03 [rx] y_min: open
+02:12:03 [rx] z_probe: TRIGGERED
+02:12:03 [rx] filament: open
+02:12:03 [ok] ok
+02:12:03 [temp]  T:29.86 /0.00 B:29.23 /0.00 @:0 B@:0
+02:12:05 [temp]  T:28.75 /0.00 B:28.41 /0.00 @:0 B@:0
+02:12:06 [rx] Reporting endstop status
+02:12:06 [rx] x_max: open
+02:12:06 [rx] y_min: open
+02:12:06 [rx] z_probe: TRIGGERED
+02:12:06 [rx] filament: open
+02:12:06 [ok] ok
+02:12:07 [temp]  T:29.23 /0.00 B:29.03 /0.00 @:0 B@:0
+02:12:09 [rx] Reporting endstop status
+02:12:09 [rx] x_max: open
+02:12:09 [rx] y_min: open
+02:12:09 [rx] z_probe: TRIGGERED
+02:12:09 [rx] filament: open
+02:12:09 [ok] ok
+02:12:09 [temp]  T:29.46 /0.00 B:29.80 /0.00 @:0 B@:0
+02:12:11 [temp]  T:29.15 /0.00 B:28.95 /0.00 @:0 B@:0
+02:12:12 [rx] Reporting endstop status
+02:12:12 [rx] x_max: open
+02:12:12 [rx] y_min: open
+02:12:12 [rx] z_probe: TRIGGERED
+02:12:12 [rx] filament: open
+02:12:12 [ok] ok
+02:12:13 [temp]  T:29.26 /0.00 B:29.63 /0.00 @:0 B@:0
+02:12:15 [rx] Reporting endstop status
+02:12:15 [rx] x_max: open
+02:12:15 [rx] y_min: open
+02:12:15 [rx] z_probe: TRIGGERED
+02:12:15 [rx] filament: open
+02:12:15 [ok] ok
+02:12:15 [temp]  T:29.09 /0.00 B:29.23 /0.00 @:0 B@:0
+02:12:17 [temp]  T:29.09 /0.00 B:29.18 /0.00 @:0 B@:0
+02:12:18 [rx] Reporting endstop status
+02:12:18 [rx] x_max: open
+02:12:18 [rx] y_min: open
+02:12:18 [rx] z_probe: TRIGGERED
+02:12:18 [rx] filament: open
+02:12:18 [ok] ok
+02:12:19 [temp]  T:29.20 /0.00 B:29.29 /0.00 @:0 B@:0
+02:12:21 [rx] Reporting endstop status
+02:12:21 [rx] x_max: open
+02:12:21 [rx] y_min: open
+02:12:21 [rx] z_probe: TRIGGERED
+02:12:21 [rx] filament: open
+02:12:21 [ok] ok
+02:12:21 [temp]  T:29.77 /0.00 B:28.61 /0.00 @:0 B@:0
+02:12:23 [temp]  T:28.81 /0.00 B:28.58 /0.00 @:0 B@:0
+02:12:24 [rx] Reporting endstop status
+02:12:24 [rx] x_max: open
+02:12:24 [rx] y_min: open
+02:12:24 [rx] z_probe: TRIGGERED
+02:12:24 [rx] filament: open
+02:12:24 [ok] ok
+02:12:25 [temp]  T:29.32 /0.00 B:28.52 /0.00 @:0 B@:0
+02:12:27 [rx] Reporting endstop status
+02:12:27 [rx] x_max: open
+02:12:27 [rx] y_min: open
+02:12:27 [rx] z_probe: TRIGGERED
+02:12:27 [rx] filament: open
+02:12:27 [ok] ok
+02:12:27 [temp]  T:29.49 /0.00 B:28.92 /0.00 @:0 B@:0
+02:12:29 [temp]  T:29.43 /0.00 B:29.29 /0.00 @:0 B@:0
+02:12:30 [rx] Reporting endstop status
+02:12:30 [rx] x_max: open
+02:12:30 [rx] y_min: open
+02:12:30 [rx] z_probe: TRIGGERED
+02:12:30 [rx] filament: open
+02:12:30 [ok] ok
+02:12:31 [temp]  T:29.32 /0.00 B:28.98 /0.00 @:0 B@:0
+02:12:33 [rx] Reporting endstop status
+02:12:33 [rx] x_max: open
+02:12:33 [rx] y_min: open
+02:12:33 [rx] z_probe: TRIGGERED
+02:12:33 [rx] filament: open
+02:12:33 [ok] ok
+02:12:33 [temp]  T:29.43 /0.00 B:29.32 /0.00 @:0 B@:0
+02:12:35 [temp]  T:29.03 /0.00 B:29.09 /0.00 @:0 B@:0
+02:12:36 [rx] Reporting endstop status
+02:12:36 [rx] x_max: open
+02:12:36 [rx] y_min: open
+02:12:36 [rx] z_probe: TRIGGERED
+02:12:36 [rx] filament: open
+02:12:36 [ok] ok
+02:12:37 [temp]  T:29.52 /0.00 B:28.04 /0.00 @:0 B@:0
+02:12:39 [rx] Reporting endstop status
+02:12:39 [rx] x_max: open
+02:12:39 [rx] y_min: open
+02:12:39 [rx] z_probe: TRIGGERED
+02:12:39 [rx] filament: open
+02:12:39 [ok] ok
+02:12:39 [temp]  T:29.20 /0.00 B:29.26 /0.00 @:0 B@:0
+02:12:41 [temp]  T:29.83 /0.00 B:28.75 /0.00 @:0 B@:0
+02:12:42 [rx] Reporting endstop status
+02:12:42 [rx] x_max: open
+02:12:42 [rx] y_min: open
+02:12:42 [rx] z_probe: TRIGGERED
+02:12:42 [rx] filament: open
+02:12:42 [ok] ok
+02:12:43 [temp]  T:29.23 /0.00 B:28.78 /0.00 @:0 B@:0
+02:12:45 [rx] Reporting endstop status
+02:12:45 [rx] x_max: open
+02:12:45 [rx] y_min: open
+02:12:45 [rx] z_probe: TRIGGERED
+02:12:45 [rx] filament: open
+02:12:45 [ok] ok
+02:12:45 [temp]  T:29.12 /0.00 B:29.23 /0.00 @:0 B@:0
+02:12:47 [tx] >> G28 X
+02:12:47 [temp]  T:29.72 /0.00 B:28.95 /0.00 @:0 B@:0
+02:12:49 [sys] echo:busy: processing
+02:12:49 [rx] X:205.00 Y:155.00 Z:64.00 E:0.00 Count A:28800B:4000 Z:25600
+02:12:49 [ok] ok
+02:12:49 [rx] Reporting endstop status
+02:12:49 [rx] x_max: TRIGGERED
+02:12:49 [rx] y_min: open
+02:12:49 [rx] z_probe: TRIGGERED
+02:12:49 [rx] filament: open
+02:12:49 [ok] ok
+02:12:49 [temp]  T:29.09 /0.00 B:28.35 /0.00 @:0 B@:0
+02:12:51 [rx] Reporting endstop status
+02:12:51 [rx] x_max: TRIGGERED
+02:12:51 [rx] y_min: open
+02:12:51 [rx] z_probe: TRIGGERED
+02:12:51 [rx] filament: open
+02:12:51 [ok] ok
+02:12:51 [temp]  T:29.35 /0.00 B:29.15 /0.00 @:0 B@:0
+02:12:53 [temp]  T:28.95 /0.00 B:28.47 /0.00 @:0 B@:0
+02:12:54 [rx] Reporting endstop status
+02:12:54 [rx] x_max: TRIGGERED
+02:12:54 [rx] y_min: open
+02:12:54 [rx] z_probe: TRIGGERED
+02:12:54 [rx] filament: open
+02:12:54 [ok] ok
+02:12:55 [tx] >> G28 Y
+02:12:55 [temp]  T:29.55 /0.00 B:30.21 /0.00 @:0 B@:0
+02:12:57 [sys] echo:busy: processing
+02:12:57 [temp]  T:29.52 /0.00 B:28.21 /0.00 @:0 B@:0
+02:12:59 [rx] X:205.00 Y:-5.00 Z:64.00 E:0.00 Count A:16000B:16800 Z:25600
+02:12:59 [ok] ok
+02:12:59 [rx] Reporting endstop status
+02:12:59 [rx] x_max: TRIGGERED
+02:12:59 [rx] y_min: TRIGGERED
+02:12:59 [rx] z_probe: TRIGGERED
+02:12:59 [rx] filament: open
+02:12:59 [ok] ok
+02:12:59 [temp]  T:28.55 /0.00 B:29.35 /0.00 @:0 B@:0
+02:13:00 [rx] Reporting endstop status
+02:13:00 [rx] x_max: TRIGGERED
+02:13:00 [rx] y_min: TRIGGERED
+02:13:00 [rx] z_probe: TRIGGERED
+02:13:00 [rx] filament: open
+02:13:00 [ok] ok
+02:13:01 [temp]  T:29.57 /0.00 B:29.20 /0.00 @:0 B@:0
+02:13:03 [rx] Reporting endstop status
+02:13:03 [rx] x_max: TRIGGERED
+02:13:03 [rx] y_min: TRIGGERED
+02:13:03 [rx] z_probe: TRIGGERED
+02:13:03 [rx] filament: open
+02:13:03 [ok] ok
+02:13:03 [temp]  T:29.26 /0.00 B:29.15 /0.00 @:0 B@:0
+02:13:05 [temp]  T:29.55 /0.00 B:29.60 /0.00 @:0 B@:0
+02:13:06 [rx] Reporting endstop status
+02:13:06 [rx] x_max: TRIGGERED
+02:13:06 [rx] y_min: TRIGGERED
+02:13:06 [rx] z_probe: TRIGGERED
+02:13:06 [rx] filament: open
+02:13:06 [ok] ok
+02:13:07 [temp]  T:29.40 /0.00 B:29.09 /0.00 @:0 B@:0
+02:13:09 [rx] Reporting endstop status
+02:13:09 [rx] x_max: TRIGGERED
+02:13:09 [rx] y_min: TRIGGERED
+02:13:09 [rx] z_probe: TRIGGERED
+02:13:09 [rx] filament: open
+02:13:09 [ok] ok
+02:13:09 [temp]  T:29.35 /0.00 B:29.49 /0.00 @:0 B@:0
+02:13:11 [temp]  T:29.97 /0.00 B:28.27 /0.00 @:0 B@:0
+02:13:12 [rx] Reporting endstop status
+02:13:12 [rx] x_max: TRIGGERED
+02:13:12 [rx] y_min: TRIGGERED
+02:13:12 [rx] z_probe: TRIGGERED
+02:13:12 [rx] filament: open
+02:13:12 [ok] ok
+02:13:13 [temp]  T:29.06 /0.00 B:29.49 /0.00 @:0 B@:0
+02:13:15 [rx] Reporting endstop status
+02:13:15 [rx] x_max: TRIGGERED
+02:13:15 [rx] y_min: TRIGGERED
+02:13:15 [rx] z_probe: TRIGGERED
+02:13:15 [rx] filament: open
+02:13:15 [ok] ok
+02:13:15 [temp]  T:29.72 /0.00 B:28.84 /0.00 @:0 B@:0
+02:13:17 [temp]  T:29.94 /0.00 B:29.09 /0.00 @:0 B@:0
+02:13:18 [rx] Reporting endstop status
+02:13:18 [rx] x_max: TRIGGERED
+02:13:18 [rx] y_min: TRIGGERED
+02:13:18 [rx] z_probe: TRIGGERED
+02:13:18 [rx] filament: open
+02:13:18 [ok] ok
+02:13:19 [temp]  T:29.63 /0.00 B:29.18 /0.00 @:0 B@:0
+02:13:21 [rx] Reporting endstop status
+02:13:21 [rx] x_max: TRIGGERED
+02:13:21 [rx] y_min: TRIGGERED
+02:13:21 [rx] z_probe: TRIGGERED
+02:13:21 [rx] filament: open
+02:13:21 [ok] ok
+02:13:21 [temp]  T:29.43 /0.00 B:28.89 /0.00 @:0 B@:0
+02:13:23 [tx] >> G91
+02:13:23 [tx] >> G1 Y10 F600
+02:13:23 [tx] >> G90
+02:13:23 [tx] >> M114
+02:13:24 [temp]  T:29.23 /0.00 B:29.03 /0.00 @:0 B@:0
+02:13:24 [ok] ok
+02:13:24 [ok] ok
+02:13:24 [ok] ok
+02:13:24 [rx] X:205.00 Y:5.00 Z:64.00 E:0.00 Count A:16400B:400 Z:25600
+02:13:24 [ok] ok
+02:13:24 [rx] Reporting endstop status
+02:13:24 [rx] x_max: TRIGGERED
+02:13:24 [rx] y_min: open
+02:13:24 [rx] z_probe: TRIGGERED
+02:13:24 [rx] filament: open
+02:13:24 [ok] ok
+02:13:25 [tx] >> G91
+02:13:25 [tx] >> G1 Y10 F600
+02:13:25 [tx] >> G90
+02:13:25 [tx] >> M114
+02:13:25 [ok] ok
+02:13:25 [ok] ok
+02:13:25 [ok] ok
+02:13:25 [rx] X:205.00 Y:15.00 Z:64.00 E:0.00 Count A:16400B:1200 Z:25600
+02:13:25 [ok] ok
+02:13:25 [temp]  T:29.26 /0.00 B:28.27 /0.00 @:0 B@:0
+02:13:27 [tx] >> G91
+02:13:27 [tx] >> G1 Y10 F600
+02:13:27 [tx] >> G90
+02:13:27 [tx] >> M114
+02:13:27 [ok] ok
+02:13:27 [ok] ok
+02:13:27 [ok] ok
+02:13:27 [rx] X:205.00 Y:25.00 Z:64.00 E:0.00 Count A:16400B:2000 Z:25600
+02:13:27 [ok] ok
+02:13:27 [rx] Reporting endstop status
+02:13:27 [rx] x_max: TRIGGERED
+02:13:27 [rx] y_min: open
+02:13:27 [rx] z_probe: TRIGGERED
+02:13:27 [rx] filament: open
+02:13:27 [ok] ok
+02:13:27 [temp]  T:29.15 /0.00 B:29.69 /0.00 @:0 B@:0
+02:13:29 [tx] >> G91
+02:13:29 [tx] >> G1 Y10 F600
+02:13:29 [tx] >> G90
+02:13:29 [tx] >> M114
+02:13:29 [ok] ok
+02:13:29 [ok] ok
+02:13:29 [ok] ok
+02:13:29 [rx] X:205.00 Y:35.00 Z:64.00 E:0.00 Count A:16400B:2800 Z:25600
+02:13:29 [ok] ok
+02:13:29 [temp]  T:29.52 /0.00 B:29.26 /0.00 @:0 B@:0
+02:13:30 [rx] Reporting endstop status
+02:13:30 [rx] x_max: TRIGGERED
+02:13:30 [rx] y_min: open
+02:13:30 [rx] z_probe: TRIGGERED
+02:13:30 [rx] filament: open
+02:13:30 [ok] ok
+02:13:31 [temp]  T:29.09 /0.00 B:28.95 /0.00 @:0 B@:0
+02:13:32 [tx] >> G91
+02:13:32 [tx] >> G1 X-10 F600
+02:13:32 [tx] >> G90
+02:13:32 [tx] >> M114
+02:13:33 [ok] ok
+02:13:33 [ok] ok
+02:13:33 [ok] ok
+02:13:33 [rx] X:195.00 Y:35.00 Z:64.00 E:0.00 Count A:15600B:2800 Z:25600
+02:13:33 [ok] ok
+02:13:33 [rx] Reporting endstop status
+02:13:33 [rx] x_max: open
+02:13:33 [rx] y_min: open
+02:13:33 [rx] z_probe: TRIGGERED
+02:13:33 [rx] filament: open
+02:13:33 [ok] ok
+02:13:33 [temp]  T:29.46 /0.00 B:28.95 /0.00 @:0 B@:0
+02:13:34 [tx] >> G91
+02:13:34 [tx] >> G1 X-10 F600
+02:13:34 [tx] >> G90
+02:13:34 [tx] >> M114
+02:13:34 [ok] ok
+02:13:34 [ok] ok
+02:13:34 [ok] ok
+02:13:34 [rx] X:185.00 Y:35.00 Z:64.00 E:0.00 Count A:14800B:2800 Z:25600
+02:13:34 [ok] ok
+02:13:35 [temp]  T:29.35 /0.00 B:28.78 /0.00 @:0 B@:0
+02:13:36 [rx] Reporting endstop status
+02:13:36 [rx] x_max: open
+02:13:36 [rx] y_min: open
+02:13:36 [rx] z_probe: TRIGGERED
+02:13:36 [rx] filament: open
+02:13:36 [ok] ok
+02:13:37 [temp]  T:29.32 /0.00 B:29.20 /0.00 @:0 B@:0
+02:13:39 [temp]  T:29.35 /0.00 B:29.26 /0.00 @:0 B@:0
+02:13:39 [rx] Reporting endstop status
+02:13:39 [rx] x_max: open
+02:13:39 [rx] y_min: open
+02:13:39 [rx] z_probe: TRIGGERED
+02:13:39 [rx] filament: open
+02:13:39 [ok] ok
+02:13:41 [temp]  T:29.09 /0.00 B:29.77 /0.00 @:0 B@:0
+02:13:42 [rx] Reporting endstop status
+02:13:42 [rx] x_max: open
+02:13:42 [rx] y_min: open
+02:13:42 [rx] z_probe: TRIGGERED
+02:13:42 [rx] filament: open
+02:13:42 [ok] ok
+02:13:43 [temp]  T:29.26 /0.00 B:28.66 /0.00 @:0 B@:0
+02:13:45 [temp]  T:29.29 /0.00 B:29.80 /0.00 @:0 B@:0
+02:13:45 [rx] Reporting endstop status
+02:13:45 [rx] x_max: open
+02:13:45 [rx] y_min: open
+02:13:45 [rx] z_probe: TRIGGERED
+02:13:45 [rx] filament: open
+02:13:45 [ok] ok
+02:13:47 [temp]  T:29.89 /0.00 B:29.18 /0.00 @:0 B@:0
+02:13:48 [rx] Reporting endstop status
+02:13:48 [rx] x_max: open
+02:13:48 [rx] y_min: open
+02:13:48 [rx] z_probe: TRIGGERED
+02:13:48 [rx] filament: open
+02:13:48 [ok] ok
+02:13:49 [temp]  T:29.15 /0.00 B:28.52 /0.00 @:0 B@:0
+02:13:52 [temp]  T:29.63 /0.00 B:28.89 /0.00 @:0 B@:0
+02:13:52 [rx] Reporting endstop status
+02:13:52 [rx] x_max: open
+02:13:52 [rx] y_min: open
+02:13:52 [rx] z_probe: TRIGGERED
+02:13:52 [rx] filament: open
+02:13:52 [ok] ok
+02:13:53 [temp]  T:29.97 /0.00 B:29.03 /0.00 @:0 B@:0
+02:13:55 [rx] Reporting endstop status
+02:13:55 [rx] x_max: open
+02:13:55 [rx] y_min: open
+02:13:55 [rx] z_probe: TRIGGERED
+02:13:55 [rx] filament: open
+02:13:55 [ok] ok
+02:13:55 [temp]  T:29.35 /0.00 B:28.49 /0.00 @:0 B@:0
+02:13:58 [temp]  T:28.75 /0.00 B:29.23 /0.00 @:0 B@:0
+02:13:58 [rx] Reporting endstop status
+02:13:58 [rx] x_max: open
+02:13:58 [rx] y_min: open
+02:13:58 [rx] z_probe: TRIGGERED
+02:13:58 [rx] filament: open
+02:13:58 [ok] ok
+02:13:59 [temp]  T:29.18 /0.00 B:29.40 /0.00 @:0 B@:0
+02:14:01 [rx] Reporting endstop status
+02:14:01 [rx] x_max: open
+02:14:01 [rx] y_min: open
+02:14:01 [rx] z_probe: TRIGGERED
+02:14:01 [rx] filament: open
+02:14:01 [ok] ok
+02:14:01 [temp]  T:29.74 /0.00 B:28.89 /0.00 @:0 B@:0
+02:14:03 [temp]  T:29.35 /0.00 B:29.97 /0.00 @:0 B@:0
+02:14:04 [rx] Reporting endstop status
+02:14:04 [rx] x_max: open
+02:14:04 [rx] y_min: open
+02:14:04 [rx] z_probe: TRIGGERED
+02:14:04 [rx] filament: open
+02:14:04 [ok] ok
+02:14:05 [temp]  T:29.35 /0.00 B:28.81 /0.00 @:0 B@:0
+02:14:07 [rx] Reporting endstop status
+02:14:07 [rx] x_max: open
+02:14:07 [rx] y_min: open
+02:14:07 [rx] z_probe: TRIGGERED
+02:14:07 [rx] filament: open
+02:14:07 [ok] ok
+02:14:07 [temp]  T:29.29 /0.00 B:28.84 /0.00 @:0 B@:0
+02:14:09 [temp]  T:29.80 /0.00 B:28.58 /0.00 @:0 B@:0
+02:14:10 [rx] Reporting endstop status
+02:14:10 [rx] x_max: open
+02:14:10 [rx] y_min: open
+02:14:10 [rx] z_probe: TRIGGERED
+02:14:10 [rx] filament: open
+02:14:10 [ok] ok
+02:14:11 [temp]  T:29.52 /0.00 B:29.23 /0.00 @:0 B@:0
+02:14:13 [rx] Reporting endstop status
+02:14:13 [rx] x_max: open
+02:14:13 [rx] y_min: open
+02:14:13 [rx] z_probe: TRIGGERED
+02:14:13 [rx] filament: open
+02:14:13 [ok] ok
+02:14:13 [temp]  T:29.43 /0.00 B:28.78 /0.00 @:0 B@:0
+02:14:15 [temp]  T:29.20 /0.00 B:29.20 /0.00 @:0 B@:0
+02:14:16 [rx] Reporting endstop status
+02:14:16 [rx] x_max: open
+02:14:16 [rx] y_min: open
+02:14:16 [rx] z_probe: TRIGGERED
+02:14:16 [rx] filament: open
+02:14:16 [ok] ok
+02:14:17 [temp]  T:29.29 /0.00 B:28.69 /0.00 @:0 B@:0
+02:14:19 [rx] Reporting endstop status
+02:14:19 [rx] x_max: open
+02:14:19 [rx] y_min: open
+02:14:19 [rx] z_probe: TRIGGERED
+02:14:19 [rx] filament: open
+02:14:19 [ok] ok
+02:14:19 [temp]  T:29.20 /0.00 B:29.06 /0.00 @:0 B@:0
+02:14:21 [temp]  T:29.35 /0.00 B:28.58 /0.00 @:0 B@:0
+02:14:22 [rx] Reporting endstop status
+02:14:22 [rx] x_max: open
+02:14:22 [rx] y_min: open
+02:14:22 [rx] z_probe: TRIGGERED
+02:14:22 [rx] filament: open
+02:14:22 [ok] ok
+02:14:23 [temp]  T:29.69 /0.00 B:29.63 /0.00 @:0 B@:0
+02:14:25 [rx] Reporting endstop status
+02:14:25 [rx] x_max: open
+02:14:25 [rx] y_min: open
+02:14:25 [rx] z_probe: TRIGGERED
+02:14:25 [rx] filament: open
+02:14:25 [ok] ok
+02:14:25 [temp]  T:29.09 /0.00 B:28.78 /0.00 @:0 B@:0
+02:14:27 [temp]  T:29.57 /0.00 B:29.29 /0.00 @:0 B@:0
+02:14:28 [rx] Reporting endstop status
+02:14:28 [rx] x_max: open
+02:14:28 [rx] y_min: open
+02:14:28 [rx] z_probe: TRIGGERED
+02:14:28 [rx] filament: open
+02:14:28 [ok] ok
+02:14:29 [temp]  T:29.15 /0.00 B:28.38 /0.00 @:0 B@:0
+02:14:31 [rx] Reporting endstop status
+02:14:31 [rx] x_max: open
+02:14:31 [rx] y_min: open
+02:14:31 [rx] z_probe: TRIGGERED
+02:14:31 [rx] filament: open
+02:14:31 [ok] ok
+02:14:31 [temp]  T:29.52 /0.00 B:29.01 /0.00 @:0 B@:0
+02:14:33 [temp]  T:29.63 /0.00 B:28.69 /0.00 @:0 B@:0
+02:14:34 [sys] Teste: X 50<->150 x10 a 60 mm/s (F3600). Ouca se o ronco muda.
+02:14:34 [tx] >> G90
+02:14:34 [tx] >> G1 X50 F3600
+02:14:34 [tx] >> G1 X150 F3600
+02:14:34 [tx] >> G1 X50 F3600
+02:14:34 [tx] >> G1 X150 F3600
+02:14:34 [tx] >> G1 X50 F3600
+02:14:34 [tx] >> G1 X150 F3600
+02:14:34 [tx] >> G1 X50 F3600
+02:14:34 [tx] >> G1 X150 F3600
+02:14:34 [tx] >> G1 X50 F3600
+02:14:34 [tx] >> G1 X150 F3600
+02:14:34 [tx] >> G1 X50 F3600
+02:14:34 [tx] >> G1 X150 F3600
+02:14:34 [tx] >> G1 X50 F3600
+02:14:34 [tx] >> G1 X150 F3600
+02:14:34 [tx] >> G1 X50 F3600
+02:14:34 [tx] >> G1 X150 F3600
+02:14:34 [tx] >> G1 X50 F3600
+02:14:34 [tx] >> G1 X150 F3600
+02:14:34 [tx] >> G1 X50 F3600
+02:14:34 [tx] >> G1 X150 F3600
+02:14:34 [tx] >> G1 X50 F3600
+02:14:34 [tx] >> M400
+02:14:34 [tx] >> M114
+02:14:34 [sys] Fim do teste a 60 mm/s. O carro voltou para a marca? Se sim, suba a velocidade e repita.
+02:14:34 [rx] Reporting endstop status
+02:14:34 [rx] x_max: open
+02:14:34 [rx] y_min: open
+02:14:34 [rx] z_probe: TRIGGERED
+02:14:34 [rx] filament: open
+02:14:34 [ok] ok
+02:14:34 [ok] ok
+02:14:34 [ok] ok
+02:14:34 [ok] ok
+02:14:34 [ok] ok
+02:14:34 [ok] ok
+02:14:34 [ok] ok
+02:14:34 [ok] ok
+02:14:34 [ok] ok
+02:14:34 [ok] ok
+02:14:34 [ok] ok
+02:14:34 [ok] ok
+02:14:34 [ok] ok
+02:14:34 [ok] ok
+02:14:34 [ok] ok
+02:14:34 [ok] ok
+02:14:34 [ok] ok
+02:14:35 [temp]  T:29.89 /0.00 B:29.49 /0.00 @:0 B@:0
+02:14:36 [sys] echo:busy: processing
+02:14:36 [ok] ok
+02:14:37 [temp]  T:29.20 /0.00 B:28.58 /0.00 @:0 B@:0
+02:14:38 [ok] ok
+02:14:40 [temp]  T:29.49 /0.00 B:28.98 /0.00 @:0 B@:0
+02:14:40 [ok] ok
+02:14:41 [ok] ok
+02:14:41 [temp]  T:28.95 /0.00 B:29.09 /0.00 @:0 B@:0
+02:14:43 [ok] ok
+02:14:43 [temp]  T:29.77 /0.00 B:29.15 /0.00 @:0 B@:0
+02:14:45 [ok] ok
+02:14:45 [temp]  T:29.46 /0.00 B:29.55 /0.00 @:0 B@:0
+02:14:47 [sys] echo:busy: processing
+02:14:47 [temp]  T:30.05 /0.00 B:29.91 /0.00 @:0 B@:0
+02:14:49 [sys] echo:busy: processing
+02:14:49 [temp]  T:29.35 /0.00 B:29.37 /0.00 @:0 B@:0
+02:14:51 [sys] echo:busy: processing
+02:14:51 [temp]  T:29.83 /0.00 B:29.01 /0.00 @:0 B@:0
+02:14:53 [sys] echo:busy: processing
+02:14:53 [temp]  T:29.37 /0.00 B:29.49 /0.00 @:0 B@:0
+02:14:55 [sys] echo:busy: processing
+02:14:55 [temp]  T:29.72 /0.00 B:29.89 /0.00 @:0 B@:0
+02:14:57 [sys] echo:busy: processing
+02:14:57 [temp]  T:29.46 /0.00 B:28.75 /0.00 @:0 B@:0
+02:14:59 [sys] echo:busy: processing
+02:14:59 [temp]  T:29.55 /0.00 B:28.61 /0.00 @:0 B@:0
+02:15:01 [sys] echo:busy: processing
+02:15:01 [temp]  T:29.32 /0.00 B:29.46 /0.00 @:0 B@:0
+02:15:03 [sys] echo:busy: processing
+02:15:03 [temp]  T:29.40 /0.00 B:29.35 /0.00 @:0 B@:0
+02:15:05 [sys] echo:busy: processing
+02:15:05 [temp]  T:29.29 /0.00 B:29.03 /0.00 @:0 B@:0
+02:15:07 [sys] echo:busy: processing
+02:15:07 [temp]  T:29.69 /0.00 B:29.49 /0.00 @:0 B@:0
+02:15:09 [sys] echo:busy: processing
+02:15:09 [temp]  T:29.37 /0.00 B:28.61 /0.00 @:0 B@:0
+02:15:10 [ok] ok
+02:15:10 [rx] X:50.00 Y:35.00 Z:64.00 E:0.00 Count A:4000B:2800 Z:25600
+02:15:10 [ok] ok
+02:15:10 [rx] Reporting endstop status
+02:15:10 [rx] x_max: open
+02:15:10 [rx] y_min: open
+02:15:10 [rx] z_probe: TRIGGERED
+02:15:10 [rx] filament: open
+02:15:10 [ok] ok
+02:15:10 [rx] Reporting endstop status
+02:15:10 [rx] x_max: open
+02:15:10 [rx] y_min: open
+02:15:10 [rx] z_probe: TRIGGERED
+02:15:10 [rx] filament: open
+02:15:10 [ok] ok
+02:15:10 [rx] Reporting endstop status
+02:15:10 [rx] x_max: open
+02:15:10 [rx] y_min: open
+02:15:10 [rx] z_probe: TRIGGERED
+02:15:10 [rx] filament: open
+02:15:10 [ok] ok
+02:15:10 [rx] Reporting endstop status
+02:15:10 [rx] x_max: open
+02:15:10 [rx] y_min: open
+02:15:10 [rx] z_probe: TRIGGERED
+02:15:10 [rx] filament: open
+02:15:10 [ok] ok
+02:15:10 [rx] Reporting endstop status
+02:15:10 [rx] x_max: open
+02:15:10 [rx] y_min: open
+02:15:10 [rx] z_probe: TRIGGERED
+02:15:10 [rx] filament: open
+02:15:10 [ok] ok
+02:15:10 [rx] Reporting endstop status
+02:15:10 [rx] x_max: open
+02:15:10 [rx] y_min: open
+02:15:10 [rx] z_probe: TRIGGERED
+02:15:10 [rx] filament: open
+02:15:10 [ok] ok
+02:15:10 [rx] Reporting endstop status
+02:15:10 [rx] x_max: open
+02:15:10 [rx] y_min: open
+02:15:10 [rx] z_probe: TRIGGERED
+02:15:10 [rx] filament: open
+02:15:10 [ok] ok
+02:15:10 [rx] Reporting endstop status
+02:15:10 [rx] x_max: open
+02:15:10 [rx] y_min: open
+02:15:10 [rx] z_probe: TRIGGERED
+02:15:10 [rx] filament: open
+02:15:10 [ok] ok
+02:15:10 [rx] Reporting endstop status
+02:15:10 [rx] x_max: open
+02:15:10 [rx] y_min: open
+02:15:10 [rx] z_probe: TRIGGERED
+02:15:10 [rx] filament: open
+02:15:10 [ok] ok
+02:15:10 [rx] Reporting endstop status
+02:15:10 [rx] x_max: open
+02:15:10 [rx] y_min: open
+02:15:10 [rx] z_probe: TRIGGERED
+02:15:10 [rx] filament: open
+02:15:10 [ok] ok
+02:15:10 [rx] Reporting endstop status
+02:15:10 [rx] x_max: open
+02:15:10 [rx] y_min: open
+02:15:10 [rx] z_probe: TRIGGERED
+02:15:10 [rx] filament: open
+02:15:10 [ok] ok
+02:15:10 [rx] Reporting endstop status
+02:15:10 [rx] x_max: open
+02:15:10 [rx] y_min: open
+02:15:10 [rx] z_probe: TRIGGERED
+02:15:10 [rx] filament: open
+02:15:10 [ok] ok
+02:15:11 [temp]  T:29.46 /0.00 B:29.18 /0.00 @:0 B@:0
+02:15:13 [rx] Reporting endstop status
+02:15:13 [rx] x_max: open
+02:15:13 [rx] y_min: open
+02:15:13 [rx] z_probe: TRIGGERED
+02:15:13 [rx] filament: open
+02:15:13 [ok] ok
+02:15:13 [temp]  T:29.06 /0.00 B:29.49 /0.00 @:0 B@:0
+02:15:15 [temp]  T:29.52 /0.00 B:29.23 /0.00 @:0 B@:0
+02:15:16 [rx] Reporting endstop status
+02:15:16 [rx] x_max: open
+02:15:16 [rx] y_min: open
+02:15:16 [rx] z_probe: TRIGGERED
+02:15:16 [rx] filament: open
+02:15:16 [ok] ok
+02:15:17 [temp]  T:29.52 /0.00 B:28.07 /0.00 @:0 B@:0
+02:15:19 [rx] Reporting endstop status
+02:15:19 [rx] x_max: open
+02:15:19 [rx] y_min: open
+02:15:19 [rx] z_probe: TRIGGERED
+02:15:19 [rx] filament: open
+02:15:19 [ok] ok
+02:15:19 [temp]  T:29.57 /0.00 B:29.26 /0.00 @:0 B@:0
+02:15:21 [temp]  T:29.09 /0.00 B:29.26 /0.00 @:0 B@:0
+02:15:22 [rx] Reporting endstop status
+02:15:22 [rx] x_max: open
+02:15:22 [rx] y_min: open
+02:15:22 [rx] z_probe: TRIGGERED
+02:15:22 [rx] filament: open
+02:15:22 [ok] ok
+02:15:23 [temp]  T:29.26 /0.00 B:28.72 /0.00 @:0 B@:0
+02:15:25 [rx] Reporting endstop status
+02:15:25 [rx] x_max: open
+02:15:25 [rx] y_min: open
+02:15:25 [rx] z_probe: TRIGGERED
+02:15:25 [rx] filament: open
+02:15:25 [ok] ok
+02:15:25 [temp]  T:29.29 /0.00 B:28.69 /0.00 @:0 B@:0
+02:15:27 [temp]  T:29.32 /0.00 B:29.09 /0.00 @:0 B@:0
+02:15:28 [rx] Reporting endstop status
+02:15:28 [rx] x_max: open
+02:15:28 [rx] y_min: open
+02:15:28 [rx] z_probe: TRIGGERED
+02:15:28 [rx] filament: open
+02:15:28 [ok] ok
+02:15:29 [temp]  T:29.18 /0.00 B:28.55 /0.00 @:0 B@:0
+02:15:31 [rx] Reporting endstop status
+02:15:31 [rx] x_max: open
+02:15:31 [rx] y_min: open
+02:15:31 [rx] z_probe: TRIGGERED
+02:15:31 [rx] filament: open
+02:15:31 [ok] ok
+02:15:31 [temp]  T:29.40 /0.00 B:29.06 /0.00 @:0 B@:0
+02:15:33 [temp]  T:29.29 /0.00 B:29.89 /0.00 @:0 B@:0
+02:15:34 [rx] Reporting endstop status
+02:15:34 [rx] x_max: open
+02:15:34 [rx] y_min: open
+02:15:34 [rx] z_probe: TRIGGERED
+02:15:34 [rx] filament: open
+02:15:34 [ok] ok
+02:15:35 [temp]  T:29.66 /0.00 B:29.23 /0.00 @:0 B@:0
+02:15:37 [rx] Reporting endstop status
+02:15:37 [rx] x_max: open
+02:15:37 [rx] y_min: open
+02:15:37 [rx] z_probe: TRIGGERED
+02:15:37 [rx] filament: open
+02:15:37 [ok] ok
+02:15:37 [temp]  T:29.46 /0.00 B:28.32 /0.00 @:0 B@:0
+02:15:39 [temp]  T:29.46 /0.00 B:27.98 /0.00 @:0 B@:0
+02:15:40 [rx] Reporting endstop status
+02:15:40 [rx] x_max: open
+02:15:40 [rx] y_min: open
+02:15:40 [rx] z_probe: TRIGGERED
+02:15:40 [rx] filament: open
+02:15:40 [ok] ok
+02:15:41 [temp]  T:29.06 /0.00 B:29.26 /0.00 @:0 B@:0
+02:15:43 [rx] Reporting endstop status
+02:15:43 [rx] x_max: open
+02:15:43 [rx] y_min: open
+02:15:43 [rx] z_probe: TRIGGERED
+02:15:43 [rx] filament: open
+02:15:43 [ok] ok
+02:15:43 [temp]  T:29.01 /0.00 B:29.12 /0.00 @:0 B@:0
+02:15:45 [temp]  T:29.40 /0.00 B:29.09 /0.00 @:0 B@:0
+02:15:46 [rx] Reporting endstop status
+02:15:46 [rx] x_max: open
+02:15:46 [rx] y_min: open
+02:15:46 [rx] z_probe: TRIGGERED
+02:15:46 [rx] filament: open
+02:15:46 [ok] ok
+02:15:47 [temp]  T:29.60 /0.00 B:28.98 /0.00 @:0 B@:0
+02:15:49 [rx] Reporting endstop status
+02:15:49 [rx] x_max: open
+02:15:49 [rx] y_min: open
+02:15:49 [rx] z_probe: TRIGGERED
+02:15:49 [rx] filament: open
+02:15:49 [ok] ok
+02:15:49 [temp]  T:29.52 /0.00 B:28.49 /0.00 @:0 B@:0
+02:15:51 [temp]  T:29.55 /0.00 B:29.01 /0.00 @:0 B@:0
+02:15:52 [rx] Reporting endstop status
+02:15:52 [rx] x_max: open
+02:15:52 [rx] y_min: open
+02:15:52 [rx] z_probe: TRIGGERED
+02:15:52 [rx] filament: open
+02:15:52 [ok] ok
+02:15:53 [temp]  T:29.37 /0.00 B:29.55 /0.00 @:0 B@:0
+02:15:55 [rx] Reporting endstop status
+02:15:55 [rx] x_max: open
+02:15:55 [rx] y_min: open
+02:15:55 [rx] z_probe: TRIGGERED
+02:15:55 [rx] filament: open
+02:15:55 [ok] ok
+02:15:55 [temp]  T:29.77 /0.00 B:29.18 /0.00 @:0 B@:0
+02:15:57 [temp]  T:29.32 /0.00 B:28.81 /0.00 @:0 B@:0
+02:15:58 [rx] Reporting endstop status
+02:15:58 [rx] x_max: open
+02:15:58 [rx] y_min: open
+02:15:58 [rx] z_probe: TRIGGERED
+02:15:58 [rx] filament: open
+02:15:58 [ok] ok
+02:15:59 [temp]  T:29.69 /0.00 B:29.09 /0.00 @:0 B@:0
+02:16:01 [temp]  T:28.95 /0.00 B:28.66 /0.00 @:0 B@:0
+02:16:01 [err] Error:Serial status mismatch
+02:16:01 [rx] Reporting endstop status
+02:16:01 [rx] x_max: open
+02:16:01 [rx] y_min: open
+02:16:01 [rx] z_probe: TRIGGERED
+02:16:01 [rx] filament: open
+02:16:01 [ok] ok
+02:16:03 [temp]  T:30.03 /0.00 B:29.72 /0.00 @:0 B@:0
+02:16:04 [rx] Reporting endstop status
+02:16:04 [rx] x_max: open
+02:16:04 [rx] y_min: open
+02:16:04 [rx] z_probe: TRIGGERED
+02:16:04 [rx] filament: open
+02:16:04 [ok] ok
+02:16:05 [temp]  T:29.23 /0.00 B:28.52 /0.00 @:0 B@:0
+02:16:07 [temp]  T:29.57 /0.00 B:28.72 /0.00 @:0 B@:0
+02:16:07 [rx] Reporting endstop status
+02:16:07 [rx] x_max: open
+02:16:07 [rx] y_min: open
+02:16:07 [rx] z_probe: TRIGGERED
+02:16:07 [rx] filament: open
+02:16:07 [ok] ok
+02:16:09 [temp]  T:29.52 /0.00 B:29.55 /0.00 @:0 B@:0
+02:16:11 [rx] Reporting endstop status
+02:16:11 [rx] x_max: open
+02:16:11 [rx] y_min: open
+02:16:11 [rx] z_probe: TRIGGERED
+02:16:11 [rx] filament: open
+02:16:11 [ok] ok
+02:16:11 [temp]  T:29.18 /0.00 B:28.75 /0.00 @:0 B@:0
+02:16:14 [temp]  T:29.35 /0.00 B:29.40 /0.00 @:0 B@:0
+02:16:14 [rx] Reporting endstop status
+02:16:14 [rx] x_max: open
+02:16:14 [rx] y_min: open
+02:16:14 [rx] z_probe: TRIGGERED
+02:16:14 [rx] filament: open
+02:16:14 [ok] ok
+02:16:15 [temp]  T:29.43 /0.00 B:28.86 /0.00 @:0 B@:0
+02:16:17 [rx] Reporting endstop status
+02:16:17 [rx] x_max: open
+02:16:17 [rx] y_min: open
+02:16:17 [rx] z_probe: TRIGGERED
+02:16:17 [rx] filament: open
+02:16:17 [ok] ok
+02:16:17 [temp]  T:29.29 /0.00 B:29.01 /0.00 @:0 B@:0
+02:16:20 [temp]  T:29.32 /0.00 B:29.74 /0.00 @:0 B@:0
+02:16:20 [rx] Reporting endstop status
+02:16:20 [rx] x_max: open
+02:16:20 [rx] y_min: open
+02:16:20 [rx] z_probe: TRIGGERED
+02:16:20 [rx] filament: open
+02:16:20 [ok] ok
+02:16:21 [temp]  T:29.83 /0.00 B:28.81 /0.00 @:0 B@:0
+02:16:23 [rx] Reporting endstop status
+02:16:23 [rx] x_max: open
+02:16:23 [rx] y_min: open
+02:16:23 [rx] z_probe: TRIGGERED
+02:16:23 [rx] filament: open
+02:16:23 [ok] ok
+02:16:23 [temp]  T:29.60 /0.00 B:29.52 /0.00 @:0 B@:0
+02:16:25 [temp]  T:29.32 /0.00 B:28.69 /0.00 @:0 B@:0
+02:16:26 [rx] Reporting endstop status
+02:16:26 [rx] x_max: open
+02:16:26 [rx] y_min: open
+02:16:26 [rx] z_probe: TRIGGERED
+02:16:26 [rx] filament: open
+02:16:26 [ok] ok
+02:16:27 [temp]  T:29.55 /0.00 B:29.12 /0.00 @:0 B@:0
+02:16:29 [rx] Reporting endstop status
+02:16:29 [rx] x_max: open
+02:16:29 [rx] y_min: open
+02:16:29 [rx] z_probe: TRIGGERED
+02:16:29 [rx] filament: open
+02:16:29 [ok] ok
+02:16:29 [temp]  T:29.23 /0.00 B:28.92 /0.00 @:0 B@:0
+02:16:31 [temp]  T:29.40 /0.00 B:29.06 /0.00 @:0 B@:0
+02:16:32 [rx] Reporting endstop status
+02:16:32 [rx] x_max: open
+02:16:32 [rx] y_min: open
+02:16:32 [rx] z_probe: TRIGGERED
+02:16:32 [rx] filament: open
+02:16:32 [ok] ok
+02:16:33 [temp]  T:29.23 /0.00 B:28.55 /0.00 @:0 B@:0
+02:16:35 [rx] Reporting endstop status
+02:16:35 [rx] x_max: open
+02:16:35 [rx] y_min: open
+02:16:35 [rx] z_probe: TRIGGERED
+02:16:35 [rx] filament: open
+02:16:35 [ok] ok
+02:16:35 [temp]  T:29.35 /0.00 B:28.44 /0.00 @:0 B@:0
+02:16:37 [temp]  T:29.57 /0.00 B:28.38 /0.00 @:0 B@:0
+02:16:38 [rx] Reporting endstop status
+02:16:38 [rx] x_max: open
+02:16:38 [rx] y_min: open
+02:16:38 [rx] z_probe: TRIGGERED
+02:16:38 [rx] filament: open
+02:16:38 [ok] ok
+02:16:39 [temp]  T:29.52 /0.00 B:28.75 /0.00 @:0 B@:0
+02:16:41 [rx] Reporting endstop status
+02:16:41 [rx] x_max: open
+02:16:41 [rx] y_min: open
+02:16:41 [rx] z_probe: TRIGGERED
+02:16:41 [rx] filament: open
+02:16:41 [ok] ok
+02:16:41 [temp]  T:29.69 /0.00 B:29.63 /0.00 @:0 B@:0
+02:16:43 [temp]  T:29.20 /0.00 B:29.12 /0.00 @:0 B@:0
+02:16:44 [rx] Reporting endstop status
+02:16:44 [rx] x_max: open
+02:16:44 [rx] y_min: open
+02:16:44 [rx] z_probe: TRIGGERED
+02:16:44 [rx] filament: open
+02:16:44 [ok] ok
+02:16:45 [temp]  T:29.52 /0.00 B:29.15 /0.00 @:0 B@:0
+02:16:47 [rx] Reporting endstop status
+02:16:47 [rx] x_max: open
+02:16:47 [rx] y_min: open
+02:16:47 [rx] z_probe: TRIGGERED
+02:16:47 [rx] filament: open
+02:16:47 [ok] ok
+02:16:47 [temp]  T:29.29 /0.00 B:28.92 /0.00 @:0 B@:0
+02:16:49 [temp]  T:28.89 /0.00 B:28.78 /0.00 @:0 B@:0
+02:16:50 [rx] Reporting endstop status
+02:16:50 [rx] x_max: open
+02:16:50 [rx] y_min: open
+02:16:50 [rx] z_probe: TRIGGERED
+02:16:50 [rx] filament: open
+02:16:50 [ok] ok
+02:16:51 [temp]  T:29.35 /0.00 B:28.86 /0.00 @:0 B@:0
+02:16:53 [rx] Reporting endstop status
+02:16:53 [rx] x_max: open
+02:16:53 [rx] y_min: open
+02:16:53 [rx] z_probe: TRIGGERED
+02:16:53 [rx] filament: open
+02:16:53 [ok] ok
+02:16:53 [temp]  T:29.52 /0.00 B:28.89 /0.00 @:0 B@:0
+02:16:55 [temp]  T:29.23 /0.00 B:28.21 /0.00 @:0 B@:0
+02:16:56 [rx] Reporting endstop status
+02:16:56 [rx] x_max: open
+02:16:56 [rx] y_min: open
+02:16:56 [rx] z_probe: TRIGGERED
+02:16:56 [rx] filament: open
+02:16:56 [ok] ok
+02:16:57 [temp]  T:29.55 /0.00 B:28.84 /0.00 @:0 B@:0
+02:16:59 [rx] Reporting endstop status
+02:16:59 [rx] x_max: open
+02:16:59 [rx] y_min: open
+02:16:59 [rx] z_probe: TRIGGERED
+02:16:59 [rx] filament: open
+02:16:59 [ok] ok
+02:16:59 [temp]  T:29.55 /0.00 B:28.72 /0.00 @:0 B@:0
+02:17:01 [temp]  T:29.55 /0.00 B:29.18 /0.00 @:0 B@:0
+02:17:02 [rx] Reporting endstop status
+02:17:02 [rx] x_max: open
+02:17:02 [rx] y_min: open
+02:17:02 [rx] z_probe: TRIGGERED
+02:17:02 [rx] filament: open
+02:17:02 [ok] ok
+02:17:03 [temp]  T:29.06 /0.00 B:28.78 /0.00 @:0 B@:0
+02:17:05 [rx] Reporting endstop status
+02:17:05 [rx] x_max: open
+02:17:05 [rx] y_min: open
+02:17:05 [rx] z_probe: TRIGGERED
+02:17:05 [rx] filament: open
+02:17:05 [ok] ok
+02:17:05 [temp]  T:29.09 /0.00 B:28.47 /0.00 @:0 B@:0
+02:17:07 [temp]  T:29.15 /0.00 B:29.94 /0.00 @:0 B@:0
+02:17:08 [rx] Reporting endstop status
+02:17:08 [rx] x_max: open
+02:17:08 [rx] y_min: open
+02:17:08 [rx] z_probe: TRIGGERED
+02:17:08 [rx] filament: open
+02:17:08 [ok] ok
+02:17:09 [temp]  T:29.55 /0.00 B:29.32 /0.00 @:0 B@:0
+02:17:11 [rx] Reporting endstop status
+02:17:11 [rx] x_max: open
+02:17:11 [rx] y_min: open
+02:17:11 [rx] z_probe: TRIGGERED
+02:17:11 [rx] filament: open
+02:17:11 [ok] ok
+02:17:11 [temp]  T:29.37 /0.00 B:29.03 /0.00 @:0 B@:0
+02:17:13 [temp]  T:29.32 /0.00 B:29.23 /0.00 @:0 B@:0
+02:17:14 [rx] Reporting endstop status
+02:17:14 [rx] x_max: open
+02:17:14 [rx] y_min: open
+02:17:14 [rx] z_probe: TRIGGERED
+02:17:14 [rx] filament: open
+02:17:14 [ok] ok
+02:17:15 [temp]  T:29.35 /0.00 B:27.84 /0.00 @:0 B@:0
+02:17:17 [rx] Reporting endstop status
+02:17:17 [rx] x_max: open
+02:17:17 [rx] y_min: open
+02:17:17 [rx] z_probe: TRIGGERED
+02:17:17 [rx] filament: open
+02:17:17 [ok] ok
+02:17:17 [temp]  T:29.12 /0.00 B:28.58 /0.00 @:0 B@:0
+02:17:19 [temp]  T:28.95 /0.00 B:28.86 /0.00 @:0 B@:0
+02:17:20 [rx] Reporting endstop status
+02:17:20 [rx] x_max: open
+02:17:20 [rx] y_min: open
+02:17:20 [rx] z_probe: TRIGGERED
+02:17:20 [rx] filament: open
+02:17:20 [ok] ok
+02:17:21 [temp]  T:29.32 /0.00 B:28.92 /0.00 @:0 B@:0
+02:17:23 [rx] Reporting endstop status
+02:17:23 [rx] x_max: open
+02:17:23 [rx] y_min: open
+02:17:23 [rx] z_probe: TRIGGERED
+02:17:23 [rx] filament: open
+02:17:23 [ok] ok
+02:17:23 [temp]  T:29.18 /0.00 B:29.01 /0.00 @:0 B@:0
+02:17:25 [temp]  T:29.66 /0.00 B:29.23 /0.00 @:0 B@:0
+02:17:26 [rx] Reporting endstop status
+02:17:26 [rx] x_max: open
+02:17:26 [rx] y_min: open
+02:17:26 [rx] z_probe: TRIGGERED
+02:17:26 [rx] filament: open
+02:17:26 [ok] ok
+02:17:27 [temp]  T:29.46 /0.00 B:29.01 /0.00 @:0 B@:0
+02:17:29 [rx] Reporting endstop status
+02:17:29 [rx] x_max: open
+02:17:29 [rx] y_min: open
+02:17:29 [rx] z_probe: TRIGGERED
+02:17:29 [rx] filament: open
+02:17:29 [ok] ok
+02:17:29 [temp]  T:28.86 /0.00 B:28.30 /0.00 @:0 B@:0
+02:17:31 [temp]  T:29.49 /0.00 B:28.52 /0.00 @:0 B@:0
+02:17:32 [rx] Reporting endstop status
+02:17:32 [rx] x_max: open
+02:17:32 [rx] y_min: open
+02:17:32 [rx] z_probe: TRIGGERED
+02:17:32 [rx] filament: open
+02:17:32 [ok] ok
+02:17:33 [temp]  T:29.23 /0.00 B:29.12 /0.00 @:0 B@:0
+02:17:35 [rx] Reporting endstop status
+02:17:35 [rx] x_max: open
+02:17:35 [rx] y_min: open
+02:17:35 [rx] z_probe: TRIGGERED
+02:17:35 [rx] filament: open
+02:17:35 [ok] ok
+02:17:35 [temp]  T:29.40 /0.00 B:29.83 /0.00 @:0 B@:0
+02:17:37 [temp]  T:28.89 /0.00 B:29.03 /0.00 @:0 B@:0
+02:17:38 [rx] Reporting endstop status
+02:17:38 [rx] x_max: open
+02:17:38 [rx] y_min: open
+02:17:38 [rx] z_probe: TRIGGERED
+02:17:38 [rx] filament: open
+02:17:38 [ok] ok
+02:17:39 [temp]  T:29.97 /0.00 B:28.32 /0.00 @:0 B@:0
+02:17:41 [temp]  T:29.60 /0.00 B:28.32 /0.00 @:0 B@:0
+02:17:41 [rx] Reporting endstop status
+02:17:41 [rx] x_max: open
+02:17:41 [rx] y_min: open
+02:17:41 [rx] z_probe: TRIGGERED
+02:17:41 [rx] filament: open
+02:17:41 [ok] ok
+02:17:43 [temp]  T:29.72 /0.00 B:29.29 /0.00 @:0 B@:0
+02:17:44 [rx] Reporting endstop status
+02:17:44 [rx] x_max: open
+02:17:44 [rx] y_min: open
+02:17:44 [rx] z_probe: TRIGGERED
+02:17:44 [rx] filament: open
+02:17:44 [ok] ok
+02:17:45 [temp]  T:28.92 /0.00 B:28.52 /0.00 @:0 B@:0
+02:17:47 [temp]  T:28.89 /0.00 B:28.95 /0.00 @:0 B@:0
+02:17:47 [rx] Reporting endstop status
+02:17:47 [rx] x_max: open
+02:17:47 [rx] y_min: open
+02:17:47 [rx] z_probe: TRIGGERED
+02:17:48 [rx] filament: open
+02:17:48 [ok] ok
+02:17:49 [temp]  T:29.03 /0.00 B:29.32 /0.00 @:0 B@:0
+02:17:51 [rx] Reporting endstop status
+02:17:51 [rx] x_max: open
+02:17:51 [rx] y_min: open
+02:17:51 [rx] z_probe: TRIGGERED
+02:17:51 [rx] filament: open
+02:17:51 [ok] ok
+02:17:51 [temp]  T:29.20 /0.00 B:28.89 /0.00 @:0 B@:0
+02:17:54 [temp]  T:29.57 /0.00 B:28.15 /0.00 @:0 B@:0
+02:17:54 [rx] Reporting endstop status
+02:17:54 [rx] x_max: open
+02:17:54 [rx] y_min: open
+02:17:54 [rx] z_probe: TRIGGERED
+02:17:54 [rx] filament: open
+02:17:54 [ok] ok
+02:17:55 [temp]  T:29.43 /0.00 B:28.35 /0.00 @:0 B@:0
+02:17:57 [rx] Reporting endstop status
+02:17:57 [rx] x_max: open
+02:17:57 [rx] y_min: open
+02:17:57 [rx] z_probe: TRIGGERED
+02:17:57 [rx] filament: open
+02:17:57 [ok] ok
+02:17:57 [temp]  T:29.40 /0.00 B:28.47 /0.00 @:0 B@:0
+02:18:00 [temp]  T:29.29 /0.00 B:29.12 /0.00 @:0 B@:0
+02:18:00 [rx] Reporting endstop status
+02:18:00 [rx] x_max: open
+02:18:00 [rx] y_min: open
+02:18:00 [rx] z_probe: TRIGGERED
+02:18:00 [rx] filament: open
+02:18:00 [ok] ok
+02:18:01 [temp]  T:29.40 /0.00 B:28.98 /0.00 @:0 B@:0
+02:18:03 [rx] Reporting endstop status
+02:18:03 [rx] x_max: open
+02:18:03 [rx] y_min: open
+02:18:03 [rx] z_probe: TRIGGERED
+02:18:03 [rx] filament: open
+02:18:03 [ok] ok
+02:18:03 [temp]  T:28.52 /0.00 B:29.06 /0.00 @:0 B@:0
+02:18:05 [temp]  T:29.29 /0.00 B:29.37 /0.00 @:0 B@:0
+02:18:06 [rx] Reporting endstop status
+02:18:06 [rx] x_max: open
+02:18:06 [rx] y_min: open
+02:18:06 [rx] z_probe: TRIGGERED
+02:18:06 [rx] filament: open
+02:18:06 [ok] ok
+02:18:07 [temp]  T:29.06 /0.00 B:28.86 /0.00 @:0 B@:0
+02:18:09 [rx] Reporting endstop status
+02:18:09 [rx] x_max: open
+02:18:09 [rx] y_min: open
+02:18:09 [rx] z_probe: TRIGGERED
+02:18:09 [rx] filament: open
+02:18:09 [ok] ok
+02:18:09 [temp]  T:29.23 /0.00 B:28.66 /0.00 @:0 B@:0
+02:18:11 [temp]  T:29.43 /0.00 B:28.66 /0.00 @:0 B@:0
+02:18:12 [rx] Reporting endstop status
+02:18:12 [rx] x_max: open
+02:18:12 [rx] y_min: open
+02:18:12 [rx] z_probe: TRIGGERED
+02:18:12 [rx] filament: open
+02:18:12 [ok] ok
+02:18:13 [temp]  T:29.23 /0.00 B:28.41 /0.00 @:0 B@:0
+02:18:15 [rx] Reporting endstop status
+02:18:15 [rx] x_max: open
+02:18:15 [rx] y_min: open
+02:18:15 [rx] z_probe: TRIGGERED
+02:18:15 [rx] filament: open
+02:18:15 [ok] ok
+02:18:15 [temp]  T:29.32 /0.00 B:29.06 /0.00 @:0 B@:0
+02:18:17 [temp]  T:29.01 /0.00 B:28.89 /0.00 @:0 B@:0
+02:18:18 [rx] Reporting endstop status
+02:18:18 [rx] x_max: open
+02:18:18 [rx] y_min: open
+02:18:18 [rx] z_probe: TRIGGERED
+02:18:18 [rx] filament: open
+02:18:18 [ok] ok
+02:18:19 [temp]  T:28.81 /0.00 B:28.95 /0.00 @:0 B@:0
+02:18:21 [rx] Reporting endstop status
+02:18:21 [rx] x_max: open
+02:18:21 [rx] y_min: open
+02:18:21 [rx] z_probe: TRIGGERED
+02:18:21 [rx] filament: open
+02:18:21 [ok] ok
+02:18:21 [temp]  T:28.66 /0.00 B:28.18 /0.00 @:0 B@:0
+02:18:23 [temp]  T:29.18 /0.00 B:29.18 /0.00 @:0 B@:0
+02:18:24 [rx] Reporting endstop status
+02:18:24 [rx] x_max: open
+02:18:24 [rx] y_min: open
+02:18:24 [rx] z_probe: TRIGGERED
+02:18:24 [rx] filament: open
+02:18:24 [ok] ok
+02:18:25 [temp]  T:29.43 /0.00 B:28.95 /0.00 @:0 B@:0
+02:18:27 [rx] Reporting endstop status
+02:18:27 [rx] x_max: open
+02:18:27 [rx] y_min: open
+02:18:27 [rx] z_probe: TRIGGERED
+02:18:27 [rx] filament: open
+02:18:27 [ok] ok
+02:18:27 [temp]  T:29.49 /0.00 B:28.21 /0.00 @:0 B@:0
+02:18:29 [temp]  T:28.95 /0.00 B:28.78 /0.00 @:0 B@:0
+02:18:30 [rx] Reporting endstop status
+02:18:30 [rx] x_max: open
+02:18:30 [rx] y_min: open
+02:18:30 [rx] z_probe: TRIGGERED
+02:18:30 [rx] filament: open
+02:18:30 [ok] ok
+02:18:31 [temp]  T:29.20 /0.00 B:28.84 /0.00 @:0 B@:0
+02:18:33 [rx] Reporting endstop status
+02:18:33 [rx] x_max: open
+02:18:33 [rx] y_min: open
+02:18:33 [rx] z_probe: TRIGGERED
+02:18:33 [rx] filament: open
+02:18:33 [ok] ok
+02:18:33 [temp]  T:29.52 /0.00 B:28.52 /0.00 @:0 B@:0
+02:18:35 [temp]  T:29.18 /0.00 B:29.72 /0.00 @:0 B@:0
+02:18:36 [rx] Reporting endstop status
+02:18:36 [rx] x_max: open
+02:18:36 [rx] y_min: open
+02:18:36 [rx] z_probe: TRIGGERED
+02:18:36 [rx] filament: open
+02:18:36 [ok] ok
+02:18:37 [temp]  T:29.49 /0.00 B:28.81 /0.00 @:0 B@:0
+02:18:39 [rx] Reporting endstop status
+02:18:39 [rx] x_max: open
+02:18:39 [rx] y_min: open
+02:18:39 [rx] z_probe: TRIGGERED
+02:18:39 [rx] filament: open
+02:18:39 [ok] ok
+02:18:39 [temp]  T:28.66 /0.00 B:29.15 /0.00 @:0 B@:0
+02:18:41 [temp]  T:28.84 /0.00 B:29.32 /0.00 @:0 B@:0
+02:18:42 [rx] Reporting endstop status
+02:18:42 [rx] x_max: open
+02:18:42 [rx] y_min: open
+02:18:42 [rx] z_probe: TRIGGERED
+02:18:42 [rx] filament: open
+02:18:42 [ok] ok
+02:18:43 [temp]  T:29.57 /0.00 B:29.03 /0.00 @:0 B@:0
+02:18:45 [rx] Reporting endstop status
+02:18:45 [rx] x_max: open
+02:18:45 [rx] y_min: open
+02:18:45 [rx] z_probe: TRIGGERED
+02:18:45 [rx] filament: open
+02:18:45 [ok] ok
+02:18:45 [temp]  T:29.15 /0.00 B:29.01 /0.00 @:0 B@:0
+02:18:47 [temp]  T:28.92 /0.00 B:29.06 /0.00 @:0 B@:0
+02:18:48 [rx] Reporting endstop status
+02:18:48 [rx] x_max: open
+02:18:48 [rx] y_min: open
+02:18:48 [rx] z_probe: TRIGGERED
+02:18:48 [rx] filament: open
+02:18:48 [ok] ok
+02:18:49 [temp]  T:29.15 /0.00 B:28.81 /0.00 @:0 B@:0
+02:18:51 [rx] Reporting endstop status
+02:18:51 [rx] x_max: open
+02:18:51 [rx] y_min: open
+02:18:51 [rx] z_probe: TRIGGERED
+02:18:51 [rx] filament: open
+02:18:51 [ok] ok
+02:18:51 [temp]  T:29.46 /0.00 B:29.06 /0.00 @:0 B@:0
+02:18:53 [temp]  T:29.40 /0.00 B:28.72 /0.00 @:0 B@:0
+02:18:54 [rx] Reporting endstop status
+02:18:54 [rx] x_max: open
+02:18:54 [rx] y_min: open
+02:18:54 [rx] z_probe: TRIGGERED
+02:18:54 [rx] filament: open
+02:18:54 [ok] ok
+02:18:55 [temp]  T:29.23 /0.00 B:30.08 /0.00 @:0 B@:0
+02:18:57 [rx] Reporting endstop status
+02:18:57 [rx] x_max: open
+02:18:57 [rx] y_min: open
+02:18:57 [rx] z_probe: TRIGGERED
+02:18:57 [rx] filament: open
+02:18:57 [ok] ok
+02:18:57 [temp]  T:29.32 /0.00 B:28.49 /0.00 @:0 B@:0
+02:18:59 [temp]  T:29.43 /0.00 B:29.09 /0.00 @:0 B@:0
+02:19:00 [rx] Reporting endstop status
+02:19:00 [rx] x_max: open
+02:19:00 [rx] y_min: open
+02:19:00 [rx] z_probe: TRIGGERED
+02:19:00 [rx] filament: open
+02:19:00 [ok] ok
+02:19:01 [temp]  T:29.29 /0.00 B:29.15 /0.00 @:0 B@:0
+02:19:03 [rx] Reporting endstop status
+02:19:03 [rx] x_max: open
+02:19:03 [rx] y_min: open
+02:19:03 [rx] z_probe: TRIGGERED
+02:19:03 [rx] filament: open
+02:19:03 [ok] ok
+02:19:03 [temp]  T:29.52 /0.00 B:29.06 /0.00 @:0 B@:0
+02:19:05 [temp]  T:29.37 /0.00 B:28.95 /0.00 @:0 B@:0
+02:19:06 [rx] Reporting endstop status
+02:19:06 [rx] x_max: open
+02:19:06 [rx] y_min: open
+02:19:06 [rx] z_probe: TRIGGERED
+02:19:06 [rx] filament: open
+02:19:06 [ok] ok
+02:19:07 [temp]  T:29.91 /0.00 B:29.06 /0.00 @:0 B@:0
+02:19:09 [rx] Reporting endstop status
+02:19:09 [rx] x_max: open
+02:19:09 [rx] y_min: open
+02:19:09 [rx] z_probe: TRIGGERED
+02:19:09 [rx] filament: open
+02:19:09 [ok] ok
+02:19:09 [temp]  T:29.26 /0.00 B:28.84 /0.00 @:0 B@:0
+02:19:11 [temp]  T:29.37 /0.00 B:29.20 /0.00 @:0 B@:0
+02:19:12 [rx] Reporting endstop status
+02:19:12 [rx] x_max: open
+02:19:12 [rx] y_min: open
+02:19:12 [rx] z_probe: TRIGGERED
+02:19:12 [rx] filament: open
+02:19:12 [ok] ok
+02:19:13 [temp]  T:29.09 /0.00 B:29.01 /0.00 @:0 B@:0
+02:19:15 [rx] Reporting endstop status
+02:19:15 [rx] x_max: open
+02:19:15 [rx] y_min: open
+02:19:15 [rx] z_probe: TRIGGERED
+02:19:15 [rx] filament: open
+02:19:15 [ok] ok
+02:19:15 [temp]  T:29.72 /0.00 B:28.72 /0.00 @:0 B@:0
+02:19:17 [temp]  T:29.46 /0.00 B:28.61 /0.00 @:0 B@:0
+02:19:18 [rx] Reporting endstop status
+02:19:18 [rx] x_max: open
+02:19:18 [rx] y_min: open
+02:19:18 [rx] z_probe: TRIGGERED
+02:19:18 [rx] filament: open
+02:19:18 [ok] ok
+02:19:19 [temp]  T:29.49 /0.00 B:29.23 /0.00 @:0 B@:0
+02:19:21 [rx] Reporting endstop status
+02:19:21 [rx] x_max: open
+02:19:21 [rx] y_min: open
+02:19:21 [rx] z_probe: TRIGGERED
+02:19:21 [rx] filament: open
+02:19:21 [ok] ok
+02:19:21 [temp]  T:29.23 /0.00 B:29.32 /0.00 @:0 B@:0
+02:19:23 [temp]  T:29.37 /0.00 B:29.23 /0.00 @:0 B@:0
+02:19:24 [rx] Reporting endstop status
+02:19:24 [rx] x_max: open
+02:19:24 [rx] y_min: open
+02:19:24 [rx] z_probe: TRIGGERED
+02:19:24 [rx] filament: open
+02:19:24 [ok] ok
+02:19:25 [temp]  T:29.66 /0.00 B:28.72 /0.00 @:0 B@:0
+02:19:27 [rx] Reporting endstop status
+02:19:27 [rx] x_max: open
+02:19:27 [rx] y_min: open
+02:19:27 [rx] z_probe: TRIGGERED
+02:19:27 [rx] filament: open
+02:19:27 [ok] ok
+02:19:27 [temp]  T:29.52 /0.00 B:29.35 /0.00 @:0 B@:0
+02:19:29 [temp]  T:29.23 /0.00 B:28.18 /0.00 @:0 B@:0
+02:19:30 [rx] Reporting endstop status
+02:19:30 [rx] x_max: open
+02:19:30 [rx] y_min: open
+02:19:30 [rx] z_probe: TRIGGERED
+02:19:30 [rx] filament: open
+02:19:30 [ok] ok
+02:19:31 [temp]  T:29.57 /0.00 B:28.78 /0.00 @:0 B@:0
+02:19:33 [temp]  T:29.32 /0.00 B:29.49 /0.00 @:0 B@:0
+02:19:33 [rx] Reporting endstop status
+02:19:33 [rx] x_max: open
+02:19:33 [rx] y_min: open
+02:19:33 [rx] z_probe: TRIGGERED
+02:19:33 [rx] filament: open
+02:19:33 [ok] ok
+02:19:35 [temp]  T:29.23 /0.00 B:27.50 /0.00 @:0 B@:0
+02:19:37 [rx] Reporting endstop status
+02:19:37 [rx] x_max: open
+02:19:37 [rx] y_min: open
+02:19:37 [rx] z_probe: TRIGGERED
+02:19:37 [rx] filament: open
+02:19:37 [ok] ok
+02:19:37 [temp]  T:29.52 /0.00 B:28.66 /0.00 @:0 B@:0
+02:19:40 [temp]  T:28.89 /0.00 B:28.52 /0.00 @:0 B@:0
+02:19:40 [rx] Reporting endstop status
+02:19:40 [rx] x_max: open
+02:19:40 [rx] y_min: open
+02:19:40 [rx] z_probe: TRIGGERED
+02:19:40 [rx] filament: open
+02:19:40 [ok] ok
+02:19:41 [temp]  T:29.12 /0.00 B:28.75 /0.00 @:0 B@:0
+02:19:43 [rx] Reporting endstop status
+02:19:43 [rx] x_max: open
+02:19:43 [rx] y_min: open
+02:19:43 [rx] z_probe: TRIGGERED
+02:19:43 [rx] filament: open
+02:19:43 [ok] ok
+02:19:43 [temp]  T:29.35 /0.00 B:28.58 /0.00 @:0 B@:0
+02:19:46 [temp]  T:29.49 /0.00 B:29.66 /0.00 @:0 B@:0
+02:19:46 [rx] Reporting endstop status
+02:19:46 [rx] x_max: open
+02:19:46 [rx] y_min: open
+02:19:46 [rx] z_probe: TRIGGERED
+02:19:46 [rx] filament: open
+02:19:46 [ok] ok
+02:19:47 [temp]  T:29.66 /0.00 B:28.52 /0.00 @:0 B@:0
+02:19:49 [rx] Reporting endstop status
+02:19:49 [rx] x_max: open
+02:19:49 [rx] y_min: open
+02:19:49 [rx] z_probe: TRIGGERED
+02:19:49 [rx] filament: open
+02:19:49 [ok] ok
+02:19:49 [temp]  T:29.37 /0.00 B:29.06 /0.00 @:0 B@:0
+02:19:51 [temp]  T:29.35 /0.00 B:28.58 /0.00 @:0 B@:0
+02:19:52 [rx] Reporting endstop status
+02:19:52 [rx] x_max: open
+02:19:52 [rx] y_min: open
+02:19:52 [rx] z_probe: TRIGGERED
+02:19:52 [rx] filament: open
+02:19:52 [ok] ok
+02:19:53 [temp]  T:29.29 /0.00 B:28.78 /0.00 @:0 B@:0
+02:19:55 [rx] Reporting endstop status
+02:19:55 [rx] x_max: open
+02:19:55 [rx] y_min: open
+02:19:55 [rx] z_probe: TRIGGERED
+02:19:55 [rx] filament: open
+02:19:55 [ok] ok
+02:19:55 [temp]  T:29.74 /0.00 B:28.72 /0.00 @:0 B@:0
+02:19:57 [temp]  T:29.09 /0.00 B:28.69 /0.00 @:0 B@:0
+02:19:58 [rx] Reporting endstop status
+02:19:58 [rx] x_max: open
+02:19:58 [rx] y_min: open
+02:19:58 [rx] z_probe: TRIGGERED
+02:19:58 [rx] filament: open
+02:19:58 [ok] ok
+02:19:59 [temp]  T:29.37 /0.00 B:29.18 /0.00 @:0 B@:0
+02:20:01 [rx] Reporting endstop status
+02:20:01 [rx] x_max: open
+02:20:01 [rx] y_min: open
+02:20:01 [rx] z_probe: TRIGGERED
+02:20:01 [rx] filament: open
+02:20:01 [ok] ok
+02:20:01 [temp]  T:29.69 /0.00 B:29.15 /0.00 @:0 B@:0
+02:20:03 [temp]  T:28.86 /0.00 B:29.55 /0.00 @:0 B@:0
+02:20:04 [rx] Reporting endstop status
+02:20:04 [rx] x_max: open
+02:20:04 [rx] y_min: open
+02:20:04 [rx] z_probe: TRIGGERED
+02:20:04 [rx] filament: open
+02:20:04 [ok] ok
+02:20:05 [temp]  T:29.57 /0.00 B:28.89 /0.00 @:0 B@:0
+02:20:07 [rx] Reporting endstop status
+02:20:07 [rx] x_max: open
+02:20:07 [rx] y_min: open
+02:20:07 [rx] z_probe: TRIGGERED
+02:20:07 [rx] filament: open
+02:20:07 [ok] ok
+02:20:07 [temp]  T:29.63 /0.00 B:28.84 /0.00 @:0 B@:0
+02:20:09 [temp]  T:28.86 /0.00 B:28.07 /0.00 @:0 B@:0
+02:20:10 [rx] Reporting endstop status
+02:20:10 [rx] x_max: open
+02:20:10 [rx] y_min: open
+02:20:10 [rx] z_probe: TRIGGERED
+02:20:10 [rx] filament: open
+02:20:10 [ok] ok
+02:20:11 [temp]  T:29.06 /0.00 B:29.06 /0.00 @:0 B@:0
+02:20:13 [rx] Reporting endstop status
+02:20:13 [rx] x_max: open
+02:20:13 [rx] y_min: open
+02:20:13 [rx] z_probe: TRIGGERED
+02:20:13 [rx] filament: open
+02:20:13 [ok] ok
+02:20:13 [temp]  T:29.46 /0.00 B:29.23 /0.00 @:0 B@:0
+02:20:15 [temp]  T:29.26 /0.00 B:28.61 /0.00 @:0 B@:0
+02:20:16 [rx] Reporting endstop status
+02:20:16 [rx] x_max: open
+02:20:16 [rx] y_min: open
+02:20:16 [rx] z_probe: TRIGGERED
+02:20:16 [rx] filament: open
+02:20:16 [ok] ok
+02:20:17 [temp]  T:29.03 /0.00 B:29.01 /0.00 @:0 B@:0
+02:20:19 [rx] Reporting endstop status
+02:20:19 [rx] x_max: open
+02:20:19 [rx] y_min: open
+02:20:19 [rx] z_probe: TRIGGERED
+02:20:19 [rx] filament: open
+02:20:19 [ok] ok
+02:20:19 [temp]  T:29.29 /0.00 B:29.69 /0.00 @:0 B@:0
+02:20:21 [temp]  T:29.32 /0.00 B:28.84 /0.00 @:0 B@:0
+02:20:22 [rx] Reporting endstop status
+02:20:22 [rx] x_max: open
+02:20:22 [rx] y_min: open
+02:20:22 [rx] z_probe: TRIGGERED
+02:20:22 [rx] filament: open
+02:20:22 [ok] ok
+02:20:23 [temp]  T:29.32 /0.00 B:28.75 /0.00 @:0 B@:0
+02:20:25 [rx] Reporting endstop status
+02:20:25 [rx] x_max: open
+02:20:25 [rx] y_min: open
+02:20:25 [rx] z_probe: TRIGGERED
+02:20:25 [rx] filament: open
+02:20:25 [ok] ok
+02:20:25 [temp]  T:29.72 /0.00 B:28.72 /0.00 @:0 B@:0
+02:20:27 [temp]  T:30.00 /0.00 B:28.75 /0.00 @:0 B@:0
+02:20:28 [rx] Reporting endstop status
+02:20:28 [rx] x_max: open
+02:20:28 [rx] y_min: open
+02:20:28 [rx] z_probe: TRIGGERED
+02:20:28 [rx] filament: open
+02:20:28 [ok] ok
+02:20:29 [temp]  T:29.37 /0.00 B:29.69 /0.00 @:0 B@:0
+02:20:31 [rx] Reporting endstop status
+02:20:31 [rx] x_max: open
+02:20:31 [rx] y_min: open
+02:20:31 [rx] z_probe: TRIGGERED
+02:20:31 [rx] filament: open
+02:20:31 [ok] ok
+02:20:31 [temp]  T:29.43 /0.00 B:28.95 /0.00 @:0 B@:0
+02:20:33 [temp]  T:29.29 /0.00 B:29.09 /0.00 @:0 B@:0
+02:20:34 [rx] Reporting endstop status
+02:20:34 [rx] x_max: open
+02:20:34 [rx] y_min: open
+02:20:34 [rx] z_probe: TRIGGERED
+02:20:34 [rx] filament: open
+02:20:34 [ok] ok
+02:20:35 [temp]  T:29.35 /0.00 B:28.66 /0.00 @:0 B@:0
+02:20:37 [rx] Reporting endstop status
+02:20:37 [rx] x_max: open
+02:20:37 [rx] y_min: open
+02:20:37 [rx] z_probe: TRIGGERED
+02:20:37 [rx] filament: open
+02:20:37 [ok] ok
+02:20:37 [temp]  T:29.43 /0.00 B:28.44 /0.00 @:0 B@:0
+02:20:39 [temp]  T:29.26 /0.00 B:28.64 /0.00 @:0 B@:0
+02:20:40 [rx] Reporting endstop status
+02:20:40 [rx] x_max: open
+02:20:40 [rx] y_min: open
+02:20:40 [rx] z_probe: TRIGGERED
+02:20:40 [rx] filament: open
+02:20:40 [ok] ok
+02:20:41 [temp]  T:29.69 /0.00 B:29.55 /0.00 @:0 B@:0
+02:20:43 [rx] Reporting endstop status
+02:20:43 [rx] x_max: open
+02:20:43 [rx] y_min: open
+02:20:43 [rx] z_probe: TRIGGERED
+02:20:43 [rx] filament: open
+02:20:43 [ok] ok
+02:20:43 [temp]  T:29.29 /0.00 B:29.32 /0.00 @:0 B@:0
+02:20:45 [temp]  T:29.18 /0.00 B:29.12 /0.00 @:0 B@:0
+02:20:46 [rx] Reporting endstop status
+02:20:46 [rx] x_max: open
+02:20:46 [rx] y_min: open
+02:20:46 [rx] z_probe: TRIGGERED
+02:20:46 [rx] filament: open
+02:20:46 [ok] ok
+02:20:47 [temp]  T:28.98 /0.00 B:28.89 /0.00 @:0 B@:0
+02:20:49 [rx] Reporting endstop status
+02:20:49 [rx] x_max: open
+02:20:49 [rx] y_min: open
+02:20:49 [rx] z_probe: TRIGGERED
+02:20:49 [rx] filament: open
+02:20:49 [ok] ok
+02:20:49 [temp]  T:29.46 /0.00 B:28.69 /0.00 @:0 B@:0
+02:20:51 [temp]  T:29.20 /0.00 B:29.23 /0.00 @:0 B@:0
+02:20:52 [rx] Reporting endstop status
+02:20:52 [rx] x_max: open
+02:20:52 [rx] y_min: open
+02:20:52 [rx] z_probe: TRIGGERED
+02:20:52 [rx] filament: open
+02:20:52 [ok] ok
+02:20:53 [temp]  T:29.55 /0.00 B:28.86 /0.00 @:0 B@:0
+02:20:55 [rx] Reporting endstop status
+02:20:55 [rx] x_max: open
+02:20:55 [rx] y_min: open
+02:20:55 [rx] z_probe: TRIGGERED
+02:20:55 [rx] filament: open
+02:20:55 [ok] ok
+02:20:55 [temp]  T:29.35 /0.00 B:28.15 /0.00 @:0 B@:0
+02:20:57 [temp]  T:29.01 /0.00 B:28.75 /0.00 @:0 B@:0
+02:20:58 [rx] Reporting endstop status
+02:20:58 [rx] x_max: open
+02:20:58 [rx] y_min: open
+02:20:58 [rx] z_probe: TRIGGERED
+02:20:58 [rx] filament: open
+02:20:58 [ok] ok
+02:20:59 [temp]  T:29.26 /0.00 B:28.35 /0.00 @:0 B@:0
+02:21:01 [rx] Reporting endstop status
+02:21:01 [rx] x_max: open
+02:21:01 [rx] y_min: open
+02:21:01 [rx] z_probe: TRIGGERED
+02:21:01 [rx] filament: open
+02:21:01 [ok] ok
+02:21:01 [temp]  T:29.57 /0.00 B:29.12 /0.00 @:0 B@:0
+02:21:03 [temp]  T:29.57 /0.00 B:28.89 /0.00 @:0 B@:0
+02:21:04 [rx] Reporting endstop status
+02:21:04 [rx] x_max: open
+02:21:04 [rx] y_min: open
+02:21:04 [rx] z_probe: TRIGGERED
+02:21:04 [rx] filament: open
+02:21:04 [ok] ok
+02:21:05 [temp]  T:29.23 /0.00 B:28.86 /0.00 @:0 B@:0
+02:21:07 [rx] Reporting endstop status
+02:21:07 [rx] x_max: open
+02:21:07 [rx] y_min: open
+02:21:07 [rx] z_probe: TRIGGERED
+02:21:07 [rx] filament: open
+02:21:07 [ok] ok
+02:21:07 [temp]  T:29.57 /0.00 B:28.75 /0.00 @:0 B@:0
+02:21:09 [temp]  T:29.40 /0.00 B:28.01 /0.00 @:0 B@:0
+02:21:10 [rx] Reporting endstop status
+02:21:10 [rx] x_max: open
+02:21:10 [rx] y_min: open
+02:21:10 [rx] z_probe: TRIGGERED
+02:21:10 [rx] filament: open
+02:21:10 [ok] ok
+02:21:11 [temp]  T:29.29 /0.00 B:28.58 /0.00 @:0 B@:0
+02:21:13 [temp]  T:29.18 /0.00 B:29.46 /0.00 @:0 B@:0
+02:21:13 [rx] Reporting endstop status
+02:21:13 [rx] x_max: open
+02:21:13 [rx] y_min: open
+02:21:13 [rx] z_probe: TRIGGERED
+02:21:13 [rx] filament: open
+02:21:13 [ok] ok
+02:21:15 [temp]  T:29.32 /0.00 B:28.95 /0.00 @:0 B@:0
+02:21:16 [rx] Reporting endstop status
+02:21:16 [rx] x_max: open
+02:21:16 [rx] y_min: open
+02:21:16 [rx] z_probe: TRIGGERED
+02:21:16 [rx] filament: open
+02:21:16 [ok] ok
+02:21:17 [temp]  T:29.66 /0.00 B:29.09 /0.00 @:0 B@:0
+02:21:19 [temp]  T:29.52 /0.00 B:28.38 /0.00 @:0 B@:0
+02:21:19 [rx] Reporting endstop status
+02:21:19 [rx] x_max: open
+02:21:19 [rx] y_min: open
+02:21:19 [rx] z_probe: TRIGGERED
+02:21:19 [rx] filament: open
+02:21:19 [ok] ok
+02:21:21 [temp]  T:29.40 /0.00 B:28.18 /0.00 @:0 B@:0
+02:21:22 [rx] Reporting endstop status
+02:21:22 [rx] x_max: open
+02:21:22 [rx] y_min: open
+02:21:22 [rx] z_probe: TRIGGERED
+02:21:22 [rx] filament: open
+02:21:22 [ok] ok
+02:21:23 [temp]  T:29.52 /0.00 B:28.41 /0.00 @:0 B@:0
+02:21:26 [temp]  T:29.74 /0.00 B:29.03 /0.00 @:0 B@:0
+02:21:26 [rx] Reporting endstop status
+02:21:26 [rx] x_max: open
+02:21:26 [rx] y_min: open
+02:21:26 [rx] z_probe: TRIGGERED
+02:21:26 [rx] filament: open
+02:21:26 [ok] ok
+02:21:27 [temp]  T:28.95 /0.00 B:27.44 /0.00 @:0 B@:0
+02:21:29 [rx] Reporting endstop status
+02:21:29 [rx] x_max: open
+02:21:29 [rx] y_min: open
+02:21:29 [rx] z_probe: TRIGGERED
+02:21:29 [rx] filament: open
+02:21:29 [ok] ok
+02:21:29 [temp]  T:29.35 /0.00 B:28.47 /0.00 @:0 B@:0
+02:21:32 [temp]  T:29.37 /0.00 B:28.78 /0.00 @:0 B@:0
+02:21:32 [rx] Reporting endstop status
+02:21:32 [rx] x_max: open
+02:21:32 [rx] y_min: open
+02:21:32 [rx] z_probe: TRIGGERED
+02:21:32 [rx] filament: open
+02:21:32 [ok] ok
+02:21:33 [temp]  T:29.60 /0.00 B:28.69 /0.00 @:0 B@:0
+02:21:35 [rx] Reporting endstop status
+02:21:35 [rx] x_max: open
+02:21:35 [rx] y_min: open
+02:21:35 [rx] z_probe: TRIGGERED
+02:21:35 [rx] filament: open
+02:21:35 [ok] ok
+02:21:35 [temp]  T:29.49 /0.00 B:28.55 /0.00 @:0 B@:0
+02:21:37 [temp]  T:29.69 /0.00 B:28.41 /0.00 @:0 B@:0
+02:21:38 [rx] Reporting endstop status
+02:21:38 [rx] x_max: open
+02:21:38 [rx] y_min: open
+02:21:38 [rx] z_probe: TRIGGERED
+02:21:38 [rx] filament: open
+02:21:38 [ok] ok
+02:21:39 [temp]  T:29.40 /0.00 B:28.75 /0.00 @:0 B@:0
+02:21:41 [rx] Reporting endstop status
+02:21:41 [rx] x_max: open
+02:21:41 [rx] y_min: open
+02:21:41 [rx] z_probe: TRIGGERED
+02:21:41 [rx] filament: open
+02:21:41 [ok] ok
+02:21:41 [temp]  T:29.43 /0.00 B:28.84 /0.00 @:0 B@:0
+02:21:43 [temp]  T:29.52 /0.00 B:28.58 /0.00 @:0 B@:0
+02:21:44 [rx] Reporting endstop status
+02:21:44 [rx] x_max: open
+02:21:44 [rx] y_min: open
+02:21:44 [rx] z_probe: TRIGGERED
+02:21:44 [rx] filament: open
+02:21:44 [ok] ok
+02:21:45 [temp]  T:29.23 /0.00 B:28.55 /0.00 @:0 B@:0
+02:21:47 [rx] Reporting endstop status
+02:21:47 [rx] x_max: open
+02:21:47 [rx] y_min: open
+02:21:47 [rx] z_probe: TRIGGERED
+02:21:47 [rx] filament: open
+02:21:47 [ok] ok
+02:21:47 [temp]  T:29.29 /0.00 B:28.52 /0.00 @:0 B@:0
+02:21:49 [temp]  T:29.15 /0.00 B:28.86 /0.00 @:0 B@:0
+02:21:50 [rx] Reporting endstop status
+02:21:50 [rx] x_max: open
+02:21:50 [rx] y_min: open
+02:21:50 [rx] z_probe: TRIGGERED
+02:21:50 [rx] filament: open
+02:21:50 [ok] ok
+02:21:51 [temp]  T:29.20 /0.00 B:28.66 /0.00 @:0 B@:0
+02:21:53 [rx] Reporting endstop status
+02:21:53 [rx] x_max: open
+02:21:53 [rx] y_min: open
+02:21:53 [rx] z_probe: TRIGGERED
+02:21:53 [rx] filament: open
+02:21:53 [ok] ok
+02:21:53 [temp]  T:29.29 /0.00 B:28.32 /0.00 @:0 B@:0
+02:21:55 [temp]  T:29.18 /0.00 B:29.18 /0.00 @:0 B@:0
+02:21:56 [rx] Reporting endstop status
+02:21:56 [rx] x_max: open
+02:21:56 [rx] y_min: open
+02:21:56 [rx] z_probe: TRIGGERED
+02:21:56 [rx] filament: open
+02:21:56 [ok] ok
+02:21:57 [temp]  T:28.92 /0.00 B:28.81 /0.00 @:0 B@:0
+02:21:59 [rx] Reporting endstop status
+02:21:59 [rx] x_max: open
+02:21:59 [rx] y_min: open
+02:21:59 [rx] z_probe: TRIGGERED
+02:21:59 [rx] filament: open
+02:21:59 [ok] ok
+02:21:59 [temp]  T:29.29 /0.00 B:28.81 /0.00 @:0 B@:0
+02:22:01 [temp]  T:29.12 /0.00 B:28.64 /0.00 @:0 B@:0
+02:22:02 [rx] Reporting endstop status
+02:22:02 [rx] x_max: open
+02:22:02 [rx] y_min: open
+02:22:02 [rx] z_probe: TRIGGERED
+02:22:02 [rx] filament: open
+02:22:02 [ok] ok
+02:22:03 [temp]  T:29.35 /0.00 B:28.72 /0.00 @:0 B@:0
+02:22:05 [rx] Reporting endstop status
+02:22:05 [rx] x_max: open
+02:22:05 [rx] y_min: open
+02:22:05 [rx] z_probe: TRIGGERED
+02:22:05 [rx] filament: open
+02:22:05 [ok] ok
+02:22:05 [temp]  T:29.09 /0.00 B:29.15 /0.00 @:0 B@:0
+02:22:07 [temp]  T:29.46 /0.00 B:28.10 /0.00 @:0 B@:0
+02:22:08 [rx] Reporting endstop status
+02:22:08 [rx] x_max: open
+02:22:08 [rx] y_min: open
+02:22:08 [rx] z_probe: TRIGGERED
+02:22:08 [rx] filament: open
+02:22:08 [ok] ok
+02:22:09 [temp]  T:29.32 /0.00 B:28.75 /0.00 @:0 B@:0
+02:22:11 [rx] Reporting endstop status
+02:22:11 [rx] x_max: open
+02:22:11 [rx] y_min: open
+02:22:11 [rx] z_probe: TRIGGERED
+02:22:11 [rx] filament: open
+02:22:11 [ok] ok
+02:22:11 [temp]  T:29.55 /0.00 B:28.61 /0.00 @:0 B@:0
+02:22:13 [temp]  T:29.40 /0.00 B:28.89 /0.00 @:0 B@:0
+02:22:14 [rx] Reporting endstop status
+02:22:14 [rx] x_max: open
+02:22:14 [rx] y_min: open
+02:22:14 [rx] z_probe: TRIGGERED
+02:22:14 [rx] filament: open
+02:22:14 [ok] ok
+02:22:15 [temp]  T:29.09 /0.00 B:29.01 /0.00 @:0 B@:0
+02:22:17 [rx] Reporting endstop status
+02:22:17 [rx] x_max: open
+02:22:17 [rx] y_min: open
+02:22:17 [rx] z_probe: TRIGGERED
+02:22:17 [rx] filament: open
+02:22:17 [ok] ok
+02:22:17 [temp]  T:28.95 /0.00 B:28.12 /0.00 @:0 B@:0
+02:22:19 [temp]  T:29.01 /0.00 B:28.86 /0.00 @:0 B@:0
+02:22:20 [rx] Reporting endstop status
+02:22:20 [rx] x_max: open
+02:22:20 [rx] y_min: open
+02:22:20 [rx] z_probe: TRIGGERED
+02:22:20 [rx] filament: open
+02:22:20 [ok] ok
+02:22:21 [temp]  T:29.32 /0.00 B:29.35 /0.00 @:0 B@:0
+02:22:23 [rx] Reporting endstop status
+02:22:23 [rx] x_max: open
+02:22:23 [rx] y_min: open
+02:22:23 [rx] z_probe: TRIGGERED
+02:22:23 [rx] filament: open
+02:22:23 [ok] ok
+02:22:23 [temp]  T:29.60 /0.00 B:28.30 /0.00 @:0 B@:0
+02:22:25 [temp]  T:29.46 /0.00 B:29.29 /0.00 @:0 B@:0
+02:22:26 [rx] Reporting endstop status
+02:22:26 [rx] x_max: open
+02:22:26 [rx] y_min: open
+02:22:26 [rx] z_probe: TRIGGERED
+02:22:26 [rx] filament: open
+02:22:26 [ok] ok
+02:22:27 [temp]  T:29.29 /0.00 B:28.58 /0.00 @:0 B@:0
+02:22:29 [rx] Reporting endstop status
+02:22:29 [rx] x_max: open
+02:22:29 [rx] y_min: open
+02:22:29 [rx] z_probe: TRIGGERED
+02:22:29 [rx] filament: open
+02:22:29 [ok] ok
+02:22:29 [temp]  T:29.12 /0.00 B:28.38 /0.00 @:0 B@:0
+02:22:31 [temp]  T:29.46 /0.00 B:28.92 /0.00 @:0 B@:0
+02:22:32 [rx] Reporting endstop status
+02:22:32 [rx] x_max: open
+02:22:32 [rx] y_min: open
+02:22:32 [rx] z_probe: TRIGGERED
+02:22:32 [rx] filament: open
+02:22:32 [ok] ok
+02:22:33 [temp]  T:29.06 /0.00 B:29.09 /0.00 @:0 B@:0
+02:22:35 [rx] Reporting endstop status
+02:22:35 [rx] x_max: open
+02:22:35 [rx] y_min: open
+02:22:35 [rx] z_probe: TRIGGERED
+02:22:35 [rx] filament: open
+02:22:35 [ok] ok
+02:22:35 [temp]  T:29.49 /0.00 B:28.92 /0.00 @:0 B@:0
+02:22:37 [temp]  T:28.92 /0.00 B:29.23 /0.00 @:0 B@:0
+02:22:38 [rx] Reporting endstop status
+02:22:38 [rx] x_max: open
+02:22:38 [rx] y_min: open
+02:22:38 [rx] z_probe: TRIGGERED
+02:22:38 [rx] filament: open
+02:22:38 [ok] ok
+02:22:39 [temp]  T:29.55 /0.00 B:28.61 /0.00 @:0 B@:0
+02:22:41 [rx] Reporting endstop status
+02:22:41 [rx] x_max: open
+02:22:41 [rx] y_min: open
+02:22:41 [rx] z_probe: TRIGGERED
+02:22:41 [rx] filament: open
+02:22:41 [ok] ok
+02:22:41 [temp]  T:29.06 /0.00 B:28.78 /0.00 @:0 B@:0
+02:22:43 [temp]  T:29.55 /0.00 B:29.32 /0.00 @:0 B@:0
+02:22:44 [rx] Reporting endstop status
+02:22:44 [rx] x_max: open
+02:22:44 [rx] y_min: open
+02:22:44 [rx] z_probe: TRIGGERED
+02:22:44 [rx] filament: open
+02:22:44 [ok] ok
+02:22:45 [temp]  T:28.98 /0.00 B:28.78 /0.00 @:0 B@:0
+02:22:47 [rx] Reporting endstop status
+02:22:47 [rx] x_max: open
+02:22:47 [rx] y_min: open
+02:22:47 [rx] z_probe: TRIGGERED
+02:22:47 [rx] filament: open
+02:22:47 [ok] ok
+02:22:47 [temp]  T:29.29 /0.00 B:29.03 /0.00 @:0 B@:0
+02:22:49 [temp]  T:29.37 /0.00 B:28.66 /0.00 @:0 B@:0
+02:22:50 [rx] Reporting endstop status
+02:22:50 [rx] x_max: open
+02:22:50 [rx] y_min: open
+02:22:50 [rx] z_probe: TRIGGERED
+02:22:50 [rx] filament: open
+02:22:50 [ok] ok
+02:22:51 [temp]  T:29.03 /0.00 B:28.58 /0.00 @:0 B@:0
+02:22:53 [temp]  T:29.23 /0.00 B:28.69 /0.00 @:0 B@:0
+02:22:53 [rx] Reporting endstop status
+02:22:53 [rx] x_max: open
+02:22:53 [rx] y_min: open
+02:22:53 [rx] z_probe: TRIGGERED
+02:22:53 [rx] filament: open
+02:22:53 [ok] ok
+02:22:55 [temp]  T:29.15 /0.00 B:27.70 /0.00 @:0 B@:0
+02:22:56 [rx] Reporting endstop status
+02:22:56 [rx] x_max: open
+02:22:56 [rx] y_min: open
+02:22:56 [rx] z_probe: TRIGGERED
+02:22:56 [rx] filament: open
+02:22:56 [ok] ok
+02:22:57 [temp]  T:29.52 /0.00 B:28.92 /0.00 @:0 B@:0
+02:22:59 [temp]  T:29.09 /0.00 B:28.35 /0.00 @:0 B@:0
+02:22:59 [rx] Reporting endstop status
+02:22:59 [rx] x_max: open
+02:23:00 [rx] y_min: open
+02:23:00 [rx] z_probe: TRIGGERED
+02:23:00 [rx] filament: open
+02:23:00 [ok] ok
+02:23:01 [temp]  T:29.26 /0.00 B:28.75 /0.00 @:0 B@:0
+02:23:03 [rx] Reporting endstop status
+02:23:03 [rx] x_max: open
+02:23:03 [rx] y_min: open
+02:23:03 [rx] z_probe: TRIGGERED
+02:23:03 [rx] filament: open
+02:23:03 [ok] ok
+02:23:03 [temp]  T:28.95 /0.00 B:29.83 /0.00 @:0 B@:0
+02:23:06 [temp]  T:29.20 /0.00 B:27.76 /0.00 @:0 B@:0
+02:23:06 [rx] Reporting endstop status
+02:23:06 [rx] x_max: open
+02:23:06 [rx] y_min: open
+02:23:06 [rx] z_probe: TRIGGERED
+02:23:06 [rx] filament: open
+02:23:06 [ok] ok
+02:23:07 [temp]  T:28.98 /0.00 B:28.66 /0.00 @:0 B@:0
+02:23:09 [rx] Reporting endstop status
+02:23:09 [rx] x_max: open
+02:23:09 [rx] y_min: open
+02:23:09 [rx] z_probe: TRIGGERED
+02:23:09 [rx] filament: open
+02:23:09 [ok] ok
+02:23:09 [temp]  T:29.23 /0.00 B:28.58 /0.00 @:0 B@:0
+02:23:12 [temp]  T:29.52 /0.00 B:28.18 /0.00 @:0 B@:0
+02:23:12 [rx] Reporting endstop status
+02:23:12 [rx] x_max: open
+02:23:12 [rx] y_min: open
+02:23:12 [rx] z_probe: TRIGGERED
+02:23:12 [rx] filament: open
+02:23:12 [ok] ok
+02:23:13 [temp]  T:29.40 /0.00 B:29.18 /0.00 @:0 B@:0
+02:23:15 [rx] Reporting endstop status
+02:23:15 [rx] x_max: open
+02:23:15 [rx] y_min: open
+02:23:15 [rx] z_probe: TRIGGERED
+02:23:15 [rx] filament: open
+02:23:15 [ok] ok
+02:23:15 [temp]  T:29.20 /0.00 B:28.89 /0.00 @:0 B@:0
+02:23:17 [temp]  T:28.86 /0.00 B:28.47 /0.00 @:0 B@:0
+02:23:18 [rx] Reporting endstop status
+02:23:18 [rx] x_max: open
+02:23:18 [rx] y_min: open
+02:23:18 [rx] z_probe: TRIGGERED
+02:23:18 [rx] filament: open
+02:23:18 [ok] ok
+02:23:19 [temp]  T:28.78 /0.00 B:29.26 /0.00 @:0 B@:0
+02:23:21 [rx] Reporting endstop status
+02:23:21 [rx] x_max: open
+02:23:21 [rx] y_min: open
+02:23:21 [rx] z_probe: TRIGGERED
+02:23:21 [rx] filament: open
+02:23:21 [ok] ok
+02:23:21 [temp]  T:29.03 /0.00 B:29.03 /0.00 @:0 B@:0
+02:23:23 [temp]  T:29.46 /0.00 B:28.95 /0.00 @:0 B@:0
+02:23:24 [rx] Reporting endstop status
+02:23:24 [rx] x_max: open
+02:23:24 [rx] y_min: open
+02:23:24 [rx] z_probe: TRIGGERED
+02:23:24 [rx] filament: open
+02:23:24 [ok] ok
+02:23:25 [temp]  T:29.29 /0.00 B:28.41 /0.00 @:0 B@:0
+02:23:27 [rx] Reporting endstop status
+02:23:27 [rx] x_max: open
+02:23:27 [rx] y_min: open
+02:23:27 [rx] z_probe: TRIGGERED
+02:23:27 [rx] filament: open
+02:23:27 [ok] ok
+02:23:27 [temp]  T:29.43 /0.00 B:28.61 /0.00 @:0 B@:0
+02:23:29 [temp]  T:29.37 /0.00 B:27.50 /0.00 @:0 B@:0
+02:23:30 [rx] Reporting endstop status
+02:23:30 [rx] x_max: open
+02:23:30 [rx] y_min: open
+02:23:30 [rx] z_probe: TRIGGERED
+02:23:30 [rx] filament: open
+02:23:30 [ok] ok
+02:23:31 [temp]  T:29.06 /0.00 B:28.95 /0.00 @:0 B@:0
+02:23:33 [rx] Reporting endstop status
+02:23:33 [rx] x_max: open
+02:23:33 [rx] y_min: open
+02:23:33 [rx] z_probe: TRIGGERED
+02:23:33 [rx] filament: open
+02:23:33 [ok] ok
+02:23:33 [temp]  T:29.37 /0.00 B:28.10 /0.00 @:0 B@:0
+02:23:35 [temp]  T:29.74 /0.00 B:28.32 /0.00 @:0 B@:0
+02:23:36 [rx] Reporting endstop status
+02:23:36 [rx] x_max: open
+02:23:36 [rx] y_min: open
+02:23:36 [rx] z_probe: TRIGGERED
+02:23:36 [rx] filament: open
+02:23:36 [ok] ok
+02:23:37 [temp]  T:29.03 /0.00 B:29.03 /0.00 @:0 B@:0
+02:23:39 [rx] Reporting endstop status
+02:23:39 [rx] x_max: open
+02:23:39 [rx] y_min: open
+02:23:39 [rx] z_probe: TRIGGERED
+02:23:39 [rx] filament: open
+02:23:39 [ok] ok
+02:23:39 [temp]  T:28.47 /0.00 B:28.69 /0.00 @:0 B@:0
+02:23:41 [temp]  T:29.15 /0.00 B:28.84 /0.00 @:0 B@:0
+02:23:42 [rx] Reporting endstop status
+02:23:42 [rx] x_max: open
+02:23:42 [rx] y_min: open
+02:23:42 [rx] z_probe: TRIGGERED
+02:23:42 [rx] filament: open
+02:23:42 [ok] ok
+02:23:43 [temp]  T:29.66 /0.00 B:28.66 /0.00 @:0 B@:0
+02:23:45 [rx] Reporting endstop status
+02:23:45 [rx] x_max: open
+02:23:45 [rx] y_min: open
+02:23:45 [rx] z_probe: TRIGGERED
+02:23:45 [rx] filament: open
+02:23:45 [ok] ok
+02:23:45 [temp]  T:28.98 /0.00 B:28.55 /0.00 @:0 B@:0
+02:23:47 [temp]  T:29.40 /0.00 B:28.92 /0.00 @:0 B@:0
+02:23:48 [rx] Reporting endstop status
+02:23:48 [rx] x_max: open
+02:23:48 [rx] y_min: open
+02:23:48 [rx] z_probe: TRIGGERED
+02:23:48 [rx] filament: open
+02:23:48 [ok] ok
+02:23:49 [temp]  T:29.35 /0.00 B:29.06 /0.00 @:0 B@:0
+02:23:51 [rx] Reporting endstop status
+02:23:51 [rx] x_max: open
+02:23:51 [rx] y_min: open
+02:23:51 [rx] z_probe: TRIGGERED
+02:23:51 [rx] filament: open
+02:23:51 [ok] ok
+02:23:51 [temp]  T:29.20 /0.00 B:29.37 /0.00 @:0 B@:0
+02:23:53 [temp]  T:29.09 /0.00 B:28.41 /0.00 @:0 B@:0
+02:23:54 [rx] Reporting endstop status
+02:23:54 [rx] x_max: open
+02:23:54 [rx] y_min: open
+02:23:54 [rx] z_probe: TRIGGERED
+02:23:54 [rx] filament: open
+02:23:54 [ok] ok
+02:23:55 [temp]  T:29.57 /0.00 B:28.72 /0.00 @:0 B@:0
+02:23:57 [rx] Reporting endstop status
+02:23:57 [rx] x_max: open
+02:23:57 [rx] y_min: open
+02:23:57 [rx] z_probe: TRIGGERED
+02:23:57 [rx] filament: open
+02:23:57 [ok] ok
+02:23:57 [temp]  T:29.40 /0.00 B:28.86 /0.00 @:0 B@:0
+02:23:59 [temp]  T:29.09 /0.00 B:29.18 /0.00 @:0 B@:0
+02:24:00 [rx] Reporting endstop status
+02:24:00 [rx] x_max: open
+02:24:00 [rx] y_min: open
+02:24:00 [rx] z_probe: TRIGGERED
+02:24:00 [rx] filament: open
+02:24:00 [ok] ok
+02:24:01 [temp]  T:29.69 /0.00 B:29.18 /0.00 @:0 B@:0
+02:24:03 [rx] Reporting endstop status
+02:24:03 [rx] x_max: open
+02:24:03 [rx] y_min: open
+02:24:03 [rx] z_probe: TRIGGERED
+02:24:03 [rx] filament: open
+02:24:03 [ok] ok
+02:24:03 [temp]  T:29.43 /0.00 B:29.01 /0.00 @:0 B@:0
+02:24:05 [temp]  T:29.09 /0.00 B:28.52 /0.00 @:0 B@:0
+02:24:06 [rx] Reporting endstop status
+02:24:06 [rx] x_max: open
+02:24:06 [rx] y_min: open
+02:24:06 [rx] z_probe: TRIGGERED
+02:24:06 [rx] filament: open
+02:24:06 [ok] ok
+02:24:07 [temp]  T:29.91 /0.00 B:28.69 /0.00 @:0 B@:0
+02:24:09 [rx] Reporting endstop status
+02:24:09 [rx] x_max: open
+02:24:09 [rx] y_min: open
+02:24:09 [rx] z_probe: TRIGGERED
+02:24:09 [rx] filament: open
+02:24:09 [ok] ok
+02:24:09 [temp]  T:29.15 /0.00 B:28.98 /0.00 @:0 B@:0
+02:24:11 [temp]  T:29.52 /0.00 B:28.75 /0.00 @:0 B@:0
+02:24:12 [rx] Reporting endstop status
+02:24:12 [rx] x_max: open
+02:24:12 [rx] y_min: open
+02:24:12 [rx] z_probe: TRIGGERED
+02:24:12 [rx] filament: open
+02:24:12 [ok] ok
+02:24:13 [temp]  T:29.57 /0.00 B:28.72 /0.00 @:0 B@:0
+02:24:15 [rx] Reporting endstop status
+02:24:15 [rx] x_max: open
+02:24:15 [rx] y_min: open
+02:24:15 [rx] z_probe: TRIGGERED
+02:24:15 [rx] filament: open
+02:24:15 [ok] ok
+02:24:15 [temp]  T:29.23 /0.00 B:29.12 /0.00 @:0 B@:0
+02:24:17 [temp]  T:29.35 /0.00 B:28.24 /0.00 @:0 B@:0
+02:24:18 [rx] Reporting endstop status
+02:24:18 [rx] x_max: open
+02:24:18 [rx] y_min: open
+02:24:18 [rx] z_probe: TRIGGERED
+02:24:18 [rx] filament: open
+02:24:18 [ok] ok
+02:24:19 [temp]  T:30.18 /0.00 B:28.52 /0.00 @:0 B@:0
+02:24:21 [rx] Reporting endstop status
+02:24:21 [rx] x_max: open
+02:24:21 [rx] y_min: open
+02:24:21 [rx] z_probe: TRIGGERED
+02:24:21 [rx] filament: open
+02:24:21 [ok] ok
+02:24:21 [temp]  T:29.18 /0.00 B:28.55 /0.00 @:0 B@:0
+02:24:23 [temp]  T:29.23 /0.00 B:28.78 /0.00 @:0 B@:0
+02:24:24 [rx] Reporting endstop status
+02:24:24 [rx] x_max: open
+02:24:24 [rx] y_min: open
+02:24:24 [rx] z_probe: TRIGGERED
+02:24:24 [rx] filament: open
+02:24:24 [ok] ok
+02:24:25 [temp]  T:29.52 /0.00 B:28.92 /0.00 @:0 B@:0
+02:24:27 [temp]  T:29.63 /0.00 B:29.09 /0.00 @:0 B@:0
+02:24:27 [rx] Reporting endstop status
+02:24:27 [rx] x_max: open
+02:24:27 [rx] y_min: open
+02:24:27 [rx] z_probe: TRIGGERED
+02:24:27 [rx] filament: open
+02:24:27 [ok] ok
+02:24:29 [temp]  T:29.52 /0.00 B:28.61 /0.00 @:0 B@:0
+02:24:30 [rx] Reporting endstop status
+02:24:30 [rx] x_max: open
+02:24:30 [rx] y_min: open
+02:24:30 [rx] z_probe: TRIGGERED
+02:24:30 [rx] filament: open
+02:24:30 [ok] ok
+02:24:31 [temp]  T:29.49 /0.00 B:28.61 /0.00 @:0 B@:0
+02:24:34 [temp]  T:29.26 /0.00 B:29.43 /0.00 @:0 B@:0
+02:24:34 [rx] Reporting endstop status
+02:24:34 [rx] x_max: open
+02:24:34 [rx] y_min: open
+02:24:34 [rx] z_probe: TRIGGERED
+02:24:34 [rx] filament: open
+02:24:34 [ok] ok
+02:24:35 [temp]  T:29.09 /0.00 B:28.41 /0.00 @:0 B@:0
+02:24:37 [rx] Reporting endstop status
+02:24:37 [rx] x_max: open
+02:24:37 [rx] y_min: open
+02:24:37 [rx] z_probe: TRIGGERED
+02:24:37 [rx] filament: open
+02:24:37 [ok] ok
+02:24:37 [temp]  T:29.72 /0.00 B:28.01 /0.00 @:0 B@:0
+02:24:40 [temp]  T:29.20 /0.00 B:28.98 /0.00 @:0 B@:0
+02:24:40 [rx] Reporting endstop status
+02:24:40 [rx] x_max: open
+02:24:40 [rx] y_min: open
+02:24:40 [rx] z_probe: TRIGGERED
+02:24:40 [rx] filament: open
+02:24:40 [ok] ok
+02:24:41 [temp]  T:29.60 /0.00 B:28.35 /0.00 @:0 B@:0
+02:24:43 [rx] Reporting endstop status
+02:24:43 [rx] x_max: open
+02:24:43 [rx] y_min: open
+02:24:43 [rx] z_probe: TRIGGERED
+02:24:43 [rx] filament: open
+02:24:43 [ok] ok
+02:24:43 [temp]  T:29.69 /0.00 B:29.23 /0.00 @:0 B@:0
+02:24:45 [temp]  T:29.72 /0.00 B:28.75 /0.00 @:0 B@:0
+02:24:46 [rx] Reporting endstop status
+02:24:46 [rx] x_max: open
+02:24:46 [rx] y_min: open
+02:24:46 [rx] z_probe: TRIGGERED
+02:24:46 [rx] filament: open
+02:24:46 [ok] ok
+02:24:47 [temp]  T:29.63 /0.00 B:28.92 /0.00 @:0 B@:0
+02:24:49 [rx] Reporting endstop status
+02:24:49 [rx] x_max: open
+02:24:49 [rx] y_min: open
+02:24:49 [rx] z_probe: TRIGGERED
+02:24:49 [rx] filament: open
+02:24:49 [ok] ok
+02:24:49 [temp]  T:29.49 /0.00 B:29.18 /0.00 @:0 B@:0
+02:24:51 [temp]  T:28.98 /0.00 B:29.72 /0.00 @:0 B@:0
+02:24:52 [rx] Reporting endstop status
+02:24:52 [rx] x_max: open
+02:24:52 [rx] y_min: open
+02:24:52 [rx] z_probe: TRIGGERED
+02:24:52 [rx] filament: open
+02:24:52 [ok] ok
+02:24:53 [temp]  T:29.74 /0.00 B:28.27 /0.00 @:0 B@:0
+02:24:55 [rx] Reporting endstop status
+02:24:55 [rx] x_max: open
+02:24:55 [rx] y_min: open
+02:24:55 [rx] z_probe: TRIGGERED
+02:24:55 [rx] filament: open
+02:24:55 [ok] ok
+02:24:55 [temp]  T:29.20 /0.00 B:28.52 /0.00 @:0 B@:0
+02:24:57 [temp]  T:29.35 /0.00 B:28.98 /0.00 @:0 B@:0
+02:24:58 [rx] Reporting endstop status
+02:24:58 [rx] x_max: open
+02:24:58 [rx] y_min: open
+02:24:58 [rx] z_probe: TRIGGERED
+02:24:58 [rx] filament: open
+02:24:58 [ok] ok
+02:24:59 [temp]  T:29.86 /0.00 B:28.75 /0.00 @:0 B@:0
+02:25:01 [rx] Reporting endstop status
+02:25:01 [rx] x_max: open
+02:25:01 [rx] y_min: open
+02:25:01 [rx] z_probe: TRIGGERED
+02:25:01 [rx] filament: open
+02:25:01 [ok] ok
+02:25:01 [temp]  T:29.49 /0.00 B:29.46 /0.00 @:0 B@:0
+02:25:03 [temp]  T:29.29 /0.00 B:29.18 /0.00 @:0 B@:0
+02:25:04 [rx] Reporting endstop status
+02:25:04 [rx] x_max: open
+02:25:04 [rx] y_min: open
+02:25:04 [rx] z_probe: TRIGGERED
+02:25:04 [rx] filament: open
+02:25:04 [ok] ok
+02:25:05 [temp]  T:29.23 /0.00 B:29.09 /0.00 @:0 B@:0
+02:25:07 [rx] Reporting endstop status
+02:25:07 [rx] x_max: open
+02:25:07 [rx] y_min: open
+02:25:07 [rx] z_probe: TRIGGERED
+02:25:07 [rx] filament: open
+02:25:07 [ok] ok
+02:25:07 [temp]  T:29.35 /0.00 B:29.15 /0.00 @:0 B@:0
+02:25:09 [temp]  T:29.60 /0.00 B:28.92 /0.00 @:0 B@:0
+02:25:10 [rx] Reporting endstop status
+02:25:10 [rx] x_max: open
+02:25:10 [rx] y_min: open
+02:25:10 [rx] z_probe: TRIGGERED
+02:25:10 [rx] filament: open
+02:25:10 [ok] ok
+02:25:11 [temp]  T:29.20 /0.00 B:29.43 /0.00 @:0 B@:0
+02:25:13 [rx] Reporting endstop status
+02:25:13 [rx] x_max: open
+02:25:13 [rx] y_min: open
+02:25:13 [rx] z_probe: TRIGGERED
+02:25:13 [rx] filament: open
+02:25:13 [ok] ok
+02:25:13 [temp]  T:29.46 /0.00 B:28.01 /0.00 @:0 B@:0
+02:25:15 [temp]  T:29.66 /0.00 B:28.81 /0.00 @:0 B@:0
+02:25:16 [rx] Reporting endstop status
+02:25:16 [rx] x_max: open
+02:25:16 [rx] y_min: open
+02:25:16 [rx] z_probe: TRIGGERED
+02:25:16 [rx] filament: open
+02:25:16 [ok] ok
+02:25:17 [temp]  T:29.43 /0.00 B:29.15 /0.00 @:0 B@:0
+02:25:19 [rx] Reporting endstop status
+02:25:19 [rx] x_max: open
+02:25:19 [rx] y_min: open
+02:25:19 [rx] z_probe: TRIGGERED
+02:25:19 [rx] filament: open
+02:25:19 [ok] ok
+02:25:19 [temp]  T:29.35 /0.00 B:28.92 /0.00 @:0 B@:0
+02:25:21 [temp]  T:29.94 /0.00 B:29.09 /0.00 @:0 B@:0
+02:25:22 [rx] Reporting endstop status
+02:25:22 [rx] x_max: open
+02:25:22 [rx] y_min: open
+02:25:22 [rx] z_probe: TRIGGERED
+02:25:22 [rx] filament: open
+02:25:22 [ok] ok
+02:25:23 [temp]  T:29.49 /0.00 B:28.98 /0.00 @:0 B@:0
+02:25:25 [rx] Reporting endstop status
+02:25:25 [rx] x_max: open
+02:25:25 [rx] y_min: open
+02:25:25 [rx] z_probe: TRIGGERED
+02:25:25 [rx] filament: open
+02:25:25 [ok] ok
+02:25:25 [temp]  T:29.15 /0.00 B:28.78 /0.00 @:0 B@:0
+02:25:27 [temp]  T:29.66 /0.00 B:28.32 /0.00 @:0 B@:0
+02:25:28 [rx] Reporting endstop status
+02:25:28 [rx] x_max: open
+02:25:28 [rx] y_min: open
+02:25:28 [rx] z_probe: TRIGGERED
+02:25:28 [rx] filament: open
+02:25:28 [ok] ok
+02:25:29 [temp]  T:29.74 /0.00 B:29.29 /0.00 @:0 B@:0
+02:25:31 [rx] Reporting endstop status
+02:25:31 [rx] x_max: open
+02:25:31 [rx] y_min: open
+02:25:31 [rx] z_probe: TRIGGERED
+02:25:31 [rx] filament: open
+02:25:31 [ok] ok
+02:25:31 [temp]  T:29.77 /0.00 B:29.29 /0.00 @:0 B@:0
+02:25:33 [temp]  T:29.74 /0.00 B:29.23 /0.00 @:0 B@:0
+02:25:34 [rx] Reporting endstop status
+02:25:34 [rx] x_max: open
+02:25:34 [rx] y_min: open
+02:25:34 [rx] z_probe: TRIGGERED
+02:25:34 [rx] filament: open
+02:25:34 [ok] ok
+02:25:35 [temp]  T:29.23 /0.00 B:28.84 /0.00 @:0 B@:0
+02:25:37 [rx] Reporting endstop status
+02:25:37 [rx] x_max: open
+02:25:37 [rx] y_min: open
+02:25:37 [rx] z_probe: TRIGGERED
+02:25:37 [rx] filament: open
+02:25:37 [ok] ok
+02:25:37 [temp]  T:29.12 /0.00 B:29.01 /0.00 @:0 B@:0
+02:25:39 [temp]  T:29.74 /0.00 B:28.64 /0.00 @:0 B@:0
+02:25:40 [rx] Reporting endstop status
+02:25:40 [rx] x_max: open
+02:25:40 [rx] y_min: open
+02:25:40 [rx] z_probe: TRIGGERED
+02:25:40 [rx] filament: open
+02:25:40 [ok] ok
+02:25:41 [temp]  T:29.29 /0.00 B:28.78 /0.00 @:0 B@:0
+02:25:43 [rx] Reporting endstop status
+02:25:43 [rx] x_max: open
+02:25:43 [rx] y_min: open
+02:25:43 [rx] z_probe: TRIGGERED
+02:25:43 [rx] filament: open
+02:25:43 [ok] ok
+02:25:43 [temp]  T:29.35 /0.00 B:28.95 /0.00 @:0 B@:0
+02:25:45 [temp]  T:29.23 /0.00 B:29.09 /0.00 @:0 B@:0
+02:25:46 [rx] Reporting endstop status
+02:25:46 [rx] x_max: open
+02:25:46 [rx] y_min: open
+02:25:46 [rx] z_probe: TRIGGERED
+02:25:46 [rx] filament: open
+02:25:46 [ok] ok
+02:25:47 [temp]  T:29.43 /0.00 B:29.15 /0.00 @:0 B@:0
+02:25:49 [rx] Reporting endstop status
+02:25:49 [rx] x_max: open
+02:25:49 [rx] y_min: open
+02:25:49 [rx] z_probe: TRIGGERED
+02:25:49 [rx] filament: open
+02:25:49 [ok] ok
+02:25:49 [temp]  T:29.40 /0.00 B:28.78 /0.00 @:0 B@:0
+02:25:51 [temp]  T:29.57 /0.00 B:29.23 /0.00 @:0 B@:0
+02:25:52 [rx] Reporting endstop status
+02:25:52 [rx] x_max: open
+02:25:52 [rx] y_min: open
+02:25:52 [rx] z_probe: TRIGGERED
+02:25:52 [rx] filament: open
+02:25:52 [ok] ok
+02:25:53 [temp]  T:29.63 /0.00 B:29.35 /0.00 @:0 B@:0
+02:25:55 [temp]  T:29.43 /0.00 B:29.20 /0.00 @:0 B@:0
+02:25:55 [rx] Reporting endstop status
+02:25:55 [rx] x_max: open
+02:25:55 [rx] y_min: open
+02:25:55 [rx] z_probe: TRIGGERED
+02:25:55 [rx] filament: open
+02:25:55 [ok] ok
+02:25:57 [temp]  T:29.72 /0.00 B:29.26 /0.00 @:0 B@:0
+02:25:58 [rx] Reporting endstop status
+02:25:59 [rx] x_max: open
+02:25:59 [rx] y_min: open
+02:25:59 [rx] z_probe: TRIGGERED
+02:25:59 [rx] filament: open
+02:25:59 [ok] ok
+02:25:59 [temp]  T:29.37 /0.00 B:29.32 /0.00 @:0 B@:0
+02:26:01 [temp]  T:29.37 /0.00 B:28.52 /0.00 @:0 B@:0
+02:26:01 [rx] Reporting endstop status
+02:26:01 [rx] x_max: open
+02:26:01 [rx] y_min: open
+02:26:01 [rx] z_probe: TRIGGERED
+02:26:01 [rx] filament: open
+02:26:01 [ok] ok
+02:26:03 [temp]  T:29.83 /0.00 B:28.24 /0.00 @:0 B@:0
+02:26:05 [rx] Reporting endstop status
+02:26:05 [rx] x_max: open
+02:26:05 [rx] y_min: open
+02:26:05 [rx] z_probe: TRIGGERED
+02:26:05 [rx] filament: open
+02:26:05 [ok] ok
+02:26:05 [temp]  T:29.32 /0.00 B:28.52 /0.00 @:0 B@:0
+02:26:08 [temp]  T:29.52 /0.00 B:28.15 /0.00 @:0 B@:0
+02:26:08 [rx] Reporting endstop status
+02:26:08 [rx] x_max: open
+02:26:08 [rx] y_min: open
+02:26:08 [rx] z_probe: TRIGGERED
+02:26:08 [rx] filament: open
+02:26:08 [ok] ok
+02:26:09 [temp]  T:29.32 /0.00 B:28.30 /0.00 @:0 B@:0
+02:26:11 [rx] Reporting endstop status
+02:26:11 [rx] x_max: open
+02:26:11 [rx] y_min: open
+02:26:11 [rx] z_probe: TRIGGERED
+02:26:11 [rx] filament: open
+02:26:11 [ok] ok
+02:26:11 [temp]  T:29.66 /0.00 B:29.26 /0.00 @:0 B@:0
+02:26:13 [temp]  T:29.49 /0.00 B:29.23 /0.00 @:0 B@:0
+02:26:14 [rx] Reporting endstop status
+02:26:14 [rx] x_max: open
+02:26:14 [rx] y_min: open
+02:26:14 [rx] z_probe: TRIGGERED
+02:26:14 [rx] filament: open
+02:26:14 [ok] ok
+02:26:15 [temp]  T:29.29 /0.00 B:29.15 /0.00 @:0 B@:0
+02:26:17 [rx] Reporting endstop status
+02:26:17 [rx] x_max: open
+02:26:17 [rx] y_min: open
+02:26:17 [rx] z_probe: TRIGGERED
+02:26:17 [rx] filament: open
+02:26:17 [ok] ok
+02:26:17 [temp]  T:29.37 /0.00 B:28.95 /0.00 @:0 B@:0
+02:26:19 [temp]  T:29.46 /0.00 B:28.95 /0.00 @:0 B@:0
+02:26:20 [rx] Reporting endstop status
+02:26:20 [rx] x_max: open
+02:26:20 [rx] y_min: open
+02:26:20 [rx] z_probe: TRIGGERED
+02:26:20 [rx] filament: open
+02:26:20 [ok] ok
+02:26:21 [temp]  T:29.69 /0.00 B:28.81 /0.00 @:0 B@:0
+02:26:23 [rx] Reporting endstop status
+02:26:23 [rx] x_max: open
+02:26:23 [rx] y_min: open
+02:26:23 [rx] z_probe: TRIGGERED
+02:26:23 [rx] filament: open
+02:26:23 [ok] ok
+02:26:23 [temp]  T:29.40 /0.00 B:28.49 /0.00 @:0 B@:0
+02:26:25 [temp]  T:29.43 /0.00 B:28.38 /0.00 @:0 B@:0
+02:26:26 [rx] Reporting endstop status
+02:26:26 [rx] x_max: open
+02:26:26 [rx] y_min: open
+02:26:26 [rx] z_probe: TRIGGERED
+02:26:26 [rx] filament: open
+02:26:26 [ok] ok
+02:26:27 [temp]  T:29.01 /0.00 B:28.47 /0.00 @:0 B@:0
+02:26:29 [rx] Reporting endstop status
+02:26:29 [rx] x_max: open
+02:26:29 [rx] y_min: open
+02:26:29 [rx] z_probe: TRIGGERED
+02:26:29 [rx] filament: open
+02:26:29 [ok] ok
+02:26:29 [temp]  T:29.80 /0.00 B:28.81 /0.00 @:0 B@:0
+02:26:31 [temp]  T:29.35 /0.00 B:28.75 /0.00 @:0 B@:0
+02:26:32 [rx] Reporting endstop status
+02:26:32 [rx] x_max: open
+02:26:32 [rx] y_min: open
+02:26:32 [rx] z_probe: TRIGGERED
+02:26:32 [rx] filament: open
+02:26:32 [ok] ok
+02:26:33 [temp]  T:30.08 /0.00 B:28.30 /0.00 @:0 B@:0
+02:26:35 [rx] Reporting endstop status
+02:26:35 [rx] x_max: open
+02:26:35 [rx] y_min: open
+02:26:35 [rx] z_probe: TRIGGERED
+02:26:35 [rx] filament: open
+02:26:35 [ok] ok
+02:26:35 [temp]  T:28.92 /0.00 B:29.23 /0.00 @:0 B@:0
+02:26:37 [temp]  T:29.40 /0.00 B:28.75 /0.00 @:0 B@:0
+02:26:38 [rx] Reporting endstop status
+02:26:38 [rx] x_max: open
+02:26:38 [rx] y_min: open
+02:26:38 [rx] z_probe: TRIGGERED
+02:26:38 [rx] filament: open
+02:26:38 [ok] ok
+02:26:39 [temp]  T:29.57 /0.00 B:28.66 /0.00 @:0 B@:0
+02:26:41 [rx] Reporting endstop status
+02:26:41 [rx] x_max: open
+02:26:41 [rx] y_min: open
+02:26:41 [rx] z_probe: TRIGGERED
+02:26:41 [rx] filament: open
+02:26:41 [ok] ok
+02:26:41 [temp]  T:29.60 /0.00 B:28.69 /0.00 @:0 B@:0
+02:26:43 [temp]  T:29.55 /0.00 B:29.49 /0.00 @:0 B@:0
+02:26:44 [rx] Reporting endstop status
+02:26:44 [rx] x_max: open
+02:26:44 [rx] y_min: open
+02:26:44 [rx] z_probe: TRIGGERED
+02:26:44 [rx] filament: open
+02:26:44 [ok] ok
+02:26:45 [temp]  T:30.05 /0.00 B:29.09 /0.00 @:0 B@:0
+02:26:47 [rx] Reporting endstop status
+02:26:47 [rx] x_max: open
+02:26:47 [rx] y_min: open
+02:26:47 [rx] z_probe: TRIGGERED
+02:26:47 [rx] filament: open
+02:26:47 [ok] ok
+02:26:47 [temp]  T:29.26 /0.00 B:28.49 /0.00 @:0 B@:0
+02:26:49 [temp]  T:29.74 /0.00 B:28.52 /0.00 @:0 B@:0
+02:26:50 [rx] Reporting endstop status
+02:26:50 [rx] x_max: open
+02:26:50 [rx] y_min: open
+02:26:50 [rx] z_probe: TRIGGERED
+02:26:50 [rx] filament: open
+02:26:50 [ok] ok
+02:26:51 [temp]  T:29.52 /0.00 B:28.84 /0.00 @:0 B@:0
+02:26:53 [rx] Reporting endstop status
+02:26:53 [rx] x_max: open
+02:26:53 [rx] y_min: open
+02:26:53 [rx] z_probe: TRIGGERED
+02:26:53 [rx] filament: open
+02:26:53 [ok] ok
+02:26:53 [temp]  T:29.46 /0.00 B:28.84 /0.00 @:0 B@:0
+02:26:55 [temp]  T:29.69 /0.00 B:29.40 /0.00 @:0 B@:0
+02:26:56 [rx] Reporting endstop status
+02:26:56 [rx] x_max: open
+02:26:56 [rx] y_min: open
+02:26:56 [rx] z_probe: TRIGGERED
+02:26:56 [rx] filament: open
+02:26:56 [ok] ok
+02:26:57 [temp]  T:29.32 /0.00 B:28.95 /0.00 @:0 B@:0
+02:26:59 [rx] Reporting endstop status
+02:26:59 [rx] x_max: open
+02:26:59 [rx] y_min: open
+02:26:59 [rx] z_probe: TRIGGERED
+02:26:59 [rx] filament: open
+02:26:59 [ok] ok
+02:26:59 [temp]  T:29.46 /0.00 B:28.64 /0.00 @:0 B@:0
+02:27:01 [temp]  T:29.66 /0.00 B:28.55 /0.00 @:0 B@:0
+02:27:02 [rx] Reporting endstop status
+02:27:02 [rx] x_max: open
+02:27:02 [rx] y_min: open
+02:27:02 [rx] z_probe: TRIGGERED
+02:27:02 [rx] filament: open
+02:27:02 [ok] ok
+02:27:03 [temp]  T:29.52 /0.00 B:28.47 /0.00 @:0 B@:0
+02:27:05 [rx] Reporting endstop status
+02:27:05 [rx] x_max: open
+02:27:05 [rx] y_min: open
+02:27:05 [rx] z_probe: TRIGGERED
+02:27:05 [rx] filament: open
+02:27:05 [ok] ok
+02:27:05 [temp]  T:29.26 /0.00 B:28.75 /0.00 @:0 B@:0
+02:27:07 [temp]  T:29.46 /0.00 B:28.95 /0.00 @:0 B@:0
+02:27:08 [rx] Reporting endstop status
+02:27:08 [rx] x_max: open
+02:27:08 [rx] y_min: open
+02:27:08 [rx] z_probe: TRIGGERED
+02:27:08 [rx] filament: open
+02:27:08 [ok] ok
+02:27:09 [temp]  T:29.69 /0.00 B:28.64 /0.00 @:0 B@:0
+02:27:11 [rx] Reporting endstop status
+02:27:11 [rx] x_max: open
+02:27:11 [rx] y_min: open
+02:27:11 [rx] z_probe: TRIGGERED
+02:27:11 [rx] filament: open
+02:27:11 [ok] ok
+02:27:11 [temp]  T:29.18 /0.00 B:29.26 /0.00 @:0 B@:0
+02:27:13 [temp]  T:29.35 /0.00 B:29.89 /0.00 @:0 B@:0
+02:27:14 [rx] Reporting endstop status
+02:27:14 [rx] x_max: open
+02:27:14 [rx] y_min: open
+02:27:14 [rx] z_probe: TRIGGERED
+02:27:14 [rx] filament: open
+02:27:14 [ok] ok
+02:27:15 [temp]  T:29.32 /0.00 B:29.03 /0.00 @:0 B@:0
+02:27:17 [rx] Reporting endstop status
+02:27:17 [rx] x_max: open
+02:27:17 [rx] y_min: open
+02:27:17 [rx] z_probe: TRIGGERED
+02:27:17 [rx] filament: open
+02:27:17 [ok] ok
+02:27:17 [temp]  T:29.60 /0.00 B:29.37 /0.00 @:0 B@:0
+02:27:19 [temp]  T:29.03 /0.00 B:28.49 /0.00 @:0 B@:0
+02:27:20 [rx] Reporting endstop status
+02:27:20 [rx] x_max: open
+02:27:20 [rx] y_min: open
+02:27:20 [rx] z_probe: TRIGGERED
+02:27:20 [rx] filament: open
+02:27:20 [ok] ok
+02:27:21 [temp]  T:29.26 /0.00 B:29.49 /0.00 @:0 B@:0
+02:27:23 [rx] Reporting endstop status
+02:27:23 [rx] x_max: open
+02:27:23 [rx] y_min: open
+02:27:23 [rx] z_probe: TRIGGERED
+02:27:23 [rx] filament: open
+02:27:23 [ok] ok
+02:27:23 [temp]  T:29.29 /0.00 B:29.26 /0.00 @:0 B@:0
+02:27:25 [temp]  T:29.86 /0.00 B:29.09 /0.00 @:0 B@:0
+02:27:26 [rx] Reporting endstop status
+02:27:26 [rx] x_max: open
+02:27:26 [rx] y_min: open
+02:27:26 [rx] z_probe: TRIGGERED
+02:27:26 [rx] filament: open
+02:27:26 [ok] ok
+02:27:27 [temp]  T:29.49 /0.00 B:29.52 /0.00 @:0 B@:0
+02:27:29 [temp]  T:29.55 /0.00 B:29.26 /0.00 @:0 B@:0
+02:27:29 [rx] Reporting endstop status
+02:27:29 [rx] x_max: open
+02:27:29 [rx] y_min: open
+02:27:29 [rx] z_probe: TRIGGERED
+02:27:29 [rx] filament: open
+02:27:29 [ok] ok
+02:27:31 [temp]  T:29.32 /0.00 B:28.66 /0.00 @:0 B@:0
+02:27:32 [rx] Reporting endstop status
+02:27:33 [rx] x_max: open
+02:27:33 [rx] y_min: open
+02:27:33 [rx] z_probe: TRIGGERED
+02:27:33 [rx] filament: open
+02:27:33 [ok] ok
+02:27:33 [temp]  T:29.86 /0.00 B:29.01 /0.00 @:0 B@:0
+02:27:36 [temp]  T:29.32 /0.00 B:29.06 /0.00 @:0 B@:0
+02:27:36 [rx] Reporting endstop status
+02:27:36 [rx] x_max: open
+02:27:36 [rx] y_min: open
+02:27:36 [rx] z_probe: TRIGGERED
+02:27:36 [rx] filament: open
+02:27:36 [ok] ok
+02:27:37 [temp]  T:29.52 /0.00 B:28.95 /0.00 @:0 B@:0
+02:27:39 [rx] Reporting endstop status
+02:27:39 [rx] x_max: open
+02:27:39 [rx] y_min: open
+02:27:39 [rx] z_probe: TRIGGERED
+02:27:39 [rx] filament: open
+02:27:39 [ok] ok
+02:27:39 [temp]  T:29.72 /0.00 B:28.52 /0.00 @:0 B@:0
+02:27:42 [temp]  T:29.52 /0.00 B:28.89 /0.00 @:0 B@:0
+02:27:42 [rx] Reporting endstop status
+02:27:42 [rx] x_max: open
+02:27:42 [rx] y_min: open
+02:27:42 [rx] z_probe: TRIGGERED
+02:27:42 [rx] filament: open
+02:27:42 [ok] ok
+02:27:43 [temp]  T:29.32 /0.00 B:29.49 /0.00 @:0 B@:0
+02:27:45 [rx] Reporting endstop status
+02:27:45 [rx] x_max: open
+02:27:45 [rx] y_min: open
+02:27:45 [rx] z_probe: TRIGGERED
+02:27:45 [rx] filament: open
+02:27:45 [ok] ok
+02:27:45 [temp]  T:29.49 /0.00 B:28.84 /0.00 @:0 B@:0
+02:27:47 [temp]  T:29.74 /0.00 B:29.06 /0.00 @:0 B@:0
+02:27:48 [rx] Reporting endstop status
+02:27:48 [rx] x_max: open
+02:27:48 [rx] y_min: open
+02:27:48 [rx] z_probe: TRIGGERED
+02:27:48 [rx] filament: open
+02:27:48 [ok] ok
+02:27:49 [temp]  T:29.46 /0.00 B:29.29 /0.00 @:0 B@:0
+02:27:51 [rx] Reporting endstop status
+02:27:51 [rx] x_max: open
+02:27:51 [rx] y_min: open
+02:27:51 [rx] z_probe: TRIGGERED
+02:27:51 [rx] filament: open
+02:27:51 [ok] ok
+02:27:51 [temp]  T:29.15 /0.00 B:29.01 /0.00 @:0 B@:0
+02:27:53 [temp]  T:29.60 /0.00 B:28.38 /0.00 @:0 B@:0
+02:27:54 [rx] Reporting endstop status
+02:27:54 [rx] x_max: open
+02:27:54 [rx] y_min: open
+02:27:54 [rx] z_probe: TRIGGERED
+02:27:54 [rx] filament: open
+02:27:54 [ok] ok

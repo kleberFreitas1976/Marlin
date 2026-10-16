@@ -28,6 +28,7 @@ import subprocess
 import sys
 import threading
 import time
+from collections import deque
 from pathlib import Path
 import tkinter as tk
 from tkinter import messagebox, ttk
@@ -46,6 +47,7 @@ BAUDRATES = [250000, 115200, 500000, 57600]
 DETECT_TIMEOUT = 3.0          # (s) espera por resposta do M115 ao detectar
 TEMP_REPORT_INTERVAL = 2      # (s) M155 S<n> — auto-report de temperatura
 ENDSTOP_POLL_INTERVAL = 3.0   # (s) M119 periódico quando o monitor está ligado
+OK_TIMEOUT = 45.0             # (s) sem resposta da placa, destrava a fila de envio
 
 LOG_DIR = Path(__file__).resolve().parent / "logs"
 
@@ -199,6 +201,11 @@ class App(tk.Tk):
         self.pos = {"X": 0.0, "Y": 0.0, "Z": 0.0, "E": 0.0}
         self.endstops = {}
         self.last_endstop_poll = 0.0
+        # fila de envio com controle de fluxo por 'ok'
+        self.txq = deque()
+        self.awaiting_ok = False
+        self.last_rx = 0.0
+
         # passos/mm correntes (espelham o firmware; M503 atualiza)
         self.var_steps = {ax: tk.DoubleVar(value=v) for ax, v in
                           (("X", 80.0), ("Y", 80.0), ("Z", 400.0), ("E", 415.0))}
@@ -979,6 +986,10 @@ class App(tk.Tk):
                    command=lambda: self.txt.delete("1.0", "end")).pack(side="left")
         ttk.Button(entry, text="Logs",
                    command=self.open_log_folder).pack(side="left", padx=4)
+        ttk.Button(entry, text="Parar fila",
+                   command=self.clear_queue).pack(side="left")
+        self.lbl_queue = ttk.Label(entry, text="fila: 0", foreground="#666", width=22)
+        self.lbl_queue.pack(side="left", padx=6)
 
         self.history, self.hist_idx = [], 0
         self.log("Console pronto. Clique em 'Localizar placa' para comecar.", "sys")
@@ -1031,12 +1042,51 @@ class App(tk.Tk):
         self._to_file(text, tag)
 
     def send(self, cmd):
+        """Enfileira um comando. O envio real respeita o 'ok' do Marlin.
+
+        O Marlin tem BUFSIZE=4 comandos e nao usa XON/XOFF nesta configuracao.
+        Despejar comandos em rajada estoura o buffer de recepcao e caracteres
+        sao perdidos em silencio -- a placa executa comandos truncados.
+        Por isso so enviamos o proximo depois do 'ok' do anterior.
+        """
         if not self.link.connected:
             self.log("Nao conectado.", "err")
             return
+        self.txq.append(cmd)
+        self._pump()
+
+    def send_now(self, cmd):
+        """Envia imediatamente, furando a fila. So para parada de emergencia."""
+        self.txq.clear()
+        self.awaiting_ok = False
+        self.link.send(cmd)
+
+    def _pump(self):
+        """Envia o proximo comando se o anterior ja foi confirmado."""
+        if self.awaiting_ok or not self.txq or not self.link.connected:
+            self._refresh_queue()
+            return
+        cmd = self.txq.popleft()
         self.log(f">> {cmd}", "tx")
-        if not self.link.send(cmd):
+        if self.link.send(cmd):
+            self.awaiting_ok = True
+            self.last_rx = time.time()
+        else:
             self.log("Falha ao escrever na serial.", "err")
+        self._refresh_queue()
+
+    def _refresh_queue(self):
+        n = len(self.txq)
+        self.lbl_queue.config(
+            text=f"fila: {n}" + ("  (aguardando ok)" if self.awaiting_ok else ""),
+            foreground="#a33" if n > 20 else "#666")
+
+    def clear_queue(self):
+        n = len(self.txq)
+        self.txq.clear()
+        self.awaiting_ok = False
+        self.log(f"Fila limpa ({n} comandos descartados).", "sys")
+        self._refresh_queue()
 
     def send_manual(self):
         cmd = self.var_cmd.get().strip()
@@ -1185,23 +1235,30 @@ class App(tk.Tk):
         if not messagebox.askokcancel(
                 "Teste de velocidade",
                 f"Mover {axes} entre {lo} e {hi} mm, {cyc} vezes, a {spd} mm/s.\n\n"
-                "A maquina PRECISA estar referenciada (G28).\n"
-                "Marque a posicao do carro antes de confirmar."):
+                "A maquina PRECISA estar referenciada (G28) antes.\n"
+                f"O carro vai primeiro para {lo} mm: marque a posicao\n"
+                "ANTES de rodar os ciclos, e confira a marca no fim.\n\n"
+                "Serao enviados comandos um a um, esperando o 'ok' de cada."):
             return
         feed = spd * 60
         start = " ".join(f"{a}{lo}" for a in axes)
         end = " ".join(f"{a}{hi}" for a in axes)
-        self.log(f"Teste: {axes} {lo}<->{hi} x{cyc} a {spd} mm/s (F{feed}). "
-                 f"Ouca se o ronco muda.", "sys")
-        self.send("G90")
+        total = 2 * cyc
+        self.log(f"[VELOC] Inicio: {axes} {lo}<->{hi} mm, {cyc} ciclos "
+                 f"({total} movimentos) a {spd} mm/s (F{feed}).", "sys")
+        self.send("G90")                      # absoluto
+        self.send("M400")                     # esvazia o que estiver pendente
         self.send(f"G1 {start} F{feed}")
+        self.send("M400")
+        self.send("M114")                     # posicao de partida, para o log
         for _ in range(cyc):
             self.send(f"G1 {end} F{feed}")
             self.send(f"G1 {start} F{feed}")
         self.send("M400")
-        self.send("M114")
-        self.log(f"Fim do teste a {spd} mm/s. O carro voltou para a marca? "
-                 f"Se sim, suba a velocidade e repita.", "sys")
+        self.send("M114")                     # deve ser identica a de partida
+        self.log(f"[VELOC] Fim a {spd} mm/s. Os dois M114 devem ser iguais "
+                 f"({lo} mm). Se forem e o carro estiver FORA da marca, "
+                 f"houve perda de passos.", "sys")
 
     def core_single(self, motor):
         """Aciona um unico motor da CoreXY. A = X+Y, B = X-Y."""
@@ -1236,8 +1293,8 @@ class App(tk.Tk):
             self.send(c)
 
     def emergency_stop(self):
-        self.log(">> M112 (PARADA DE EMERGENCIA)", "err")
-        self.link.send("M112")
+        self.log(">> M112 (PARADA DE EMERGENCIA) - fila descartada", "err")
+        self.send_now("M112")
         self.log("A placa precisa ser reiniciada (M999 ou reset) apos o M112.", "sys")
 
     # -- loop de recepção --------------------------------------------------
@@ -1256,11 +1313,19 @@ class App(tk.Tk):
         except queue.Empty:
             pass
 
-        if self.monitoring.get() and self.link.connected:
+        # Destrava se o 'ok' nunca chegar (placa reiniciada, cabo solto...)
+        if self.awaiting_ok and self.last_rx and \
+           time.time() - self.last_rx > OK_TIMEOUT:
+            self.log(f"Sem resposta da placa ha {OK_TIMEOUT}s. "
+                     f"Destravando a fila ({len(self.txq)} pendentes).", "err")
+            self.awaiting_ok = False
+            self._pump()
+
+        if self.monitoring.get() and self.link.connected and not self.txq:
             now = time.time()
             if now - self.last_endstop_poll > ENDSTOP_POLL_INTERVAL:
                 self.last_endstop_poll = now
-                self.link.send("M119")
+                self.send("M119")
 
         self.after(60, self._drain)
 
@@ -1278,10 +1343,17 @@ class App(tk.Tk):
             self.toggle_conn()
 
     def _handle_line(self, line):
+        self.last_rx = time.time()
         if not line:
             return
 
         low = line.lower()
+
+        # Controle de fluxo: 'ok' libera o proximo comando da fila.
+        if low.startswith("ok") or low.startswith("error"):
+            self.awaiting_ok = False
+            self.after(0, self._pump)
+
         tag = "rx"
         if low.startswith("error") or "fail" in low or "kill" in low:
             tag = "err"
