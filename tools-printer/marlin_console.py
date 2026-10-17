@@ -708,7 +708,9 @@ class App(tk.Tk):
                     f"O bico esta a {self.temps['h']:.0f}°C e o Marlin bloqueia\n"
                     "extrusao abaixo de 170°C. Continuar mesmo assim?"):
                 return
-        feed = 300 if ax in "ZE" else self.jog_feed.get()
+        # E a 100 mm/min (1.7 mm/s): em velocidade alta a extrusora patina no
+        # limite de fusao e a medida de passos/mm sai falseada.
+        feed = 100 if ax == "E" else (300 if ax == "Z" else self.jog_feed.get())
         self.cal_commanded = abs(dist)
         self.log(f"[CALIB] {ax}: comandando {dist:+g} mm "
                  f"(passos/mm atual = {self._cal_current():g})", "sys")

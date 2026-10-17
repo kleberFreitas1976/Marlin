@@ -731,7 +731,10 @@
  * Multiple extruders can be assigned to the same pin in which case
  * the fan will turn on when any selected extruder is above the threshold.
  */
-#define E0_AUTO_FAN_PIN -1
+// GPIO148 = conector FAN2 da TinyBee, onde esta o ventilador do dissipador
+// do hotend. Com isto ele liga sozinho acima de EXTRUDER_AUTO_FAN_TEMPERATURE
+// e nao depende de comando do fatiador -- essencial para evitar heat creep.
+#define E0_AUTO_FAN_PIN 148
 #define E1_AUTO_FAN_PIN -1
 #define E2_AUTO_FAN_PIN -1
 #define E3_AUTO_FAN_PIN -1
@@ -741,6 +744,11 @@
 #define E7_AUTO_FAN_PIN -1
 #define CHAMBER_AUTO_FAN_PIN -1
 #define COOLER_AUTO_FAN_PIN -1
+
+// Limita o M106 a UMA ventoinha (FAN0 = conector FAN1 = refrigeracao de peca).
+// Sem isto o FAN2 seria tambem a "fan 1" do M106, e dois mecanismos
+// disputariam o mesmo pino 148.
+#define NUM_M106_FANS 1
 
 #define EXTRUDER_AUTO_FAN_TEMPERATURE 50
 #define EXTRUDER_AUTO_FAN_SPEED 255   // 255 == full speed

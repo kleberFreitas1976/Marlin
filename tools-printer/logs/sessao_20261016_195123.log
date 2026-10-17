@@ -3782,3 +3782,205 @@
 02:23:19 [tx] >> M155 S0
 02:23:19 [sys] Monitoramento desligado.
 02:23:19 [ok] ok
+02:28:08 [sys] Liberando a porta serial para a gravacao...
+02:28:09 [ok] ok
+02:28:09 [sys] C:\Users\kleber.freitas\.platformio\penv\Scripts\pio.exe run -e mks_tinybee -t upload --upload-port COM18
+02:28:21 [sys] c:\tmp\marlin\marlin\src\hal\esp32\hal.h:64:0: warning: "MYSERIAL2" redefined
+02:28:21 [sys] Marlin/src/inc/../HAL/../HAL/ESP32/HAL.h:64:0: warning: "MYSERIAL2" redefined
+02:28:21 [sys] Marlin/src/inc/Warnings.cpp:35:4: warning: #warning "This build does not have access to >= c++17 features." [-Wcpp]
+02:28:21 [sys] Marlin/src/inc/Warnings.cpp:276:6: warning: #warning "Note: Auto-assigned Z2 STEP/DIR/ENABLE_PINs to unused En_STEP/DIR/ENABLE_PINs. (Define NO_AUTO_ASSIGN_WARNING to suppress this warning.)" [-Wcpp]
+02:28:28 [sys] RAM:   [=         ]   9.6% (used 50156 bytes from 524288 bytes)
+02:28:28 [sys] Flash: [===       ]  31.5% (used 1051260 bytes from 3342336 bytes)
+02:28:30 [sys] Wrote 17104 bytes (11191 compressed) at 0x00001000 in 0.4 seconds (effective 306.7 kbit/s)...
+02:28:30 [sys] Hash of data verified.
+02:28:30 [sys] Wrote 3072 bytes (129 compressed) at 0x00008000 in 0.0 seconds (effective 541.1 kbit/s)...
+02:28:30 [sys] Hash of data verified.
+02:28:30 [sys] Wrote 8192 bytes (47 compressed) at 0x0000e000 in 0.1 seconds (effective 803.0 kbit/s)...
+02:28:30 [sys] Hash of data verified.
+02:28:45 [sys] Wrote 1051360 bytes (616193 compressed) at 0x00010000 in 13.2 seconds (effective 636.7 kbit/s)...
+02:28:45 [sys] Hash of data verified.
+02:28:45 [sys] ========================= [SUCCESS] Took 35.69 seconds =========================
+02:28:45 [sys] mks_tinybee    SUCCESS   00:00:35.689
+02:28:45 [ok] PlatformIO: SUCESSO
+02:28:45 [sys] Reconectando em COM18...
+02:28:49 [tx] >> M115
+02:28:49 [rx] FIRMWARE_NAME:Marlin bugfix-2.1.x (Oct 17 2026 02:28:21) SOURCE_CODE_URL:github.com/MarlinFirmware/Marlin PROTOCOL_VERSION:1.0 MACHINE_TYPE:CoreXY TinyBee KINEMATICS:COREXYCartesian EXTRUDER_COUNT:1 UUID:cede2a2f-41a2-4748-9b12-c55c62f367ff
+02:28:49 [rx] Cap:SERIAL_XON_XOFF:0
+02:28:49 [rx] Cap:BINARY_FILE_TRANSFER:0
+02:28:49 [rx] Cap:EEPROM:1
+02:28:49 [rx] Cap:VOLUMETRIC:1
+02:28:49 [rx] Cap:AUTOREPORT_POS:0
+02:28:49 [rx] Cap:AUTOREPORT_TEMP:1
+02:28:49 [rx] Cap:PROGRESS:0
+02:28:49 [rx] Cap:PRINT_JOB:1
+02:28:49 [rx] Cap:AUTOLEVEL:1
+02:28:49 [rx] Cap:RUNOUT:1
+02:28:49 [rx] Cap:Z_PROBE:1
+02:28:49 [rx] Cap:LEVELING_DATA:1
+02:28:49 [rx] Cap:BUILD_PERCENT:0
+02:28:49 [rx] Cap:SOFTWARE_POWER:0
+02:28:49 [rx] Cap:TOGGLE_LIGHTS:0
+02:28:49 [rx] Cap:CASE_LIGHT_BRIGHTNESS:0
+02:28:49 [rx] Cap:EMERGENCY_PARSER:0
+02:28:49 [rx] Cap:HOST_ACTION_COMMANDS:1
+02:28:49 [rx] Cap:PROMPT_SUPPORT:1
+02:28:49 [rx] Cap:SDCARD:0
+02:28:49 [rx] Cap:REPEAT:0
+02:28:49 [rx] Cap:SD_WRITE:0
+02:28:49 [rx] Cap:AUTOREPORT_SD_STATUS:0
+02:28:49 [rx] Cap:LONG_FILENAME:0
+02:28:49 [rx] Cap:LFN_WRITE:0
+02:28:49 [rx] Cap:CUSTOM_FIRMWARE_UPLOAD:0
+02:28:49 [rx] Cap:EXTENDED_M20:0
+02:28:49 [rx] Cap:THERMAL_PROTECTION:1
+02:28:49 [rx] Cap:MOTION_MODES:0
+02:28:49 [rx] Cap:ARCS:1
+02:28:49 [rx] Cap:BABYSTEPPING:0
+02:28:49 [rx] Cap:EP_BABYSTEP:0
+02:28:49 [rx] Cap:CHAMBER_TEMPERATURE:0
+02:28:49 [rx] Cap:COOLER_TEMPERATURE:0
+02:28:49 [rx] Cap:MEATPACK:0
+02:28:49 [rx] Cap:CONFIG_EXPORT:0
+02:28:49 [ok] ok
+02:28:49 [tx] >> M119
+02:28:49 [rx] Reporting endstop status
+02:28:49 [rx] x_max: open
+02:28:49 [rx] y_min: open
+02:28:49 [rx] z_probe: TRIGGERED
+02:28:49 [rx] filament: open
+02:28:49 [ok] ok
+02:29:43 [tx] >> M503
+02:29:43 [sys] echo:; Linear Units:
+02:29:43 [sys] echo:  G21 ; (mm)
+02:29:43 [sys] echo:; Auto Temp Control:
+02:29:43 [sys] echo:  M104 S210 B250 F0.10
+02:29:43 [sys] echo:; Temperature Units:
+02:29:43 [sys] echo:  M149 C ; Units in Celsius
+02:29:43 [sys] echo:; Filament settings (Disabled):
+02:29:43 [sys] echo:  M200 S0 D1.75
+02:29:43 [sys] echo:; Steps per unit:
+02:29:43 [sys] echo:  M92 X80.00 Y80.00 Z400.00 E415.00
+02:29:43 [sys] echo:; Max feedrates (units/s):
+02:29:43 [sys] echo:  M203 X300.00 Y300.00 Z5.00 E25.00
+02:29:43 [sys] echo:; Max Acceleration (units/s2):
+02:29:43 [sys] echo:  M201 X3000.00 Y3000.00 Z100.00 E10000.00
+02:29:43 [sys] echo:; Acceleration (units/s2) (P<print-accel> R<retract-accel> T<travel-accel>):
+02:29:43 [sys] echo:  M204 P3000.00 R3000.00 T3000.00
+02:29:43 [sys] echo:; Advanced (B<min_segment_time_us> S<min_feedrate> T<min_travel_feedrate> J<junc_dev>):
+02:29:43 [sys] echo:  M205 B20000.00 S0.00 T0.00 J0.01
+02:29:43 [sys] echo:; Home offset:
+02:29:43 [sys] echo:  M206 X0.00 Y0.00 Z0.00
+02:29:43 [sys] echo:; Auto Bed Leveling:
+02:29:43 [sys] echo:  M420 S0 Z10.00 ; Leveling OFF
+02:29:43 [sys] echo:  G29 W I0 J0 Z-0.18000
+02:29:43 [sys] echo:  G29 W I1 J0 Z-0.19750
+02:29:43 [sys] echo:  G29 W I2 J0 Z-0.29500
+02:29:43 [sys] echo:  G29 W I0 J1 Z-0.03750
+02:29:43 [sys] echo:  G29 W I1 J1 Z-0.03500
+02:29:43 [sys] echo:  G29 W I2 J1 Z-0.18250
+02:29:43 [sys] echo:  G29 W I0 J2 Z0.06500
+02:29:44 [sys] echo:  G29 W I1 J2 Z0.02000
+02:29:44 [sys] echo:  G29 W I2 J2 Z-0.06250
+02:29:44 [sys] echo:; Hotend PID:
+02:29:44 [sys] echo:  M301 P22.20 I1.08 D114.00
+02:29:44 [sys] echo:; Z-Probe Offset:
+02:29:44 [sys] echo:  M851 X-38.00 Y10.00 Z-0.62 ; (mm)
+02:29:44 [sys] echo:; Filament runout sensor:
+02:29:44 [sys] echo:  M412 S1 ; Sensor ON
+02:29:44 [ok] ok
+02:31:55 [tx] >> M301 P23.97 I1.66 D86.64
+M500
+02:31:55 [ok] ok
+02:31:55 [sys] echo:Settings Stored (602 bytes; crc 57)
+02:31:55 [rx] //action:notification Settings Stored
+02:31:55 [rx] //action:notification Settings Stored
+02:31:55 [ok] ok
+02:33:10 [tx] >> M503
+02:33:10 [sys] echo:; Linear Units:
+02:33:10 [sys] echo:  G21 ; (mm)
+02:33:10 [sys] echo:; Auto Temp Control:
+02:33:10 [sys] echo:  M104 S210 B250 F0.10
+02:33:10 [sys] echo:; Temperature Units:
+02:33:10 [sys] echo:  M149 C ; Units in Celsius
+02:33:10 [sys] echo:; Filament settings (Disabled):
+02:33:10 [sys] echo:  M200 S0 D1.75
+02:33:10 [sys] echo:; Steps per unit:
+02:33:10 [sys] echo:  M92 X80.00 Y80.00 Z400.00 E415.00
+02:33:10 [sys] echo:; Max feedrates (units/s):
+02:33:10 [sys] echo:  M203 X300.00 Y300.00 Z5.00 E25.00
+02:33:10 [sys] echo:; Max Acceleration (units/s2):
+02:33:10 [sys] echo:  M201 X3000.00 Y3000.00 Z100.00 E10000.00
+02:33:10 [sys] echo:; Acceleration (units/s2) (P<print-accel> R<retract-accel> T<travel-accel>):
+02:33:10 [sys] echo:  M204 P3000.00 R3000.00 T3000.00
+02:33:10 [sys] echo:; Advanced (B<min_segment_time_us> S<min_feedrate> T<min_travel_feedrate> J<junc_dev>):
+02:33:10 [sys] echo:  M205 B20000.00 S0.00 T0.00 J0.01
+02:33:10 [sys] echo:; Home offset:
+02:33:10 [sys] echo:  M206 X0.00 Y0.00 Z0.00
+02:33:10 [sys] echo:; Auto Bed Leveling:
+02:33:10 [sys] echo:  M420 S0 Z10.00 ; Leveling OFF
+02:33:10 [sys] echo:  G29 W I0 J0 Z-0.18000
+02:33:10 [sys] echo:  G29 W I1 J0 Z-0.19750
+02:33:10 [sys] echo:  G29 W I2 J0 Z-0.29500
+02:33:10 [sys] echo:  G29 W I0 J1 Z-0.03750
+02:33:10 [sys] echo:  G29 W I1 J1 Z-0.03500
+02:33:10 [sys] echo:  G29 W I2 J1 Z-0.18250
+02:33:10 [sys] echo:  G29 W I0 J2 Z0.06500
+02:33:11 [sys] echo:  G29 W I1 J2 Z0.02000
+02:33:11 [sys] echo:  G29 W I2 J2 Z-0.06250
+02:33:11 [sys] echo:; Hotend PID:
+02:33:11 [sys] echo:  M301 P23.97 I1.66 D86.64
+02:33:11 [sys] echo:; Z-Probe Offset:
+02:33:11 [sys] echo:  M851 X-38.00 Y10.00 Z-0.62 ; (mm)
+02:33:11 [sys] echo:; Filament runout sensor:
+02:33:11 [sys] echo:  M412 S1 ; Sensor ON
+02:33:11 [ok] ok
+02:44:06 [tx] >> M301
+02:44:06 [rx]   M301 P23.97 I1.66 D86.64
+02:44:06 [ok] ok
+02:48:39 [sys] [CALIB] E: comandando -5 mm (passos/mm atual = 415)
+02:48:39 [tx] >> G91
+02:48:39 [ok] ok
+02:48:39 [tx] >> G1 E-5 F300
+02:48:39 [sys] echo:Home XYZ First
+02:48:39 [rx] //action:notification Home XYZ First
+02:48:39 [ok] ok
+02:48:39 [tx] >> G90
+02:48:39 [ok] ok
+02:48:39 [tx] >> M400
+02:48:40 [ok] ok
+02:48:51 [sys] [CALIB] E: comandando -5 mm (passos/mm atual = 415)
+02:48:51 [tx] >> G91
+02:48:51 [ok] ok
+02:48:51 [tx] >> G1 E-5 F300
+02:48:51 [sys] echo:Home XYZ First
+02:48:51 [rx] //action:notification Home XYZ First
+02:48:51 [ok] ok
+02:48:51 [tx] >> G90
+02:48:52 [ok] ok
+02:48:52 [tx] >> M400
+02:48:52 [ok] ok
+02:49:01 [tx] >> G28
+02:49:04 [sys] echo:busy: processing
+02:49:06 [sys] echo:busy: processing
+02:49:08 [sys] echo:busy: processing
+02:49:10 [sys] echo:busy: processing
+02:49:12 [sys] echo:busy: processing
+02:49:14 [sys] echo:busy: processing
+02:49:16 [sys] echo:busy: processing
+02:49:18 [sys] echo:busy: processing
+02:49:20 [sys] echo:busy: processing
+02:49:22 [sys] echo:busy: processing
+02:49:24 [sys] echo:busy: processing
+02:49:26 [sys] echo:busy: processing
+02:49:26 [rx] X:138.00 Y:86.00 Z:10.00 E:0.00 Count A:17920B:4160 Z:4000
+02:49:26 [ok] ok
+02:49:34 [sys] [CALIB] E: comandando -5 mm (passos/mm atual = 415)
+02:49:34 [tx] >> G91
+02:49:34 [ok] ok
+02:49:34 [tx] >> G1 E-5 F300
+02:49:34 [sys] echo: cold extrusion prevented
+02:49:34 [ok] ok
+02:49:34 [tx] >> G90
+02:49:34 [ok] ok
+02:49:34 [tx] >> M400
+02:49:35 [ok] ok
