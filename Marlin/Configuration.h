@@ -1368,6 +1368,7 @@
  * Override with M92 (when enabled below)
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
+// X/Y/Z conferidos na maquina; E conferido com 100mm comandados = 100mm reais.
 #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 415 }  // E0: BMG Two Trees dual drive (3:1) @1/16
 
 /**
