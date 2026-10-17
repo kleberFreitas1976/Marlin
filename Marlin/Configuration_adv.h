@@ -62,9 +62,9 @@
  * A tensao de referencia do ADC varia de placa para placa e pode deslocar a
  * leitura de temperatura em mais de 10 C. Com os termistores DESCONECTADOS,
  * meca a tensao (VDDA) no 2o pino do conector TH1/TH2 e coloque o valor aqui.
- * O valor abaixo e o padrao de pins_MKS_TINYBEE.h - ajuste apos medir.
+ * Valor abaixo JA MEDIDO nesta placa, com multimetro.
  */
-#define ADC_REFERENCE_VOLTAGE 2.565
+#define ADC_REFERENCE_VOLTAGE 2.534   // MEDIDO no 2o pino do TH1 (o padrao do arquivo de pinos era 2.565)
 
 /**
  * Thermocouple sensors are quite sensitive to noise.  Any noise induced in
