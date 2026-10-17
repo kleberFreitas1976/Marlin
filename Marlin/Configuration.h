@@ -725,9 +725,10 @@
     #define DEFAULT_KI_LIST {   1.08,   1.08 }
     #define DEFAULT_KD_LIST { 114.00, 114.00 }
   #else
-    #define DEFAULT_KP  22.20
-    #define DEFAULT_KI   1.08
-    #define DEFAULT_KD 114.00
+    // Medidos na maquina com M303 E0 S210 C8 (8 ciclos), ventoinha de peca desligada.
+    #define DEFAULT_KP  23.97
+    #define DEFAULT_KI   1.66
+    #define DEFAULT_KD  86.64
   #endif
 #else
   #define BANG_MAX 255    // Limit hotend current while in bang-bang mode; 255=full current
