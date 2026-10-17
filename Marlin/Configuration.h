@@ -2081,8 +2081,15 @@
   #define FIL_RUNOUT_ENABLED_DEFAULT true // Enable the sensor on startup. Override with M412 followed by M500.
   #define NUM_RUNOUT_SENSORS   1          // Number of sensors, up to one per extruder. Define a FIL_RUNOUT#_PIN for each.
 
-  #define FIL_RUNOUT_STATE     LOW        // Pin state indicating that filament is NOT present.
-  #define FIL_RUNOUT_PULLUP               // Use internal pullup for filament runout pins.
+  // Verificado na maquina com M119, alternando o filamento:
+  //   COM filamento  -> pino em nivel ALTO
+  //   SEM filamento  -> pino em nivel BAIXO
+  // Logo o estado que indica AUSENCIA de filamento e LOW.
+  #define FIL_RUNOUT_STATE     LOW        // Estado do pino que indica que NAO ha filamento.
+  // Obs.: sem efeito nesta placa. O FIL_RUNOUT_PIN e o GPIO35 do ESP32, que e
+  // entrada-apenas e NAO tem resistor de pull-up interno. O pull-up e externo,
+  // na propria TinyBee (conector MT_DET).
+  #define FIL_RUNOUT_PULLUP               // Usa o pull-up interno nos pinos de fim de filamento.
   //#define FIL_RUNOUT_PULLDOWN           // Use internal pulldown for filament runout pins.
   //#define WATCH_ALL_RUNOUT_SENSORS      // Execute runout script on any triggering sensor, not only for the active extruder.
                                           // This is automatically enabled for MIXING_EXTRUDERs.
