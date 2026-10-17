@@ -1741,8 +1741,8 @@
 // Medido com paquimetro:
 //   X = -38 : probe 38mm a ESQUERDA do bico
 //   Y = +10 : probe 10mm ATRAS do bico
-//   Z =   0 : PROVISORIO, ainda falta medir (probe abaixo do bico = negativo)
-#define NOZZLE_TO_PROBE_OFFSET { -38, 10, 0 } // (mm) X, Y, Z da ponta do bico ao ponto de disparo
+//   Z = -0.62 : probe dispara 0.62mm ACIMA do ponto em que o bico encosta
+#define NOZZLE_TO_PROBE_OFFSET { -38, 10, -0.62 } // (mm) X, Y, Z da ponta do bico ao ponto de disparo
 
 // Enable and set to use a specific tool for probing. Disable to allow any tool.
 #define PROBING_TOOL 0
@@ -1837,7 +1837,10 @@
 #define Z_PROBE_ERROR_TOLERANCE     3 // (mm) Tolerance for early trigger (<= -probe.offset.z + ZPET)
 //#define Z_AFTER_PROBING           5 // (mm) Z position after probing is done
 
-#define Z_PROBE_LOW_POINT          -2 // (mm) Farthest distance below the trigger-point to go before stopping
+// LIMITADO PELO OFFSET PEQUENO: o bico desce no maximo ate |offset Z| + este valor.
+// Com offset -0.62, um valor de -2 levaria o bico a -1.38mm (dentro da mesa).
+// Com -0.5 o bico para a +0.12mm da mesa numa falha de disparo.
+#define Z_PROBE_LOW_POINT        -0.5 // (mm) Maior distancia abaixo do ponto de disparo ate parar
 
 // For M851 provide ranges for adjusting the X, Y, and Z probe offsets
 //#define PROBE_OFFSET_XMIN -50   // (mm)
@@ -1848,7 +1851,7 @@
 //#define PROBE_OFFSET_ZMAX  20   // (mm)
 
 // Enable the M48 repeatability test to test probe accuracy
-//#define Z_MIN_PROBE_REPEATABILITY_TEST
+#define Z_MIN_PROBE_REPEATABILITY_TEST   // M48: mede o desvio-padrao do probe. Critico com offset Z pequeno.
 
 // Before deploy/stow pause for user confirmation
 //#define PAUSE_BEFORE_DEPLOY_STOW
@@ -2241,7 +2244,7 @@
  * leveling immediately after G28.
  */
 //#define RESTORE_LEVELING_AFTER_G28
-//#define ENABLE_LEVELING_AFTER_G28
+#define ENABLE_LEVELING_AFTER_G28   // Sem isto, todo G28 DESLIGA o nivelamento e a malha e ignorada
 
 /**
  * Auto-leveling needs preheating
