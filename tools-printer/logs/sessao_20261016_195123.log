@@ -17198,3 +17198,2966 @@ M500
 04:20:29 [rx] z_probe: TRIGGERED
 04:20:29 [rx] filament: open
 04:20:29 [ok] ok
+04:20:32 [tx] >> M119
+04:20:32 [rx] Reporting endstop status
+04:20:32 [rx] x_max: open
+04:20:32 [rx] y_min: open
+04:20:32 [rx] z_probe: TRIGGERED
+04:20:32 [rx] filament: open
+04:20:32 [ok] ok
+04:20:35 [tx] >> M119
+04:20:35 [rx] Reporting endstop status
+04:20:35 [rx] x_max: open
+04:20:35 [rx] y_min: open
+04:20:35 [rx] z_probe: TRIGGERED
+04:20:35 [rx] filament: open
+04:20:35 [ok] ok
+04:20:38 [tx] >> M119
+04:20:38 [rx] Reporting endstop status
+04:20:38 [rx] x_max: open
+04:20:38 [rx] y_min: open
+04:20:38 [rx] z_probe: TRIGGERED
+04:20:38 [rx] filament: open
+04:20:38 [ok] ok
+04:20:41 [tx] >> M119
+04:20:41 [rx] Reporting endstop status
+04:20:41 [rx] x_max: open
+04:20:41 [rx] y_min: open
+04:20:41 [rx] z_probe: TRIGGERED
+04:20:41 [rx] filament: open
+04:20:41 [ok] ok
+04:20:44 [tx] >> M119
+04:20:44 [rx] Reporting endstop status
+04:20:44 [rx] x_max: open
+04:20:44 [rx] y_min: open
+04:20:44 [rx] z_probe: TRIGGERED
+04:20:44 [rx] filament: open
+04:20:44 [ok] ok
+04:20:47 [tx] >> M119
+04:20:47 [rx] Reporting endstop status
+04:20:47 [rx] x_max: open
+04:20:47 [rx] y_min: open
+04:20:47 [rx] z_probe: TRIGGERED
+04:20:47 [rx] filament: open
+04:20:47 [ok] ok
+04:20:50 [tx] >> M119
+04:20:50 [rx] Reporting endstop status
+04:20:50 [rx] x_max: open
+04:20:50 [rx] y_min: open
+04:20:50 [rx] z_probe: TRIGGERED
+04:20:50 [rx] filament: open
+04:20:50 [ok] ok
+04:20:53 [tx] >> M119
+04:20:53 [rx] Reporting endstop status
+04:20:53 [rx] x_max: open
+04:20:53 [rx] y_min: open
+04:20:53 [rx] z_probe: TRIGGERED
+04:20:53 [rx] filament: open
+04:20:53 [ok] ok
+04:20:56 [tx] >> M119
+04:20:56 [rx] Reporting endstop status
+04:20:56 [rx] x_max: open
+04:20:56 [rx] y_min: open
+04:20:56 [rx] z_probe: TRIGGERED
+04:20:56 [rx] filament: open
+04:20:56 [ok] ok
+04:20:59 [tx] >> M119
+04:20:59 [rx] Reporting endstop status
+04:20:59 [rx] x_max: open
+04:20:59 [rx] y_min: open
+04:20:59 [rx] z_probe: TRIGGERED
+04:20:59 [rx] filament: open
+04:20:59 [ok] ok
+04:21:02 [tx] >> M119
+04:21:02 [rx] Reporting endstop status
+04:21:02 [rx] x_max: open
+04:21:02 [rx] y_min: open
+04:21:02 [rx] z_probe: TRIGGERED
+04:21:02 [rx] filament: open
+04:21:02 [ok] ok
+04:21:05 [tx] >> M119
+04:21:05 [rx] Reporting endstop status
+04:21:05 [rx] x_max: open
+04:21:05 [rx] y_min: open
+04:21:05 [rx] z_probe: TRIGGERED
+04:21:05 [rx] filament: open
+04:21:05 [ok] ok
+04:21:08 [tx] >> M119
+04:21:08 [rx] Reporting endstop status
+04:21:08 [rx] x_max: open
+04:21:08 [rx] y_min: open
+04:21:08 [rx] z_probe: TRIGGERED
+04:21:08 [rx] filament: open
+04:21:08 [ok] ok
+04:21:11 [tx] >> M119
+04:21:11 [rx] Reporting endstop status
+04:21:11 [rx] x_max: open
+04:21:11 [rx] y_min: open
+04:21:11 [rx] z_probe: TRIGGERED
+04:21:11 [rx] filament: open
+04:21:11 [ok] ok
+04:21:14 [tx] >> M119
+04:21:14 [rx] Reporting endstop status
+04:21:14 [rx] x_max: open
+04:21:14 [rx] y_min: open
+04:21:14 [rx] z_probe: TRIGGERED
+04:21:14 [rx] filament: open
+04:21:14 [ok] ok
+04:21:17 [tx] >> M119
+04:21:17 [rx] Reporting endstop status
+04:21:17 [rx] x_max: open
+04:21:17 [rx] y_min: open
+04:21:17 [rx] z_probe: TRIGGERED
+04:21:17 [rx] filament: open
+04:21:17 [ok] ok
+04:21:20 [tx] >> M119
+04:21:20 [rx] Reporting endstop status
+04:21:20 [rx] x_max: open
+04:21:20 [rx] y_min: open
+04:21:20 [rx] z_probe: TRIGGERED
+04:21:20 [rx] filament: open
+04:21:20 [ok] ok
+04:21:23 [tx] >> M119
+04:21:24 [rx] Reporting endstop status
+04:21:24 [rx] x_max: open
+04:21:24 [rx] y_min: open
+04:21:24 [rx] z_probe: TRIGGERED
+04:21:24 [rx] filament: open
+04:21:24 [ok] ok
+04:21:26 [tx] >> M119
+04:21:27 [rx] Reporting endstop status
+04:21:27 [rx] x_max: open
+04:21:27 [rx] y_min: open
+04:21:27 [rx] z_probe: TRIGGERED
+04:21:27 [rx] filament: open
+04:21:27 [ok] ok
+04:21:29 [tx] >> M119
+04:21:30 [rx] Reporting endstop status
+04:21:30 [rx] x_max: open
+04:21:30 [rx] y_min: open
+04:21:30 [rx] z_probe: TRIGGERED
+04:21:30 [rx] filament: open
+04:21:30 [ok] ok
+04:21:32 [tx] >> M119
+04:21:33 [rx] Reporting endstop status
+04:21:33 [rx] x_max: open
+04:21:33 [rx] y_min: open
+04:21:33 [rx] z_probe: TRIGGERED
+04:21:33 [rx] filament: open
+04:21:33 [ok] ok
+04:21:35 [tx] >> M119
+04:21:36 [rx] Reporting endstop status
+04:21:36 [rx] x_max: open
+04:21:36 [rx] y_min: open
+04:21:36 [rx] z_probe: TRIGGERED
+04:21:36 [rx] filament: open
+04:21:36 [ok] ok
+04:21:38 [tx] >> M119
+04:21:39 [rx] Reporting endstop status
+04:21:39 [rx] x_max: open
+04:21:39 [rx] y_min: open
+04:21:39 [rx] z_probe: TRIGGERED
+04:21:39 [rx] filament: open
+04:21:39 [ok] ok
+04:21:41 [tx] >> M119
+04:21:42 [rx] Reporting endstop status
+04:21:42 [rx] x_max: open
+04:21:42 [rx] y_min: open
+04:21:42 [rx] z_probe: TRIGGERED
+04:21:42 [rx] filament: open
+04:21:42 [ok] ok
+04:21:44 [tx] >> M119
+04:21:45 [rx] Reporting endstop status
+04:21:45 [rx] x_max: open
+04:21:45 [rx] y_min: open
+04:21:45 [rx] z_probe: TRIGGERED
+04:21:45 [rx] filament: open
+04:21:45 [ok] ok
+04:21:47 [tx] >> M119
+04:21:48 [rx] Reporting endstop status
+04:21:48 [rx] x_max: open
+04:21:48 [rx] y_min: open
+04:21:48 [rx] z_probe: TRIGGERED
+04:21:48 [rx] filament: open
+04:21:48 [ok] ok
+04:21:51 [tx] >> M119
+04:21:51 [rx] Reporting endstop status
+04:21:51 [rx] x_max: open
+04:21:51 [rx] y_min: open
+04:21:51 [rx] z_probe: TRIGGERED
+04:21:51 [rx] filament: open
+04:21:51 [ok] ok
+04:21:54 [tx] >> M119
+04:21:54 [rx] Reporting endstop status
+04:21:54 [rx] x_max: open
+04:21:54 [rx] y_min: open
+04:21:54 [rx] z_probe: TRIGGERED
+04:21:54 [rx] filament: open
+04:21:54 [ok] ok
+04:21:57 [tx] >> M119
+04:21:57 [rx] Reporting endstop status
+04:21:57 [rx] x_max: open
+04:21:57 [rx] y_min: open
+04:21:57 [rx] z_probe: TRIGGERED
+04:21:57 [rx] filament: open
+04:21:57 [ok] ok
+04:22:00 [tx] >> M119
+04:22:00 [rx] Reporting endstop status
+04:22:00 [rx] x_max: open
+04:22:00 [rx] y_min: open
+04:22:00 [rx] z_probe: TRIGGERED
+04:22:00 [rx] filament: open
+04:22:00 [ok] ok
+04:22:03 [tx] >> M119
+04:22:03 [rx] Reporting endstop status
+04:22:03 [rx] x_max: open
+04:22:03 [rx] y_min: open
+04:22:03 [rx] z_probe: TRIGGERED
+04:22:03 [rx] filament: open
+04:22:03 [ok] ok
+04:22:06 [tx] >> M119
+04:22:06 [rx] Reporting endstop status
+04:22:06 [rx] x_max: open
+04:22:06 [rx] y_min: open
+04:22:06 [rx] z_probe: TRIGGERED
+04:22:06 [rx] filament: open
+04:22:06 [ok] ok
+04:22:09 [tx] >> M119
+04:22:09 [rx] Reporting endstop status
+04:22:09 [rx] x_max: open
+04:22:09 [rx] y_min: open
+04:22:09 [rx] z_probe: TRIGGERED
+04:22:09 [rx] filament: open
+04:22:09 [ok] ok
+04:22:12 [tx] >> M119
+04:22:12 [rx] Reporting endstop status
+04:22:12 [rx] x_max: open
+04:22:12 [rx] y_min: open
+04:22:12 [rx] z_probe: TRIGGERED
+04:22:12 [rx] filament: open
+04:22:12 [ok] ok
+04:22:15 [tx] >> M119
+04:22:15 [rx] Reporting endstop status
+04:22:15 [rx] x_max: open
+04:22:15 [rx] y_min: open
+04:22:15 [rx] z_probe: TRIGGERED
+04:22:15 [rx] filament: open
+04:22:15 [ok] ok
+04:22:18 [tx] >> M119
+04:22:18 [rx] Reporting endstop status
+04:22:18 [rx] x_max: open
+04:22:18 [rx] y_min: open
+04:22:18 [rx] z_probe: TRIGGERED
+04:22:18 [rx] filament: open
+04:22:18 [ok] ok
+04:22:21 [tx] >> M119
+04:22:21 [rx] Reporting endstop status
+04:22:21 [rx] x_max: open
+04:22:21 [rx] y_min: open
+04:22:21 [rx] z_probe: TRIGGERED
+04:22:21 [rx] filament: open
+04:22:21 [ok] ok
+04:22:24 [tx] >> M119
+04:22:24 [rx] Reporting endstop status
+04:22:24 [rx] x_max: open
+04:22:24 [rx] y_min: open
+04:22:24 [rx] z_probe: TRIGGERED
+04:22:24 [rx] filament: open
+04:22:24 [ok] ok
+04:22:27 [tx] >> M119
+04:22:27 [rx] Reporting endstop status
+04:22:27 [rx] x_max: open
+04:22:27 [rx] y_min: open
+04:22:27 [rx] z_probe: TRIGGERED
+04:22:27 [rx] filament: open
+04:22:27 [ok] ok
+04:22:30 [tx] >> M119
+04:22:30 [rx] Reporting endstop status
+04:22:30 [rx] x_max: open
+04:22:30 [rx] y_min: open
+04:22:30 [rx] z_probe: TRIGGERED
+04:22:30 [rx] filament: open
+04:22:30 [ok] ok
+04:22:33 [tx] >> M119
+04:22:33 [rx] Reporting endstop status
+04:22:33 [rx] x_max: open
+04:22:33 [rx] y_min: open
+04:22:33 [rx] z_probe: TRIGGERED
+04:22:33 [rx] filament: open
+04:22:33 [ok] ok
+04:22:36 [tx] >> M119
+04:22:36 [rx] Reporting endstop status
+04:22:36 [rx] x_max: open
+04:22:36 [rx] y_min: open
+04:22:36 [rx] z_probe: TRIGGERED
+04:22:36 [rx] filament: open
+04:22:36 [ok] ok
+04:22:39 [tx] >> M119
+04:22:39 [rx] Reporting endstop status
+04:22:39 [rx] x_max: open
+04:22:39 [rx] y_min: open
+04:22:39 [rx] z_probe: TRIGGERED
+04:22:39 [rx] filament: open
+04:22:39 [ok] ok
+04:22:42 [tx] >> M119
+04:22:42 [rx] Reporting endstop status
+04:22:42 [rx] x_max: open
+04:22:42 [rx] y_min: open
+04:22:42 [rx] z_probe: TRIGGERED
+04:22:42 [rx] filament: open
+04:22:42 [ok] ok
+04:22:45 [tx] >> M119
+04:22:45 [rx] Reporting endstop status
+04:22:45 [rx] x_max: open
+04:22:45 [rx] y_min: open
+04:22:45 [rx] z_probe: TRIGGERED
+04:22:45 [rx] filament: open
+04:22:45 [ok] ok
+04:22:48 [tx] >> M119
+04:22:48 [rx] Reporting endstop status
+04:22:48 [rx] x_max: open
+04:22:48 [rx] y_min: open
+04:22:48 [rx] z_probe: TRIGGERED
+04:22:48 [rx] filament: open
+04:22:48 [ok] ok
+04:22:51 [tx] >> M119
+04:22:51 [rx] Reporting endstop status
+04:22:51 [rx] x_max: open
+04:22:51 [rx] y_min: open
+04:22:51 [rx] z_probe: TRIGGERED
+04:22:51 [rx] filament: open
+04:22:51 [ok] ok
+04:22:54 [tx] >> M119
+04:22:54 [rx] Reporting endstop status
+04:22:54 [rx] x_max: open
+04:22:54 [rx] y_min: open
+04:22:54 [rx] z_probe: TRIGGERED
+04:22:54 [rx] filament: open
+04:22:54 [ok] ok
+04:22:57 [tx] >> M119
+04:22:57 [rx] Reporting endstop status
+04:22:57 [rx] x_max: open
+04:22:57 [rx] y_min: open
+04:22:57 [rx] z_probe: TRIGGERED
+04:22:57 [rx] filament: open
+04:22:57 [ok] ok
+04:23:00 [tx] >> M119
+04:23:01 [rx] Reporting endstop status
+04:23:01 [rx] x_max: open
+04:23:01 [rx] y_min: open
+04:23:01 [rx] z_probe: TRIGGERED
+04:23:01 [rx] filament: open
+04:23:01 [ok] ok
+04:23:03 [tx] >> M119
+04:23:04 [rx] Reporting endstop status
+04:23:04 [rx] x_max: open
+04:23:04 [rx] y_min: open
+04:23:04 [rx] z_probe: TRIGGERED
+04:23:04 [rx] filament: open
+04:23:04 [ok] ok
+04:23:06 [tx] >> M119
+04:23:07 [rx] Reporting endstop status
+04:23:07 [rx] x_max: open
+04:23:07 [rx] y_min: open
+04:23:07 [rx] z_probe: TRIGGERED
+04:23:07 [rx] filament: open
+04:23:07 [ok] ok
+04:23:09 [tx] >> M119
+04:23:10 [rx] Reporting endstop status
+04:23:10 [rx] x_max: open
+04:23:10 [rx] y_min: open
+04:23:10 [rx] z_probe: TRIGGERED
+04:23:10 [rx] filament: open
+04:23:10 [ok] ok
+04:23:12 [tx] >> M119
+04:23:13 [rx] Reporting endstop status
+04:23:13 [rx] x_max: open
+04:23:13 [rx] y_min: open
+04:23:13 [rx] z_probe: TRIGGERED
+04:23:13 [rx] filament: open
+04:23:13 [ok] ok
+04:23:15 [tx] >> M119
+04:23:16 [rx] Reporting endstop status
+04:23:16 [rx] x_max: open
+04:23:16 [rx] y_min: open
+04:23:16 [rx] z_probe: TRIGGERED
+04:23:16 [rx] filament: open
+04:23:16 [ok] ok
+04:23:18 [tx] >> M119
+04:23:19 [rx] Reporting endstop status
+04:23:19 [rx] x_max: open
+04:23:19 [rx] y_min: open
+04:23:19 [rx] z_probe: TRIGGERED
+04:23:19 [rx] filament: open
+04:23:19 [ok] ok
+04:23:21 [tx] >> M119
+04:23:22 [rx] Reporting endstop status
+04:23:22 [rx] x_max: open
+04:23:22 [rx] y_min: open
+04:23:22 [rx] z_probe: TRIGGERED
+04:23:22 [rx] filament: open
+04:23:22 [ok] ok
+04:23:25 [tx] >> M119
+04:23:25 [rx] Reporting endstop status
+04:23:25 [rx] x_max: open
+04:23:25 [rx] y_min: open
+04:23:25 [rx] z_probe: TRIGGERED
+04:23:25 [rx] filament: open
+04:23:25 [ok] ok
+04:23:28 [tx] >> M119
+04:23:28 [rx] Reporting endstop status
+04:23:28 [rx] x_max: open
+04:23:28 [rx] y_min: open
+04:23:28 [rx] z_probe: TRIGGERED
+04:23:28 [rx] filament: open
+04:23:28 [ok] ok
+04:23:31 [tx] >> M119
+04:23:31 [rx] Reporting endstop status
+04:23:31 [rx] x_max: open
+04:23:31 [rx] y_min: open
+04:23:31 [rx] z_probe: TRIGGERED
+04:23:31 [rx] filament: open
+04:23:31 [ok] ok
+04:23:34 [tx] >> M119
+04:23:34 [rx] Reporting endstop status
+04:23:34 [rx] x_max: open
+04:23:34 [rx] y_min: open
+04:23:34 [rx] z_probe: TRIGGERED
+04:23:34 [rx] filament: open
+04:23:34 [ok] ok
+04:23:37 [tx] >> M119
+04:23:37 [rx] Reporting endstop status
+04:23:37 [rx] x_max: open
+04:23:37 [rx] y_min: open
+04:23:37 [rx] z_probe: TRIGGERED
+04:23:37 [rx] filament: open
+04:23:37 [ok] ok
+04:23:40 [tx] >> M119
+04:23:40 [rx] Reporting endstop status
+04:23:40 [rx] x_max: open
+04:23:40 [rx] y_min: open
+04:23:40 [rx] z_probe: TRIGGERED
+04:23:40 [rx] filament: open
+04:23:40 [ok] ok
+04:23:43 [tx] >> M119
+04:23:43 [rx] Reporting endstop status
+04:23:43 [rx] x_max: open
+04:23:43 [rx] y_min: open
+04:23:43 [rx] z_probe: TRIGGERED
+04:23:43 [rx] filament: open
+04:23:43 [ok] ok
+04:23:46 [tx] >> M119
+04:23:46 [rx] Reporting endstop status
+04:23:46 [rx] x_max: open
+04:23:46 [rx] y_min: open
+04:23:46 [rx] z_probe: TRIGGERED
+04:23:46 [rx] filament: open
+04:23:46 [ok] ok
+04:23:49 [tx] >> M119
+04:23:49 [rx] Reporting endstop status
+04:23:49 [rx] x_max: open
+04:23:49 [rx] y_min: open
+04:23:49 [rx] z_probe: TRIGGERED
+04:23:49 [rx] filament: open
+04:23:49 [ok] ok
+04:23:52 [tx] >> M119
+04:23:52 [rx] Reporting endstop status
+04:23:52 [rx] x_max: open
+04:23:52 [rx] y_min: open
+04:23:52 [rx] z_probe: TRIGGERED
+04:23:52 [rx] filament: open
+04:23:52 [ok] ok
+04:23:55 [tx] >> M119
+04:23:55 [rx] Reporting endstop status
+04:23:55 [rx] x_max: open
+04:23:55 [rx] y_min: open
+04:23:55 [rx] z_probe: TRIGGERED
+04:23:55 [rx] filament: open
+04:23:55 [ok] ok
+04:23:58 [tx] >> M119
+04:23:58 [rx] Reporting endstop status
+04:23:58 [rx] x_max: open
+04:23:58 [rx] y_min: open
+04:23:58 [rx] z_probe: TRIGGERED
+04:23:58 [rx] filament: open
+04:23:58 [ok] ok
+04:24:01 [tx] >> M119
+04:24:01 [rx] Reporting endstop status
+04:24:01 [rx] x_max: open
+04:24:01 [rx] y_min: open
+04:24:01 [rx] z_probe: TRIGGERED
+04:24:01 [rx] filament: open
+04:24:01 [ok] ok
+04:24:04 [tx] >> M119
+04:24:04 [rx] Reporting endstop status
+04:24:04 [rx] x_max: open
+04:24:04 [rx] y_min: open
+04:24:04 [rx] z_probe: TRIGGERED
+04:24:04 [rx] filament: open
+04:24:04 [ok] ok
+04:24:07 [tx] >> M119
+04:24:07 [rx] Reporting endstop status
+04:24:07 [rx] x_max: open
+04:24:07 [rx] y_min: open
+04:24:07 [rx] z_probe: TRIGGERED
+04:24:07 [rx] filament: open
+04:24:07 [ok] ok
+04:24:10 [tx] >> M119
+04:24:10 [rx] Reporting endstop status
+04:24:10 [rx] x_max: open
+04:24:10 [rx] y_min: open
+04:24:10 [rx] z_probe: TRIGGERED
+04:24:10 [rx] filament: open
+04:24:10 [ok] ok
+04:24:13 [tx] >> M119
+04:24:13 [rx] Reporting endstop status
+04:24:13 [rx] x_max: open
+04:24:13 [rx] y_min: open
+04:24:13 [rx] z_probe: TRIGGERED
+04:24:13 [rx] filament: open
+04:24:13 [ok] ok
+04:24:16 [tx] >> M119
+04:24:16 [rx] Reporting endstop status
+04:24:16 [rx] x_max: open
+04:24:16 [rx] y_min: open
+04:24:16 [rx] z_probe: TRIGGERED
+04:24:16 [rx] filament: open
+04:24:16 [ok] ok
+04:24:19 [tx] >> M119
+04:24:19 [rx] Reporting endstop status
+04:24:19 [rx] x_max: open
+04:24:19 [rx] y_min: open
+04:24:19 [rx] z_probe: TRIGGERED
+04:24:19 [rx] filament: open
+04:24:19 [ok] ok
+04:24:22 [tx] >> M119
+04:24:22 [rx] Reporting endstop status
+04:24:22 [rx] x_max: open
+04:24:22 [rx] y_min: open
+04:24:22 [rx] z_probe: TRIGGERED
+04:24:22 [rx] filament: open
+04:24:22 [ok] ok
+04:24:25 [tx] >> M119
+04:24:25 [rx] Reporting endstop status
+04:24:25 [rx] x_max: open
+04:24:25 [rx] y_min: open
+04:24:25 [rx] z_probe: TRIGGERED
+04:24:25 [rx] filament: open
+04:24:25 [ok] ok
+04:24:28 [tx] >> M119
+04:24:28 [rx] Reporting endstop status
+04:24:28 [rx] x_max: open
+04:24:28 [rx] y_min: open
+04:24:28 [rx] z_probe: TRIGGERED
+04:24:28 [rx] filament: open
+04:24:28 [ok] ok
+04:24:31 [tx] >> M119
+04:24:31 [rx] Reporting endstop status
+04:24:31 [rx] x_max: open
+04:24:31 [rx] y_min: open
+04:24:32 [rx] z_probe: TRIGGERED
+04:24:32 [rx] filament: open
+04:24:32 [ok] ok
+04:24:34 [tx] >> M119
+04:24:35 [rx] Reporting endstop status
+04:24:35 [rx] x_max: open
+04:24:35 [rx] y_min: open
+04:24:35 [rx] z_probe: TRIGGERED
+04:24:35 [rx] filament: open
+04:24:35 [ok] ok
+04:24:37 [tx] >> M119
+04:24:38 [rx] Reporting endstop status
+04:24:38 [rx] x_max: open
+04:24:38 [rx] y_min: open
+04:24:38 [rx] z_probe: TRIGGERED
+04:24:38 [rx] filament: open
+04:24:38 [ok] ok
+04:24:40 [tx] >> M119
+04:24:41 [rx] Reporting endstop status
+04:24:41 [rx] x_max: open
+04:24:41 [rx] y_min: open
+04:24:41 [rx] z_probe: TRIGGERED
+04:24:41 [rx] filament: open
+04:24:41 [ok] ok
+04:24:43 [tx] >> M119
+04:24:44 [rx] Reporting endstop status
+04:24:44 [rx] x_max: open
+04:24:44 [rx] y_min: open
+04:24:44 [rx] z_probe: TRIGGERED
+04:24:44 [rx] filament: open
+04:24:44 [ok] ok
+04:24:46 [tx] >> M119
+04:24:47 [rx] Reporting endstop status
+04:24:47 [rx] x_max: open
+04:24:47 [rx] y_min: open
+04:24:47 [rx] z_probe: TRIGGERED
+04:24:47 [rx] filament: open
+04:24:47 [ok] ok
+04:24:49 [tx] >> M119
+04:24:50 [rx] Reporting endstop status
+04:24:50 [rx] x_max: open
+04:24:50 [rx] y_min: open
+04:24:50 [rx] z_probe: TRIGGERED
+04:24:50 [rx] filament: open
+04:24:50 [ok] ok
+04:24:52 [tx] >> M119
+04:24:53 [rx] Reporting endstop status
+04:24:53 [rx] x_max: open
+04:24:53 [rx] y_min: open
+04:24:53 [rx] z_probe: TRIGGERED
+04:24:53 [rx] filament: open
+04:24:53 [ok] ok
+04:24:55 [tx] >> M119
+04:24:56 [rx] Reporting endstop status
+04:24:56 [rx] x_max: open
+04:24:56 [rx] y_min: open
+04:24:56 [rx] z_probe: TRIGGERED
+04:24:56 [rx] filament: open
+04:24:56 [ok] ok
+04:24:59 [tx] >> M119
+04:24:59 [rx] Reporting endstop status
+04:24:59 [rx] x_max: open
+04:24:59 [rx] y_min: open
+04:24:59 [rx] z_probe: TRIGGERED
+04:24:59 [rx] filament: open
+04:24:59 [ok] ok
+04:25:02 [tx] >> M119
+04:25:02 [rx] Reporting endstop status
+04:25:02 [rx] x_max: open
+04:25:02 [rx] y_min: open
+04:25:02 [rx] z_probe: TRIGGERED
+04:25:02 [rx] filament: open
+04:25:02 [ok] ok
+04:25:05 [tx] >> M119
+04:25:05 [rx] Reporting endstop status
+04:25:05 [rx] x_max: open
+04:25:05 [rx] y_min: open
+04:25:05 [rx] z_probe: TRIGGERED
+04:25:05 [rx] filament: open
+04:25:05 [ok] ok
+04:25:08 [tx] >> M119
+04:25:08 [rx] Reporting endstop status
+04:25:08 [rx] x_max: open
+04:25:08 [rx] y_min: open
+04:25:08 [rx] z_probe: TRIGGERED
+04:25:08 [rx] filament: open
+04:25:08 [ok] ok
+04:25:11 [tx] >> M119
+04:25:11 [rx] Reporting endstop status
+04:25:11 [rx] x_max: open
+04:25:11 [rx] y_min: open
+04:25:11 [rx] z_probe: TRIGGERED
+04:25:11 [rx] filament: open
+04:25:11 [ok] ok
+04:25:14 [tx] >> M119
+04:25:14 [rx] Reporting endstop status
+04:25:14 [rx] x_max: open
+04:25:14 [rx] y_min: open
+04:25:14 [rx] z_probe: TRIGGERED
+04:25:14 [rx] filament: open
+04:25:14 [ok] ok
+04:25:17 [tx] >> M119
+04:25:17 [rx] Reporting endstop status
+04:25:17 [rx] x_max: open
+04:25:17 [rx] y_min: open
+04:25:17 [rx] z_probe: TRIGGERED
+04:25:17 [rx] filament: open
+04:25:17 [ok] ok
+04:25:20 [tx] >> M119
+04:25:20 [rx] Reporting endstop status
+04:25:20 [rx] x_max: open
+04:25:20 [rx] y_min: open
+04:25:20 [rx] z_probe: TRIGGERED
+04:25:20 [rx] filament: open
+04:25:20 [ok] ok
+04:25:23 [tx] >> M119
+04:25:23 [rx] Reporting endstop status
+04:25:23 [rx] x_max: open
+04:25:23 [rx] y_min: open
+04:25:23 [rx] z_probe: TRIGGERED
+04:25:23 [rx] filament: open
+04:25:23 [ok] ok
+04:25:26 [tx] >> M119
+04:25:26 [rx] Reporting endstop status
+04:25:26 [rx] x_max: open
+04:25:26 [rx] y_min: open
+04:25:26 [rx] z_probe: TRIGGERED
+04:25:26 [rx] filament: open
+04:25:26 [ok] ok
+04:25:29 [tx] >> M119
+04:25:29 [rx] Reporting endstop status
+04:25:29 [rx] x_max: open
+04:25:29 [rx] y_min: open
+04:25:29 [rx] z_probe: TRIGGERED
+04:25:29 [rx] filament: open
+04:25:29 [ok] ok
+04:25:32 [tx] >> M119
+04:25:32 [rx] Reporting endstop status
+04:25:32 [rx] x_max: open
+04:25:32 [rx] y_min: open
+04:25:32 [rx] z_probe: TRIGGERED
+04:25:32 [rx] filament: open
+04:25:32 [ok] ok
+04:25:35 [tx] >> M119
+04:25:35 [rx] Reporting endstop status
+04:25:35 [rx] x_max: open
+04:25:35 [rx] y_min: open
+04:25:35 [rx] z_probe: TRIGGERED
+04:25:35 [rx] filament: open
+04:25:35 [ok] ok
+04:25:38 [tx] >> M119
+04:25:38 [rx] Reporting endstop status
+04:25:38 [rx] x_max: open
+04:25:38 [rx] y_min: open
+04:25:38 [rx] z_probe: TRIGGERED
+04:25:38 [rx] filament: open
+04:25:38 [ok] ok
+04:25:41 [tx] >> M119
+04:25:41 [rx] Reporting endstop status
+04:25:41 [rx] x_max: open
+04:25:41 [rx] y_min: open
+04:25:41 [rx] z_probe: TRIGGERED
+04:25:41 [rx] filament: open
+04:25:41 [ok] ok
+04:25:44 [tx] >> M119
+04:25:44 [rx] Reporting endstop status
+04:25:44 [rx] x_max: open
+04:25:44 [rx] y_min: open
+04:25:44 [rx] z_probe: TRIGGERED
+04:25:44 [rx] filament: open
+04:25:44 [ok] ok
+04:25:47 [tx] >> M119
+04:25:47 [rx] Reporting endstop status
+04:25:47 [rx] x_max: open
+04:25:47 [rx] y_min: open
+04:25:47 [rx] z_probe: TRIGGERED
+04:25:47 [rx] filament: open
+04:25:47 [ok] ok
+04:25:50 [tx] >> M119
+04:25:50 [rx] Reporting endstop status
+04:25:50 [rx] x_max: open
+04:25:50 [rx] y_min: open
+04:25:50 [rx] z_probe: TRIGGERED
+04:25:50 [rx] filament: open
+04:25:50 [ok] ok
+04:25:53 [tx] >> M119
+04:25:53 [rx] Reporting endstop status
+04:25:53 [rx] x_max: open
+04:25:53 [rx] y_min: open
+04:25:53 [rx] z_probe: TRIGGERED
+04:25:53 [rx] filament: open
+04:25:53 [ok] ok
+04:25:56 [tx] >> M119
+04:25:56 [rx] Reporting endstop status
+04:25:56 [rx] x_max: open
+04:25:56 [rx] y_min: open
+04:25:56 [rx] z_probe: TRIGGERED
+04:25:56 [rx] filament: open
+04:25:56 [ok] ok
+04:25:59 [tx] >> M119
+04:25:59 [rx] Reporting endstop status
+04:25:59 [rx] x_max: open
+04:25:59 [rx] y_min: open
+04:25:59 [rx] z_probe: TRIGGERED
+04:25:59 [rx] filament: open
+04:25:59 [ok] ok
+04:26:02 [tx] >> M119
+04:26:02 [rx] Reporting endstop status
+04:26:02 [rx] x_max: open
+04:26:02 [rx] y_min: open
+04:26:02 [rx] z_probe: TRIGGERED
+04:26:02 [rx] filament: open
+04:26:02 [ok] ok
+04:26:05 [tx] >> M119
+04:26:05 [rx] Reporting endstop status
+04:26:05 [rx] x_max: open
+04:26:05 [rx] y_min: open
+04:26:05 [rx] z_probe: TRIGGERED
+04:26:05 [rx] filament: open
+04:26:05 [ok] ok
+04:26:08 [tx] >> M119
+04:26:08 [rx] Reporting endstop status
+04:26:08 [rx] x_max: open
+04:26:08 [rx] y_min: open
+04:26:08 [rx] z_probe: TRIGGERED
+04:26:08 [rx] filament: open
+04:26:08 [ok] ok
+04:26:11 [tx] >> M119
+04:26:12 [rx] Reporting endstop status
+04:26:12 [rx] x_max: open
+04:26:12 [rx] y_min: open
+04:26:12 [rx] z_probe: TRIGGERED
+04:26:12 [rx] filament: open
+04:26:12 [ok] ok
+04:26:14 [tx] >> M119
+04:26:15 [rx] Reporting endstop status
+04:26:15 [rx] x_max: open
+04:26:15 [rx] y_min: open
+04:26:15 [rx] z_probe: TRIGGERED
+04:26:15 [rx] filament: open
+04:26:15 [ok] ok
+04:26:17 [tx] >> M119
+04:26:18 [rx] Reporting endstop status
+04:26:18 [rx] x_max: open
+04:26:18 [rx] y_min: open
+04:26:18 [rx] z_probe: TRIGGERED
+04:26:18 [rx] filament: open
+04:26:18 [ok] ok
+04:26:20 [tx] >> M119
+04:26:21 [rx] Reporting endstop status
+04:26:21 [rx] x_max: open
+04:26:21 [rx] y_min: open
+04:26:21 [rx] z_probe: TRIGGERED
+04:26:21 [rx] filament: open
+04:26:21 [ok] ok
+04:26:23 [tx] >> M119
+04:26:24 [rx] Reporting endstop status
+04:26:24 [rx] x_max: open
+04:26:24 [rx] y_min: open
+04:26:24 [rx] z_probe: TRIGGERED
+04:26:24 [rx] filament: open
+04:26:24 [ok] ok
+04:26:26 [tx] >> M119
+04:26:27 [rx] Reporting endstop status
+04:26:27 [rx] x_max: open
+04:26:27 [rx] y_min: open
+04:26:27 [rx] z_probe: TRIGGERED
+04:26:27 [rx] filament: open
+04:26:27 [ok] ok
+04:26:29 [tx] >> M119
+04:26:30 [rx] Reporting endstop status
+04:26:30 [rx] x_max: open
+04:26:30 [rx] y_min: open
+04:26:30 [rx] z_probe: TRIGGERED
+04:26:30 [rx] filament: open
+04:26:30 [ok] ok
+04:26:32 [tx] >> M119
+04:26:33 [rx] Reporting endstop status
+04:26:33 [rx] x_max: open
+04:26:33 [rx] y_min: open
+04:26:33 [rx] z_probe: TRIGGERED
+04:26:33 [rx] filament: open
+04:26:33 [ok] ok
+04:26:35 [tx] >> M119
+04:26:36 [rx] Reporting endstop status
+04:26:36 [rx] x_max: open
+04:26:36 [rx] y_min: open
+04:26:36 [rx] z_probe: TRIGGERED
+04:26:36 [rx] filament: open
+04:26:36 [ok] ok
+04:26:39 [tx] >> M119
+04:26:39 [rx] Reporting endstop status
+04:26:39 [rx] x_max: open
+04:26:39 [rx] y_min: open
+04:26:39 [rx] z_probe: TRIGGERED
+04:26:39 [rx] filament: open
+04:26:39 [ok] ok
+04:26:42 [tx] >> M119
+04:26:42 [rx] Reporting endstop status
+04:26:42 [rx] x_max: open
+04:26:42 [rx] y_min: open
+04:26:42 [rx] z_probe: TRIGGERED
+04:26:42 [rx] filament: open
+04:26:42 [ok] ok
+04:26:45 [tx] >> M119
+04:26:45 [rx] Reporting endstop status
+04:26:45 [rx] x_max: open
+04:26:45 [rx] y_min: open
+04:26:45 [rx] z_probe: TRIGGERED
+04:26:45 [rx] filament: open
+04:26:45 [ok] ok
+04:26:48 [tx] >> M119
+04:26:48 [rx] Reporting endstop status
+04:26:48 [rx] x_max: open
+04:26:48 [rx] y_min: open
+04:26:48 [rx] z_probe: TRIGGERED
+04:26:48 [rx] filament: open
+04:26:48 [ok] ok
+04:26:51 [tx] >> M119
+04:26:51 [rx] Reporting endstop status
+04:26:51 [rx] x_max: open
+04:26:51 [rx] y_min: open
+04:26:51 [rx] z_probe: TRIGGERED
+04:26:51 [rx] filament: open
+04:26:51 [ok] ok
+04:26:54 [tx] >> M119
+04:26:54 [rx] Reporting endstop status
+04:26:54 [rx] x_max: open
+04:26:54 [rx] y_min: open
+04:26:54 [rx] z_probe: TRIGGERED
+04:26:54 [rx] filament: open
+04:26:54 [ok] ok
+04:26:57 [tx] >> M119
+04:26:57 [rx] Reporting endstop status
+04:26:57 [rx] x_max: open
+04:26:57 [rx] y_min: open
+04:26:57 [rx] z_probe: TRIGGERED
+04:26:57 [rx] filament: open
+04:26:57 [ok] ok
+04:27:00 [tx] >> M119
+04:27:00 [rx] Reporting endstop status
+04:27:00 [rx] x_max: open
+04:27:00 [rx] y_min: open
+04:27:00 [rx] z_probe: TRIGGERED
+04:27:00 [rx] filament: open
+04:27:00 [ok] ok
+04:27:03 [tx] >> M119
+04:27:03 [rx] Reporting endstop status
+04:27:03 [rx] x_max: open
+04:27:03 [rx] y_min: open
+04:27:03 [rx] z_probe: TRIGGERED
+04:27:03 [rx] filament: open
+04:27:03 [ok] ok
+04:27:06 [tx] >> M119
+04:27:06 [rx] Reporting endstop status
+04:27:06 [rx] x_max: open
+04:27:06 [rx] y_min: open
+04:27:06 [rx] z_probe: TRIGGERED
+04:27:06 [rx] filament: open
+04:27:06 [ok] ok
+04:27:09 [tx] >> M119
+04:27:09 [rx] Reporting endstop status
+04:27:09 [rx] x_max: open
+04:27:09 [rx] y_min: open
+04:27:09 [rx] z_probe: TRIGGERED
+04:27:09 [rx] filament: open
+04:27:09 [ok] ok
+04:27:12 [tx] >> M119
+04:27:12 [rx] Reporting endstop status
+04:27:12 [rx] x_max: open
+04:27:12 [rx] y_min: open
+04:27:12 [rx] z_probe: TRIGGERED
+04:27:12 [rx] filament: open
+04:27:12 [ok] ok
+04:27:15 [tx] >> M119
+04:27:15 [rx] Reporting endstop status
+04:27:15 [rx] x_max: open
+04:27:15 [rx] y_min: open
+04:27:15 [rx] z_probe: TRIGGERED
+04:27:15 [rx] filament: open
+04:27:15 [ok] ok
+04:27:18 [tx] >> M119
+04:27:18 [rx] Reporting endstop status
+04:27:18 [rx] x_max: open
+04:27:18 [rx] y_min: open
+04:27:18 [rx] z_probe: TRIGGERED
+04:27:18 [rx] filament: open
+04:27:18 [ok] ok
+04:27:21 [tx] >> M119
+04:27:21 [rx] Reporting endstop status
+04:27:21 [rx] x_max: open
+04:27:21 [rx] y_min: open
+04:27:21 [rx] z_probe: TRIGGERED
+04:27:21 [rx] filament: open
+04:27:21 [ok] ok
+04:27:24 [tx] >> M119
+04:27:24 [rx] Reporting endstop status
+04:27:24 [rx] x_max: open
+04:27:24 [rx] y_min: open
+04:27:24 [rx] z_probe: TRIGGERED
+04:27:24 [rx] filament: open
+04:27:24 [ok] ok
+04:27:27 [tx] >> M119
+04:27:27 [rx] Reporting endstop status
+04:27:27 [rx] x_max: open
+04:27:27 [rx] y_min: open
+04:27:27 [rx] z_probe: TRIGGERED
+04:27:27 [rx] filament: open
+04:27:27 [ok] ok
+04:27:30 [tx] >> M119
+04:27:30 [rx] Reporting endstop status
+04:27:30 [rx] x_max: open
+04:27:30 [rx] y_min: open
+04:27:30 [rx] z_probe: TRIGGERED
+04:27:30 [rx] filament: open
+04:27:30 [ok] ok
+04:27:33 [tx] >> M119
+04:27:33 [rx] Reporting endstop status
+04:27:33 [rx] x_max: open
+04:27:33 [rx] y_min: open
+04:27:33 [rx] z_probe: TRIGGERED
+04:27:33 [rx] filament: open
+04:27:33 [ok] ok
+04:27:36 [tx] >> M119
+04:27:36 [rx] Reporting endstop status
+04:27:36 [rx] x_max: open
+04:27:36 [rx] y_min: open
+04:27:36 [rx] z_probe: TRIGGERED
+04:27:36 [rx] filament: open
+04:27:36 [ok] ok
+04:27:39 [tx] >> M119
+04:27:39 [rx] Reporting endstop status
+04:27:39 [rx] x_max: open
+04:27:39 [rx] y_min: open
+04:27:39 [rx] z_probe: TRIGGERED
+04:27:39 [rx] filament: open
+04:27:39 [ok] ok
+04:27:42 [tx] >> M119
+04:27:42 [rx] Reporting endstop status
+04:27:42 [rx] x_max: open
+04:27:42 [rx] y_min: open
+04:27:42 [rx] z_probe: TRIGGERED
+04:27:42 [rx] filament: open
+04:27:42 [ok] ok
+04:27:45 [tx] >> M119
+04:27:45 [rx] Reporting endstop status
+04:27:45 [rx] x_max: open
+04:27:45 [rx] y_min: open
+04:27:45 [rx] z_probe: TRIGGERED
+04:27:45 [rx] filament: open
+04:27:46 [ok] ok
+04:27:48 [tx] >> M119
+04:27:49 [rx] Reporting endstop status
+04:27:49 [rx] x_max: open
+04:27:49 [rx] y_min: open
+04:27:49 [rx] z_probe: TRIGGERED
+04:27:49 [rx] filament: open
+04:27:49 [ok] ok
+04:27:51 [tx] >> M119
+04:27:52 [rx] Reporting endstop status
+04:27:52 [rx] x_max: open
+04:27:52 [rx] y_min: open
+04:27:52 [rx] z_probe: TRIGGERED
+04:27:52 [rx] filament: open
+04:27:52 [ok] ok
+04:27:54 [tx] >> M119
+04:27:55 [rx] Reporting endstop status
+04:27:55 [rx] x_max: open
+04:27:55 [rx] y_min: open
+04:27:55 [rx] z_probe: TRIGGERED
+04:27:55 [rx] filament: open
+04:27:55 [ok] ok
+04:27:57 [tx] >> M119
+04:27:58 [rx] Reporting endstop status
+04:27:58 [rx] x_max: open
+04:27:58 [rx] y_min: open
+04:27:58 [rx] z_probe: TRIGGERED
+04:27:58 [rx] filament: open
+04:27:58 [ok] ok
+04:28:00 [tx] >> M119
+04:28:01 [rx] Reporting endstop status
+04:28:01 [rx] x_max: open
+04:28:01 [rx] y_min: open
+04:28:01 [rx] z_probe: TRIGGERED
+04:28:01 [rx] filament: open
+04:28:01 [ok] ok
+04:28:03 [tx] >> M119
+04:28:04 [rx] Reporting endstop status
+04:28:04 [rx] x_max: open
+04:28:04 [rx] y_min: open
+04:28:04 [rx] z_probe: TRIGGERED
+04:28:04 [rx] filament: open
+04:28:04 [ok] ok
+04:28:06 [tx] >> M119
+04:28:07 [rx] Reporting endstop status
+04:28:07 [rx] x_max: open
+04:28:07 [rx] y_min: open
+04:28:07 [rx] z_probe: TRIGGERED
+04:28:07 [rx] filament: open
+04:28:07 [ok] ok
+04:28:09 [tx] >> M119
+04:28:10 [rx] Reporting endstop status
+04:28:10 [rx] x_max: open
+04:28:10 [rx] y_min: open
+04:28:10 [rx] z_probe: TRIGGERED
+04:28:10 [rx] filament: open
+04:28:10 [ok] ok
+04:28:12 [tx] >> M119
+04:28:13 [rx] Reporting endstop status
+04:28:13 [rx] x_max: open
+04:28:13 [rx] y_min: open
+04:28:13 [rx] z_probe: TRIGGERED
+04:28:13 [rx] filament: open
+04:28:13 [ok] ok
+04:28:15 [tx] >> M119
+04:28:16 [rx] Reporting endstop status
+04:28:16 [rx] x_max: open
+04:28:16 [rx] y_min: open
+04:28:16 [rx] z_probe: TRIGGERED
+04:28:16 [rx] filament: open
+04:28:16 [ok] ok
+04:28:18 [tx] >> M119
+04:28:19 [rx] Reporting endstop status
+04:28:19 [rx] x_max: open
+04:28:19 [rx] y_min: open
+04:28:19 [rx] z_probe: TRIGGERED
+04:28:19 [rx] filament: open
+04:28:19 [ok] ok
+04:28:21 [tx] >> M119
+04:28:22 [rx] Reporting endstop status
+04:28:22 [rx] x_max: open
+04:28:22 [rx] y_min: open
+04:28:22 [rx] z_probe: TRIGGERED
+04:28:22 [rx] filament: open
+04:28:22 [ok] ok
+04:28:25 [tx] >> M119
+04:28:25 [rx] Reporting endstop status
+04:28:25 [rx] x_max: open
+04:28:25 [rx] y_min: open
+04:28:25 [rx] z_probe: TRIGGERED
+04:28:25 [rx] filament: open
+04:28:25 [ok] ok
+04:28:28 [tx] >> M119
+04:28:28 [rx] Reporting endstop status
+04:28:28 [rx] x_max: open
+04:28:28 [rx] y_min: open
+04:28:28 [rx] z_probe: TRIGGERED
+04:28:28 [rx] filament: open
+04:28:28 [ok] ok
+04:28:31 [tx] >> M119
+04:28:31 [rx] Reporting endstop status
+04:28:31 [rx] x_max: open
+04:28:31 [rx] y_min: open
+04:28:31 [rx] z_probe: TRIGGERED
+04:28:31 [rx] filament: open
+04:28:31 [ok] ok
+04:28:34 [tx] >> M119
+04:28:34 [rx] Reporting endstop status
+04:28:34 [rx] x_max: open
+04:28:34 [rx] y_min: open
+04:28:34 [rx] z_probe: TRIGGERED
+04:28:34 [rx] filament: open
+04:28:34 [ok] ok
+04:28:37 [tx] >> M119
+04:28:37 [rx] Reporting endstop status
+04:28:37 [rx] x_max: open
+04:28:37 [rx] y_min: open
+04:28:37 [rx] z_probe: TRIGGERED
+04:28:37 [rx] filament: open
+04:28:37 [ok] ok
+04:28:40 [tx] >> M119
+04:28:40 [rx] Reporting endstop status
+04:28:40 [rx] x_max: open
+04:28:40 [rx] y_min: open
+04:28:40 [rx] z_probe: TRIGGERED
+04:28:40 [rx] filament: open
+04:28:40 [ok] ok
+04:28:43 [tx] >> M119
+04:28:43 [rx] Reporting endstop status
+04:28:43 [rx] x_max: open
+04:28:43 [rx] y_min: open
+04:28:43 [rx] z_probe: TRIGGERED
+04:28:43 [rx] filament: open
+04:28:43 [ok] ok
+04:28:46 [tx] >> M119
+04:28:46 [rx] Reporting endstop status
+04:28:46 [rx] x_max: open
+04:28:46 [rx] y_min: open
+04:28:46 [rx] z_probe: TRIGGERED
+04:28:46 [rx] filament: open
+04:28:46 [ok] ok
+04:28:49 [tx] >> M119
+04:28:49 [rx] Reporting endstop status
+04:28:49 [rx] x_max: open
+04:28:49 [rx] y_min: open
+04:28:49 [rx] z_probe: TRIGGERED
+04:28:49 [rx] filament: open
+04:28:49 [ok] ok
+04:28:52 [tx] >> M119
+04:28:52 [rx] Reporting endstop status
+04:28:52 [rx] x_max: open
+04:28:52 [rx] y_min: open
+04:28:52 [rx] z_probe: TRIGGERED
+04:28:52 [rx] filament: open
+04:28:52 [ok] ok
+04:28:55 [tx] >> M119
+04:28:55 [rx] Reporting endstop status
+04:28:55 [rx] x_max: open
+04:28:55 [rx] y_min: open
+04:28:55 [rx] z_probe: TRIGGERED
+04:28:55 [rx] filament: open
+04:28:55 [ok] ok
+04:28:58 [tx] >> M119
+04:28:58 [rx] Reporting endstop status
+04:28:58 [rx] x_max: open
+04:28:58 [rx] y_min: open
+04:28:58 [rx] z_probe: TRIGGERED
+04:28:58 [rx] filament: open
+04:28:58 [ok] ok
+04:29:01 [tx] >> M119
+04:29:01 [rx] Reporting endstop status
+04:29:01 [rx] x_max: open
+04:29:01 [rx] y_min: open
+04:29:01 [rx] z_probe: TRIGGERED
+04:29:01 [rx] filament: open
+04:29:01 [ok] ok
+04:29:04 [tx] >> M119
+04:29:04 [rx] Reporting endstop status
+04:29:04 [rx] x_max: open
+04:29:04 [rx] y_min: open
+04:29:04 [rx] z_probe: TRIGGERED
+04:29:04 [rx] filament: open
+04:29:04 [ok] ok
+04:29:07 [tx] >> M119
+04:29:07 [rx] Reporting endstop status
+04:29:07 [rx] x_max: open
+04:29:07 [rx] y_min: open
+04:29:07 [rx] z_probe: TRIGGERED
+04:29:07 [rx] filament: open
+04:29:07 [ok] ok
+04:29:10 [tx] >> M119
+04:29:10 [rx] Reporting endstop status
+04:29:10 [rx] x_max: open
+04:29:10 [rx] y_min: open
+04:29:10 [rx] z_probe: TRIGGERED
+04:29:10 [rx] filament: open
+04:29:10 [ok] ok
+04:29:13 [tx] >> M119
+04:29:13 [rx] Reporting endstop status
+04:29:13 [rx] x_max: open
+04:29:13 [rx] y_min: open
+04:29:13 [rx] z_probe: TRIGGERED
+04:29:13 [rx] filament: open
+04:29:13 [ok] ok
+04:29:16 [tx] >> M119
+04:29:16 [rx] Reporting endstop status
+04:29:16 [rx] x_max: open
+04:29:16 [rx] y_min: open
+04:29:16 [rx] z_probe: TRIGGERED
+04:29:16 [rx] filament: open
+04:29:16 [ok] ok
+04:29:19 [tx] >> M119
+04:29:19 [rx] Reporting endstop status
+04:29:19 [rx] x_max: open
+04:29:19 [rx] y_min: open
+04:29:19 [rx] z_probe: TRIGGERED
+04:29:19 [rx] filament: open
+04:29:19 [ok] ok
+04:29:22 [tx] >> M119
+04:29:22 [rx] Reporting endstop status
+04:29:22 [rx] x_max: open
+04:29:22 [rx] y_min: open
+04:29:22 [rx] z_probe: TRIGGERED
+04:29:22 [rx] filament: open
+04:29:22 [ok] ok
+04:29:25 [tx] >> M119
+04:29:25 [rx] Reporting endstop status
+04:29:25 [rx] x_max: open
+04:29:25 [rx] y_min: open
+04:29:26 [rx] z_probe: TRIGGERED
+04:29:26 [rx] filament: open
+04:29:26 [ok] ok
+04:29:28 [tx] >> M119
+04:29:29 [rx] Reporting endstop status
+04:29:29 [rx] x_max: open
+04:29:29 [rx] y_min: open
+04:29:29 [rx] z_probe: TRIGGERED
+04:29:29 [rx] filament: open
+04:29:29 [ok] ok
+04:29:31 [tx] >> M119
+04:29:32 [rx] Reporting endstop status
+04:29:32 [rx] x_max: open
+04:29:32 [rx] y_min: open
+04:29:32 [rx] z_probe: TRIGGERED
+04:29:32 [rx] filament: open
+04:29:32 [ok] ok
+04:29:34 [tx] >> M119
+04:29:35 [rx] Reporting endstop status
+04:29:35 [rx] x_max: open
+04:29:35 [rx] y_min: open
+04:29:35 [rx] z_probe: TRIGGERED
+04:29:35 [rx] filament: open
+04:29:35 [ok] ok
+04:29:37 [tx] >> M119
+04:29:38 [rx] Reporting endstop status
+04:29:38 [rx] x_max: open
+04:29:38 [rx] y_min: open
+04:29:38 [rx] z_probe: TRIGGERED
+04:29:38 [rx] filament: open
+04:29:38 [ok] ok
+04:29:40 [tx] >> M119
+04:29:41 [rx] Reporting endstop status
+04:29:41 [rx] x_max: open
+04:29:41 [rx] y_min: open
+04:29:41 [rx] z_probe: TRIGGERED
+04:29:41 [rx] filament: open
+04:29:41 [ok] ok
+04:29:43 [tx] >> M119
+04:29:44 [rx] Reporting endstop status
+04:29:44 [rx] x_max: open
+04:29:44 [rx] y_min: open
+04:29:44 [rx] z_probe: TRIGGERED
+04:29:44 [rx] filament: open
+04:29:44 [ok] ok
+04:29:46 [tx] >> M119
+04:29:47 [rx] Reporting endstop status
+04:29:47 [rx] x_max: open
+04:29:47 [rx] y_min: open
+04:29:47 [rx] z_probe: TRIGGERED
+04:29:47 [rx] filament: open
+04:29:47 [ok] ok
+04:29:50 [tx] >> M119
+04:29:50 [rx] Reporting endstop status
+04:29:50 [rx] x_max: open
+04:29:50 [rx] y_min: open
+04:29:50 [rx] z_probe: TRIGGERED
+04:29:50 [rx] filament: open
+04:29:50 [ok] ok
+04:29:53 [tx] >> M119
+04:29:53 [rx] Reporting endstop status
+04:29:53 [rx] x_max: open
+04:29:53 [rx] y_min: open
+04:29:53 [rx] z_probe: TRIGGERED
+04:29:53 [rx] filament: open
+04:29:53 [ok] ok
+04:29:56 [tx] >> M119
+04:29:56 [rx] Reporting endstop status
+04:29:56 [rx] x_max: open
+04:29:56 [rx] y_min: open
+04:29:56 [rx] z_probe: TRIGGERED
+04:29:56 [rx] filament: open
+04:29:56 [ok] ok
+04:29:59 [tx] >> M119
+04:29:59 [rx] Reporting endstop status
+04:29:59 [rx] x_max: open
+04:29:59 [rx] y_min: open
+04:29:59 [rx] z_probe: TRIGGERED
+04:29:59 [rx] filament: open
+04:29:59 [ok] ok
+04:30:02 [tx] >> M119
+04:30:02 [rx] Reporting endstop status
+04:30:02 [rx] x_max: open
+04:30:02 [rx] y_min: open
+04:30:02 [rx] z_probe: TRIGGERED
+04:30:02 [rx] filament: open
+04:30:02 [ok] ok
+04:30:05 [tx] >> M119
+04:30:05 [rx] Reporting endstop status
+04:30:05 [rx] x_max: open
+04:30:05 [rx] y_min: open
+04:30:05 [rx] z_probe: TRIGGERED
+04:30:05 [rx] filament: open
+04:30:05 [ok] ok
+04:30:08 [tx] >> M119
+04:30:08 [rx] Reporting endstop status
+04:30:08 [rx] x_max: open
+04:30:08 [rx] y_min: open
+04:30:08 [rx] z_probe: TRIGGERED
+04:30:08 [rx] filament: open
+04:30:08 [ok] ok
+04:30:11 [tx] >> M119
+04:30:11 [rx] Reporting endstop status
+04:30:11 [rx] x_max: open
+04:30:11 [rx] y_min: open
+04:30:11 [rx] z_probe: TRIGGERED
+04:30:11 [rx] filament: open
+04:30:11 [ok] ok
+04:30:14 [tx] >> M119
+04:30:14 [rx] Reporting endstop status
+04:30:14 [rx] x_max: open
+04:30:14 [rx] y_min: open
+04:30:14 [rx] z_probe: TRIGGERED
+04:30:14 [rx] filament: open
+04:30:14 [ok] ok
+04:30:17 [tx] >> M119
+04:30:17 [rx] Reporting endstop status
+04:30:17 [rx] x_max: open
+04:30:17 [rx] y_min: open
+04:30:17 [rx] z_probe: TRIGGERED
+04:30:17 [rx] filament: open
+04:30:17 [ok] ok
+04:30:20 [tx] >> M119
+04:30:20 [rx] Reporting endstop status
+04:30:20 [rx] x_max: open
+04:30:20 [rx] y_min: open
+04:30:20 [rx] z_probe: TRIGGERED
+04:30:20 [rx] filament: open
+04:30:20 [ok] ok
+04:30:23 [tx] >> M119
+04:30:23 [rx] Reporting endstop status
+04:30:23 [rx] x_max: open
+04:30:23 [rx] y_min: open
+04:30:23 [rx] z_probe: TRIGGERED
+04:30:23 [rx] filament: open
+04:30:23 [ok] ok
+04:30:26 [tx] >> M119
+04:30:26 [rx] Reporting endstop status
+04:30:26 [rx] x_max: open
+04:30:26 [rx] y_min: open
+04:30:26 [rx] z_probe: TRIGGERED
+04:30:26 [rx] filament: open
+04:30:26 [ok] ok
+04:30:29 [tx] >> M119
+04:30:29 [rx] Reporting endstop status
+04:30:29 [rx] x_max: open
+04:30:29 [rx] y_min: open
+04:30:29 [rx] z_probe: TRIGGERED
+04:30:29 [rx] filament: open
+04:30:29 [ok] ok
+04:30:32 [tx] >> M119
+04:30:32 [rx] Reporting endstop status
+04:30:32 [rx] x_max: open
+04:30:32 [rx] y_min: open
+04:30:32 [rx] z_probe: TRIGGERED
+04:30:32 [rx] filament: open
+04:30:32 [ok] ok
+04:30:35 [tx] >> M119
+04:30:35 [rx] Reporting endstop status
+04:30:35 [rx] x_max: open
+04:30:35 [rx] y_min: open
+04:30:35 [rx] z_probe: TRIGGERED
+04:30:35 [rx] filament: open
+04:30:35 [ok] ok
+04:30:38 [tx] >> M119
+04:30:38 [rx] Reporting endstop status
+04:30:38 [rx] x_max: open
+04:30:38 [rx] y_min: open
+04:30:38 [rx] z_probe: TRIGGERED
+04:30:38 [rx] filament: open
+04:30:38 [ok] ok
+04:30:41 [tx] >> M119
+04:30:41 [rx] Reporting endstop status
+04:30:41 [rx] x_max: open
+04:30:41 [rx] y_min: open
+04:30:41 [rx] z_probe: TRIGGERED
+04:30:41 [rx] filament: open
+04:30:41 [ok] ok
+04:30:44 [tx] >> M119
+04:30:44 [rx] Reporting endstop status
+04:30:44 [rx] x_max: open
+04:30:44 [rx] y_min: open
+04:30:44 [rx] z_probe: TRIGGERED
+04:30:44 [rx] filament: open
+04:30:44 [ok] ok
+04:30:47 [tx] >> M119
+04:30:47 [rx] Reporting endstop status
+04:30:47 [rx] x_max: open
+04:30:47 [rx] y_min: open
+04:30:47 [rx] z_probe: TRIGGERED
+04:30:47 [rx] filament: open
+04:30:47 [ok] ok
+04:30:50 [tx] >> M119
+04:30:50 [rx] Reporting endstop status
+04:30:50 [rx] x_max: open
+04:30:50 [rx] y_min: open
+04:30:50 [rx] z_probe: TRIGGERED
+04:30:50 [rx] filament: open
+04:30:50 [ok] ok
+04:30:53 [tx] >> M119
+04:30:54 [rx] Reporting endstop status
+04:30:54 [rx] x_max: open
+04:30:54 [rx] y_min: open
+04:30:54 [rx] z_probe: TRIGGERED
+04:30:54 [rx] filament: open
+04:30:54 [ok] ok
+04:30:56 [tx] >> M119
+04:30:57 [rx] Reporting endstop status
+04:30:57 [rx] x_max: open
+04:30:57 [rx] y_min: open
+04:30:57 [rx] z_probe: TRIGGERED
+04:30:57 [rx] filament: open
+04:30:57 [ok] ok
+04:30:59 [tx] >> M119
+04:31:00 [rx] Reporting endstop status
+04:31:00 [rx] x_max: open
+04:31:00 [rx] y_min: open
+04:31:00 [rx] z_probe: TRIGGERED
+04:31:00 [rx] filament: open
+04:31:00 [ok] ok
+04:31:02 [tx] >> M119
+04:31:03 [rx] Reporting endstop status
+04:31:03 [rx] x_max: open
+04:31:03 [rx] y_min: open
+04:31:03 [rx] z_probe: TRIGGERED
+04:31:03 [rx] filament: open
+04:31:03 [ok] ok
+04:31:05 [tx] >> M119
+04:31:06 [rx] Reporting endstop status
+04:31:06 [rx] x_max: open
+04:31:06 [rx] y_min: open
+04:31:06 [rx] z_probe: TRIGGERED
+04:31:06 [rx] filament: open
+04:31:06 [ok] ok
+04:31:08 [tx] >> M119
+04:31:09 [rx] Reporting endstop status
+04:31:09 [rx] x_max: open
+04:31:09 [rx] y_min: open
+04:31:09 [rx] z_probe: TRIGGERED
+04:31:09 [rx] filament: open
+04:31:09 [ok] ok
+04:31:11 [tx] >> M119
+04:31:12 [rx] Reporting endstop status
+04:31:12 [rx] x_max: open
+04:31:12 [rx] y_min: open
+04:31:12 [rx] z_probe: TRIGGERED
+04:31:12 [rx] filament: open
+04:31:12 [ok] ok
+04:31:15 [tx] >> M119
+04:31:15 [rx] Reporting endstop status
+04:31:15 [rx] x_max: open
+04:31:15 [rx] y_min: open
+04:31:15 [rx] z_probe: TRIGGERED
+04:31:15 [rx] filament: open
+04:31:15 [ok] ok
+04:31:18 [tx] >> M119
+04:31:18 [rx] Reporting endstop status
+04:31:18 [rx] x_max: open
+04:31:18 [rx] y_min: open
+04:31:18 [rx] z_probe: TRIGGERED
+04:31:18 [rx] filament: open
+04:31:18 [ok] ok
+04:31:21 [tx] >> M119
+04:31:21 [rx] Reporting endstop status
+04:31:21 [rx] x_max: open
+04:31:21 [rx] y_min: open
+04:31:21 [rx] z_probe: TRIGGERED
+04:31:21 [rx] filament: open
+04:31:21 [ok] ok
+04:31:24 [tx] >> M119
+04:31:24 [rx] Reporting endstop status
+04:31:24 [rx] x_max: open
+04:31:24 [rx] y_min: open
+04:31:24 [rx] z_probe: TRIGGERED
+04:31:24 [rx] filament: open
+04:31:24 [ok] ok
+04:31:27 [tx] >> M119
+04:31:27 [rx] Reporting endstop status
+04:31:27 [rx] x_max: open
+04:31:27 [rx] y_min: open
+04:31:27 [rx] z_probe: TRIGGERED
+04:31:27 [rx] filament: open
+04:31:27 [ok] ok
+04:31:30 [tx] >> M119
+04:31:30 [rx] Reporting endstop status
+04:31:30 [rx] x_max: open
+04:31:30 [rx] y_min: open
+04:31:30 [rx] z_probe: TRIGGERED
+04:31:30 [rx] filament: open
+04:31:30 [ok] ok
+04:31:33 [tx] >> M119
+04:31:33 [rx] Reporting endstop status
+04:31:33 [rx] x_max: open
+04:31:33 [rx] y_min: open
+04:31:33 [rx] z_probe: TRIGGERED
+04:31:33 [rx] filament: open
+04:31:33 [ok] ok
+04:31:36 [tx] >> M119
+04:31:36 [rx] Reporting endstop status
+04:31:36 [rx] x_max: open
+04:31:36 [rx] y_min: open
+04:31:36 [rx] z_probe: TRIGGERED
+04:31:36 [rx] filament: open
+04:31:36 [ok] ok
+04:31:39 [tx] >> M119
+04:31:39 [rx] Reporting endstop status
+04:31:39 [rx] x_max: open
+04:31:39 [rx] y_min: open
+04:31:39 [rx] z_probe: TRIGGERED
+04:31:39 [rx] filament: open
+04:31:39 [ok] ok
+04:31:42 [tx] >> M119
+04:31:42 [rx] Reporting endstop status
+04:31:42 [rx] x_max: open
+04:31:42 [rx] y_min: open
+04:31:42 [rx] z_probe: TRIGGERED
+04:31:42 [rx] filament: open
+04:31:42 [ok] ok
+04:31:45 [tx] >> M119
+04:31:45 [rx] Reporting endstop status
+04:31:45 [rx] x_max: open
+04:31:45 [rx] y_min: open
+04:31:45 [rx] z_probe: TRIGGERED
+04:31:45 [rx] filament: open
+04:31:45 [ok] ok
+04:31:48 [tx] >> M119
+04:31:48 [rx] Reporting endstop status
+04:31:48 [rx] x_max: open
+04:31:48 [rx] y_min: open
+04:31:48 [rx] z_probe: TRIGGERED
+04:31:48 [rx] filament: open
+04:31:48 [ok] ok
+04:31:51 [tx] >> M119
+04:31:51 [rx] Reporting endstop status
+04:31:51 [rx] x_max: open
+04:31:51 [rx] y_min: open
+04:31:51 [rx] z_probe: TRIGGERED
+04:31:51 [rx] filament: open
+04:31:51 [ok] ok
+04:31:54 [tx] >> M119
+04:31:54 [rx] Reporting endstop status
+04:31:54 [rx] x_max: open
+04:31:54 [rx] y_min: open
+04:31:54 [rx] z_probe: TRIGGERED
+04:31:54 [rx] filament: open
+04:31:54 [ok] ok
+04:31:57 [tx] >> M119
+04:31:57 [rx] Reporting endstop status
+04:31:57 [rx] x_max: open
+04:31:57 [rx] y_min: open
+04:31:57 [rx] z_probe: TRIGGERED
+04:31:57 [rx] filament: open
+04:31:57 [ok] ok
+04:32:00 [tx] >> M119
+04:32:00 [rx] Reporting endstop status
+04:32:00 [rx] x_max: open
+04:32:00 [rx] y_min: open
+04:32:00 [rx] z_probe: TRIGGERED
+04:32:00 [rx] filament: open
+04:32:00 [ok] ok
+04:32:03 [tx] >> M119
+04:32:03 [rx] Reporting endstop status
+04:32:03 [rx] x_max: open
+04:32:03 [rx] y_min: open
+04:32:03 [rx] z_probe: TRIGGERED
+04:32:03 [rx] filament: open
+04:32:03 [ok] ok
+04:32:06 [tx] >> M119
+04:32:06 [rx] Reporting endstop status
+04:32:06 [rx] x_max: open
+04:32:06 [rx] y_min: open
+04:32:06 [rx] z_probe: TRIGGERED
+04:32:06 [rx] filament: open
+04:32:06 [ok] ok
+04:32:09 [tx] >> M119
+04:32:09 [rx] Reporting endstop status
+04:32:09 [rx] x_max: open
+04:32:09 [rx] y_min: open
+04:32:09 [rx] z_probe: TRIGGERED
+04:32:09 [rx] filament: open
+04:32:09 [ok] ok
+04:32:12 [tx] >> M119
+04:32:12 [rx] Reporting endstop status
+04:32:12 [rx] x_max: open
+04:32:12 [rx] y_min: open
+04:32:12 [rx] z_probe: TRIGGERED
+04:32:12 [rx] filament: open
+04:32:12 [ok] ok
+04:32:15 [tx] >> M119
+04:32:15 [rx] Reporting endstop status
+04:32:15 [rx] x_max: open
+04:32:15 [rx] y_min: open
+04:32:16 [rx] z_probe: TRIGGERED
+04:32:16 [rx] filament: open
+04:32:16 [ok] ok
+04:32:18 [tx] >> M119
+04:32:18 [rx] Reporting endstop status
+04:32:18 [rx] x_max: open
+04:32:18 [rx] y_min: open
+04:32:18 [rx] z_probe: TRIGGERED
+04:32:18 [rx] filament: open
+04:32:18 [ok] ok
+04:32:21 [tx] >> M119
+04:32:21 [rx] Reporting endstop status
+04:32:21 [rx] x_max: open
+04:32:22 [rx] y_min: open
+04:32:22 [rx] z_probe: TRIGGERED
+04:32:22 [rx] filament: open
+04:32:22 [ok] ok
+04:32:24 [tx] >> M119
+04:32:24 [rx] Reporting endstop status
+04:32:24 [rx] x_max: open
+04:32:24 [rx] y_min: open
+04:32:24 [rx] z_probe: TRIGGERED
+04:32:24 [rx] filament: open
+04:32:24 [ok] ok
+04:32:27 [tx] >> M119
+04:32:28 [rx] Reporting endstop status
+04:32:28 [rx] x_max: open
+04:32:28 [rx] y_min: open
+04:32:28 [rx] z_probe: TRIGGERED
+04:32:28 [rx] filament: open
+04:32:28 [ok] ok
+04:32:30 [tx] >> M119
+04:32:31 [rx] Reporting endstop status
+04:32:31 [rx] x_max: open
+04:32:31 [rx] y_min: open
+04:32:31 [rx] z_probe: TRIGGERED
+04:32:31 [rx] filament: open
+04:32:31 [ok] ok
+04:32:33 [tx] >> M119
+04:32:34 [rx] Reporting endstop status
+04:32:34 [rx] x_max: open
+04:32:34 [rx] y_min: open
+04:32:34 [rx] z_probe: TRIGGERED
+04:32:34 [rx] filament: open
+04:32:34 [ok] ok
+04:32:36 [tx] >> M119
+04:32:37 [rx] Reporting endstop status
+04:32:37 [rx] x_max: open
+04:32:37 [rx] y_min: open
+04:32:37 [rx] z_probe: TRIGGERED
+04:32:37 [rx] filament: open
+04:32:37 [ok] ok
+04:32:39 [tx] >> M119
+04:32:40 [rx] Reporting endstop status
+04:32:40 [rx] x_max: open
+04:32:40 [rx] y_min: open
+04:32:40 [rx] z_probe: TRIGGERED
+04:32:40 [rx] filament: open
+04:32:40 [ok] ok
+04:32:42 [tx] >> M119
+04:32:43 [rx] Reporting endstop status
+04:32:43 [rx] x_max: open
+04:32:43 [rx] y_min: open
+04:32:43 [rx] z_probe: TRIGGERED
+04:32:43 [rx] filament: open
+04:32:43 [ok] ok
+04:32:45 [tx] >> M119
+04:32:46 [rx] Reporting endstop status
+04:32:46 [rx] x_max: open
+04:32:46 [rx] y_min: open
+04:32:46 [rx] z_probe: TRIGGERED
+04:32:46 [rx] filament: open
+04:32:46 [ok] ok
+04:32:48 [tx] >> M119
+04:32:49 [rx] Reporting endstop status
+04:32:49 [rx] x_max: open
+04:32:49 [rx] y_min: open
+04:32:49 [rx] z_probe: TRIGGERED
+04:32:49 [rx] filament: open
+04:32:49 [ok] ok
+04:32:52 [tx] >> M119
+04:32:52 [rx] Reporting endstop status
+04:32:52 [rx] x_max: open
+04:32:52 [rx] y_min: open
+04:32:52 [rx] z_probe: TRIGGERED
+04:32:52 [rx] filament: open
+04:32:52 [ok] ok
+04:32:55 [tx] >> M119
+04:32:55 [rx] Reporting endstop status
+04:32:55 [rx] x_max: open
+04:32:55 [rx] y_min: open
+04:32:55 [rx] z_probe: TRIGGERED
+04:32:55 [rx] filament: open
+04:32:55 [ok] ok
+04:32:58 [tx] >> M119
+04:32:58 [rx] Reporting endstop status
+04:32:58 [rx] x_max: open
+04:32:58 [rx] y_min: open
+04:32:58 [rx] z_probe: TRIGGERED
+04:32:58 [rx] filament: open
+04:32:58 [ok] ok
+04:33:01 [tx] >> M119
+04:33:01 [rx] Reporting endstop status
+04:33:01 [rx] x_max: open
+04:33:01 [rx] y_min: open
+04:33:01 [rx] z_probe: TRIGGERED
+04:33:01 [rx] filament: open
+04:33:01 [ok] ok
+04:33:04 [tx] >> M119
+04:33:04 [rx] Reporting endstop status
+04:33:04 [rx] x_max: open
+04:33:04 [rx] y_min: open
+04:33:04 [rx] z_probe: TRIGGERED
+04:33:04 [rx] filament: open
+04:33:04 [ok] ok
+04:33:07 [tx] >> M119
+04:33:07 [rx] Reporting endstop status
+04:33:07 [rx] x_max: open
+04:33:07 [rx] y_min: open
+04:33:07 [rx] z_probe: TRIGGERED
+04:33:07 [rx] filament: open
+04:33:07 [ok] ok
+04:33:10 [tx] >> M119
+04:33:10 [rx] Reporting endstop status
+04:33:10 [rx] x_max: open
+04:33:10 [rx] y_min: open
+04:33:10 [rx] z_probe: TRIGGERED
+04:33:10 [rx] filament: open
+04:33:10 [ok] ok
+04:33:13 [tx] >> M119
+04:33:13 [rx] Reporting endstop status
+04:33:13 [rx] x_max: open
+04:33:13 [rx] y_min: open
+04:33:13 [rx] z_probe: TRIGGERED
+04:33:13 [rx] filament: open
+04:33:13 [ok] ok
+04:33:16 [tx] >> M119
+04:33:16 [rx] Reporting endstop status
+04:33:16 [rx] x_max: open
+04:33:16 [rx] y_min: open
+04:33:16 [rx] z_probe: TRIGGERED
+04:33:16 [rx] filament: open
+04:33:16 [ok] ok
+04:33:19 [tx] >> M119
+04:33:19 [rx] Reporting endstop status
+04:33:19 [rx] x_max: open
+04:33:19 [rx] y_min: open
+04:33:19 [rx] z_probe: TRIGGERED
+04:33:19 [rx] filament: open
+04:33:19 [ok] ok
+04:33:22 [tx] >> M119
+04:33:22 [rx] Reporting endstop status
+04:33:22 [rx] x_max: open
+04:33:22 [rx] y_min: open
+04:33:22 [rx] z_probe: TRIGGERED
+04:33:22 [rx] filament: open
+04:33:22 [ok] ok
+04:33:25 [tx] >> M119
+04:33:25 [rx] Reporting endstop status
+04:33:25 [rx] x_max: open
+04:33:25 [rx] y_min: open
+04:33:25 [rx] z_probe: TRIGGERED
+04:33:25 [rx] filament: open
+04:33:25 [ok] ok
+04:33:28 [tx] >> M119
+04:33:28 [rx] Reporting endstop status
+04:33:28 [rx] x_max: open
+04:33:28 [rx] y_min: open
+04:33:28 [rx] z_probe: TRIGGERED
+04:33:28 [rx] filament: open
+04:33:28 [ok] ok
+04:33:31 [tx] >> M119
+04:33:31 [rx] Reporting endstop status
+04:33:31 [rx] x_max: open
+04:33:31 [rx] y_min: open
+04:33:31 [rx] z_probe: TRIGGERED
+04:33:31 [rx] filament: open
+04:33:31 [ok] ok
+04:33:34 [tx] >> M119
+04:33:34 [rx] Reporting endstop status
+04:33:34 [rx] x_max: open
+04:33:34 [rx] y_min: open
+04:33:34 [rx] z_probe: TRIGGERED
+04:33:34 [rx] filament: open
+04:33:34 [ok] ok
+04:33:37 [tx] >> M119
+04:33:37 [rx] Reporting endstop status
+04:33:37 [rx] x_max: open
+04:33:37 [rx] y_min: open
+04:33:37 [rx] z_probe: TRIGGERED
+04:33:38 [rx] filament: open
+04:33:38 [ok] ok
+04:33:40 [tx] >> M119
+04:33:40 [rx] Reporting endstop status
+04:33:40 [rx] x_max: open
+04:33:40 [rx] y_min: open
+04:33:40 [rx] z_probe: TRIGGERED
+04:33:40 [rx] filament: open
+04:33:40 [ok] ok
+04:33:43 [tx] >> M119
+04:33:43 [rx] Reporting endstop status
+04:33:44 [rx] x_max: open
+04:33:44 [rx] y_min: open
+04:33:44 [rx] z_probe: TRIGGERED
+04:33:44 [rx] filament: open
+04:33:44 [ok] ok
+04:33:46 [tx] >> M119
+04:33:47 [rx] Reporting endstop status
+04:33:47 [rx] x_max: open
+04:33:47 [rx] y_min: open
+04:33:47 [rx] z_probe: TRIGGERED
+04:33:47 [rx] filament: open
+04:33:47 [ok] ok
+04:33:49 [tx] >> M119
+04:33:50 [err] Error:Serial status mismatch
+04:33:50 [rx] Reporting endstop status
+04:33:50 [rx] x_max: open
+04:33:50 [rx] y_min: open
+04:33:50 [rx] z_probe: TRIGGERED
+04:33:50 [rx] filament: open
+04:33:50 [ok] ok
+04:33:52 [tx] >> M119
+04:33:53 [rx] Reporting endstop status
+04:33:53 [rx] x_max: open
+04:33:53 [rx] y_min: open
+04:33:53 [rx] z_probe: TRIGGERED
+04:33:53 [rx] filament: open
+04:33:53 [ok] ok
+04:33:55 [tx] >> M119
+04:33:56 [rx] Reporting endstop status
+04:33:56 [rx] x_max: open
+04:33:56 [rx] y_min: open
+04:33:56 [rx] z_probe: TRIGGERED
+04:33:56 [rx] filament: open
+04:33:56 [ok] ok
+04:33:58 [tx] >> M119
+04:33:59 [rx] Reporting endstop status
+04:33:59 [rx] x_max: open
+04:33:59 [rx] y_min: open
+04:33:59 [rx] z_probe: TRIGGERED
+04:33:59 [rx] filament: open
+04:33:59 [ok] ok
+04:34:01 [tx] >> M119
+04:34:02 [rx] Reporting endstop status
+04:34:02 [rx] x_max: open
+04:34:02 [rx] y_min: open
+04:34:02 [rx] z_probe: TRIGGERED
+04:34:02 [rx] filament: open
+04:34:02 [ok] ok
+04:34:04 [tx] >> M119
+04:34:05 [rx] Reporting endstop status
+04:34:05 [rx] x_max: open
+04:34:05 [rx] y_min: open
+04:34:05 [rx] z_probe: TRIGGERED
+04:34:05 [rx] filament: open
+04:34:05 [ok] ok
+04:34:08 [tx] >> M119
+04:34:08 [rx] Reporting endstop status
+04:34:08 [rx] x_max: open
+04:34:08 [rx] y_min: open
+04:34:08 [rx] z_probe: TRIGGERED
+04:34:08 [rx] filament: open
+04:34:08 [ok] ok
+04:34:11 [tx] >> M119
+04:34:11 [rx] Reporting endstop status
+04:34:11 [rx] x_max: open
+04:34:11 [rx] y_min: open
+04:34:11 [rx] z_probe: TRIGGERED
+04:34:11 [rx] filament: open
+04:34:11 [ok] ok
+04:34:14 [tx] >> M119
+04:34:14 [rx] Reporting endstop status
+04:34:14 [rx] x_max: open
+04:34:14 [rx] y_min: open
+04:34:14 [rx] z_probe: TRIGGERED
+04:34:14 [rx] filament: open
+04:34:14 [ok] ok
+04:34:17 [tx] >> M119
+04:34:17 [rx] Reporting endstop status
+04:34:17 [rx] x_max: open
+04:34:17 [rx] y_min: open
+04:34:17 [rx] z_probe: TRIGGERED
+04:34:17 [rx] filament: open
+04:34:17 [ok] ok
+04:34:20 [tx] >> M119
+04:34:20 [rx] Reporting endstop status
+04:34:20 [rx] x_max: open
+04:34:20 [rx] y_min: open
+04:34:20 [rx] z_probe: TRIGGERED
+04:34:20 [rx] filament: open
+04:34:20 [ok] ok
+04:34:23 [tx] >> M119
+04:34:23 [rx] Reporting endstop status
+04:34:23 [rx] x_max: open
+04:34:23 [rx] y_min: open
+04:34:23 [rx] z_probe: TRIGGERED
+04:34:23 [rx] filament: open
+04:34:23 [ok] ok
+04:34:26 [tx] >> M119
+04:34:26 [rx] Reporting endstop status
+04:34:26 [rx] x_max: open
+04:34:26 [rx] y_min: open
+04:34:26 [rx] z_probe: TRIGGERED
+04:34:26 [rx] filament: open
+04:34:26 [ok] ok
+04:34:29 [tx] >> M119
+04:34:29 [rx] Reporting endstop status
+04:34:29 [rx] x_max: open
+04:34:29 [rx] y_min: open
+04:34:29 [rx] z_probe: TRIGGERED
+04:34:29 [rx] filament: open
+04:34:29 [ok] ok
+04:34:32 [rx] //action:notification Bed Heating...
+04:34:32 [rx] //action:notification Bed Heating...
+04:34:32 [rx] //action:prompt_end
+04:34:32 [rx] //action:prompt_begin FilamentRunout T0
+04:34:32 [rx] //action:prompt_show
+04:34:32 [tx] >> M119
+04:34:32 [rx] //action:filament_runout T//action:pauseError:Serial status mismatch
+04:34:34 [sys] echo:busy: processing
+04:34:36 [sys] echo:busy: processing
+04:34:38 [sys] echo:busy: processing
+04:34:40 [sys] echo:busy: processing
+04:34:42 [sys] echo:busy: processing
+04:34:44 [sys] echo:busy: processing
+04:34:46 [sys] echo:busy: processing
+04:34:48 [sys] echo:busy: processing
+04:34:50 [sys] echo:busy: processing
+04:34:52 [sys] echo:busy: processing
+04:34:54 [sys] echo:busy: processing
+04:34:56 [sys] echo:busy: processing
+04:34:58 [sys] echo:busy: processing
+04:35:00 [sys] echo:busy: processing
+04:35:02 [sys] echo:busy: processing
+04:35:04 [sys] echo:busy: processing
+04:35:06 [sys] echo:busy: processing
+04:35:08 [sys] echo:busy: processing
+04:35:10 [sys] echo:busy: processing
+04:35:12 [sys] echo:busy: processing
+04:35:14 [sys] echo:busy: processing
+04:35:16 [sys] echo:busy: processing
+04:35:18 [sys] echo:busy: processing
+04:35:20 [sys] echo:busy: processing
+04:35:22 [sys] echo:busy: processing
+04:35:24 [sys] echo:busy: processing
+04:35:26 [sys] echo:busy: processing
+04:35:28 [sys] echo:busy: processing
+04:35:30 [sys] echo:busy: processing
+04:35:32 [sys] echo:busy: processing
+04:35:34 [sys] echo:busy: processing
+04:35:36 [sys] echo:busy: processing
+04:35:38 [sys] echo:busy: processing
+04:35:40 [sys] echo:busy: processing
+04:35:42 [sys] echo:busy: processing
+04:35:44 [sys] echo:busy: processing
+04:35:46 [sys] echo:busy: processing
+04:35:48 [sys] echo:busy: processing
+04:35:50 [sys] echo:busy: processing
+04:35:52 [sys] echo:busy: processing
+04:35:54 [sys] echo:busy: processing
+04:35:56 [sys] echo:busy: processing
+04:35:58 [sys] echo:busy: processing
+04:36:00 [sys] echo:busy: processing
+04:36:02 [sys] echo:busy: processing
+04:36:04 [sys] echo:busy: processing
+04:36:06 [sys] echo:busy: processing
+04:36:08 [sys] echo:busy: processing
+04:36:10 [sys] echo:busy: processing
+04:36:12 [sys] echo:busy: processing
+04:36:14 [sys] echo:busy: processing
+04:36:16 [sys] echo:busy: processing
+04:36:18 [sys] echo:busy: processing
+04:36:20 [sys] echo:busy: processing
+04:36:22 [sys] echo:busy: processing
+04:36:24 [sys] echo:busy: processing
+04:36:26 [sys] echo:busy: processing
+04:36:28 [sys] echo:busy: processing
+04:36:30 [sys] echo:busy: processing
+04:36:32 [sys] echo:busy: processing
+04:36:34 [sys] echo:busy: processing
+04:36:36 [sys] echo:busy: processing
+04:36:38 [sys] echo:busy: processing
+04:36:40 [sys] echo:busy: processing
+04:36:42 [sys] echo:busy: processing
+04:36:44 [sys] echo:busy: processing
+04:36:46 [sys] echo:busy: processing
+04:36:48 [sys] echo:busy: processing
+04:36:50 [sys] echo:busy: processing
+04:36:52 [sys] echo:busy: processing
+04:36:54 [sys] echo:busy: processing
+04:36:56 [sys] echo:busy: processing
+04:36:58 [sys] echo:busy: processing
+04:37:00 [sys] echo:busy: processing
+04:37:02 [sys] echo:busy: processing
+04:37:04 [sys] echo:busy: processing
+04:37:06 [sys] echo:busy: processing
+04:37:08 [sys] echo:busy: processing
+04:37:10 [sys] echo:busy: processing
+04:37:12 [sys] echo:busy: processing
+04:37:14 [sys] echo:busy: processing
+04:37:16 [sys] echo:busy: processing
+04:37:18 [sys] echo:busy: processing
+04:37:20 [sys] echo:busy: processing
+04:37:22 [sys] echo:busy: processing
+04:37:24 [sys] echo:busy: processing
+04:37:26 [sys] echo:busy: processing
+04:37:28 [sys] echo:busy: processing
+04:37:30 [sys] echo:busy: processing
+04:37:32 [sys] echo:busy: processing
+04:37:34 [sys] echo:busy: processing
+04:37:36 [sys] echo:busy: processing
+04:37:38 [sys] echo:busy: processing
+04:37:40 [sys] echo:busy: processing
+04:37:42 [sys] echo:busy: processing
+04:37:44 [sys] echo:busy: processing
+04:37:46 [sys] echo:busy: processing
+04:37:48 [sys] echo:busy: processing
+04:37:50 [sys] echo:busy: processing
+04:37:52 [sys] echo:busy: processing
+04:37:54 [sys] echo:busy: processing
+04:37:56 [sys] echo:busy: processing
+04:37:58 [sys] echo:busy: processing
+04:38:00 [sys] echo:busy: processing
+04:38:02 [sys] echo:busy: processing
+04:38:04 [sys] echo:busy: processing
+04:38:06 [sys] echo:busy: processing
+04:38:08 [sys] echo:busy: processing
+04:38:10 [sys] echo:busy: processing
+04:38:12 [sys] echo:busy: processing
+04:38:14 [sys] echo:busy: processing
+04:38:16 [sys] echo:busy: processing
+04:38:18 [sys] echo:busy: processing
+04:38:20 [sys] echo:busy: processing
+04:38:22 [sys] echo:busy: processing
+04:38:24 [sys] echo:busy: processing
+04:38:26 [sys] echo:busy: processing
+04:38:28 [sys] echo:busy: processing
+04:38:30 [sys] echo:busy: processing
+04:38:32 [sys] echo:busy: processing
+04:38:34 [sys] echo:busy: processing
+04:38:36 [sys] echo:busy: processing
+04:38:38 [sys] echo:busy: processing
+04:38:40 [sys] echo:busy: processing
+04:38:42 [sys] echo:busy: processing
+04:38:44 [sys] echo:busy: processing
+04:38:46 [sys] echo:busy: processing
+04:38:48 [sys] echo:busy: processing
+04:38:50 [sys] echo:busy: processing
+04:38:52 [sys] echo:busy: processing
+04:38:54 [sys] echo:busy: processing
+04:38:56 [sys] echo:busy: processing
+04:38:58 [sys] echo:busy: processing
+04:39:00 [sys] echo:busy: processing
+04:39:02 [sys] echo:busy: processing
+04:39:04 [sys] echo:busy: processing
+04:39:06 [sys] echo:busy: processing
+04:39:08 [sys] echo:busy: processing
+04:39:10 [sys] echo:busy: processing
+04:39:12 [sys] echo:busy: processing
+04:39:14 [sys] echo:busy: processing
+04:39:16 [sys] echo:busy: processing
+04:39:18 [sys] echo:busy: processing
+04:39:20 [sys] echo:busy: processing
+04:39:22 [sys] echo:busy: processing
+04:39:24 [sys] echo:busy: processing
+04:39:26 [sys] echo:busy: processing
+04:39:28 [sys] echo:busy: processing
+04:39:30 [sys] echo:busy: processing
+04:39:32 [sys] echo:busy: processing
+04:39:34 [sys] echo:busy: processing
+04:39:36 [sys] echo:busy: processing
+04:39:38 [sys] echo:busy: processing
+04:39:40 [sys] echo:busy: processing
+04:39:42 [sys] echo:busy: processing
+04:39:44 [sys] echo:busy: processing
+04:39:46 [sys] echo:busy: processing
+04:39:48 [sys] echo:busy: processing
+04:39:48 [sys] echo:Unknown command: "M25"
+04:39:48 [ok] ok
+04:39:48 [rx] Reporting endstop status
+04:39:48 [rx] x_max: open
+04:39:48 [rx] y_min: open
+04:39:48 [rx] z_probe: TRIGGERED
+04:39:48 [rx] filament: open
+04:39:48 [ok] ok
+04:39:48 [tx] >> M119
+04:39:50 [sys] echo:busy: processing
+04:39:52 [sys] echo:busy: processing
+04:39:54 [sys] echo:busy: processing
+04:39:56 [sys] echo:busy: processing
+04:39:58 [sys] echo:busy: processing
+04:40:00 [sys] echo:busy: processing
+04:40:02 [sys] echo:busy: processing
+04:40:04 [sys] echo:busy: processing
+04:40:06 [sys] echo:busy: processing
+04:40:08 [sys] echo:busy: processing
+04:40:10 [sys] echo:busy: processing
+04:40:12 [sys] echo:busy: processing
+04:40:13 [rx] Reporting endstop status
+04:40:13 [rx] x_max: open
+04:40:13 [rx] y_min: open
+04:40:13 [rx] z_probe: TRIGGERED
+04:40:13 [rx] filament: open
+04:40:13 [ok] ok
+04:40:13 [tx] >> M119
+04:40:14 [rx] Reporting endstop status
+04:40:14 [rx] x_max: open
+04:40:14 [rx] y_min: open
+04:40:14 [rx] z_probe: TRIGGERED
+04:40:14 [rx] filament: open
+04:40:14 [ok] ok
+04:40:14 [tx] >> M119
+04:40:16 [sys] echo:busy: processing
+04:40:17 [rx] Reporting endstop status
+04:40:17 [rx] x_max: open
+04:40:17 [rx] y_min: open
+04:40:17 [rx] z_probe: TRIGGERED
+04:40:17 [rx] filament: open
+04:40:17 [ok] ok
+04:40:17 [tx] >> M119
+04:40:18 [rx] Reporting endstop status
+04:40:18 [rx] x_max: open
+04:40:18 [rx] y_min: open
+04:40:18 [rx] z_probe: TRIGGERED
+04:40:18 [rx] filament: open
+04:40:18 [ok] ok
+04:40:19 [tx] >> M119
+04:40:20 [sys] echo:busy: processing
+04:40:22 [sys] echo:busy: processing
+04:40:23 [rx] Reporting endstop status
+04:40:23 [rx] x_max: open
+04:40:23 [rx] y_min: open
+04:40:23 [rx] z_probe: TRIGGERED
+04:40:23 [rx] filament: open
+04:40:23 [ok] ok
+04:40:23 [tx] >> M119
+04:40:23 [rx] Reporting endstop status
+04:40:23 [rx] x_max: open
+04:40:23 [rx] y_min: open
+04:40:23 [rx] z_probe: TRIGGERED
+04:40:23 [rx] filament: open
+04:40:23 [ok] ok
+04:40:25 [tx] >> M119
+04:40:27 [sys] echo:busy: processing
+04:40:27 [rx] Reporting endstop status
+04:40:27 [rx] x_max: open
+04:40:27 [rx] y_min: open
+04:40:27 [rx] z_probe: TRIGGERED
+04:40:27 [rx] filament: open
+04:40:27 [ok] ok
+04:40:28 [tx] >> M119
+04:40:28 [rx] Reporting endstop status
+04:40:28 [rx] x_max: open
+04:40:28 [rx] y_min: open
+04:40:28 [rx] z_probe: TRIGGERED
+04:40:28 [rx] filament: open
+04:40:28 [ok] ok
+04:40:31 [tx] >> M119
+04:40:31 [rx] Reporting endstop status
+04:40:31 [rx] x_max: open
+04:40:31 [rx] y_min: open
+04:40:31 [rx] z_probe: TRIGGERED
+04:40:31 [rx] filament: open
+04:40:31 [ok] ok
+04:40:34 [tx] >> M119
+04:40:34 [rx] Reporting endstop status
+04:40:34 [rx] x_max: open
+04:40:34 [rx] y_min: open
+04:40:34 [rx] z_probe: TRIGGERED
+04:40:34 [rx] filament: open
+04:40:34 [ok] ok
+04:40:37 [tx] >> M119
+04:40:37 [rx] Reporting endstop status
+04:40:37 [rx] x_max: open
+04:40:37 [rx] y_min: open
+04:40:37 [rx] z_probe: TRIGGERED
+04:40:37 [rx] filament: open
+04:40:37 [ok] ok
+04:40:40 [tx] >> M119
+04:40:41 [rx] Reporting endstop status
+04:40:41 [rx] x_max: open
+04:40:41 [rx] y_min: open
+04:40:41 [rx] z_probe: TRIGGERED
+04:40:41 [rx] filament: open
+04:40:41 [ok] ok
+04:40:43 [tx] >> M119
+04:40:43 [rx] Reporting endstop status
+04:40:43 [rx] x_max: open
+04:40:43 [rx] y_min: open
+04:40:43 [rx] z_probe: TRIGGERED
+04:40:43 [rx] filament: open
+04:40:43 [ok] ok
+04:40:46 [tx] >> M119
+04:40:47 [rx] Reporting endstop status
+04:40:47 [rx] x_max: open
+04:40:47 [rx] y_min: open
+04:40:47 [rx] z_probe: TRIGGERED
+04:40:47 [rx] filament: open
+04:40:47 [ok] ok
+04:40:49 [tx] >> M119
+04:40:50 [rx] Reporting endstop status
+04:40:50 [rx] x_max: open
+04:40:50 [rx] y_min: open
+04:40:50 [rx] z_probe: TRIGGERED
+04:40:50 [rx] filament: open
+04:40:50 [ok] ok
+04:40:52 [tx] >> M119
+04:40:52 [rx] Reporting endstop status
+04:40:52 [rx] x_max: open
+04:40:52 [rx] y_min: open
+04:40:52 [rx] z_probe: TRIGGERED
+04:40:52 [rx] filament: open
+04:40:52 [ok] ok
+04:40:55 [tx] >> M119
+04:40:56 [rx] Reporting endstop status
+04:40:56 [rx] x_max: open
+04:40:56 [rx] y_min: open
+04:40:56 [rx] z_probe: TRIGGERED
+04:40:56 [rx] filament: open
+04:40:56 [ok] ok
+04:40:58 [tx] >> M119
+04:40:59 [rx] Reporting endstop status
+04:40:59 [rx] x_max: open
+04:40:59 [rx] y_min: open
+04:40:59 [rx] z_probe: TRIGGERED
+04:40:59 [rx] filament: open
+04:40:59 [ok] ok
+04:41:01 [tx] >> M119
+04:41:02 [rx] Reporting endstop status
+04:41:02 [rx] x_max: open
+04:41:02 [rx] y_min: open
+04:41:02 [rx] z_probe: TRIGGERED
+04:41:02 [rx] filament: open
+04:41:02 [ok] ok
+04:41:04 [tx] >> M119
+04:41:05 [rx] Reporting endstop status
+04:41:05 [rx] x_max: open
+04:41:05 [rx] y_min: open
+04:41:05 [rx] z_probe: TRIGGERED
+04:41:05 [rx] filament: open
+04:41:05 [ok] ok
+04:41:07 [tx] >> M119
+04:41:08 [rx] Reporting endstop status
+04:41:08 [rx] x_max: open
+04:41:08 [rx] y_min: open
+04:41:08 [rx] z_probe: TRIGGERED
+04:41:08 [rx] filament: open
+04:41:08 [ok] ok
+04:41:10 [tx] >> M119
+04:41:11 [rx] Reporting endstop status
+04:41:11 [rx] x_max: open
+04:41:11 [rx] y_min: open
+04:41:11 [rx] z_probe: TRIGGERED
+04:41:11 [rx] filament: open
+04:41:11 [ok] ok
+04:41:13 [tx] >> M119
+04:41:14 [rx] Reporting endstop status
+04:41:14 [rx] x_max: open
+04:41:14 [rx] y_min: open
+04:41:14 [rx] z_probe: TRIGGERED
+04:41:14 [rx] filament: open
+04:41:14 [ok] ok
+04:41:16 [tx] >> M119
+04:41:18 [rx] Reporting endstop status
+04:41:18 [rx] x_max: open
+04:41:18 [rx] y_min: open
+04:41:18 [rx] z_probe: TRIGGERED
+04:41:18 [rx] filament: open
+04:41:18 [ok] ok
+04:41:19 [tx] >> M119
+04:41:20 [rx] Reporting endstop status
+04:41:20 [rx] x_max: open
+04:41:20 [rx] y_min: open
+04:41:20 [rx] z_probe: TRIGGERED
+04:41:20 [rx] filament: open
+04:41:20 [ok] ok
+04:41:22 [tx] >> M119
+04:41:23 [rx] Reporting endstop status
+04:41:23 [rx] x_max: open
+04:41:23 [rx] y_min: open
+04:41:23 [rx] z_probe: TRIGGERED
+04:41:23 [rx] filament: open
+04:41:23 [ok] ok
+04:41:26 [tx] >> M119
+04:41:26 [rx] Reporting endstop status
+04:41:26 [rx] x_max: open
+04:41:26 [rx] y_min: open
+04:41:26 [rx] z_probe: TRIGGERED
+04:41:26 [rx] filament: open
+04:41:26 [ok] ok
+04:41:29 [tx] >> M119
+04:41:29 [rx] Reporting endstop status
+04:41:29 [rx] x_max: open
+04:41:29 [rx] y_min: open
+04:41:29 [rx] z_probe: TRIGGERED
+04:41:29 [rx] filament: open
+04:41:29 [ok] ok
+04:41:32 [tx] >> M119
+04:41:32 [rx] Reporting endstop status
+04:41:32 [rx] x_max: open
+04:41:32 [rx] y_min: open
+04:41:32 [rx] z_probe: TRIGGERED
+04:41:32 [rx] filament: open
+04:41:32 [ok] ok
+04:41:35 [tx] >> M119
+04:41:35 [rx] Reporting endstop status
+04:41:35 [rx] x_max: open
+04:41:35 [rx] y_min: open
+04:41:35 [rx] z_probe: TRIGGERED
+04:41:35 [rx] filament: open
+04:41:35 [ok] ok
+04:41:38 [tx] >> M119
+04:41:38 [rx] Reporting endstop status
+04:41:38 [rx] x_max: open
+04:41:38 [rx] y_min: open
+04:41:38 [rx] z_probe: TRIGGERED
+04:41:38 [rx] filament: open
+04:41:38 [ok] ok
+04:41:41 [tx] >> M119
+04:41:41 [rx] Reporting endstop status
+04:41:41 [rx] x_max: open
+04:41:41 [rx] y_min: open
+04:41:41 [rx] z_probe: TRIGGERED
+04:41:41 [rx] filament: open
+04:41:41 [ok] ok
+04:41:44 [tx] >> M119
+04:41:44 [rx] Reporting endstop status
+04:41:44 [rx] x_max: open
+04:41:44 [rx] y_min: open
+04:41:44 [rx] z_probe: TRIGGERED
+04:41:44 [rx] filament: open
+04:41:44 [ok] ok
+04:41:47 [tx] >> M119
+04:41:47 [rx] Reporting endstop status
+04:41:47 [rx] x_max: open
+04:41:47 [rx] y_min: open
+04:41:47 [rx] z_probe: TRIGGERED
+04:41:47 [rx] filament: open
+04:41:47 [ok] ok
+04:41:50 [tx] >> M119
+04:41:50 [rx] Reporting endstop status
+04:41:50 [rx] x_max: open
+04:41:50 [rx] y_min: open
+04:41:50 [rx] z_probe: TRIGGERED
+04:41:50 [rx] filament: open
+04:41:50 [ok] ok
+04:41:53 [tx] >> M119
+04:41:53 [rx] Reporting endstop status
+04:41:53 [rx] x_max: open
+04:41:53 [rx] y_min: open
+04:41:53 [rx] z_probe: TRIGGERED
+04:41:53 [rx] filament: open
+04:41:53 [ok] ok
+04:41:56 [tx] >> M119
+04:41:56 [rx] Reporting endstop status
+04:41:56 [rx] x_max: open
+04:41:56 [rx] y_min: open
+04:41:56 [rx] z_probe: TRIGGERED
+04:41:56 [rx] filament: open
+04:41:56 [ok] ok
+04:41:59 [tx] >> M119
+04:41:59 [rx] Reporting endstop status
+04:41:59 [rx] x_max: open
+04:41:59 [rx] y_min: open
+04:41:59 [rx] z_probe: TRIGGERED
+04:41:59 [rx] filament: open
+04:41:59 [ok] ok
+04:42:02 [tx] >> M119
+04:42:02 [rx] Reporting endstop status
+04:42:02 [rx] x_max: open
+04:42:02 [rx] y_min: open
+04:42:02 [rx] z_probe: TRIGGERED
+04:42:02 [rx] filament: open
+04:42:02 [ok] ok
+04:42:05 [tx] >> M119
+04:42:05 [rx] Reporting endstop status
+04:42:05 [rx] x_max: open
+04:42:05 [rx] y_min: open
+04:42:05 [rx] z_probe: TRIGGERED
+04:42:05 [rx] filament: open
+04:42:05 [ok] ok
+04:42:08 [tx] >> M119
+04:42:08 [rx] Reporting endstop status
+04:42:08 [rx] x_max: open
+04:42:08 [rx] y_min: open
+04:42:08 [rx] z_probe: TRIGGERED
+04:42:08 [rx] filament: open
+04:42:08 [ok] ok
+04:42:11 [tx] >> M119
+04:42:11 [rx] Reporting endstop status
+04:42:11 [rx] x_max: open
+04:42:11 [rx] y_min: open
+04:42:11 [rx] z_probe: TRIGGERED
+04:42:11 [rx] filament: open
+04:42:11 [ok] ok
+04:42:14 [tx] >> M119
+04:42:14 [rx] Reporting endstop status
+04:42:14 [rx] x_max: open
+04:42:14 [rx] y_min: open
+04:42:14 [rx] z_probe: TRIGGERED
+04:42:14 [rx] filament: open
+04:42:14 [ok] ok
+04:42:17 [tx] >> M119
+04:42:17 [rx] Reporting endstop status
+04:42:17 [rx] x_max: open
+04:42:17 [rx] y_min: open
+04:42:17 [rx] z_probe: TRIGGERED
+04:42:17 [rx] filament: open
+04:42:17 [ok] ok
+04:42:20 [tx] >> M119
+04:42:20 [rx] Reporting endstop status
+04:42:20 [rx] x_max: open
+04:42:20 [rx] y_min: open
+04:42:20 [rx] z_probe: TRIGGERED
+04:42:20 [rx] filament: open
+04:42:20 [ok] ok
+04:42:23 [tx] >> M119
+04:42:23 [rx] Reporting endstop status
+04:42:23 [rx] x_max: open
+04:42:23 [rx] y_min: open
+04:42:23 [rx] z_probe: TRIGGERED
+04:42:23 [rx] filament: open
+04:42:23 [ok] ok
+04:42:26 [tx] >> M119
+04:42:26 [rx] Reporting endstop status
+04:42:26 [rx] x_max: open
+04:42:26 [rx] y_min: open
+04:42:26 [rx] z_probe: TRIGGERED
+04:42:26 [rx] filament: open
+04:42:26 [ok] ok
+04:42:29 [tx] >> M119
+04:42:30 [rx] Reporting endstop status
+04:42:30 [rx] x_max: open
+04:42:30 [rx] y_min: open
+04:42:30 [rx] z_probe: TRIGGERED
+04:42:30 [rx] filament: open
+04:42:30 [ok] ok
+04:42:32 [tx] >> M119
+04:42:32 [rx] Reporting endstop status
+04:42:32 [rx] x_max: open
+04:42:32 [rx] y_min: open
+04:42:32 [rx] z_probe: TRIGGERED
+04:42:32 [rx] filament: open
+04:42:32 [ok] ok
+04:42:35 [tx] >> M119
+04:42:35 [rx] Reporting endstop status
+04:42:35 [rx] x_max: open
+04:42:35 [rx] y_min: open
+04:42:35 [rx] z_probe: TRIGGERED
+04:42:35 [rx] filament: open
+04:42:35 [ok] ok
+04:42:38 [tx] >> M119
+04:42:39 [rx] Reporting endstop status
+04:42:39 [rx] x_max: open
+04:42:39 [rx] y_min: open
+04:42:39 [rx] z_probe: TRIGGERED
+04:42:39 [rx] filament: open
+04:42:39 [ok] ok
+04:42:41 [tx] >> M119
+04:42:42 [rx] Reporting endstop status
+04:42:42 [rx] x_max: open
+04:42:42 [rx] y_min: open
+04:42:42 [rx] z_probe: TRIGGERED
+04:42:42 [rx] filament: open
+04:42:42 [ok] ok
+04:42:44 [tx] >> M119
+04:42:45 [rx] Reporting endstop status
+04:42:45 [rx] x_max: open
+04:42:45 [rx] y_min: open
+04:42:45 [rx] z_probe: TRIGGERED
+04:42:45 [rx] filament: open
+04:42:45 [ok] ok
+04:42:47 [tx] >> M119
+04:42:48 [rx] Reporting endstop status
+04:42:48 [rx] x_max: open
+04:42:48 [rx] y_min: open
+04:42:48 [rx] z_probe: TRIGGERED
+04:42:48 [rx] filament: open
+04:42:48 [ok] ok
+04:42:50 [tx] >> M119
+04:42:51 [rx] Reporting endstop status
+04:42:51 [rx] x_max: open
+04:42:51 [rx] y_min: open
+04:42:51 [rx] z_probe: TRIGGERED
+04:42:51 [rx] filament: open
+04:42:51 [ok] ok
+04:42:53 [tx] >> M119
+04:42:54 [rx] Reporting endstop status
+04:42:54 [rx] x_max: open
+04:42:54 [rx] y_min: open
+04:42:54 [rx] z_probe: TRIGGERED
+04:42:54 [rx] filament: open
+04:42:54 [ok] ok
+04:42:56 [tx] >> M119
+04:42:57 [rx] Reporting endstop status
+04:42:57 [rx] x_max: open
+04:42:57 [rx] y_min: open
+04:42:57 [rx] z_probe: TRIGGERED
+04:42:57 [rx] filament: open
+04:42:57 [ok] ok
+04:43:00 [tx] >> M119
+04:43:00 [rx] Reporting endstop status
+04:43:00 [rx] x_max: open
+04:43:00 [rx] y_min: open
+04:43:00 [rx] z_probe: TRIGGERED
+04:43:00 [rx] filament: open
+04:43:00 [ok] ok
+04:43:03 [tx] >> M119
+04:43:03 [rx] Reporting endstop status
+04:43:03 [rx] x_max: open
+04:43:03 [rx] y_min: open
+04:43:03 [rx] z_probe: TRIGGERED
+04:43:03 [rx] filament: open
+04:43:03 [ok] ok
+04:43:06 [tx] >> M119
+04:43:06 [rx] Reporting endstop status
+04:43:06 [rx] x_max: open
+04:43:06 [rx] y_min: open
+04:43:06 [rx] z_probe: TRIGGERED
+04:43:06 [rx] filament: open
+04:43:06 [ok] ok
+04:43:09 [tx] >> M119
+04:43:09 [rx] Reporting endstop status
+04:43:09 [rx] x_max: open
+04:43:09 [rx] y_min: open
+04:43:09 [rx] z_probe: TRIGGERED
+04:43:09 [rx] filament: open
+04:43:09 [ok] ok
+04:43:12 [tx] >> M119
+04:43:12 [rx] Reporting endstop status
+04:43:12 [rx] x_max: open
+04:43:12 [rx] y_min: open
+04:43:12 [rx] z_probe: TRIGGERED
+04:43:12 [rx] filament: open
+04:43:12 [ok] ok
+04:43:15 [tx] >> M119
+04:43:15 [rx] Reporting endstop status
+04:43:15 [rx] x_max: open
+04:43:15 [rx] y_min: open
+04:43:15 [rx] z_probe: TRIGGERED
+04:43:15 [rx] filament: open
+04:43:15 [ok] ok
+04:43:18 [tx] >> M119
+04:43:18 [rx] Reporting endstop status
+04:43:18 [rx] x_max: open
+04:43:18 [rx] y_min: open
+04:43:18 [rx] z_probe: TRIGGERED
+04:43:18 [rx] filament: open
+04:43:18 [ok] ok
+04:43:21 [tx] >> M119
+04:43:21 [rx] Reporting endstop status
+04:43:21 [rx] x_max: open
+04:43:21 [rx] y_min: open
+04:43:21 [rx] z_probe: TRIGGERED
+04:43:21 [rx] filament: open
+04:43:21 [ok] ok
+04:43:24 [tx] >> M119
+04:43:24 [rx] Reporting endstop status
+04:43:24 [rx] x_max: open
+04:43:24 [rx] y_min: open
+04:43:24 [rx] z_probe: TRIGGERED
+04:43:24 [rx] filament: open
+04:43:24 [ok] ok
+04:43:27 [tx] >> M119
+04:43:27 [rx] Reporting endstop status
+04:43:27 [rx] x_max: open
+04:43:27 [rx] y_min: open
+04:43:27 [rx] z_probe: TRIGGERED
+04:43:27 [rx] filament: open
+04:43:27 [ok] ok
+04:43:30 [tx] >> M119
+04:43:31 [rx] Reporting endstop status
+04:43:31 [rx] x_max: open
+04:43:31 [rx] y_min: open
+04:43:31 [rx] z_probe: TRIGGERED
+04:43:31 [rx] filament: open
+04:43:31 [ok] ok
+04:43:33 [tx] >> M119
+04:43:33 [rx] Reporting endstop status
+04:43:33 [rx] x_max: open
+04:43:33 [rx] y_min: open
+04:43:33 [rx] z_probe: TRIGGERED
+04:43:33 [rx] filament: open
+04:43:33 [ok] ok
+04:43:36 [tx] >> M119
+04:43:36 [rx] Reporting endstop status
+04:43:36 [rx] x_max: open
+04:43:36 [rx] y_min: open
+04:43:36 [rx] z_probe: TRIGGERED
+04:43:36 [rx] filament: open
+04:43:36 [ok] ok
+04:43:39 [tx] >> M119
+04:43:40 [rx] Reporting endstop status
+04:43:40 [rx] x_max: open
+04:43:40 [rx] y_min: open
+04:43:40 [rx] z_probe: TRIGGERED
+04:43:40 [rx] filament: open
+04:43:40 [ok] ok
+04:43:42 [tx] >> M119
+04:43:42 [rx] Reporting endstop status
+04:43:43 [rx] x_max: open
+04:43:43 [rx] y_min: open
+04:43:43 [rx] z_probe: TRIGGERED
+04:43:43 [rx] filament: open
+04:43:43 [ok] ok
+04:43:45 [tx] >> M119
+04:43:45 [rx] Reporting endstop status
+04:43:45 [rx] x_max: open
+04:43:45 [rx] y_min: open
+04:43:45 [rx] z_probe: TRIGGERED
+04:43:45 [rx] filament: open
+04:43:45 [ok] ok
+04:43:48 [tx] >> M119
+04:43:48 [rx] Reporting endstop status
+04:43:48 [rx] x_max: open
+04:43:48 [rx] y_min: open
+04:43:48 [rx] z_probe: TRIGGERED
+04:43:48 [rx] filament: open
+04:43:48 [ok] ok
+04:43:51 [tx] >> M119
+04:43:51 [rx] Reporting endstop status
+04:43:51 [rx] x_max: open
+04:43:51 [rx] y_min: open
+04:43:51 [rx] z_probe: TRIGGERED
+04:43:51 [rx] filament: open
+04:43:51 [ok] ok
+04:43:54 [tx] >> M119
+04:43:54 [rx] Reporting endstop status
+04:43:54 [rx] x_max: open
+04:43:54 [rx] y_min: open
+04:43:54 [rx] z_probe: TRIGGERED
+04:43:54 [rx] filament: open
+04:43:54 [ok] ok
+04:43:57 [tx] >> M119
+04:43:57 [rx] Reporting endstop status
+04:43:57 [rx] x_max: open
+04:43:57 [rx] y_min: open
+04:43:57 [rx] z_probe: TRIGGERED
+04:43:57 [rx] filament: open
+04:43:57 [ok] ok
+04:44:00 [tx] >> M119
+04:44:00 [rx] Reporting endstop status
+04:44:00 [rx] x_max: open
+04:44:00 [rx] y_min: open
+04:44:00 [rx] z_probe: TRIGGERED
+04:44:00 [rx] filament: open
+04:44:00 [ok] ok
+04:44:03 [tx] >> M119
+04:44:04 [rx] Reporting endstop status
+04:44:04 [rx] x_max: open
+04:44:04 [rx] y_min: open
+04:44:04 [rx] z_probe: TRIGGERED
+04:44:04 [rx] filament: open
+04:44:04 [ok] ok
+04:44:06 [tx] >> M119
+04:44:06 [rx] Reporting endstop status
+04:44:06 [rx] x_max: open
+04:44:06 [rx] y_min: open
+04:44:06 [rx] z_probe: TRIGGERED
+04:44:06 [rx] filament: open
+04:44:06 [ok] ok
+04:44:09 [tx] >> M119
+04:44:10 [rx] Reporting endstop status
+04:44:10 [rx] x_max: open
+04:44:10 [rx] y_min: open
+04:44:10 [rx] z_probe: TRIGGERED
+04:44:10 [rx] filament: open
+04:44:10 [ok] ok
+04:44:12 [tx] >> M119
+04:44:13 [rx] Reporting endstop status
+04:44:13 [rx] x_max: open
+04:44:13 [rx] y_min: open
+04:44:13 [rx] z_probe: TRIGGERED
+04:44:13 [rx] filament: open
+04:44:13 [ok] ok
+04:44:15 [tx] >> M119
+04:44:16 [rx] Reporting endstop status
+04:44:16 [rx] x_max: open
+04:44:16 [rx] y_min: open
+04:44:16 [rx] z_probe: TRIGGERED
+04:44:16 [rx] filament: open
+04:44:16 [ok] ok
+04:44:18 [tx] >> M119
+04:44:19 [rx] Reporting endstop status
+04:44:19 [rx] x_max: open
+04:44:19 [rx] y_min: open
+04:44:19 [rx] z_probe: TRIGGERED
+04:44:19 [rx] filament: open
+04:44:19 [ok] ok
+04:44:21 [tx] >> M119
+04:44:22 [rx] Reporting endstop status
+04:44:22 [rx] x_max: open
+04:44:22 [rx] y_min: open
+04:44:22 [rx] z_probe: TRIGGERED
+04:44:22 [rx] filament: open
+04:44:22 [ok] ok
+04:44:24 [tx] >> M119
+04:44:25 [rx] Reporting endstop status
+04:44:25 [rx] x_max: open
+04:44:25 [rx] y_min: open
+04:44:25 [rx] z_probe: TRIGGERED
+04:44:25 [rx] filament: open
+04:44:25 [ok] ok
+04:44:27 [tx] >> M119
+04:44:28 [rx] Reporting endstop status
+04:44:28 [rx] x_max: open
+04:44:28 [rx] y_min: open
+04:44:28 [rx] z_probe: TRIGGERED
+04:44:28 [rx] filament: open
+04:44:28 [ok] ok
+04:44:30 [tx] >> M119
+04:44:31 [rx] Reporting endstop status
+04:44:31 [rx] x_max: open
+04:44:31 [rx] y_min: open
+04:44:31 [rx] z_probe: TRIGGERED
+04:44:31 [rx] filament: open
+04:44:31 [ok] ok
+04:44:34 [tx] >> M119
+04:44:34 [rx] Reporting endstop status
+04:44:34 [rx] x_max: open
+04:44:34 [rx] y_min: open
+04:44:34 [rx] z_probe: TRIGGERED
+04:44:34 [rx] filament: open
+04:44:34 [ok] ok
+04:44:37 [tx] >> M119
+04:44:37 [rx] Reporting endstop status
+04:44:37 [rx] x_max: open
+04:44:37 [rx] y_min: open
+04:44:37 [rx] z_probe: TRIGGERED
+04:44:37 [rx] filament: open
+04:44:37 [ok] ok
+04:44:40 [tx] >> M119
+04:44:40 [rx] Reporting endstop status
+04:44:40 [rx] x_max: open
+04:44:40 [rx] y_min: open
+04:44:40 [rx] z_probe: TRIGGERED
+04:44:40 [rx] filament: open
+04:44:40 [ok] ok
+04:44:43 [tx] >> M119
+04:44:43 [rx] Reporting endstop status
+04:44:43 [rx] x_max: open
+04:44:43 [rx] y_min: open
+04:44:43 [rx] z_probe: TRIGGERED
+04:44:43 [rx] filament: open
+04:44:43 [ok] ok
+04:44:46 [tx] >> M119
+04:44:46 [rx] Reporting endstop status
+04:44:46 [rx] x_max: open
+04:44:46 [rx] y_min: open
+04:44:46 [rx] z_probe: TRIGGERED
+04:44:46 [rx] filament: open
+04:44:46 [ok] ok
+04:44:49 [tx] >> M119
+04:44:49 [rx] Reporting endstop status
+04:44:49 [rx] x_max: open
+04:44:49 [rx] y_min: open
+04:44:49 [rx] z_probe: TRIGGERED
+04:44:49 [rx] filament: open
+04:44:49 [ok] ok
+04:44:52 [tx] >> M119
+04:44:52 [rx] Reporting endstop status
+04:44:52 [rx] x_max: open
+04:44:52 [rx] y_min: open
+04:44:52 [rx] z_probe: TRIGGERED
+04:44:52 [rx] filament: open
+04:44:52 [ok] ok
+04:44:55 [tx] >> M119
+04:44:55 [rx] Reporting endstop status
+04:44:55 [rx] x_max: open
+04:44:55 [rx] y_min: open
+04:44:55 [rx] z_probe: TRIGGERED
+04:44:55 [rx] filament: open
+04:44:55 [ok] ok
+04:44:58 [tx] >> M119
+04:44:58 [rx] Reporting endstop status
+04:44:58 [rx] x_max: open
+04:44:58 [rx] y_min: open
+04:44:58 [rx] z_probe: TRIGGERED
+04:44:58 [rx] filament: open
+04:44:58 [ok] ok
+04:45:01 [tx] >> M119
+04:45:01 [rx] Reporting endstop status
+04:45:01 [rx] x_max: open
+04:45:01 [rx] y_min: open
+04:45:01 [rx] z_probe: TRIGGERED
+04:45:01 [rx] filament: open
+04:45:01 [ok] ok
+04:45:04 [tx] >> M119
+04:45:04 [rx] Reporting endstop status
+04:45:04 [rx] x_max: open
+04:45:04 [rx] y_min: open
+04:45:04 [rx] z_probe: TRIGGERED
+04:45:04 [rx] filament: open
+04:45:04 [ok] ok
+04:45:07 [tx] >> M119
+04:45:07 [rx] Reporting endstop status
+04:45:07 [rx] x_max: open
+04:45:07 [rx] y_min: open
+04:45:07 [rx] z_probe: TRIGGERED
+04:45:07 [rx] filament: open
+04:45:07 [ok] ok
+04:45:10 [tx] >> M119
+04:45:10 [rx] Reporting endstop status
+04:45:10 [rx] x_max: open
+04:45:10 [rx] y_min: open
+04:45:10 [rx] z_probe: TRIGGERED
+04:45:10 [rx] filament: open
+04:45:10 [ok] ok
+04:45:13 [tx] >> M119
+04:45:14 [rx] Reporting endstop status
+04:45:14 [rx] x_max: open
+04:45:14 [rx] y_min: open
+04:45:14 [rx] z_probe: TRIGGERED
+04:45:14 [rx] filament: open
+04:45:14 [ok] ok
+04:45:16 [tx] >> M119
+04:45:16 [rx] Reporting endstop status
+04:45:16 [rx] x_max: open
+04:45:16 [rx] y_min: open
+04:45:16 [rx] z_probe: TRIGGERED
+04:45:16 [rx] filament: open
+04:45:16 [ok] ok
+04:45:19 [tx] >> M119
+04:45:19 [rx] Reporting endstop status
+04:45:19 [rx] x_max: open
+04:45:19 [rx] y_min: open
+04:45:19 [rx] z_probe: TRIGGERED
+04:45:19 [rx] filament: open
+04:45:19 [ok] ok
+04:45:22 [tx] >> M119
+04:45:23 [rx] Reporting endstop status
+04:45:23 [rx] x_max: open
+04:45:23 [rx] y_min: open
+04:45:23 [rx] z_probe: TRIGGERED
+04:45:23 [rx] filament: open
+04:45:23 [ok] ok
+04:45:25 [tx] >> M119
+04:45:26 [rx] Reporting endstop status
+04:45:26 [rx] x_max: open
+04:45:26 [rx] y_min: open
+04:45:26 [rx] z_probe: TRIGGERED
+04:45:26 [rx] filament: open
+04:45:26 [ok] ok
+04:45:28 [tx] >> M119
+04:45:28 [rx] Reporting endstop status
+04:45:28 [rx] x_max: open
+04:45:28 [rx] y_min: open
+04:45:28 [rx] z_probe: TRIGGERED
+04:45:28 [rx] filament: open
+04:45:28 [ok] ok
+04:45:31 [tx] >> M119
+04:45:32 [rx] Reporting endstop status
+04:45:32 [rx] x_max: open
+04:45:32 [rx] y_min: open
+04:45:32 [rx] z_probe: TRIGGERED
+04:45:32 [rx] filament: open
+04:45:32 [ok] ok
+04:45:34 [tx] >> M119
+04:45:35 [rx] Reporting endstop status
+04:45:35 [rx] x_max: open
+04:45:35 [rx] y_min: open
+04:45:35 [rx] z_probe: TRIGGERED
+04:45:35 [rx] filament: open
+04:45:35 [ok] ok
+04:45:37 [tx] >> M119
+04:45:38 [rx] Reporting endstop status
+04:45:38 [rx] x_max: open
+04:45:38 [rx] y_min: open
+04:45:38 [rx] z_probe: TRIGGERED
+04:45:38 [rx] filament: open
+04:45:38 [ok] ok
+04:45:40 [tx] >> M119
+04:45:41 [rx] Reporting endstop status
+04:45:41 [rx] x_max: open
+04:45:41 [rx] y_min: open
+04:45:41 [rx] z_probe: TRIGGERED
+04:45:41 [rx] filament: open
+04:45:41 [ok] ok
+04:45:43 [tx] >> M119
+04:45:44 [rx] Reporting endstop status
+04:45:44 [rx] x_max: open
+04:45:44 [rx] y_min: open
+04:45:44 [rx] z_probe: TRIGGERED
+04:45:44 [rx] filament: open
+04:45:44 [ok] ok
+04:45:47 [tx] >> M119
+04:45:47 [rx] Reporting endstop status
+04:45:47 [rx] x_max: open
+04:45:47 [rx] y_min: open
+04:45:47 [rx] z_probe: TRIGGERED
+04:45:47 [rx] filament: open
+04:45:47 [ok] ok
+04:45:50 [tx] >> M119
+04:45:50 [rx] Reporting endstop status
+04:45:50 [rx] x_max: open
+04:45:50 [rx] y_min: open
+04:45:50 [rx] z_probe: TRIGGERED
+04:45:50 [rx] filament: open
+04:45:50 [ok] ok
+04:45:53 [tx] >> M119
+04:45:53 [rx] Reporting endstop status
+04:45:53 [rx] x_max: open
+04:45:53 [rx] y_min: open
+04:45:53 [rx] z_probe: TRIGGERED
+04:45:53 [rx] filament: open
+04:45:53 [ok] ok
+04:45:56 [tx] >> M119
+04:45:56 [rx] Reporting endstop status
+04:45:56 [rx] x_max: open
+04:45:56 [rx] y_min: open
+04:45:56 [rx] z_probe: TRIGGERED
+04:45:56 [rx] filament: open
+04:45:56 [ok] ok
+04:45:59 [tx] >> M119
+04:45:59 [rx] Reporting endstop status
+04:45:59 [rx] x_max: open
+04:45:59 [rx] y_min: open
+04:45:59 [rx] z_probe: TRIGGERED
+04:45:59 [rx] filament: open
+04:45:59 [ok] ok
+04:46:02 [tx] >> M119
+04:46:02 [rx] Reporting endstop status
+04:46:02 [rx] x_max: open
+04:46:02 [rx] y_min: open
+04:46:02 [rx] z_probe: TRIGGERED
+04:46:02 [rx] filament: open
+04:46:02 [ok] ok
+04:46:05 [tx] >> M119
+04:46:05 [rx] Reporting endstop status
+04:46:05 [rx] x_max: open
+04:46:05 [rx] y_min: open
+04:46:05 [rx] z_probe: TRIGGERED
+04:46:05 [rx] filament: open
+04:46:05 [ok] ok
+# sessao encerrada Sat Oct 17 04:46:07 2026

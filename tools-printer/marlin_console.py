@@ -604,11 +604,25 @@ class App(tk.Tk):
                               "Faz várias sondagens no mesmo ponto.")).pack(side="left", padx=3)
 
         ttk.Separator(f).pack(fill="x", pady=8)
+        ttk.Label(f, text="Nivelamento (G29)",
+                  font=("TkDefaultFont", 9, "bold")).pack(anchor="w")
+        ttk.Label(f, foreground="#666", justify="left",
+                  text="O offset Z do probe e pequeno (0.62mm), entao o alcance de busca\n"
+                       "nao cobre a inclinacao da mesa inteira. Sondar so a area central\n"
+                       "mantem o desvio dentro do alcance. Mesa inteira so apos baixar\n"
+                       "a montagem do probe.").pack(anchor="w")
+
+        self.var_mesh = tk.IntVar(value=100)
+        g0 = ttk.Frame(f); g0.pack(fill="x", pady=4)
+        ttk.Label(g0, text="Quadrado central (mm):").pack(side="left")
+        ttk.Spinbox(g0, from_=40, to=200, increment=10, width=5,
+                    textvariable=self.var_mesh).pack(side="left", padx=4)
+        ttk.Button(g0, text="Nivelar area central", width=20,
+                   command=self.mesh_center).pack(side="left", padx=3)
+        ttk.Button(g0, text="Mesa inteira", width=14,
+                   command=self.mesh_full).pack(side="left", padx=3)
+
         g = ttk.Frame(f); g.pack(fill="x", pady=3)
-        ttk.Button(g, text="Nivelar malha 3x3 (G29)",
-                   command=lambda: self.confirm_send(
-                       "G29", "Executar o nivelamento automático (malha 3x3)?\n\n"
-                              "Requer homing completo e offset do probe aferido.")).pack(side="left", padx=3)
         ttk.Button(g, text="Ver malha (M420 V)",
                    command=lambda: self.send("M420 V")).pack(side="left", padx=3)
         ttk.Button(g, text="Ligar nivelamento (M420 S1)",
@@ -1169,6 +1183,34 @@ class App(tk.Tk):
         self.send(f"G1 {axis}{step:g} F{self.jog_feed.get()}")
         self.send("G90")
         self.send("M114")
+
+    # -- nivelamento --------------------------------------------------------
+    def mesh_center(self):
+        """G29 restrito a um quadrado central (parametro H do G29)."""
+        n = int(self.var_mesh.get())
+        if not messagebox.askokcancel(
+                "Nivelar area central",
+                f"Sondar um quadrado de {n}x{n} mm no centro da mesa?\n\n"
+                "Requer homing completo. O G29 H restringe a area sondada,\n"
+                "mantendo o desvio dentro do alcance do probe."):
+            return
+        self.log(f"[MALHA] G29 H{n} - area central de {n}x{n} mm", "sys")
+        self.send(f"G29 H{n}")
+        self.send("M420 V")
+
+    def mesh_full(self):
+        """G29 sem restricao. Falha se a inclinacao exceder o alcance do probe."""
+        if not messagebox.askokcancel(
+                "Nivelar mesa inteira",
+                "Sondar a MESA INTEIRA?\n\n"
+                "Com o offset Z atual (0.62mm) o alcance de busca e de ~0.5mm,\n"
+                "menor que a inclinacao medida da mesa. Isso ja falhou antes\n"
+                "com 'Probing Failed' nos cantos.\n\n"
+                "So faz sentido depois de baixar a montagem do probe."):
+            return
+        self.log("[MALHA] G29 sem restricao (mesa inteira)", "sys")
+        self.send("G29")
+        self.send("M420 V")
 
     # -- ventoinhas ---------------------------------------------------------
     def fan_solo(self, idx):

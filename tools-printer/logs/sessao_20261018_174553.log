@@ -1,0 +1,14 @@
+# Console Marlin - sessao iniciada Sun Oct 18 17:45:53 2026
+17:45:53 [sys] Console pronto. Clique em 'Localizar placa' para comecar.
+17:45:53 [sys] Log desta sessao: C:\tmp\Marlin\tools-printer\logs\sessao_20261018_174553.log
+17:45:53 [sys] [MALHA] G29 H100 - area central de 100x100 mm
+17:45:53 [tx] >> G29 H100
+17:45:53 [ok] ok
+17:45:53 [tx] >> M420 V
+17:45:53 [ok] ok
+17:45:53 [sys] [MALHA] G29 sem restricao (mesa inteira)
+17:45:53 [tx] >> G29
+17:45:53 [ok] ok
+17:45:53 [tx] >> M420 V
+17:45:53 [ok] ok
+# sessao encerrada Sun Oct 18 17:45:53 2026

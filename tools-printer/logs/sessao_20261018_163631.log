@@ -1,0 +1,1243 @@
+# Console Marlin - sessao iniciada Sun Oct 18 16:36:31 2026
+16:36:31 [sys] Console pronto. Clique em 'Localizar placa' para comecar.
+16:36:31 [sys] Log desta sessao: C:\tmp\Marlin\tools-printer\logs\sessao_20261018_163631.log
+16:36:41 [ok] Conectado em COM18 @ 250000.
+16:36:41 [tx] >> M115
+16:36:42 [rx] FIRMWARE_NAME:Marlin bugfix-2.1.x (Oct 17 2026 03:56:37) SOURCE_CODE_URL:github.com/MarlinFirmware/Marlin PROTOCOL_VERSION:1.0 MACHINE_TYPE:CoreXY TinyBee KINEMATICS:COREXYCartesian EXTRUDER_COUNT:1 UUID:cede2a2f-41a2-4748-9b12-c55c62f367ff
+16:36:42 [rx] Cap:SERIAL_XON_XOFF:0
+16:36:42 [rx] Cap:BINARY_FILE_TRANSFER:0
+16:36:42 [rx] Cap:EEPROM:1
+16:36:42 [rx] Cap:VOLUMETRIC:1
+16:36:42 [rx] Cap:AUTOREPORT_POS:0
+16:36:42 [rx] Cap:AUTOREPORT_TEMP:1
+16:36:42 [rx] Cap:PROGRESS:0
+16:36:42 [rx] Cap:PRINT_JOB:1
+16:36:42 [rx] Cap:AUTOLEVEL:1
+16:36:42 [rx] Cap:RUNOUT:1
+16:36:42 [rx] Cap:Z_PROBE:1
+16:36:42 [rx] Cap:LEVELING_DATA:1
+16:36:42 [rx] Cap:BUILD_PERCENT:1
+16:36:42 [rx] Cap:SOFTWARE_POWER:0
+16:36:42 [rx] Cap:TOGGLE_LIGHTS:0
+16:36:42 [rx] Cap:CASE_LIGHT_BRIGHTNESS:0
+16:36:42 [rx] Cap:EMERGENCY_PARSER:0
+16:36:42 [rx] Cap:HOST_ACTION_COMMANDS:1
+16:36:42 [rx] Cap:PROMPT_SUPPORT:1
+16:36:42 [rx] Cap:SDCARD:0
+16:36:42 [rx] Cap:REPEAT:0
+16:36:42 [rx] Cap:SD_WRITE:0
+16:36:42 [rx] Cap:AUTOREPORT_SD_STATUS:0
+16:36:42 [rx] Cap:LONG_FILENAME:0
+16:36:42 [rx] Cap:LFN_WRITE:0
+16:36:42 [rx] Cap:CUSTOM_FIRMWARE_UPLOAD:0
+16:36:42 [rx] Cap:EXTENDED_M20:0
+16:36:42 [rx] Cap:THERMAL_PROTECTION:1
+16:36:42 [rx] Cap:MOTION_MODES:0
+16:36:42 [rx] Cap:ARCS:1
+16:36:42 [rx] Cap:BABYSTEPPING:0
+16:36:42 [rx] Cap:EP_BABYSTEP:0
+16:36:42 [rx] Cap:CHAMBER_TEMPERATURE:0
+16:36:42 [rx] Cap:COOLER_TEMPERATURE:0
+16:36:42 [rx] Cap:MEATPACK:0
+16:36:42 [rx] Cap:CONFIG_EXPORT:0
+16:36:42 [ok] ok
+16:36:42 [tx] >> M119
+16:36:42 [rx] Reporting endstop status
+16:36:42 [rx] x_max: open
+16:36:42 [rx] y_min: open
+16:36:42 [rx] z_probe: TRIGGERED
+16:36:42 [rx] filament: open
+16:36:42 [ok] ok
+16:36:56 [tx] >> G28 X
+16:36:59 [sys] echo:busy: processing
+16:37:01 [sys] echo:busy: processing
+16:37:02 [rx] X:208.00 Y:-6.00 Z:8.66 E:0.00 Count A:16160B:17120 Z:3448
+16:37:02 [ok] ok
+16:37:09 [tx] >> G28 Y
+16:37:11 [sys] echo:busy: processing
+16:37:13 [sys] echo:busy: processing
+16:37:13 [rx] X:208.00 Y:-6.00 Z:8.66 E:0.00 Count A:16160B:17120 Z:3448
+16:37:13 [ok] ok
+16:37:16 [tx] >> G91
+16:37:17 [ok] ok
+16:37:17 [tx] >> G1 Y-10 F600
+16:37:17 [sys] echo:Home Z First
+16:37:17 [rx] //action:notification Home Z First
+16:37:17 [ok] ok
+16:37:17 [tx] >> G90
+16:37:17 [ok] ok
+16:37:17 [tx] >> M114
+16:37:17 [rx] X:208.00 Y:-6.00 Z:8.66 E:0.00 Count A:16640B:-480 Z:3448
+16:37:17 [ok] ok
+16:37:18 [tx] >> G91
+16:37:19 [ok] ok
+16:37:19 [tx] >> G1 Y10 F600
+16:37:19 [sys] echo:Home Z First
+16:37:19 [rx] //action:notification Home Z First
+16:37:19 [ok] ok
+16:37:19 [tx] >> G90
+16:37:19 [ok] ok
+16:37:19 [tx] >> M114
+16:37:19 [rx] X:208.00 Y:-6.00 Z:8.66 E:0.00 Count A:16640B:-480 Z:3448
+16:37:19 [ok] ok
+16:40:31 [tx] >> G28
+16:40:34 [sys] echo:busy: processing
+16:40:36 [sys] echo:busy: processing
+16:40:38 [sys] echo:busy: processing
+16:40:40 [sys] echo:busy: processing
+16:40:42 [sys] echo:busy: processing
+16:40:44 [sys] echo:busy: processing
+16:40:46 [rx] X:138.00 Y:86.00 Z:10.00 E:0.00 Count A:17920B:4160 Z:4000
+16:40:46 [ok] ok
+16:40:54 [tx] >> G91
+16:40:54 [ok] ok
+16:40:54 [tx] >> G1 Z10 F600
+16:40:54 [ok] ok
+16:40:54 [tx] >> G90
+16:40:54 [ok] ok
+16:40:54 [tx] >> M114
+16:40:55 [rx] X:138.00 Y:86.00 Z:20.00 E:0.00 Count A:11040B:6880 Z:8000
+16:40:55 [ok] ok
+16:41:01 [tx] >> G91
+16:41:01 [ok] ok
+16:41:01 [tx] >> G1 Z-10 F600
+16:41:01 [ok] ok
+16:41:01 [tx] >> G90
+16:41:01 [ok] ok
+16:41:01 [tx] >> M114
+16:41:02 [rx] X:138.00 Y:86.00 Z:10.00 E:0.00 Count A:11040B:6880 Z:4000
+16:41:02 [ok] ok
+16:41:04 [tx] >> G91
+16:41:04 [ok] ok
+16:41:04 [tx] >> G1 Z-10 F600
+16:41:04 [ok] ok
+16:41:04 [tx] >> G90
+16:41:04 [ok] ok
+16:41:04 [tx] >> M114
+16:41:05 [rx] X:138.00 Y:86.00 Z:0.00 E:0.00 Count A:11040B:6880 Z:-82
+16:41:05 [ok] ok
+16:41:09 [tx] >> G91
+16:41:09 [ok] ok
+16:41:09 [tx] >> G1 Z-10 F600
+16:41:09 [ok] ok
+16:41:09 [tx] >> G90
+16:41:09 [ok] ok
+16:41:09 [tx] >> M114
+16:41:10 [rx] X:138.00 Y:86.00 Z:0.00 E:0.00 Count A:11040B:6880 Z:-82
+16:41:10 [ok] ok
+16:41:11 [tx] >> G91
+16:41:12 [ok] ok
+16:41:12 [tx] >> G1 Z-10 F600
+16:41:12 [ok] ok
+16:41:12 [tx] >> G90
+16:41:12 [ok] ok
+16:41:12 [tx] >> M114
+16:41:12 [rx] X:138.00 Y:86.00 Z:0.00 E:0.00 Count A:11040B:6880 Z:-82
+16:41:12 [ok] ok
+16:41:14 [tx] >> G91
+16:41:14 [ok] ok
+16:41:14 [tx] >> G1 Z-10 F600
+16:41:14 [ok] ok
+16:41:14 [tx] >> G90
+16:41:14 [ok] ok
+16:41:14 [tx] >> M114
+16:41:15 [rx] X:138.00 Y:86.00 Z:0.00 E:0.00 Count A:11040B:6880 Z:-82
+16:41:15 [ok] ok
+16:41:17 [tx] >> G91
+16:41:17 [ok] ok
+16:41:17 [tx] >> G1 Z-10 F600
+16:41:18 [ok] ok
+16:41:18 [tx] >> G90
+16:41:18 [ok] ok
+16:41:18 [tx] >> M114
+16:41:18 [rx] X:138.00 Y:86.00 Z:0.00 E:0.00 Count A:11040B:6880 Z:-82
+16:41:18 [ok] ok
+16:41:19 [tx] >> G91
+16:41:19 [ok] ok
+16:41:19 [tx] >> G1 Z-10 F600
+16:41:19 [ok] ok
+16:41:19 [tx] >> G90
+16:41:20 [ok] ok
+16:41:20 [tx] >> M114
+16:41:20 [rx] X:138.00 Y:86.00 Z:0.00 E:0.00 Count A:11040B:6880 Z:-82
+16:41:20 [ok] ok
+16:41:35 [tx] >> G91
+16:41:35 [ok] ok
+16:41:35 [tx] >> G1 X-10 F600
+16:41:35 [ok] ok
+16:41:35 [tx] >> G90
+16:41:35 [ok] ok
+16:41:35 [tx] >> M114
+16:41:36 [rx] X:128.00 Y:86.00 Z:0.00 E:0.00 Count A:10240B:6880 Z:-68
+16:41:36 [ok] ok
+16:41:41 [tx] >> G28 X
+16:41:44 [sys] echo:busy: processing
+16:41:46 [sys] echo:busy: processing
+16:41:46 [rx] X:208.00 Y:86.00 Z:8.65 E:0.00 Count A:23520B:9760 Z:3448
+16:41:46 [ok] ok
+16:42:30 [tx] >> G91
+16:42:31 [ok] ok
+16:42:31 [tx] >> G1 Z-1 F600
+16:42:31 [ok] ok
+16:42:31 [tx] >> G90
+16:42:31 [ok] ok
+16:42:31 [tx] >> M114
+16:42:31 [rx] X:208.00 Y:86.00 Z:7.65 E:0.00 Count A:16640B:6880 Z:3040
+16:42:31 [ok] ok
+16:42:32 [tx] >> G91
+16:42:32 [ok] ok
+16:42:32 [tx] >> G1 Z-1 F600
+16:42:32 [ok] ok
+16:42:32 [tx] >> G90
+16:42:32 [ok] ok
+16:42:32 [tx] >> M114
+16:42:33 [rx] X:208.00 Y:86.00 Z:6.65 E:0.00 Count A:16640B:6880 Z:2631
+16:42:33 [ok] ok
+16:42:34 [tx] >> G91
+16:42:35 [ok] ok
+16:42:35 [tx] >> G1 Z-1 F600
+16:42:35 [ok] ok
+16:42:35 [tx] >> G90
+16:42:35 [ok] ok
+16:42:35 [tx] >> M114
+16:42:35 [rx] X:208.00 Y:86.00 Z:5.65 E:0.00 Count A:16640B:6880 Z:2223
+16:42:35 [ok] ok
+16:42:36 [tx] >> G91
+16:42:36 [ok] ok
+16:42:36 [tx] >> G1 Z-1 F600
+16:42:36 [ok] ok
+16:42:36 [tx] >> G90
+16:42:36 [ok] ok
+16:42:36 [tx] >> M114
+16:42:37 [rx] X:208.00 Y:86.00 Z:4.65 E:0.00 Count A:16640B:6880 Z:1814
+16:42:37 [ok] ok
+16:42:38 [tx] >> G91
+16:42:39 [ok] ok
+16:42:39 [tx] >> G1 Z-1 F600
+16:42:39 [ok] ok
+16:42:39 [tx] >> G90
+16:42:39 [ok] ok
+16:42:39 [tx] >> M114
+16:42:39 [rx] X:208.00 Y:86.00 Z:3.65 E:0.00 Count A:16640B:6880 Z:1406
+16:42:39 [ok] ok
+16:42:40 [tx] >> G91
+16:42:40 [ok] ok
+16:42:40 [tx] >> G1 Z-1 F600
+16:42:40 [ok] ok
+16:42:40 [tx] >> G90
+16:42:40 [ok] ok
+16:42:40 [tx] >> M114
+16:42:41 [rx] X:208.00 Y:86.00 Z:2.65 E:0.00 Count A:16640B:6880 Z:997
+16:42:41 [ok] ok
+16:42:41 [tx] >> G91
+16:42:42 [ok] ok
+16:42:42 [tx] >> G1 Z-1 F600
+16:42:42 [ok] ok
+16:42:42 [tx] >> G90
+16:42:42 [ok] ok
+16:42:42 [tx] >> M114
+16:42:42 [rx] X:208.00 Y:86.00 Z:1.65 E:0.00 Count A:16640B:6880 Z:589
+16:42:42 [ok] ok
+16:42:50 [tx] >> G91
+16:42:50 [ok] ok
+16:42:50 [tx] >> G1 Z-1 F600
+16:42:50 [ok] ok
+16:42:50 [tx] >> G90
+16:42:51 [ok] ok
+16:42:51 [tx] >> M114
+16:42:51 [rx] X:208.00 Y:86.00 Z:0.65 E:0.00 Count A:16640B:6880 Z:181
+16:42:51 [ok] ok
+16:44:03 [tx] >> G91
+16:44:03 [ok] ok
+16:44:03 [tx] >> G1 X50 F600
+16:44:04 [ok] ok
+16:44:04 [tx] >> G90
+16:44:04 [ok] ok
+16:44:04 [tx] >> M114
+16:44:04 [rx] X:208.00 Y:86.00 Z:0.65 E:0.00 Count A:16640B:6880 Z:181
+16:44:04 [ok] ok
+16:44:06 [tx] >> G91
+16:44:06 [ok] ok
+16:44:06 [tx] >> G1 X-50 F600
+16:44:07 [ok] ok
+16:44:07 [tx] >> G90
+16:44:07 [ok] ok
+16:44:07 [tx] >> M114
+16:44:07 [rx] X:158.00 Y:86.00 Z:0.65 E:0.00 Count A:12640B:6880 Z:181
+16:44:07 [ok] ok
+16:44:12 [tx] >> G91
+16:44:12 [ok] ok
+16:44:12 [tx] >> G1 X-50 F600
+16:44:12 [err] Error:Serial status mismatch
+16:44:12 [ok] ok
+16:44:12 [tx] >> G90
+16:44:12 [ok] ok
+16:44:12 [tx] >> M114
+16:44:13 [rx] X:108.00 Y:86.00 Z:0.65 E:0.00 Count A:8640B:6880 Z:221
+16:44:13 [ok] ok
+16:44:17 [tx] >> G91
+16:44:18 [ok] ok
+16:44:18 [tx] >> G1 X-50 F600
+16:44:18 [ok] ok
+16:44:18 [tx] >> G90
+16:44:18 [ok] ok
+16:44:18 [tx] >> M114
+16:44:18 [rx] X:58.00 Y:86.00 Z:0.65 E:0.00 Count A:4640B:6880 Z:232
+16:44:18 [ok] ok
+16:44:26 [tx] >> G91
+16:44:27 [ok] ok
+16:44:27 [tx] >> G1 X-10 F600
+16:44:27 [ok] ok
+16:44:27 [tx] >> G90
+16:44:27 [ok] ok
+16:44:27 [tx] >> M114
+16:44:27 [rx] X:48.00 Y:86.00 Z:0.65 E:0.00 Count A:3840B:6880 Z:232
+16:44:27 [ok] ok
+16:44:28 [tx] >> G91
+16:44:29 [ok] ok
+16:44:29 [tx] >> G1 X-10 F600
+16:44:29 [ok] ok
+16:44:29 [tx] >> G90
+16:44:29 [ok] ok
+16:44:29 [tx] >> M114
+16:44:29 [rx] X:38.00 Y:86.00 Z:0.65 E:0.00 Count A:3040B:6880 Z:232
+16:44:29 [ok] ok
+16:44:30 [tx] >> G91
+16:44:31 [ok] ok
+16:44:31 [tx] >> G1 X-10 F600
+16:44:31 [ok] ok
+16:44:31 [tx] >> G90
+16:44:31 [ok] ok
+16:44:31 [tx] >> M114
+16:44:31 [rx] X:28.00 Y:86.00 Z:0.65 E:0.00 Count A:2240B:6880 Z:232
+16:44:31 [ok] ok
+16:44:34 [tx] >> G91
+16:44:34 [ok] ok
+16:44:34 [tx] >> G1 X-10 F600
+16:44:35 [ok] ok
+16:44:35 [tx] >> G90
+16:44:35 [ok] ok
+16:44:35 [tx] >> M114
+16:44:35 [rx] X:18.00 Y:86.00 Z:0.65 E:0.00 Count A:1440B:6880 Z:232
+16:44:35 [ok] ok
+16:44:36 [tx] >> G91
+16:44:36 [ok] ok
+16:44:36 [tx] >> G1 X-10 F600
+16:44:37 [ok] ok
+16:44:37 [tx] >> G90
+16:44:37 [ok] ok
+16:44:37 [tx] >> M114
+16:44:37 [rx] X:8.00 Y:86.00 Z:0.65 E:0.00 Count A:640B:6880 Z:232
+16:44:37 [ok] ok
+16:44:42 [tx] >> G91
+16:44:42 [ok] ok
+16:44:42 [tx] >> G1 X-10 F600
+16:44:43 [ok] ok
+16:44:43 [tx] >> G90
+16:44:43 [ok] ok
+16:44:43 [tx] >> M114
+16:44:43 [rx] X:0.00 Y:86.00 Z:0.65 E:0.00 Count A:0B:6880 Z:232
+16:44:43 [ok] ok
+16:44:59 [tx] >> G91
+16:44:59 [ok] ok
+16:44:59 [tx] >> G1 X-1 F600
+16:44:59 [ok] ok
+16:44:59 [tx] >> G90
+16:45:00 [ok] ok
+16:45:00 [tx] >> M114
+16:45:00 [rx] X:0.00 Y:86.00 Z:0.65 E:0.00 Count A:0B:6880 Z:232
+16:45:00 [ok] ok
+16:45:00 [tx] >> G91
+16:45:01 [ok] ok
+16:45:01 [tx] >> G1 X-1 F600
+16:45:01 [ok] ok
+16:45:01 [tx] >> G90
+16:45:01 [ok] ok
+16:45:01 [tx] >> M114
+16:45:01 [rx] X:0.00 Y:86.00 Z:0.65 E:0.00 Count A:0B:6880 Z:232
+16:45:01 [ok] ok
+16:45:04 [tx] >> G91
+16:45:04 [ok] ok
+16:45:04 [tx] >> G1 X1 F600
+16:45:05 [ok] ok
+16:45:05 [tx] >> G90
+16:45:05 [ok] ok
+16:45:05 [tx] >> M114
+16:45:05 [rx] X:1.00 Y:86.00 Z:0.65 E:0.00 Count A:80B:6880 Z:232
+16:45:05 [ok] ok
+16:45:08 [tx] >> G91
+16:45:08 [ok] ok
+16:45:08 [tx] >> G1 X-1 F600
+16:45:08 [ok] ok
+16:45:08 [tx] >> G90
+16:45:08 [ok] ok
+16:45:08 [tx] >> M114
+16:45:09 [rx] X:0.00 Y:86.00 Z:0.65 E:0.00 Count A:0B:6880 Z:232
+16:45:09 [ok] ok
+16:46:26 [tx] >> G28 Y
+16:46:28 [sys] echo:busy: processing
+16:46:30 [sys] echo:busy: processing
+16:46:30 [rx] X:0.00 Y:-6.00 Z:8.64 E:0.00 Count A:-480B:480 Z:3448
+16:46:30 [ok] ok
+16:47:15 [tx] >> G91
+16:47:15 [ok] ok
+16:47:15 [tx] >> G1 Z-1 F600
+16:47:15 [ok] ok
+16:47:15 [tx] >> G90
+16:47:16 [ok] ok
+16:47:16 [tx] >> M114
+16:47:16 [rx] X:0.00 Y:-6.00 Z:7.64 E:0.00 Count A:0B:-480 Z:3041
+16:47:16 [ok] ok
+16:47:18 [tx] >> G91
+16:47:19 [ok] ok
+16:47:19 [tx] >> G1 Z-1 F600
+16:47:19 [ok] ok
+16:47:19 [tx] >> G90
+16:47:19 [ok] ok
+16:47:19 [tx] >> M114
+16:47:19 [rx] X:0.00 Y:-6.00 Z:6.64 E:0.00 Count A:0B:-480 Z:2634
+16:47:19 [ok] ok
+16:47:20 [tx] >> G91
+16:47:20 [ok] ok
+16:47:20 [tx] >> G1 Z-1 F600
+16:47:20 [ok] ok
+16:47:20 [tx] >> G90
+16:47:20 [ok] ok
+16:47:20 [tx] >> M114
+16:47:21 [rx] X:0.00 Y:-6.00 Z:5.64 E:0.00 Count A:0B:-480 Z:2226
+16:47:21 [ok] ok
+16:47:21 [tx] >> G91
+16:47:21 [ok] ok
+16:47:21 [tx] >> G1 Z-1 F600
+16:47:21 [ok] ok
+16:47:21 [tx] >> G90
+16:47:21 [ok] ok
+16:47:21 [tx] >> M114
+16:47:22 [rx] X:0.00 Y:-6.00 Z:4.64 E:0.00 Count A:0B:-480 Z:1819
+16:47:22 [ok] ok
+16:47:23 [tx] >> G91
+16:47:23 [ok] ok
+16:47:23 [tx] >> G1 Z-1 F600
+16:47:23 [ok] ok
+16:47:23 [tx] >> G90
+16:47:23 [ok] ok
+16:47:23 [tx] >> M114
+16:47:24 [rx] X:0.00 Y:-6.00 Z:3.64 E:0.00 Count A:0B:-480 Z:1412
+16:47:24 [ok] ok
+16:47:30 [tx] >> G91
+16:47:30 [ok] ok
+16:47:30 [tx] >> G1 Z-1 F600
+16:47:30 [ok] ok
+16:47:30 [tx] >> G90
+16:47:31 [ok] ok
+16:47:31 [tx] >> M114
+16:47:31 [rx] X:0.00 Y:-6.00 Z:2.64 E:0.00 Count A:0B:-480 Z:1005
+16:47:31 [ok] ok
+16:47:31 [tx] >> G91
+16:47:31 [ok] ok
+16:47:31 [tx] >> G1 Z-1 F600
+16:47:32 [ok] ok
+16:47:32 [tx] >> G90
+16:47:32 [ok] ok
+16:47:32 [tx] >> M114
+16:47:32 [rx] X:0.00 Y:-6.00 Z:1.64 E:0.00 Count A:0B:-480 Z:598
+16:47:32 [ok] ok
+16:48:36 [tx] >> G28 X
+16:48:38 [sys] echo:busy: processing
+16:48:40 [sys] echo:busy: processing
+16:48:42 [sys] echo:busy: processing
+16:48:43 [rx] X:208.00 Y:-6.00 Z:8.66 E:0.00 Count A:16160B:17120 Z:3448
+16:48:43 [ok] ok
+16:49:05 [tx] >> G91
+16:49:05 [ok] ok
+16:49:05 [tx] >> G1 Z-1 F600
+16:49:06 [ok] ok
+16:49:06 [tx] >> G90
+16:49:06 [ok] ok
+16:49:06 [tx] >> M114
+16:49:06 [rx] X:208.00 Y:-6.00 Z:7.66 E:0.00 Count A:16640B:-480 Z:3036
+16:49:06 [ok] ok
+16:49:06 [tx] >> G91
+16:49:06 [ok] ok
+16:49:06 [tx] >> G1 Z-1 F600
+16:49:07 [ok] ok
+16:49:07 [tx] >> G90
+16:49:07 [ok] ok
+16:49:07 [tx] >> M114
+16:49:07 [rx] X:208.00 Y:-6.00 Z:6.66 E:0.00 Count A:16640B:-480 Z:2624
+16:49:07 [ok] ok
+16:49:07 [tx] >> G91
+16:49:07 [ok] ok
+16:49:07 [tx] >> G1 Z-1 F600
+16:49:08 [ok] ok
+16:49:08 [tx] >> G90
+16:49:08 [ok] ok
+16:49:08 [tx] >> M114
+16:49:08 [rx] X:208.00 Y:-6.00 Z:5.66 E:0.00 Count A:16640B:-480 Z:2213
+16:49:08 [ok] ok
+16:49:08 [tx] >> G91
+16:49:09 [ok] ok
+16:49:09 [tx] >> G1 Z-1 F600
+16:49:09 [ok] ok
+16:49:09 [tx] >> G90
+16:49:09 [ok] ok
+16:49:09 [tx] >> M114
+16:49:09 [rx] X:208.00 Y:-6.00 Z:4.66 E:0.00 Count A:16640B:-480 Z:1801
+16:49:09 [ok] ok
+16:49:09 [tx] >> G91
+16:49:10 [ok] ok
+16:49:10 [tx] >> G1 Z-1 F600
+16:49:10 [ok] ok
+16:49:10 [tx] >> G90
+16:49:10 [ok] ok
+16:49:10 [tx] >> M114
+16:49:10 [rx] X:208.00 Y:-6.00 Z:3.66 E:0.00 Count A:16640B:-480 Z:1389
+16:49:10 [ok] ok
+16:49:11 [tx] >> G91
+16:49:11 [ok] ok
+16:49:11 [tx] >> G1 Z-1 F600
+16:49:11 [ok] ok
+16:49:11 [tx] >> G90
+16:49:11 [ok] ok
+16:49:11 [tx] >> M114
+16:49:12 [rx] X:208.00 Y:-6.00 Z:2.66 E:0.00 Count A:16640B:-480 Z:977
+16:49:12 [ok] ok
+16:50:09 [tx] >> G91
+16:50:09 [ok] ok
+16:50:09 [tx] >> G1 Y10 F600
+16:50:09 [ok] ok
+16:50:09 [tx] >> G90
+16:50:09 [ok] ok
+16:50:09 [tx] >> M114
+16:50:09 [rx] X:208.00 Y:4.00 Z:2.66 E:0.00 Count A:16640B:320 Z:977
+16:50:09 [ok] ok
+16:50:14 [tx] >> G91
+16:50:14 [ok] ok
+16:50:14 [tx] >> G1 Y50 F600
+16:50:14 [ok] ok
+16:50:14 [tx] >> G90
+16:50:15 [ok] ok
+16:50:15 [tx] >> M114
+16:50:15 [rx] X:208.00 Y:54.00 Z:2.66 E:0.00 Count A:16640B:4320 Z:977
+16:50:15 [ok] ok
+16:50:21 [tx] >> G91
+16:50:22 [ok] ok
+16:50:22 [tx] >> G1 Y50 F600
+16:50:22 [ok] ok
+16:50:22 [tx] >> G90
+16:50:22 [ok] ok
+16:50:22 [tx] >> M114
+16:50:22 [rx] X:208.00 Y:104.00 Z:2.66 E:0.00 Count A:16640B:8320 Z:1017
+16:50:22 [ok] ok
+16:50:27 [tx] >> G91
+16:50:28 [ok] ok
+16:50:28 [tx] >> G1 Y50 F600
+16:50:28 [ok] ok
+16:50:28 [tx] >> G90
+16:50:28 [ok] ok
+16:50:28 [tx] >> M114
+16:50:28 [rx] X:208.00 Y:154.00 Z:2.66 E:0.00 Count A:16640B:12320 Z:1045
+16:50:28 [ok] ok
+16:50:31 [tx] >> G91
+16:50:31 [ok] ok
+16:50:31 [tx] >> G1 Y50 F600
+16:50:32 [ok] ok
+16:50:32 [tx] >> G90
+16:50:32 [ok] ok
+16:50:32 [tx] >> M114
+16:50:32 [rx] X:208.00 Y:193.00 Z:2.66 E:0.00 Count A:16640B:15440 Z:1045
+16:50:32 [ok] ok
+16:50:41 [tx] >> G91
+16:50:42 [ok] ok
+16:50:42 [tx] >> G1 Y50 F600
+16:50:42 [ok] ok
+16:50:42 [tx] >> G90
+16:50:42 [ok] ok
+16:50:42 [tx] >> M114
+16:50:42 [rx] X:208.00 Y:193.00 Z:2.66 E:0.00 Count A:16640B:15440 Z:1045
+16:50:42 [ok] ok
+16:52:19 [tx] >> G91
+16:52:19 [ok] ok
+16:52:19 [tx] >> G1 X-50 F600
+16:52:20 [ok] ok
+16:52:20 [tx] >> G90
+16:52:20 [ok] ok
+16:52:20 [tx] >> M114
+16:52:20 [rx] X:158.00 Y:193.00 Z:2.66 E:0.00 Count A:12640B:15440 Z:1045
+16:52:20 [ok] ok
+16:52:26 [tx] >> G91
+16:52:26 [ok] ok
+16:52:26 [tx] >> G1 X-50 F600
+16:52:26 [ok] ok
+16:52:26 [tx] >> G90
+16:52:27 [ok] ok
+16:52:27 [tx] >> M114
+16:52:27 [rx] X:108.00 Y:193.00 Z:2.66 E:0.00 Count A:8640B:15440 Z:1065
+16:52:27 [ok] ok
+16:52:32 [tx] >> G91
+16:52:32 [ok] ok
+16:52:32 [tx] >> G1 X-50 F600
+16:52:32 [ok] ok
+16:52:32 [tx] >> G90
+16:52:32 [ok] ok
+16:52:32 [tx] >> M114
+16:52:33 [rx] X:58.00 Y:193.00 Z:2.66 E:0.00 Count A:4640B:15440 Z:1083
+16:52:33 [ok] ok
+16:52:38 [tx] >> G91
+16:52:38 [ok] ok
+16:52:38 [tx] >> G1 X-50 F600
+16:52:38 [ok] ok
+16:52:38 [tx] >> G90
+16:52:38 [ok] ok
+16:52:38 [tx] >> M114
+16:52:39 [rx] X:8.00 Y:193.00 Z:2.66 E:0.00 Count A:640B:15440 Z:1083
+16:52:39 [ok] ok
+16:52:47 [tx] >> G91
+16:52:47 [ok] ok
+16:52:47 [tx] >> G1 X-50 F600
+16:52:47 [ok] ok
+16:52:47 [tx] >> G90
+16:52:48 [ok] ok
+16:52:48 [tx] >> M114
+16:52:48 [rx] X:0.00 Y:193.00 Z:2.66 E:0.00 Count A:0B:15440 Z:1083
+16:52:48 [ok] ok
+16:52:51 [tx] >> G91
+16:52:51 [ok] ok
+16:52:51 [tx] >> G1 X-50 F600
+16:52:52 [ok] ok
+16:52:52 [tx] >> G90
+16:52:52 [ok] ok
+16:52:52 [tx] >> M114
+16:52:52 [rx] X:0.00 Y:193.00 Z:2.66 E:0.00 Count A:0B:15440 Z:1083
+16:52:52 [ok] ok
+16:54:08 [tx] >> G28 X
+16:54:11 [sys] echo:busy: processing
+16:54:13 [sys] echo:busy: processing
+16:54:15 [sys] echo:busy: processing
+16:54:15 [rx] X:208.00 Y:193.00 Z:8.63 E:0.00 Count A:32080B:1200 Z:3448
+16:54:15 [ok] ok
+16:54:22 [tx] >> G28 Y
+16:54:24 [sys] echo:busy: processing
+16:54:26 [sys] echo:busy: processing
+16:54:26 [rx] X:208.00 Y:-6.00 Z:8.66 E:0.00 Count A:16160B:17120 Z:3448
+16:54:26 [ok] ok
+16:54:29 [tx] >> G91
+16:54:29 [ok] ok
+16:54:29 [tx] >> G1 Z50 F600
+16:54:30 [ok] ok
+16:54:30 [tx] >> G90
+16:54:30 [ok] ok
+16:54:30 [tx] >> M114
+16:54:30 [rx] X:208.00 Y:-6.00 Z:58.66 E:0.00 Count A:16640B:-480 Z:23464
+16:54:30 [ok] ok
+16:54:34 [tx] >> G91
+16:54:35 [ok] ok
+16:54:35 [tx] >> G1 Z50 F600
+16:54:35 [ok] ok
+16:54:35 [tx] >> G90
+16:54:35 [ok] ok
+16:54:35 [tx] >> M114
+16:54:35 [rx] X:208.00 Y:-6.00 Z:108.66 E:0.00 Count A:16640B:-480 Z:43464
+16:54:35 [ok] ok
+16:54:39 [tx] >> G91
+16:54:40 [ok] ok
+16:54:40 [tx] >> G1 Z50 F600
+16:54:40 [ok] ok
+16:54:40 [tx] >> G90
+16:54:40 [ok] ok
+16:54:40 [tx] >> M114
+16:54:40 [rx] X:208.00 Y:-6.00 Z:158.66 E:0.00 Count A:16640B:-480 Z:63464
+16:54:40 [ok] ok
+17:38:48 [sys] Desconectado.
+17:38:51 [ok] Conectado em COM18 @ 250000.
+17:38:51 [tx] >> M115
+17:38:51 [rx] FIRMWARE_NAME:Marlin bugfix-2.1.x (Oct 17 2026 03:56:37) SOURCE_CODE_URL:github.com/MarlinFirmware/Marlin PROTOCOL_VERSION:1.0 MACHINE_TYPE:CoreXY TinyBee KINEMATICS:COREXYCartesian EXTRUDER_COUNT:1 UUID:cede2a2f-41a2-4748-9b12-c55c62f367ff
+17:38:51 [rx] Cap:SERIAL_XON_XOFF:0
+17:38:51 [rx] Cap:BINARY_FILE_TRANSFER:0
+17:38:51 [rx] Cap:EEPROM:1
+17:38:51 [rx] Cap:VOLUMETRIC:1
+17:38:51 [rx] Cap:AUTOREPORT_POS:0
+17:38:51 [rx] Cap:AUTOREPORT_TEMP:1
+17:38:51 [rx] Cap:PROGRESS:0
+17:38:51 [rx] Cap:PRINT_JOB:1
+17:38:51 [rx] Cap:AUTOLEVEL:1
+17:38:51 [rx] Cap:RUNOUT:1
+17:38:51 [rx] Cap:Z_PROBE:1
+17:38:51 [rx] Cap:LEVELING_DATA:1
+17:38:51 [rx] Cap:BUILD_PERCENT:1
+17:38:51 [rx] Cap:SOFTWARE_POWER:0
+17:38:51 [rx] Cap:TOGGLE_LIGHTS:0
+17:38:51 [rx] Cap:CASE_LIGHT_BRIGHTNESS:0
+17:38:51 [rx] Cap:EMERGENCY_PARSER:0
+17:38:51 [rx] Cap:HOST_ACTION_COMMANDS:1
+17:38:51 [rx] Cap:PROMPT_SUPPORT:1
+17:38:51 [rx] Cap:SDCARD:0
+17:38:51 [rx] Cap:REPEAT:0
+17:38:51 [rx] Cap:SD_WRITE:0
+17:38:51 [rx] Cap:AUTOREPORT_SD_STATUS:0
+17:38:51 [rx] Cap:LONG_FILENAME:0
+17:38:51 [rx] Cap:LFN_WRITE:0
+17:38:51 [rx] Cap:CUSTOM_FIRMWARE_UPLOAD:0
+17:38:51 [rx] Cap:EXTENDED_M20:0
+17:38:51 [rx] Cap:THERMAL_PROTECTION:1
+17:38:51 [rx] Cap:MOTION_MODES:0
+17:38:51 [rx] Cap:ARCS:1
+17:38:51 [rx] Cap:BABYSTEPPING:0
+17:38:51 [rx] Cap:EP_BABYSTEP:0
+17:38:51 [rx] Cap:CHAMBER_TEMPERATURE:0
+17:38:51 [rx] Cap:COOLER_TEMPERATURE:0
+17:38:51 [rx] Cap:MEATPACK:0
+17:38:51 [rx] Cap:CONFIG_EXPORT:0
+17:38:51 [ok] ok
+17:38:51 [tx] >> M119
+17:38:51 [rx] Reporting endstop status
+17:38:51 [rx] x_max: open
+17:38:51 [rx] y_min: open
+17:38:51 [rx] z_probe: TRIGGERED
+17:38:51 [rx] filament: open
+17:38:51 [ok] ok
+17:38:53 [tx] >> M155 S2
+17:38:53 [sys] Monitoramento ligado.
+17:38:53 [ok] ok
+17:38:53 [tx] >> M119
+17:38:54 [rx] Reporting endstop status
+17:38:54 [rx] x_max: open
+17:38:54 [rx] y_min: open
+17:38:54 [rx] z_probe: TRIGGERED
+17:38:54 [rx] filament: open
+17:38:54 [ok] ok
+17:38:55 [temp]  T:21.25 /0.00 B:21.33 /0.00 @:0 B@:0
+17:38:56 [tx] >> M119
+17:38:56 [rx] Reporting endstop status
+17:38:56 [rx] x_max: open
+17:38:56 [rx] y_min: open
+17:38:56 [rx] z_probe: TRIGGERED
+17:38:56 [rx] filament: open
+17:38:56 [ok] ok
+17:38:57 [temp]  T:21.25 /0.00 B:20.66 /0.00 @:0 B@:0
+17:38:59 [tx] >> M119
+17:38:59 [temp]  T:20.59 /0.00 B:21.41 /0.00 @:0 B@:0
+17:38:59 [rx] Reporting endstop status
+17:38:59 [rx] x_max: open
+17:38:59 [rx] y_min: open
+17:38:59 [rx] z_probe: TRIGGERED
+17:38:59 [rx] filament: open
+17:38:59 [ok] ok
+17:39:01 [temp]  T:21.72 /0.00 B:20.00 /0.00 @:0 B@:0
+17:39:02 [tx] >> M119
+17:39:02 [rx] Reporting endstop status
+17:39:02 [rx] x_max: open
+17:39:02 [rx] y_min: open
+17:39:02 [rx] z_probe: TRIGGERED
+17:39:02 [rx] filament: open
+17:39:02 [ok] ok
+17:39:03 [temp]  T:21.76 /0.00 B:20.47 /0.00 @:0 B@:0
+17:39:05 [tx] >> M119
+17:39:05 [temp]  T:21.95 /0.00 B:22.07 /0.00 @:0 B@:0
+17:39:05 [rx] Reporting endstop status
+17:39:05 [rx] x_max: open
+17:39:05 [rx] y_min: open
+17:39:05 [rx] z_probe: TRIGGERED
+17:39:05 [rx] filament: open
+17:39:05 [ok] ok
+17:39:05 [tx] >> G28 Z
+17:39:07 [temp]  T:22.42 /0.00 B:20.94 /0.00 @:0 B@:0
+17:39:08 [sys] echo:busy: processing
+17:39:09 [temp]  T:22.11 /0.00 B:21.37 /0.00 @:0 B@:0
+17:39:10 [sys] echo:busy: processing
+17:39:11 [temp]  T:22.27 /0.00 B:21.37 /0.00 @:0 B@:0
+17:39:12 [sys] echo:busy: processing
+17:39:13 [temp]  T:21.72 /0.00 B:21.80 /0.00 @:0 B@:0
+17:39:14 [sys] echo:busy: processing
+17:39:15 [temp]  T:22.50 /0.00 B:21.68 /0.00 @:0 B@:0
+17:39:16 [sys] echo:busy: processing
+17:39:17 [temp]  T:21.76 /0.00 B:21.41 /0.00 @:0 B@:0
+17:39:18 [sys] echo:busy: processing
+17:39:19 [temp]  T:22.03 /0.00 B:21.45 /0.00 @:0 B@:0
+17:39:20 [sys] echo:busy: processing
+17:39:21 [temp]  T:22.27 /0.00 B:21.76 /0.00 @:0 B@:0
+17:39:22 [sys] echo:busy: processing
+17:39:23 [temp]  T:22.07 /0.00 B:23.32 /0.00 @:0 B@:0
+17:39:24 [sys] echo:busy: processing
+17:39:25 [temp]  T:22.89 /0.00 B:21.76 /0.00 @:0 B@:0
+17:39:26 [sys] echo:busy: processing
+17:39:27 [temp]  T:21.84 /0.00 B:20.98 /0.00 @:0 B@:0
+17:39:28 [sys] echo:busy: processing
+17:39:29 [rx] X:138.00 Y:86.00 Z:10.00 E:0.00 Count A:17920B:4160 Z:4000
+17:39:29 [ok] ok
+17:39:29 [tx] >> M119
+17:39:29 [rx] Reporting endstop status
+17:39:29 [rx] x_max: open
+17:39:29 [rx] y_min: open
+17:39:29 [rx] z_probe: TRIGGERED
+17:39:29 [rx] filament: open
+17:39:29 [ok] ok
+17:39:29 [tx] >> M119
+17:39:29 [rx] Reporting endstop status
+17:39:29 [rx] x_max: open
+17:39:29 [rx] y_min: open
+17:39:29 [rx] z_probe: TRIGGERED
+17:39:29 [rx] filament: open
+17:39:29 [ok] ok
+17:39:29 [temp]  T:22.23 /0.00 B:21.56 /0.00 @:0 B@:0
+17:39:31 [temp]  T:21.80 /0.00 B:21.60 /0.00 @:0 B@:0
+17:39:32 [tx] >> M119
+17:39:32 [rx] Reporting endstop status
+17:39:32 [rx] x_max: open
+17:39:32 [rx] y_min: open
+17:39:32 [rx] z_probe: TRIGGERED
+17:39:32 [rx] filament: open
+17:39:32 [ok] ok
+17:39:33 [temp]  T:22.27 /0.00 B:22.15 /0.00 @:0 B@:0
+17:39:35 [tx] >> M119
+17:39:35 [err] Error:Serial status mismatch
+17:39:35 [rx] Reporting endstop status
+17:39:35 [rx] x_max: open
+17:39:35 [rx] y_min: open
+17:39:35 [rx] z_probe: TRIGGERED
+17:39:35 [rx] filament: open
+17:39:35 [ok] ok
+17:39:35 [temp]  T:22.89 /0.00 B:21.76 /0.00 @:0 B@:0
+17:39:37 [temp]  T:23.20 /0.00 B:22.19 /0.00 @:0 B@:0
+17:39:38 [tx] >> M119
+17:39:38 [rx] Reporting endstop status
+17:39:38 [rx] x_max: open
+17:39:38 [rx] y_min: open
+17:39:38 [rx] z_probe: TRIGGERED
+17:39:38 [rx] filament: open
+17:39:38 [ok] ok
+17:39:39 [temp]  T:22.93 /0.00 B:21.21 /0.00 @:0 B@:0
+17:39:41 [tx] >> M119
+17:39:41 [rx] Reporting endstop status
+17:39:41 [rx] x_max: open
+17:39:41 [rx] y_min: open
+17:39:41 [rx] z_probe: TRIGGERED
+17:39:41 [rx] filament: open
+17:39:41 [ok] ok
+17:39:41 [temp]  T:21.80 /0.00 B:21.91 /0.00 @:0 B@:0
+17:39:43 [temp]  T:21.45 /0.00 B:21.56 /0.00 @:0 B@:0
+17:39:44 [tx] >> M119
+17:39:44 [rx] Reporting endstop status
+17:39:44 [rx] x_max: open
+17:39:44 [rx] y_min: open
+17:39:44 [rx] z_probe: TRIGGERED
+17:39:44 [rx] filament: open
+17:39:44 [ok] ok
+17:39:45 [temp]  T:22.19 /0.00 B:21.60 /0.00 @:0 B@:0
+17:39:47 [tx] >> M119
+17:39:47 [rx] Reporting endstop status
+17:39:47 [rx] x_max: open
+17:39:47 [rx] y_min: open
+17:39:47 [rx] z_probe: TRIGGERED
+17:39:47 [rx] filament: open
+17:39:47 [ok] ok
+17:39:47 [temp]  T:22.66 /0.00 B:22.23 /0.00 @:0 B@:0
+17:39:49 [temp]  T:22.70 /0.00 B:22.70 /0.00 @:0 B@:0
+17:39:50 [tx] >> M119
+17:39:50 [rx] Reporting endstop status
+17:39:50 [rx] x_max: open
+17:39:50 [rx] y_min: open
+17:39:50 [rx] z_probe: TRIGGERED
+17:39:50 [rx] filament: open
+17:39:50 [ok] ok
+17:39:51 [temp]  T:22.89 /0.00 B:22.73 /0.00 @:0 B@:0
+17:39:53 [tx] >> M119
+17:39:53 [rx] Reporting endstop status
+17:39:53 [rx] x_max: open
+17:39:53 [rx] y_min: open
+17:39:53 [rx] z_probe: TRIGGERED
+17:39:53 [rx] filament: open
+17:39:53 [ok] ok
+17:39:53 [temp]  T:22.97 /0.00 B:22.58 /0.00 @:0 B@:0
+17:39:55 [temp]  T:22.34 /0.00 B:23.67 /0.00 @:0 B@:0
+17:39:56 [tx] >> M119
+17:39:56 [rx] Reporting endstop status
+17:39:56 [rx] x_max: open
+17:39:56 [rx] y_min: open
+17:39:56 [rx] z_probe: TRIGGERED
+17:39:56 [rx] filament: open
+17:39:56 [ok] ok
+17:39:57 [temp]  T:22.81 /0.00 B:22.42 /0.00 @:0 B@:0
+17:39:59 [tx] >> M119
+17:39:59 [rx] Reporting endstop status
+17:39:59 [rx] x_max: open
+17:39:59 [rx] y_min: open
+17:39:59 [rx] z_probe: TRIGGERED
+17:39:59 [rx] filament: open
+17:39:59 [ok] ok
+17:39:59 [temp]  T:23.40 /0.00 B:21.68 /0.00 @:0 B@:0
+17:40:01 [temp]  T:23.48 /0.00 B:22.54 /0.00 @:0 B@:0
+17:40:02 [tx] >> M119
+17:40:02 [rx] Reporting endstop status
+17:40:02 [rx] x_max: open
+17:40:02 [rx] y_min: open
+17:40:02 [rx] z_probe: TRIGGERED
+17:40:02 [rx] filament: open
+17:40:02 [ok] ok
+17:40:03 [temp]  T:22.93 /0.00 B:22.27 /0.00 @:0 B@:0
+17:40:05 [tx] >> M119
+17:40:05 [rx] Reporting endstop status
+17:40:05 [rx] x_max: open
+17:40:05 [rx] y_min: open
+17:40:05 [rx] z_probe: TRIGGERED
+17:40:05 [rx] filament: open
+17:40:05 [ok] ok
+17:40:05 [temp]  T:23.20 /0.00 B:21.76 /0.00 @:0 B@:0
+17:40:07 [temp]  T:23.63 /0.00 B:22.38 /0.00 @:0 B@:0
+17:40:08 [tx] >> M119
+17:40:08 [rx] Reporting endstop status
+17:40:08 [rx] x_max: open
+17:40:08 [rx] y_min: open
+17:40:08 [rx] z_probe: TRIGGERED
+17:40:08 [rx] filament: open
+17:40:08 [ok] ok
+17:40:09 [temp]  T:23.55 /0.00 B:22.19 /0.00 @:0 B@:0
+17:40:11 [tx] >> M119
+17:40:11 [temp]  T:22.81 /0.00 B:22.34 /0.00 @:0 B@:0
+17:40:11 [rx] Reporting endstop status
+17:40:11 [rx] x_max: open
+17:40:11 [rx] y_min: open
+17:40:11 [rx] z_probe: TRIGGERED
+17:40:11 [rx] filament: open
+17:40:11 [ok] ok
+17:40:13 [temp]  T:23.20 /0.00 B:22.70 /0.00 @:0 B@:0
+17:40:14 [tx] >> M119
+17:40:14 [rx] Reporting endstop status
+17:40:14 [rx] x_max: open
+17:40:14 [rx] y_min: open
+17:40:14 [rx] z_probe: TRIGGERED
+17:40:14 [rx] filament: open
+17:40:14 [ok] ok
+17:40:15 [temp]  T:23.67 /0.00 B:22.73 /0.00 @:0 B@:0
+17:40:17 [tx] >> M119
+17:40:17 [temp]  T:23.55 /0.00 B:22.38 /0.00 @:0 B@:0
+17:40:17 [rx] Reporting endstop status
+17:40:17 [rx] x_max: open
+17:40:17 [rx] y_min: open
+17:40:17 [rx] z_probe: TRIGGERED
+17:40:17 [rx] filament: open
+17:40:17 [ok] ok
+17:40:19 [temp]  T:23.24 /0.00 B:22.38 /0.00 @:0 B@:0
+17:40:20 [tx] >> M119
+17:40:20 [rx] Reporting endstop status
+17:40:20 [rx] x_max: open
+17:40:20 [rx] y_min: open
+17:40:20 [rx] z_probe: TRIGGERED
+17:40:20 [rx] filament: open
+17:40:20 [ok] ok
+17:40:21 [temp]  T:22.93 /0.00 B:23.09 /0.00 @:0 B@:0
+17:40:23 [tx] >> M119
+17:40:23 [temp]  T:23.12 /0.00 B:22.70 /0.00 @:0 B@:0
+17:40:23 [rx] Reporting endstop status
+17:40:23 [rx] x_max: open
+17:40:23 [rx] y_min: open
+17:40:23 [rx] z_probe: TRIGGERED
+17:40:23 [rx] filament: open
+17:40:23 [ok] ok
+17:40:25 [temp]  T:23.55 /0.00 B:22.62 /0.00 @:0 B@:0
+17:40:26 [tx] >> M119
+17:40:26 [rx] Reporting endstop status
+17:40:26 [rx] x_max: open
+17:40:26 [rx] y_min: open
+17:40:26 [rx] z_probe: TRIGGERED
+17:40:26 [rx] filament: open
+17:40:26 [ok] ok
+17:40:27 [temp]  T:23.09 /0.00 B:22.97 /0.00 @:0 B@:0
+17:40:29 [tx] >> M119
+17:40:29 [temp]  T:23.55 /0.00 B:22.93 /0.00 @:0 B@:0
+17:40:29 [rx] Reporting endstop status
+17:40:29 [rx] x_max: open
+17:40:29 [rx] y_min: open
+17:40:29 [rx] z_probe: TRIGGERED
+17:40:29 [rx] filament: open
+17:40:29 [ok] ok
+17:40:30 [tx] >> G29
+17:40:31 [temp]  T:22.97 /0.00 B:21.56 /0.00 @:0 B@:0
+17:40:33 [sys] echo:busy: processing
+17:40:33 [temp]  T:23.12 /0.00 B:22.93 /0.00 @:0 B@:0
+17:40:34 [sys] echo:busy: processing
+17:40:35 [temp]  T:22.93 /0.00 B:23.20 /0.00 @:0 B@:0
+17:40:37 [sys] echo:busy: processing
+17:40:37 [temp]  T:23.79 /0.00 B:22.97 /0.00 @:0 B@:0
+17:40:38 [sys] echo:busy: processing
+17:40:39 [temp]  T:23.63 /0.00 B:22.27 /0.00 @:0 B@:0
+17:40:41 [sys] echo:busy: processing
+17:40:41 [temp]  T:23.87 /0.00 B:22.27 /0.00 @:0 B@:0
+17:40:42 [sys] echo:busy: processing
+17:40:43 [temp]  T:23.52 /0.00 B:21.91 /0.00 @:0 B@:0
+17:40:45 [sys] echo:busy: processing
+17:40:45 [temp]  T:24.77 /0.00 B:23.05 /0.00 @:0 B@:0
+17:40:46 [sys] echo:busy: processing
+17:40:47 [temp]  T:23.75 /0.00 B:23.75 /0.00 @:0 B@:0
+17:40:48 [sys] echo:busy: processing
+17:40:49 [temp]  T:23.91 /0.00 B:23.36 /0.00 @:0 B@:0
+17:40:51 [sys] echo:busy: processing
+17:40:51 [temp]  T:23.75 /0.00 B:22.38 /0.00 @:0 B@:0
+17:40:52 [sys] echo:busy: processing
+17:40:53 [temp]  T:23.67 /0.00 B:23.59 /0.00 @:0 B@:0
+17:40:54 [sys] echo:busy: processing
+17:40:55 [temp]  T:23.71 /0.00 B:23.67 /0.00 @:0 B@:0
+17:40:56 [sys] echo:busy: processing
+17:40:57 [temp]  T:23.55 /0.00 B:23.05 /0.00 @:0 B@:0
+17:40:59 [sys] echo:busy: processing
+17:40:59 [temp]  T:24.06 /0.00 B:23.24 /0.00 @:0 B@:0
+17:41:00 [sys] echo:busy: processing
+17:41:01 [temp]  T:23.98 /0.00 B:23.24 /0.00 @:0 B@:0
+17:41:02 [sys] echo:busy: processing
+17:41:03 [temp]  T:24.06 /0.00 B:22.81 /0.00 @:0 B@:0
+17:41:04 [sys] echo:busy: processing
+17:41:05 [temp]  T:24.30 /0.00 B:22.73 /0.00 @:0 B@:0
+17:41:06 [sys] echo:busy: processing
+17:41:07 [temp]  T:23.98 /0.00 B:22.89 /0.00 @:0 B@:0
+17:41:09 [sys] echo:busy: processing
+17:41:09 [temp]  T:23.09 /0.00 B:23.83 /0.00 @:0 B@:0
+17:41:11 [sys] echo:busy: processing
+17:41:11 [temp]  T:23.83 /0.00 B:22.97 /0.00 @:0 B@:0
+17:41:13 [sys] echo:busy: processing
+17:41:13 [temp]  T:23.79 /0.00 B:23.16 /0.00 @:0 B@:0
+17:41:15 [sys] echo:busy: processing
+17:41:15 [temp]  T:23.59 /0.00 B:22.58 /0.00 @:0 B@:0
+17:41:17 [sys] echo:busy: processing
+17:41:17 [temp]  T:23.98 /0.00 B:23.48 /0.00 @:0 B@:0
+17:41:19 [sys] echo:busy: processing
+17:41:19 [temp]  T:23.87 /0.00 B:23.32 /0.00 @:0 B@:0
+17:41:21 [sys] echo:busy: processing
+17:41:21 [temp]  T:24.06 /0.00 B:23.05 /0.00 @:0 B@:0
+17:41:23 [sys] echo:busy: processing
+17:41:23 [temp]  T:24.10 /0.00 B:22.89 /0.00 @:0 B@:0
+17:41:25 [sys] echo:busy: processing
+17:41:25 [temp]  T:24.69 /0.00 B:23.87 /0.00 @:0 B@:0
+17:41:27 [sys] echo:busy: processing
+17:41:27 [temp]  T:25.28 /0.00 B:22.89 /0.00 @:0 B@:0
+17:41:29 [sys] echo:busy: processing
+17:41:29 [temp]  T:24.10 /0.00 B:24.02 /0.00 @:0 B@:0
+17:41:31 [sys] echo:busy: processing
+17:41:31 [temp]  T:24.41 /0.00 B:23.63 /0.00 @:0 B@:0
+17:41:33 [sys] echo:busy: processing
+17:41:33 [temp]  T:24.53 /0.00 B:22.62 /0.00 @:0 B@:0
+17:41:35 [sys] echo:busy: processing
+17:41:36 [temp]  T:24.10 /0.00 B:22.30 /0.00 @:0 B@:0
+17:41:37 [sys] echo:busy: processing
+17:41:38 [temp]  T:24.26 /0.00 B:24.14 /0.00 @:0 B@:0
+17:41:39 [sys] echo:busy: processing
+17:41:40 [temp]  T:24.61 /0.00 B:23.24 /0.00 @:0 B@:0
+17:41:41 [sys] echo:busy: processing
+17:41:42 [temp]  T:24.30 /0.00 B:22.15 /0.00 @:0 B@:0
+17:41:43 [sys] echo:busy: processing
+17:41:44 [temp]  T:23.87 /0.00 B:23.91 /0.00 @:0 B@:0
+17:41:45 [sys] echo:busy: processing
+17:41:46 [temp]  T:24.45 /0.00 B:24.37 /0.00 @:0 B@:0
+17:41:47 [sys] echo:busy: processing
+17:41:47 [err] //action:notification Probing Failed
+17:41:47 [err] Error:Probing Failed
+17:41:47 [rx] X:205.00 Y:168.00 Z:10.62 E:0.00 Count A:29840B:2960 Z:4248
+17:41:47 [ok] ok
+17:41:47 [tx] >> M119
+17:41:48 [rx] Reporting endstop status
+17:41:48 [rx] x_max: open
+17:41:48 [rx] y_min: open
+17:41:48 [rx] z_probe: TRIGGERED
+17:41:48 [rx] filament: open
+17:41:48 [ok] ok
+17:41:48 [temp]  T:23.79 /0.00 B:24.10 /0.00 @:0 B@:0
+17:41:48 [tx] >> M119
+17:41:48 [rx] Reporting endstop status
+17:41:48 [rx] x_max: open
+17:41:48 [rx] y_min: open
+17:41:48 [rx] z_probe: TRIGGERED
+17:41:48 [rx] filament: open
+17:41:48 [ok] ok
+17:41:50 [temp]  T:24.22 /0.00 B:23.40 /0.00 @:0 B@:0
+17:41:50 [tx] >> M119
+17:41:51 [rx] Reporting endstop status
+17:41:51 [rx] x_max: open
+17:41:51 [rx] y_min: open
+17:41:51 [rx] z_probe: TRIGGERED
+17:41:51 [rx] filament: open
+17:41:51 [ok] ok
+17:41:52 [temp]  T:23.63 /0.00 B:22.46 /0.00 @:0 B@:0
+17:41:53 [tx] >> M119
+17:41:54 [rx] Reporting endstop status
+17:41:54 [rx] x_max: open
+17:41:54 [rx] y_min: open
+17:41:54 [rx] z_probe: TRIGGERED
+17:41:54 [rx] filament: open
+17:41:54 [ok] ok
+17:41:54 [temp]  T:24.02 /0.00 B:23.79 /0.00 @:0 B@:0
+17:41:56 [temp]  T:24.88 /0.00 B:23.16 /0.00 @:0 B@:0
+17:41:56 [tx] >> M119
+17:41:57 [rx] Reporting endstop status
+17:41:57 [rx] x_max: open
+17:41:57 [rx] y_min: open
+17:41:57 [rx] z_probe: TRIGGERED
+17:41:57 [rx] filament: open
+17:41:57 [ok] ok
+17:41:58 [tx] >> M420 V
+17:41:58 [temp]  T:24.30 /0.00 B:23.79 /0.00 @:0 B@:0
+17:41:58 [sys] echo:Invalid mesh.
+17:41:58 [sys] echo:Bed Leveling OFF
+17:41:58 [sys] echo:Fade Height 10.00
+17:41:58 [ok] ok
+17:41:59 [tx] >> M119
+17:42:00 [temp]  T:24.37 /0.00 B:22.58 /0.00 @:0 B@:0
+17:42:00 [rx] Reporting endstop status
+17:42:00 [rx] x_max: open
+17:42:00 [rx] y_min: open
+17:42:00 [rx] z_probe: TRIGGERED
+17:42:00 [rx] filament: open
+17:42:00 [ok] ok
+17:42:02 [temp]  T:24.84 /0.00 B:23.44 /0.00 @:0 B@:0
+17:42:03 [tx] >> M119
+17:42:03 [rx] Reporting endstop status
+17:42:03 [rx] x_max: open
+17:42:03 [rx] y_min: open
+17:42:03 [rx] z_probe: TRIGGERED
+17:42:03 [rx] filament: open
+17:42:03 [ok] ok
+17:42:04 [temp]  T:24.02 /0.00 B:24.10 /0.00 @:0 B@:0
+17:42:06 [tx] >> M119
+17:42:06 [temp]  T:23.79 /0.00 B:22.54 /0.00 @:0 B@:0
+17:42:06 [rx] Reporting endstop status
+17:42:06 [rx] x_max: open
+17:42:06 [rx] y_min: open
+17:42:06 [rx] z_probe: TRIGGERED
+17:42:06 [rx] filament: open
+17:42:06 [ok] ok
+17:42:08 [temp]  T:24.26 /0.00 B:24.02 /0.00 @:0 B@:0
+17:42:09 [tx] >> M119
+17:42:09 [rx] Reporting endstop status
+17:42:09 [rx] x_max: open
+17:42:09 [rx] y_min: open
+17:42:09 [rx] z_probe: TRIGGERED
+17:42:09 [rx] filament: open
+17:42:09 [ok] ok
+17:42:10 [temp]  T:24.37 /0.00 B:23.20 /0.00 @:0 B@:0
+17:42:12 [tx] >> M119
+17:42:12 [temp]  T:24.30 /0.00 B:23.52 /0.00 @:0 B@:0
+17:42:12 [rx] Reporting endstop status
+17:42:12 [rx] x_max: open
+17:42:12 [rx] y_min: open
+17:42:12 [rx] z_probe: TRIGGERED
+17:42:12 [rx] filament: open
+17:42:12 [ok] ok
+17:42:14 [temp]  T:24.65 /0.00 B:23.48 /0.00 @:0 B@:0
+17:42:15 [tx] >> M119
+17:42:15 [rx] Reporting endstop status
+17:42:15 [rx] x_max: open
+17:42:15 [rx] y_min: open
+17:42:15 [rx] z_probe: TRIGGERED
+17:42:15 [rx] filament: open
+17:42:15 [ok] ok
+17:42:16 [temp]  T:23.91 /0.00 B:23.63 /0.00 @:0 B@:0
+17:42:18 [tx] >> M119
+17:42:18 [temp]  T:24.10 /0.00 B:24.22 /0.00 @:0 B@:0
+17:42:18 [rx] Reporting endstop status
+17:42:18 [rx] x_max: open
+17:42:18 [rx] y_min: open
+17:42:18 [rx] z_probe: TRIGGERED
+17:42:18 [rx] filament: open
+17:42:18 [ok] ok
+17:42:20 [temp]  T:24.26 /0.00 B:23.12 /0.00 @:0 B@:0
+17:42:21 [tx] >> M119
+17:42:21 [rx] Reporting endstop status
+17:42:21 [rx] x_max: open
+17:42:21 [rx] y_min: open
+17:42:21 [rx] z_probe: TRIGGERED
+17:42:21 [rx] filament: open
+17:42:21 [ok] ok
+17:42:22 [temp]  T:24.10 /0.00 B:23.55 /0.00 @:0 B@:0
+17:42:24 [tx] >> M119
+17:42:24 [temp]  T:24.26 /0.00 B:22.34 /0.00 @:0 B@:0
+17:42:24 [rx] Reporting endstop status
+17:42:24 [rx] x_max: open
+17:42:24 [rx] y_min: open
+17:42:24 [rx] z_probe: TRIGGERED
+17:42:24 [rx] filament: open
+17:42:24 [ok] ok
+17:42:26 [temp]  T:24.41 /0.00 B:24.10 /0.00 @:0 B@:0
+17:42:26 [tx] >> M420 S1
+17:42:26 [sys] echo:Invalid mesh.
+17:42:26 [err] Error:Failed to enable Bed Leveling
+17:42:26 [sys] echo:Bed Leveling OFF
+17:42:26 [sys] echo:Fade Height 10.00
+17:42:26 [ok] ok
+17:42:27 [tx] >> M119
+17:42:27 [rx] Reporting endstop status
+17:42:27 [rx] x_max: open
+17:42:27 [rx] y_min: open
+17:42:27 [rx] z_probe: TRIGGERED
+17:42:27 [rx] filament: open
+17:42:27 [ok] ok
+17:42:28 [temp]  T:23.48 /0.00 B:23.79 /0.00 @:0 B@:0
+17:42:30 [temp]  T:23.91 /0.00 B:24.69 /0.00 @:0 B@:0
+17:42:30 [tx] >> M119
+17:42:30 [rx] Reporting endstop status
+17:42:30 [rx] x_max: open
+17:42:30 [rx] y_min: open
+17:42:30 [rx] z_probe: TRIGGERED
+17:42:30 [rx] filament: open
+17:42:30 [ok] ok
+17:42:32 [temp]  T:24.37 /0.00 B:23.09 /0.00 @:0 B@:0
+17:42:33 [tx] >> M119
+17:42:33 [rx] Reporting endstop status
+17:42:33 [rx] x_max: open
+17:42:33 [rx] y_min: open
+17:42:33 [rx] z_probe: TRIGGERED
+17:42:33 [rx] filament: open
+17:42:33 [ok] ok
+17:42:34 [temp]  T:24.84 /0.00 B:23.79 /0.00 @:0 B@:0
+17:42:36 [temp]  T:23.95 /0.00 B:22.54 /0.00 @:0 B@:0
+17:42:36 [tx] >> M119
+17:42:36 [rx] Reporting endstop status
+17:42:36 [rx] x_max: open
+17:42:36 [rx] y_min: open
+17:42:36 [rx] z_probe: TRIGGERED
+17:42:36 [rx] filament: open
+17:42:36 [ok] ok
+17:42:38 [temp]  T:23.63 /0.00 B:23.36 /0.00 @:0 B@:0
+17:42:39 [tx] >> M119
+17:42:39 [rx] Reporting endstop status
+17:42:39 [rx] x_max: open
+17:42:39 [rx] y_min: open
+17:42:39 [rx] z_probe: TRIGGERED
+17:42:39 [rx] filament: open
+17:42:39 [ok] ok
+17:42:40 [temp]  T:24.77 /0.00 B:23.75 /0.00 @:0 B@:0
+17:42:42 [temp]  T:24.65 /0.00 B:24.14 /0.00 @:0 B@:0
+17:42:42 [tx] >> M119
+17:42:42 [rx] Reporting endstop status
+17:42:42 [rx] x_max: open
+17:42:42 [rx] y_min: open
+17:42:42 [rx] z_probe: TRIGGERED
+17:42:42 [rx] filament: open
+17:42:42 [ok] ok
+17:42:44 [temp]  T:24.34 /0.00 B:23.32 /0.00 @:0 B@:0
+17:42:45 [tx] >> M119
+17:42:45 [rx] Reporting endstop status
+17:42:45 [rx] x_max: open
+17:42:45 [rx] y_min: open
+17:42:45 [rx] z_probe: TRIGGERED
+17:42:45 [rx] filament: open
+17:42:45 [ok] ok
+17:42:46 [temp]  T:24.49 /0.00 B:24.41 /0.00 @:0 B@:0
+17:42:48 [temp]  T:24.41 /0.00 B:23.95 /0.00 @:0 B@:0
+17:42:48 [tx] >> M119
+17:42:48 [rx] Reporting endstop status
+17:42:48 [rx] x_max: open
+17:42:48 [rx] y_min: open
+17:42:48 [rx] z_probe: TRIGGERED
+17:42:48 [rx] filament: open
+17:42:48 [ok] ok
+17:42:50 [temp]  T:24.61 /0.00 B:23.59 /0.00 @:0 B@:0
+17:42:51 [tx] >> M119
+17:42:51 [rx] Reporting endstop status
+17:42:51 [rx] x_max: open
+17:42:51 [rx] y_min: open
+17:42:51 [rx] z_probe: TRIGGERED
+17:42:51 [rx] filament: open
+17:42:51 [ok] ok
+17:42:52 [temp]  T:24.61 /0.00 B:24.88 /0.00 @:0 B@:0
+17:42:54 [tx] >> M155 S0
+17:42:54 [sys] Monitoramento desligado.
+17:42:54 [temp]  T:24.45 /0.00 B:23.55 /0.00 @:0 B@:0
+17:42:54 [ok] ok
