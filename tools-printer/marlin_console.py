@@ -336,8 +336,35 @@ class App(tk.Tk):
         nb.add(self._tab_firmware(nb), text="Firmware")
 
     # --- aba movimento ---
+    def _scrollable(self, parent):
+        """Devolve (container, interior) com rolagem vertical.
+
+        O Notebook do tkinter nao rola sozinho: quando o conteudo de uma aba
+        passa da altura da janela, ele simplesmente fica inacessivel.
+        """
+        outer = ttk.Frame(parent)
+        canvas = tk.Canvas(outer, highlightthickness=0, borderwidth=0)
+        vsb = ttk.Scrollbar(outer, orient="vertical", command=canvas.yview)
+        inner = ttk.Frame(canvas, padding=8)
+
+        inner.bind("<Configure>",
+                   lambda e: canvas.configure(scrollregion=canvas.bbox("all")))
+        win = canvas.create_window((0, 0), window=inner, anchor="nw")
+        canvas.bind("<Configure>", lambda e: canvas.itemconfigure(win, width=e.width))
+        canvas.configure(yscrollcommand=vsb.set)
+
+        vsb.pack(side="right", fill="y")
+        canvas.pack(side="left", fill="both", expand=True)
+
+        # roda do mouse, ativa so enquanto o ponteiro esta sobre esta aba
+        def _wheel(e):
+            canvas.yview_scroll(int(-e.delta / 120), "units")
+        inner.bind("<Enter>", lambda e: canvas.bind_all("<MouseWheel>", _wheel))
+        inner.bind("<Leave>", lambda e: canvas.unbind_all("<MouseWheel>"))
+        return outer, inner
+
     def _tab_motion(self, parent):
-        f = ttk.Frame(parent, padding=8)
+        outer, f = self._scrollable(parent)
 
         warn = ttk.Label(
             f, foreground="#a33",
@@ -432,11 +459,11 @@ class App(tk.Tk):
                    command=lambda: self.send("M18")).pack(side="left", padx=3)
         ttk.Button(o, text="Ligar motores (M17)",
                    command=lambda: self.send("M17")).pack(side="left", padx=3)
-        return f
+        return outer
 
     # --- aba temperatura ---
     def _tab_temp(self, parent):
-        f = ttk.Frame(parent, padding=8)
+        outer, f = self._scrollable(parent)
 
         self.var_hot = tk.IntVar(value=200)
         self.var_bed = tk.IntVar(value=60)
@@ -523,11 +550,11 @@ class App(tk.Tk):
                        command=lambda m=mm: self.extrude(m)).pack(side="left", padx=3)
         ttk.Button(ex, text="Retrair 10mm",
                    command=lambda: self.extrude(-10)).pack(side="left", padx=3)
-        return f
+        return outer
 
     # --- aba probe ---
     def _tab_probe(self, parent):
-        f = ttk.Frame(parent, padding=8)
+        outer, f = self._scrollable(parent)
 
         ttk.Label(f, text="Probe por servo — ângulos do firmware: 45° ativo, 0° recolhido",
                   font=("TkDefaultFont", 9, "bold")).pack(anchor="w")
@@ -629,11 +656,11 @@ class App(tk.Tk):
                    command=lambda: self.send("M420 S1")).pack(side="left", padx=3)
         ttk.Button(g, text="Desligar (M420 S0)",
                    command=lambda: self.send("M420 S0")).pack(side="left", padx=3)
-        return f
+        return outer
 
     # --- aba calibração ---
     def _tab_steps(self, parent):
-        f = ttk.Frame(parent, padding=8)
+        outer, f = self._scrollable(parent)
 
         ttk.Label(f, text="Calibração de passos por mm",
                   font=("TkDefaultFont", 9, "bold")).pack(anchor="w")
@@ -706,7 +733,7 @@ class App(tk.Tk):
                   text="A EEPROM sobrepoe o firmware e NAO e apagada ao regravar.\n"
                        "Prefira levar os valores para o Configuration.h no final."
                   ).pack(anchor="w", pady=6)
-        return f
+        return outer
 
     # -- calibracao de passos ----------------------------------------------
     def _cal_current(self):
@@ -815,7 +842,7 @@ class App(tk.Tk):
         self.log(f"[CALIB] {linha}", "ok")
 
     def _tab_firmware(self, parent):
-        f = ttk.Frame(parent, padding=8)
+        outer, f = self._scrollable(parent)
 
         ttk.Label(f, text="Compilar e gravar o firmware",
                   font=("TkDefaultFont", 9, "bold")).pack(anchor="w")
@@ -842,7 +869,7 @@ class App(tk.Tk):
                   text="Depois de gravar, lembre que a EEPROM NAO e apagada.\n"
                        "Se um valor salvo com M500 estiver errado, use M502 e M500."
                   ).pack(anchor="w", pady=8)
-        return f
+        return outer
 
     def run_pio(self, upload):
         """Compila (e opcionalmente grava), liberando a porta antes."""
@@ -918,7 +945,7 @@ class App(tk.Tk):
                 self.log(f"Nao reconectou: {exc}", "err")
 
     def _tab_calib(self, parent):
-        f = ttk.Frame(parent, padding=8)
+        outer, f = self._scrollable(parent)
 
         ttk.Label(f, text="Passos por mm (M92)",
                   font=("TkDefaultFont", 9, "bold")).pack(anchor="w")
@@ -969,7 +996,7 @@ class App(tk.Tk):
                    command=lambda: self.send("[ESP111]")).pack(side="left", padx=3)
         ttk.Button(w, text="Status ([ESP420])",
                    command=lambda: self.send("[ESP420]")).pack(side="left", padx=3)
-        return f
+        return outer
 
     # --- console ---
     def _build_console(self, parent):

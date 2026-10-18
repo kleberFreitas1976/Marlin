@@ -1,0 +1,62 @@
+# Console Marlin - sessao iniciada Sun Oct 18 17:49:03 2026
+17:49:03 [sys] Console pronto. Clique em 'Localizar placa' para comecar.
+17:49:03 [sys] Log desta sessao: C:\tmp\Marlin\tools-printer\logs\sessao_20261018_174903.log
+17:51:37 [ok] Conectado em COM18 @ 250000.
+17:51:37 [tx] >> M115
+17:51:37 [rx] FIRMWARE_NAME:Marlin bugfix-2.1.x (Oct 17 2026 03:56:37) SOURCE_CODE_URL:github.com/MarlinFirmware/Marlin PROTOCOL_VERSION:1.0 MACHINE_TYPE:CoreXY TinyBee KINEMATICS:COREXYCartesian EXTRUDER_COUNT:1 UUID:cede2a2f-41a2-4748-9b12-c55c62f367ff
+17:51:37 [rx] Cap:SERIAL_XON_XOFF:0
+17:51:37 [rx] Cap:BINARY_FILE_TRANSFER:0
+17:51:37 [rx] Cap:EEPROM:1
+17:51:37 [rx] Cap:VOLUMETRIC:1
+17:51:37 [rx] Cap:AUTOREPORT_POS:0
+17:51:37 [rx] Cap:AUTOREPORT_TEMP:1
+17:51:37 [rx] Cap:PROGRESS:0
+17:51:37 [rx] Cap:PRINT_JOB:1
+17:51:37 [rx] Cap:AUTOLEVEL:1
+17:51:37 [rx] Cap:RUNOUT:1
+17:51:37 [rx] Cap:Z_PROBE:1
+17:51:37 [rx] Cap:LEVELING_DATA:1
+17:51:37 [rx] Cap:BUILD_PERCENT:1
+17:51:37 [rx] Cap:SOFTWARE_POWER:0
+17:51:37 [rx] Cap:TOGGLE_LIGHTS:0
+17:51:37 [rx] Cap:CASE_LIGHT_BRIGHTNESS:0
+17:51:37 [rx] Cap:EMERGENCY_PARSER:0
+17:51:37 [rx] Cap:HOST_ACTION_COMMANDS:1
+17:51:37 [rx] Cap:PROMPT_SUPPORT:1
+17:51:37 [rx] Cap:SDCARD:0
+17:51:37 [rx] Cap:REPEAT:0
+17:51:37 [rx] Cap:SD_WRITE:0
+17:51:37 [rx] Cap:AUTOREPORT_SD_STATUS:0
+17:51:37 [rx] Cap:LONG_FILENAME:0
+17:51:37 [rx] Cap:LFN_WRITE:0
+17:51:37 [rx] Cap:CUSTOM_FIRMWARE_UPLOAD:0
+17:51:37 [rx] Cap:EXTENDED_M20:0
+17:51:37 [rx] Cap:THERMAL_PROTECTION:1
+17:51:37 [rx] Cap:MOTION_MODES:0
+17:51:37 [rx] Cap:ARCS:1
+17:51:37 [rx] Cap:BABYSTEPPING:0
+17:51:37 [rx] Cap:EP_BABYSTEP:0
+17:51:37 [rx] Cap:CHAMBER_TEMPERATURE:0
+17:51:37 [rx] Cap:COOLER_TEMPERATURE:0
+17:51:37 [rx] Cap:MEATPACK:0
+17:51:37 [rx] Cap:CONFIG_EXPORT:0
+17:51:37 [ok] ok
+17:51:37 [tx] >> M119
+17:51:38 [rx] Reporting endstop status
+17:51:38 [rx] x_max: open
+17:51:38 [rx] y_min: open
+17:51:38 [rx] z_probe: TRIGGERED
+17:51:38 [rx] filament: open
+17:51:38 [ok] ok
+17:51:47 [tx] >> G28
+17:51:49 [sys] echo:busy: processing
+17:51:51 [sys] echo:busy: processing
+17:51:53 [sys] echo:busy: processing
+17:51:55 [sys] echo:busy: processing
+17:51:57 [sys] echo:busy: processing
+17:51:59 [sys] echo:busy: processing
+17:52:01 [sys] echo:busy: processing
+17:52:03 [sys] echo:busy: processing
+17:52:05 [sys] echo:busy: processing
+17:52:06 [rx] X:138.00 Y:86.00 Z:10.00 E:0.00 Count A:17920B:4160 Z:4000
+17:52:06 [ok] ok
