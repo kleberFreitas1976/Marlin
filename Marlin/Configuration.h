@@ -1997,20 +1997,33 @@
 // Medido na maquina (16/10/2026), com o bico posicionado nas bordas:
 //   X: borda esquerda e direita da area util
 //   Y: borda da frente e do fundo (o fundo e tambem o limite mecanico, 2mm de folga)
-// As coordenadas foram deslocadas (+3 em X, -1 em Y) para as bordas caírem em zero,
-// porque o Marlin sempre assume a mesa comecando em 0 (X_MIN_BED = 0).
-#define X_BED_SIZE 201
+// As coordenadas sao deslocadas para as bordas cairem em zero, porque o Marlin
+// assume a mesa comecando em 0: Conditionals-5-post.h:249 define
+// X_MIN_BED = X_CENTER - _X_HALF_BED, que sempre da 0. Em Y o deslocamento e -1.
+//
+// Em X houve um SEGUNDO deslocamento, de +10. Quando a montagem do probe foi
+// baixada para ganhar curso (D de 0.62 para 2.82mm), o conjunto passou a bater no
+// mecanismo 10mm antes da borda esquerda. Essa faixa deixou de ser alcancavel,
+// entao a origem foi movida para la: X=0 agora fica 10mm a direita da borda
+// fisica do vidro, e a largura declarada cai de 201 para 191mm.
+//
+// Nao adianta declarar a mesa de 201 e limitar com X_MIN_POS 10: alem de
+// SanityCheck.h:262 exigir X_MAX_LENGTH >= X_BED_SIZE, isso faria o firmware
+// truncar em silencio tudo que o fatiador mandasse para a faixa inalcancavel,
+// deformando a peca em vez de avisar.
+#define X_BED_SIZE 191
 #define Y_BED_SIZE 193
 
 // Travel limits (linear=mm, rotational=°) after homing, corresponding to endstop positions.
-#define X_MIN_POS 0     // Borda esquerda da mesa. LIMITE ABSOLUTO: o probe bate no
-                        // mecanismo antes do sensor X min, que por isso nao protege
-                        // esse lado. Ha 5mm de folga fisica, deixados de reserva.
-                        // REVISAR se a montagem do probe mudar.
+#define X_MIN_POS 0     // Borda esquerda ALCANCAVEL, ja no referencial deslocado
+                        // (ver a nota do X_BED_SIZE). O sensor X min nao protege
+                        // este lado: o probe bate no mecanismo antes dele, entao
+                        // a protecao aqui e so por software.
+                        // REVISAR sempre que a montagem do probe mudar.
 #define Y_MIN_POS -6    // Posicao do sensor Y min (home), 6mm a frente da mesa.
                         // Nao e escolha: o home no minimo fixa esta coordenada.
 #define Z_MIN_POS 0
-#define X_MAX_POS 208   // Posicao do sensor X max (home), 7mm alem da borda direita
+#define X_MAX_POS 198   // Posicao do sensor X max (home), 7mm alem da borda direita
 #define Y_MAX_POS 193   // Borda do fundo = limite mecanico (so 2mm de folga real)
 #define Z_MAX_POS 250
 //#define I_MIN_POS 0
