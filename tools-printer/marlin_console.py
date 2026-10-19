@@ -556,7 +556,8 @@ class App(tk.Tk):
     def _tab_probe(self, parent):
         outer, f = self._scrollable(parent)
 
-        ttk.Label(f, text="Probe por servo — ângulos do firmware: 45° ativo, 0° recolhido",
+        ttk.Label(f, text=f"Probe por servo — ângulos do firmware: "
+                       f"{SERVO_DEPLOY_ANGLE}° ativo, {SERVO_STOW_ANGLE}° recolhido",
                   font=("TkDefaultFont", 9, "bold")).pack(anchor="w")
         sv = ttk.Frame(f); sv.pack(fill="x", pady=6)
         ttk.Button(sv, text=f"Descer probe (M280 P0 S{SERVO_DEPLOY_ANGLE})",
@@ -618,6 +619,85 @@ class App(tk.Tk):
                    command=lambda: self.send(f"M851 Z{self.var_zoff.get():.2f}")).pack(side="left")
         ttk.Button(o, text="Ler atual",
                    command=lambda: self.send("M851")).pack(side="left", padx=4)
+
+        # ---- Medir o offset Z com a folha de papel ----
+        ttk.Separator(f).pack(fill="x", pady=8)
+        ttk.Label(f, text="Medir o offset Z com a folha de papel",
+                  font=("TkDefaultFont", 9, "bold")).pack(anchor="w")
+
+        ttk.Label(f, foreground="#666", justify="left", text=(
+            "PARA QUE SERVE\n"
+            "  O M851 Z guarda a distancia vertical entre a ponta do bico e a ponta\n"
+            "  do probe acionado. Se esse numero estiver errado, o Z=0 do firmware\n"
+            "  nao coincide com a mesa: ou a primeira camada fica no ar, ou o bico\n"
+            "  raspa. Toda vez que o angulo do servo ou a montagem do probe mudar,\n"
+            "  este valor precisa ser medido de novo.\n"
+            "\n"
+            "COMO O PAINEL MEDE\n"
+            "  O botao 'Preparar' zera o M851, faz o home e leva o bico ao Z=0\n"
+            "  reportado. Com o offset zerado, a altura que ainda sobra ate a mesa\n"
+            "  E o proprio offset. Voce desce de pouco em pouco ate a folha de papel\n"
+            "  arrastar com leve atrito, e o botao 'Gravar' converte a descida\n"
+            "  acumulada em M851 Z.")).pack(anchor="w", pady=(2, 6))
+
+        ttk.Label(f, foreground="#a33", justify="left", text=(
+            "POR QUE A TRAVA PRECISA SAIR\n"
+            "  O Z_MIN_POS e 0: o firmware recusa qualquer movimento abaixo disso.\n"
+            "  Como o bico precisa descer ate ABAIXO do zero reportado para achar a\n"
+            "  mesa, o 'Preparar' envia M211 S0 e desliga os limites por software.\n"
+            "  Enquanto estiver assim NAO HA PROTECAO -- nem em Z, nem em X e Y.\n"
+            "  Nao movimente a maquina por outras abas durante a medicao. O botao\n"
+            "  'Gravar' e o 'Abortar' religam a trava (M211 S1); reiniciar a placa\n"
+            "  tambem religa, porque o M211 nao vai para a EEPROM.\n"
+            "\n"
+            "ANTES DE COMECAR: bico FRIO e SEM filamento. Um residuo na ponta altera\n"
+            "a medida e ainda empurra a folha.")).pack(anchor="w", pady=(0, 6))
+
+        self.zoff_travel = 0.0
+        self.zoff_armed = False
+
+        z1 = ttk.Frame(f); z1.pack(fill="x", pady=4)
+        ttk.Button(z1, text="1. Preparar", width=14,
+                   command=self.zoff_prepare).pack(side="left", padx=3)
+        ttk.Button(z1, text="Abortar (religa trava e sobe)",
+                   command=self.zoff_abort).pack(side="left", padx=3)
+
+        self.lbl_zoff_state = ttk.Label(f, foreground="#666",
+                                        text="Estado: nao preparado.")
+        self.lbl_zoff_state.pack(anchor="w")
+
+        ttk.Label(f, foreground="#666", justify="left", text=(
+            "Desca em degraus grandes ate sentir a folha prender, depois refine.\n"
+            "O ponto certo e quando a folha ainda desliza, mas com atrito."
+        )).pack(anchor="w", pady=(6, 2))
+
+        z2 = ttk.Frame(f); z2.pack(fill="x", pady=4)
+        ttk.Label(z2, text="Descer:").pack(side="left")
+        for d in (-0.5, -0.1, -0.05, -0.02):
+            ttk.Button(z2, text=f"{d:+.2f}", width=6,
+                       command=lambda v=d: self.zoff_step(v)).pack(side="left", padx=2)
+        ttk.Label(z2, text="   Subir:").pack(side="left", padx=(10, 0))
+        for d in (+0.02, +0.05, +0.1, +0.5):
+            ttk.Button(z2, text=f"{d:+.2f}", width=6,
+                       command=lambda v=d: self.zoff_step(v)).pack(side="left", padx=2)
+
+        self.lbl_zoff = ttk.Label(f, foreground="#1f7a3f",
+                                  font=("TkDefaultFont", 9, "bold"),
+                                  text="Descida acumulada: 0.000 mm")
+        self.lbl_zoff.pack(anchor="w", pady=4)
+
+        z3 = ttk.Frame(f); z3.pack(fill="x", pady=4)
+        ttk.Button(z3, text="2. Gravar offset", width=18,
+                   command=self.zoff_save).pack(side="left", padx=3)
+        ttk.Button(z3, text="Conferir (M114)",
+                   command=self.zoff_check).pack(side="left", padx=3)
+
+        ttk.Label(f, foreground="#666", justify="left", text=(
+            "'Gravar' envia M851 Z<medido>, religa a trava com M211 S1 e salva com\n"
+            "M500. Depois disso: G28 e G1 Z0 -- a folha tem que arrastar igual.\n"
+            "Lembre que o X e o Y do NOZZLE_TO_PROBE_OFFSET tambem mudam quando o\n"
+            "arco do servo muda; esses precisam ser remedidos a parte."
+        )).pack(anchor="w", pady=(0, 2))
 
         ttk.Separator(f).pack(fill="x", pady=8)
         b = ttk.Frame(f); b.pack(fill="x", pady=3)
@@ -1212,6 +1292,123 @@ class App(tk.Tk):
         self.send("M114")
 
     # -- nivelamento --------------------------------------------------------
+    # -- offset Z pela folha de papel ---------------------------------------
+    ZOFF_LIMIT = -8.0          # descida maxima tolerada sem soft endstop
+
+    def _zoff_state(self):
+        if self.zoff_armed:
+            self.lbl_zoff_state.config(
+                foreground="#a33",
+                text="Estado: PREPARADO -- limites por software DESLIGADOS (M211 S0).")
+        else:
+            self.lbl_zoff_state.config(
+                foreground="#666", text="Estado: nao preparado.")
+        self.lbl_zoff.config(
+            text=f"Descida acumulada: {self.zoff_travel:+.3f} mm"
+                 f"     |     Z do firmware: {self.pos['Z']:+.3f} mm")
+
+    def zoff_prepare(self):
+        """Zera o M851, referencia a maquina e libera o Z para descer do zero."""
+        if not messagebox.askokcancel(
+                "Preparar medicao do offset Z",
+                "Esta sequencia vai:\n\n"
+                "  M851 Z0   zerar o offset do probe\n"
+                "  M500      gravar (o G28 usa o valor da EEPROM)\n"
+                "  G28       referenciar os tres eixos\n"
+                "  M420 S0   desligar a malha de nivelamento\n"
+                "  M211 S0   DESLIGAR os limites por software\n"
+                "  G1 Z0     levar o bico ao zero reportado\n\n"
+                "Com o M211 S0 nao ha protecao contra colisao em nenhum eixo.\n"
+                "O bico deve estar FRIO e SEM filamento.\n\n"
+                "Continuar?"):
+            return
+        self.zoff_travel = 0.0
+        self.zoff_armed = True
+        self.log("[ZOFFSET] preparando: M851 Z0 / G28 / M420 S0 / M211 S0 / G1 Z0", "sys")
+        for c in ("M851 Z0", "M500", "G28", "M420 S0", "M211 S0", "G1 Z0 F300", "M114"):
+            self.send(c)
+        self.after(800, self._zoff_state)
+        self._zoff_state()
+
+    def zoff_step(self, delta):
+        """Um degrau de Z em modo relativo, acumulando o total percorrido."""
+        if not self.zoff_armed:
+            self.log("[ZOFFSET] use 'Preparar' primeiro: sem o M211 S0 o firmware "
+                     "recusa descer abaixo de Z=0 e o degrau e perdido.", "err")
+            messagebox.showwarning(
+                "Nao preparado",
+                "Clique em 'Preparar' antes de descer.\n\n"
+                "Sem o M211 S0 o Marlin bloqueia qualquer Z negativo, e o botao\n"
+                "nao teria efeito nenhum.")
+            return
+        novo = self.zoff_travel + delta
+        if novo < self.ZOFF_LIMIT:
+            self.log(f"[ZOFFSET] recusado: {novo:+.3f} mm passa do limite "
+                     f"de seguranca ({self.ZOFF_LIMIT:+.1f} mm).", "err")
+            return
+        self.zoff_travel = novo
+        self.log(f"[ZOFFSET] degrau {delta:+.2f} -> acumulado {novo:+.3f} mm", "sys")
+        self.send("G91")
+        self.send(f"G1 Z{delta:.3f} F120")
+        self.send("G90")
+        self.send("M114")
+        self.after(700, self._zoff_state)
+        self._zoff_state()
+
+    def zoff_check(self):
+        self.send("M114")
+        self.after(700, self._zoff_state)
+
+    def zoff_save(self):
+        """Converte a descida acumulada em M851 Z e religa a protecao."""
+        if not self.zoff_armed:
+            messagebox.showwarning("Nao preparado",
+                                   "Nao ha medicao em andamento para gravar.")
+            return
+        if self.zoff_travel >= 0.0:
+            messagebox.showwarning(
+                "Nada medido",
+                "A descida acumulada e zero ou positiva.\n\n"
+                "O offset do probe e a distancia que o bico ainda tinha que\n"
+                "descer a partir do zero -- precisa ser um valor negativo.")
+            return
+        novo = round(self.zoff_travel, 3)
+        if not messagebox.askokcancel(
+                "Gravar offset Z",
+                f"Descida acumulada:  {self.zoff_travel:+.3f} mm\n"
+                f"Z lido do firmware: {self.pos['Z']:+.3f} mm\n\n"
+                f"Os dois devem bater. Se divergirem, algum degrau foi recusado\n"
+                f"pelo firmware -- confira o log antes de gravar.\n\n"
+                f"Sera enviado:\n"
+                f"  M851 Z{novo:.3f}\n"
+                f"  M211 S1   (religa os limites por software)\n"
+                f"  M500      (grava na EEPROM)\n\n"
+                f"Continuar?"):
+            return
+        self.log(f"[ZOFFSET] gravando M851 Z{novo:.3f}  "
+                 f"(acumulado {self.zoff_travel:+.3f}, M114 Z {self.pos['Z']:+.3f})", "sys")
+        for c in (f"M851 Z{novo:.3f}", "M211 S1", "M500", "M851"):
+            self.send(c)
+        self.zoff_armed = False
+        self.zoff_travel = 0.0
+        self._zoff_state()
+        messagebox.showinfo(
+            "Offset gravado",
+            f"M851 Z{novo:.3f} gravado e limites religados.\n\n"
+            "Para conferir: G28 e depois G1 Z0 -- a folha deve arrastar\n"
+            "com o mesmo atrito que voce usou na medicao.")
+
+    def zoff_abort(self):
+        """Saida de emergencia: religa a trava e afasta o bico da mesa."""
+        self.log("[ZOFFSET] abortado: M211 S1 e subindo 10 mm", "sys")
+        self.send("M211 S1")
+        self.send("G91")
+        self.send("G1 Z10 F300")
+        self.send("G90")
+        self.zoff_armed = False
+        self.zoff_travel = 0.0
+        self._zoff_state()
+
     def mesh_center(self):
         """G29 restrito a um quadrado central (parametro H do G29)."""
         n = int(self.var_mesh.get())
