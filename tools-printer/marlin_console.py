@@ -714,10 +714,10 @@ class App(tk.Tk):
         ttk.Label(f, text="Nivelamento (G29)",
                   font=("TkDefaultFont", 9, "bold")).pack(anchor="w")
         ttk.Label(f, foreground="#666", justify="left",
-                  text="O offset Z do probe e pequeno (0.62mm), entao o alcance de busca\n"
-                       "nao cobre a inclinacao da mesa inteira. Sondar so a area central\n"
-                       "mantem o desvio dentro do alcance. Mesa inteira so apos baixar\n"
-                       "a montagem do probe.").pack(anchor="w")
+                  text="Montagem do probe baixada: D = 2.82mm, alcance de busca de\n"
+                       "2.3mm (Z_PROBE_LOW_POINT -2.3). A inclinacao medida da mesa\n"
+                       "e de 0.59mm, entao a mesa inteira cabe no alcance. O quadrado\n"
+                       "central continua util para uma verificacao rapida.").pack(anchor="w")
 
         self.var_mesh = tk.IntVar(value=100)
         g0 = ttk.Frame(f); g0.pack(fill="x", pady=4)
@@ -1427,10 +1427,10 @@ class App(tk.Tk):
         if not messagebox.askokcancel(
                 "Nivelar mesa inteira",
                 "Sondar a MESA INTEIRA?\n\n"
-                "Com o offset Z atual (0.62mm) o alcance de busca e de ~0.5mm,\n"
-                "menor que a inclinacao medida da mesa. Isso ja falhou antes\n"
-                "com 'Probing Failed' nos cantos.\n\n"
-                "So faz sentido depois de baixar a montagem do probe."):
+                "Alcance de busca atual: 2.3mm (D = 2.82mm).\n"
+                "Inclinacao medida da mesa: 0.59mm. Cabe com folga.\n\n"
+                "Em X a sondagem para em 167mm: o probe fica 38mm a\n"
+                "esquerda do bico e nao alcanca a borda direita."):
             return
         self.log("[MALHA] G29 sem restricao (mesa inteira)", "sys")
         self.send("G29")

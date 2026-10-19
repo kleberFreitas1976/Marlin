@@ -1744,7 +1744,7 @@
 //   X = -38 : probe 38mm a ESQUERDA do bico
 //   Y = +10 : probe 10mm ATRAS do bico
 //   Z = -0.62 : probe dispara 0.62mm ACIMA do ponto em que o bico encosta
-#define NOZZLE_TO_PROBE_OFFSET { -38, 10, -0.62 } // (mm) X, Y, Z da ponta do bico ao ponto de disparo
+#define NOZZLE_TO_PROBE_OFFSET { -38, 10, -2.82 } // (mm) X, Y, Z da ponta do bico ao ponto de disparo
 
 // Enable and set to use a specific tool for probing. Disable to allow any tool.
 #define PROBING_TOOL 0
@@ -1842,7 +1842,11 @@
 // LIMITADO PELO OFFSET PEQUENO: o bico desce no maximo ate |offset Z| + este valor.
 // Com offset -0.62, um valor de -2 levaria o bico a -1.38mm (dentro da mesa).
 // Com -0.5 o bico para a +0.12mm da mesa numa falha de disparo.
-#define Z_PROBE_LOW_POINT        -0.5 // (mm) Maior distancia abaixo do ponto de disparo ate parar
+#define Z_PROBE_LOW_POINT        -2.3 // (mm) Alcance de busca abaixo do disparo esperado.
+                                      // probe.cpp:757: o piso da descida e zoffs + este valor,
+                                      // ou seja 2.82 - 2.3 = 0.52mm do bico ate a mesa se o
+                                      // probe falhar. Com o D de 0.62mm antigo so cabia -0.5,
+                                      // e por isso a mesa inteira dava 'Probing Failed'.
 
 // For M851 provide ranges for adjusting the X, Y, and Z probe offsets
 //#define PROBE_OFFSET_XMIN -50   // (mm)
