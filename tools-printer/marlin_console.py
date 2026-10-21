@@ -491,6 +491,48 @@ class App(tk.Tk):
         ttk.Button(f, text="DESLIGAR TUDO (M104 S0 / M140 S0 / M107)",
                    command=self.all_heaters_off).pack(fill="x", pady=8)
 
+        # ---- Carregar / descarregar filamento ----
+        ttk.Separator(f).pack(fill="x", pady=6)
+        ttk.Label(f, text="Carregar / descarregar filamento",
+                  font=("TkDefaultFont", 9, "bold")).pack(anchor="w")
+
+        ttk.Label(f, foreground="#666", justify="left", text=(
+            "O ADVANCED_PAUSE_FEATURE esta desligado (pedia LCD com menu ou o\n"
+            "EMERGENCY_PARSER, que o HAL do ESP32 nao implementa), entao nao ha\n"
+            "M701/M702 nesta placa. A sequencia e montada aqui.\n"
+            "\n"
+            "O curso e quebrado em blocos de 150mm porque o EXTRUDE_MAXLENGTH e\n"
+            "200 e o motion.cpp:1954 compara o valor ABSOLUTO -- o limite vale\n"
+            "tanto para empurrar quanto para puxar.")).pack(anchor="w", pady=(2, 4))
+
+        self.var_fil_temp = tk.IntVar(value=210)
+        self.var_bowden = tk.IntVar(value=500)
+
+        fl0 = ttk.Frame(f); fl0.pack(fill="x", pady=3)
+        ttk.Label(fl0, text="Material:").pack(side="left")
+        for nome, tmp in (("PLA", 210), ("PETG", 240), ("ABS", 250)):
+            ttk.Button(fl0, text=nome, width=6,
+                       command=lambda v=tmp: self.var_fil_temp.set(v)).pack(side="left", padx=2)
+        ttk.Label(fl0, text="   Bico (C):").pack(side="left")
+        ttk.Spinbox(fl0, from_=160, to=270, increment=5, width=5,
+                    textvariable=self.var_fil_temp).pack(side="left", padx=3)
+        ttk.Label(fl0, text="   Bowden (mm):").pack(side="left")
+        ttk.Spinbox(fl0, from_=0, to=1200, increment=10, width=6,
+                    textvariable=self.var_bowden).pack(side="left", padx=3)
+
+        fl1 = ttk.Frame(f); fl1.pack(fill="x", pady=4)
+        ttk.Button(fl1, text="Carregar", width=16,
+                   command=self.fil_load).pack(side="left", padx=3)
+        ttk.Button(fl1, text="Descarregar", width=16,
+                   command=self.fil_unload).pack(side="left", padx=3)
+        ttk.Button(fl1, text="Purgar 30mm", width=14,
+                   command=self.fil_purge).pack(side="left", padx=3)
+
+        ttk.Label(f, foreground="#a33", justify="left", text=(
+            "Os dois esperam o bico chegar na temperatura (M109) antes de mover.\n"
+            "Puxar filamento frio deixa um tampao dentro do bico."
+        )).pack(anchor="w", pady=(0, 2))
+
         ttk.Separator(f).pack(fill="x", pady=6)
         ttk.Label(f, text="Ventoinha de peça (fan 0 = conector FAN1 da placa):").pack(anchor="w")
         fan = ttk.Frame(f); fan.pack(fill="x", pady=3)
@@ -1435,6 +1477,71 @@ class App(tk.Tk):
         self.log("[MALHA] G29 sem restricao (mesa inteira)", "sys")
         self.send("G29")
         self.send("M420 V")
+
+    # -- filamento ----------------------------------------------------------
+    FIL_CHUNK = 150            # < EXTRUDE_MAXLENGTH (200), que vale em ABS()
+
+    def _fil_chunks(self, total, feed):
+        """Quebra um curso de E em blocos aceitos pelo PREVENT_LENGTHY_EXTRUDE."""
+        falta, passo = abs(total), (1 if total > 0 else -1)
+        while falta > 0.5:
+            n = min(falta, self.FIL_CHUNK)
+            self.send(f"G1 E{passo * n:.1f} F{feed}")
+            falta -= n
+
+    def fil_unload(self):
+        temp = int(self.var_fil_temp.get())
+        bow = int(self.var_bowden.get())
+        total = bow + 100          # tubo + caminho interno do hotend e da BMG
+        if not messagebox.askokcancel(
+                "Descarregar filamento",
+                f"Aquecer o bico a {temp}C e puxar {total}mm?\n\n"
+                f"  M109 S{temp}   espera a temperatura\n"
+                f"  G1 E10 F180    alivia a pressao\n"
+                f"  G1 E-15 F300   puxada lenta, forma a ponta\n"
+                f"  {total - 15}mm restantes em blocos de {self.FIL_CHUNK}mm a F1200\n\n"
+                "Se o motor comecar a estalar, pare: a ponta alargou dentro do\n"
+                "tubo. Solte a trava da BMG e puxe a mao com o bico quente --\n"
+                "insistir no motor so rala o filamento e entope a engrenagem."):
+            return
+        self.log(f"[FILAMENTO] descarregar: {temp}C, bowden {bow}mm, total {total}mm", "sys")
+        self.send("M302 P0")       # garante a protecao de extrusao a frio ligada
+        self.send(f"M109 S{temp}")
+        self.send("M83")
+        self.send("G1 E10 F180")
+        self.send("G1 E-15 F300")
+        self._fil_chunks(-(total - 15), 1200)
+        self.log("[FILAMENTO] fim da descarga. Desligue o bico se terminou.", "sys")
+
+    def fil_load(self):
+        temp = int(self.var_fil_temp.get())
+        bow = int(self.var_bowden.get())
+        rapido = max(bow - 50, 0)  # para antes da zona quente
+        if not messagebox.askokcancel(
+                "Carregar filamento",
+                f"Aquecer o bico a {temp}C e empurrar {rapido + 80}mm?\n\n"
+                f"  {rapido}mm rapido ate a entrada do hotend\n"
+                f"  50mm a F120 atravessando a zona de fusao\n"
+                f"  30mm a F100 de purga\n\n"
+                "Confira antes: a ponta do filamento cortada em bisel, ja dentro\n"
+                "da BMG, e a trava da extrusora fechada."):
+            return
+        self.log(f"[FILAMENTO] carregar: {temp}C, bowden {bow}mm", "sys")
+        self.send("M302 P0")
+        self.send(f"M109 S{temp}")
+        self.send("M83")
+        self._fil_chunks(rapido, 1200)
+        self.send("G1 E50 F120")
+        self.send("G1 E30 F100")
+        self.log("[FILAMENTO] fim da carga. Limpe a purga antes de imprimir.", "sys")
+
+    def fil_purge(self):
+        temp = int(self.var_fil_temp.get())
+        self.log(f"[FILAMENTO] purga de 30mm a {temp}C", "sys")
+        self.send("M302 P0")
+        self.send(f"M109 S{temp}")
+        self.send("M83")
+        self.send("G1 E30 F100")
 
     # -- ventoinhas ---------------------------------------------------------
     def fan_solo(self, idx):

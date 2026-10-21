@@ -1394,7 +1394,12 @@
  * Override with M201
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 3000, 3000, 100, 10000 }
+#define DEFAULT_MAX_ACCELERATION      { 3000, 3000, 100, 1000 }
+                                      // E em 1000, nao nos 10000 do padrao: a BMG
+                                      // patina na partida com aceleracao alta. Isso
+                                      // vivia so no start gcode do fatiador, entao
+                                      // toda extrusao manual pelo console rodava com
+                                      // 10000, e qualquer M502 apagava o ajuste.
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
 #if ENABLED(LIMITED_MAX_ACCEL_EDITING)
