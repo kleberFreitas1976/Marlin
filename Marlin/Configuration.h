@@ -2328,7 +2328,12 @@
  * Turn on with the command 'M111 S32'.
  * NOTE: Requires a lot of flash!
  */
-//#define DEBUG_LEVELING_FEATURE
+#define DEBUG_LEVELING_FEATURE   // Habilitado para diagnosticar o G29. Com M111 S32
+                                 // o probe.cpp:744-748 diz POR QUE a sondagem falhou:
+                                 // 'No trigger' (desceu ate o piso sem encontrar nada)
+                                 // ou 'Triggered early' (disparou acima do esperado).
+                                 // Sao causas opostas e nao da para distinguir pela
+                                 // mensagem 'Probing Failed' sozinha.
 
 #if ANY(MESH_BED_LEVELING, AUTO_BED_LEVELING_UBL, PROBE_MANUALLY)
   // Set a height for the start of manual adjustment
@@ -2375,7 +2380,11 @@
 #if ANY(AUTO_BED_LEVELING_LINEAR, AUTO_BED_LEVELING_BILINEAR)
 
   // Set the number of grid points per dimension.
-  #define GRID_MAX_POINTS_X 3
+  // 5x5 depois de aplainar a mesa na mao: a amplitude caiu de 1.470 para 0.252mm
+  // (21/10/2026) e o que sobra e curvatura, nao inclinacao. Com 9 pontos o ajuste
+  // so enxerga um plano; a curvatura residual ficava fora da malha. Custa tempo de
+  // G29 -- 25 pontos, cada um com um ciclo do servo por Z_SERVO_INTERMEDIATE_STOW.
+  #define GRID_MAX_POINTS_X 5
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
   // Probe along the Y axis, advancing X after each column
