@@ -1749,14 +1749,13 @@
 //   X = -38 : probe 38mm a ESQUERDA do bico
 //   Y = +10 : probe 10mm ATRAS do bico
 //   Z = -0.62 : probe dispara 0.62mm ACIMA do ponto em que o bico encosta
-#define NOZZLE_TO_PROBE_OFFSET { -54, -10, -2.82 } // (mm) X, Y, Z do bico ao ponto de disparo
+#define NOZZLE_TO_PROBE_OFFSET { -54, -10, -4.16 } // (mm) X, Y, Z do bico ao ponto de disparo
   // X -54: medido com paquimetro, probe a ESQUERDA do bico.
   // Y -10: o probe vem antes do bico no sentido do Y, ou seja fica do lado do
   //        Y menor (a frente). Era +10, que espelhava a malha em 20mm.
-  // Z: PENDENTE. O -2.82 e da montagem anterior e esta errado -- a medida no
-  //    contato deu Z -4.16 sobre um M851 ainda nao confirmado. Enquanto nao
-  //    for corrigido, a malha sai deslocada em altura (o bico fica ACIMA da
-  //    mesa, nao dentro dela, entao nao ha risco de batida).
+  // Z -4.16: medido pelo painel de offset do console (zera o M851, acumula a
+  //    descida ate a folha prender, grava). Confere com o M114 no contato.
+  //    E este D que dimensiona as folgas do servo mais abaixo.
 
 // Enable and set to use a specific tool for probing. Disable to allow any tool.
 #define PROBING_TOOL 0
