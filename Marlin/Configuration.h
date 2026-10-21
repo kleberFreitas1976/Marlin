@@ -1547,7 +1547,11 @@
  */
 #define Z_PROBE_SERVO_NR 0
 #ifdef Z_PROBE_SERVO_NR
-  #define Z_SERVO_ANGLES { 35, 0 }        // Angulos medidos na maquina: 35 = braco ativo (baixo), 0 = recolhido (livre)
+  #define Z_SERVO_ANGLES { 35, 0 }        // 35 = acionado (haste BAIXA), 0 = recolhido (haste ALTA)
+  // Probe optico de haste, nao microswitch. Recolhido, o servo LEVANTA a haste e
+  // ela obstrui o sensor -- por isso o M119 le z_probe: TRIGGERED com o braco
+  // guardado, e isso e o normal aqui, nao defeito. Acionado, a haste desce e o
+  // sensor fica livre (open); ao tocar o vidro a haste sobe e obstrui de novo.
   //#define Z_SERVO_MEASURE_ANGLE 45      // Use if the servo must move to a "free" position for measuring after deploy
   #define Z_SERVO_INTERMEDIATE_STOW       // Stow the probe between points
   //#define Z_SERVO_DEACTIVATE_AFTER_STOW // Deactivate the servo when probe is stowed
@@ -1858,11 +1862,14 @@
 // LIMITADO PELO OFFSET PEQUENO: o bico desce no maximo ate |offset Z| + este valor.
 // Com offset -0.62, um valor de -2 levaria o bico a -1.38mm (dentro da mesa).
 // Com -0.5 o bico para a +0.12mm da mesa numa falha de disparo.
-#define Z_PROBE_LOW_POINT        -2.3 // (mm) Alcance de busca abaixo do disparo esperado.
-                                      // probe.cpp:757: o piso da descida e zoffs + este valor,
-                                      // ou seja 2.82 - 2.3 = 0.52mm do bico ate a mesa se o
-                                      // probe falhar. Com o D de 0.62mm antigo so cabia -0.5,
-                                      // e por isso a mesa inteira dava 'Probing Failed'.
+#define Z_PROBE_LOW_POINT        -3.6 // (mm) Alcance de busca abaixo do disparo esperado.
+                                      // probe.cpp:757: o piso da descida e zoffs + este valor.
+                                      // Com D = 4.16 sobram 0.56mm entre o bico e a mesa se a
+                                      // haste nao chegar a subir. Era -2.3, suficiente para o
+                                      // quadrado central mas nao para a mesa inteira: o
+                                      // primeiro ponto da malha e o canto (15,15), e um canto
+                                      // mais de 2.3mm abaixo do centro acabava a busca antes
+                                      // de encontrar o vidro.
 
 // For M851 provide ranges for adjusting the X, Y, and Z probe offsets
 //#define PROBE_OFFSET_XMIN -50   // (mm)
@@ -3905,7 +3912,10 @@
 // (ms) Delay before the next move will start, to give the servo time to reach its target angle.
 // 300ms is a good value but you can try less delay.
 // If the servo can't reach the requested position, increase it.
-#define SERVO_DELAY { 300 }
+#define SERVO_DELAY { 500 }   // 300 era o padrao. O arco do braco aumentou com a
+                              // remontagem; se o Marlin comeca a sondar antes da
+                              // haste assentar, o sensor ainda esta obstruido e a
+                              // sondagem falha de imediato, por disparo prematuro.
 
 // Only power servos during movement, otherwise leave off to prevent jitter
 #define DEACTIVATE_SERVOS_AFTER_MOVE
