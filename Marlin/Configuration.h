@@ -2006,17 +2006,25 @@
 // assume a mesa comecando em 0: Conditionals-5-post.h:249 define
 // X_MIN_BED = X_CENTER - _X_HALF_BED, que sempre da 0. Em Y o deslocamento e -1.
 //
-// Em X houve um SEGUNDO deslocamento, de +10. Quando a montagem do probe foi
-// baixada para ganhar curso (D de 0.62 para 2.82mm), o conjunto passou a bater no
-// mecanismo 10mm antes da borda esquerda. Essa faixa deixou de ser alcancavel,
-// entao a origem foi movida para la: X=0 agora fica 10mm a direita da borda
-// fisica do vidro, e a largura declarada cai de 201 para 191mm.
+// Em X a origem ja foi deslocada duas vezes depois do +3 inicial, sempre pelo
+// mesmo motivo: o probe fica 38mm a ESQUERDA do bico, entao e ele quem bate no
+// mecanismo antes do fim do curso, e cada remontagem do suporte muda onde isso
+// acontece.
+//   +10  ao baixar a montagem para ganhar curso (D de 0.62 para 2.82mm)
+//   +12  ao reposicionar o touch
+// Somados, 22mm da borda esquerda do vidro deixaram de ser alcancaveis, e a
+// largura declarada cai de 201 para 179mm. X=0 fica 22mm a direita da borda
+// fisica.
+//
+// Se esses 22mm fizerem falta, a saida nao e por software: e passar o suporte do
+// probe para a DIREITA do bico. O lado que limita o curso passa a ser o direito,
+// onde ha 7mm de sobra ate o sensor em vez do mecanismo.
 //
 // Nao adianta declarar a mesa de 201 e limitar com X_MIN_POS 10: alem de
 // SanityCheck.h:262 exigir X_MAX_LENGTH >= X_BED_SIZE, isso faria o firmware
 // truncar em silencio tudo que o fatiador mandasse para a faixa inalcancavel,
 // deformando a peca em vez de avisar.
-#define X_BED_SIZE 191
+#define X_BED_SIZE 179
 #define Y_BED_SIZE 193
 
 // Travel limits (linear=mm, rotational=°) after homing, corresponding to endstop positions.
@@ -2028,7 +2036,7 @@
 #define Y_MIN_POS -6    // Posicao do sensor Y min (home), 6mm a frente da mesa.
                         // Nao e escolha: o home no minimo fixa esta coordenada.
 #define Z_MIN_POS 0
-#define X_MAX_POS 198   // Posicao do sensor X max (home), 7mm alem da borda direita
+#define X_MAX_POS 186   // Posicao do sensor X max (home), 7mm alem da borda direita
 #define Y_MAX_POS 193   // Borda do fundo = limite mecanico (so 2mm de folga real)
 #define Z_MAX_POS 250
 //#define I_MIN_POS 0
