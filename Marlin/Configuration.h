@@ -2006,25 +2006,34 @@
 // assume a mesa comecando em 0: Conditionals-5-post.h:249 define
 // X_MIN_BED = X_CENTER - _X_HALF_BED, que sempre da 0. Em Y o deslocamento e -1.
 //
-// Em X a origem ja foi deslocada duas vezes depois do +3 inicial, sempre pelo
-// mesmo motivo: o probe fica 38mm a ESQUERDA do bico, entao e ele quem bate no
-// mecanismo antes do fim do curso, e cada remontagem do suporte muda onde isso
-// acontece.
-//   +10  ao baixar a montagem para ganhar curso (D de 0.62 para 2.82mm)
-//   +12  ao reposicionar o touch
-// Somados, 22mm da borda esquerda do vidro deixaram de ser alcancaveis, e a
-// largura declarada cai de 201 para 179mm. X=0 fica 22mm a direita da borda
-// fisica.
+// Em X a geometria foi refeita em 21/10/2026, depois de reposicionar o touch e
+// deslocar a mesa no fisico. Duas coisas definem o eixo agora:
 //
-// Se esses 22mm fizerem falta, a saida nao e por software: e passar o suporte do
-// probe para a DIREITA do bico. O lado que limita o curso passa a ser o direito,
-// onde ha 7mm de sobra ate o sensor em vez do mecanismo.
+//   1. O sensor X max passou a cair exatamente na borda DIREITA do vidro, entao
+//      a posicao de home e a borda da mesa: X_MAX_POS = X_BED_SIZE = 196.
+//   2. A esquerda o curso termina 12mm antes do que terminava, medido com
+//      M114 no referencial antigo (onde o home era 208). O probe fica 54mm a
+//      esquerda do bico e e ele quem encontra o mecanismo, nao o carro.
+//
+// A origem foi deslocada +12 para que esse limite caia em zero. Sobram 5mm de
+// vidro a esquerda que o bico nao alcanca e por isso nao sao declarados: o
+// Marlin fixa X_MIN_BED em 0 (Conditionals-5-post.h:249) e declarar mesa maior
+// que o curso faz o firmware truncar movimento em silencio, deformando a peca.
+//
+// Atencao ao historico: houve um commit que somou +10 e +12 como se fossem
+// deslocamentos sucessivos. Eram a MESMA medida refeita, no mesmo referencial.
+// Antes de aplicar qualquer deslocamento novo, confirme em que referencial a
+// medida foi tomada -- o M211 reporta os limites que estao rodando na placa.
+//
+// Os 54mm do offset do probe sao a causa dos dois estreitamentos: a esquerda ele
+// bate antes do fim do curso, a direita ele nao alcanca a borda. Aproximar o
+// suporte do bico recupera os dois lados ao mesmo tempo.
 //
 // Nao adianta declarar a mesa de 201 e limitar com X_MIN_POS 10: alem de
 // SanityCheck.h:262 exigir X_MAX_LENGTH >= X_BED_SIZE, isso faria o firmware
 // truncar em silencio tudo que o fatiador mandasse para a faixa inalcancavel,
 // deformando a peca em vez de avisar.
-#define X_BED_SIZE 179
+#define X_BED_SIZE 196
 #define Y_BED_SIZE 193
 
 // Travel limits (linear=mm, rotational=°) after homing, corresponding to endstop positions.
@@ -2036,7 +2045,7 @@
 #define Y_MIN_POS -6    // Posicao do sensor Y min (home), 6mm a frente da mesa.
                         // Nao e escolha: o home no minimo fixa esta coordenada.
 #define Z_MIN_POS 0
-#define X_MAX_POS 186   // Posicao do sensor X max (home), 7mm alem da borda direita
+#define X_MAX_POS 196   // Sensor X max (home) = borda direita do vidro, apos a
 #define Y_MAX_POS 193   // Borda do fundo = limite mecanico (so 2mm de folga real)
 #define Z_MAX_POS 250
 //#define I_MIN_POS 0
