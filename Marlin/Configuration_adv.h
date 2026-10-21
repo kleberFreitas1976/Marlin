@@ -2610,7 +2610,11 @@
    * Reduzir este valor exigiria remontar o probe mais perto do bico.
    */
   #define PROBING_MARGIN_LEFT 15
-  #define PROBING_MARGIN_RIGHT 34
+  #define PROBING_MARGIN_RIGHT 54   // = |offset X| do probe. Com o bico no maximo
+                                    // (196) o probe alcanca 142, e probe.h:262 ja
+                                    // limitaria por ali de qualquer jeito; o valor
+                                    // explicito evita a impressao de que a malha
+                                    // chega mais a direita do que chega.
   //#define PROBING_MARGIN_FRONT PROBING_MARGIN
   //#define PROBING_MARGIN_BACK PROBING_MARGIN
 #endif

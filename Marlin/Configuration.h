@@ -1749,7 +1749,14 @@
 //   X = -38 : probe 38mm a ESQUERDA do bico
 //   Y = +10 : probe 10mm ATRAS do bico
 //   Z = -0.62 : probe dispara 0.62mm ACIMA do ponto em que o bico encosta
-#define NOZZLE_TO_PROBE_OFFSET { -38, 10, -2.82 } // (mm) X, Y, Z da ponta do bico ao ponto de disparo
+#define NOZZLE_TO_PROBE_OFFSET { -54, -10, -2.82 } // (mm) X, Y, Z do bico ao ponto de disparo
+  // X -54: medido com paquimetro, probe a ESQUERDA do bico.
+  // Y -10: o probe vem antes do bico no sentido do Y, ou seja fica do lado do
+  //        Y menor (a frente). Era +10, que espelhava a malha em 20mm.
+  // Z: PENDENTE. O -2.82 e da montagem anterior e esta errado -- a medida no
+  //    contato deu Z -4.16 sobre um M851 ainda nao confirmado. Enquanto nao
+  //    for corrigido, a malha sai deslocada em altura (o bico fica ACIMA da
+  //    mesa, nao dentro dela, entao nao ha risco de batida).
 
 // Enable and set to use a specific tool for probing. Disable to allow any tool.
 #define PROBING_TOOL 0
@@ -1838,9 +1845,14 @@
  * Example: 'M851 Z-5' with a CLEARANCE of 4  =>  9mm from bed to nozzle.
  *     But: 'M851 Z+1' with a CLEARANCE of 2  =>  2mm from bed to nozzle.
  */
-#define Z_CLEARANCE_DEPLOY_PROBE   10 // (mm) Z Clearance for Deploy/Stow
-#define Z_CLEARANCE_BETWEEN_PROBES  8 // (mm) 8 > 4mm dos parafusos de fixacao da mesa
-#define Z_CLEARANCE_MULTI_PROBE     8 // (mm) 8 > 4mm dos parafusos de fixacao da mesa
+#define Z_CLEARANCE_DEPLOY_PROBE   15 // (mm) Dimensionado para o pior caso do D
+                                      // ainda nao medido (ate ~7mm): 15 - 7 = 8mm
+                                      // de folga ao acionar o braco.
+#define Z_CLEARANCE_BETWEEN_PROBES 12 // (mm) Com Z_SERVO_INTERMEDIATE_STOW o braco
+                                      // aciona e recolhe a CADA ponto da malha. Em 8
+                                      // um D de 7mm deixaria a ponta a 1mm da mesa,
+                                      // abaixo dos 4mm dos parafusos de fixacao.
+#define Z_CLEARANCE_MULTI_PROBE    12 // (mm) idem, no M48 e nas repeticoes
 #define Z_PROBE_ERROR_TOLERANCE     3 // (mm) Tolerance for early trigger (<= -probe.offset.z + ZPET)
 //#define Z_AFTER_PROBING           5 // (mm) Z position after probing is done
 
@@ -2034,7 +2046,7 @@
 // truncar em silencio tudo que o fatiador mandasse para a faixa inalcancavel,
 // deformando a peca em vez de avisar.
 #define X_BED_SIZE 196
-#define Y_BED_SIZE 193
+#define Y_BED_SIZE 190
 
 // Travel limits (linear=mm, rotational=°) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0     // Borda esquerda ALCANCAVEL, ja no referencial deslocado
@@ -2046,7 +2058,9 @@
                         // Nao e escolha: o home no minimo fixa esta coordenada.
 #define Z_MIN_POS 0
 #define X_MAX_POS 196   // Sensor X max (home) = borda direita do vidro, apos a
-#define Y_MAX_POS 193   // Borda do fundo = limite mecanico (so 2mm de folga real)
+#define Y_MAX_POS 190   // Ponto maximo SEGURO medido em 21/10/2026. Igual ao
+                        // Y_BED_SIZE de proposito: declarar mesa alem do curso
+                        // faz o firmware truncar o movimento em silencio.
 #define Z_MAX_POS 250
 //#define I_MIN_POS 0
 //#define I_MAX_POS 50
