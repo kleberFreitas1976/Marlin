@@ -404,7 +404,19 @@ class App(tk.Tk):
                   font=("TkDefaultFont", 9, "bold")).pack(anchor="w")
         ttk.Label(f, foreground="#666", justify="left",
                   text="Marque a posicao do carro, rode os ciclos e veja se ele volta\n"
-                       "para a mesma marca. Se saiu do lugar, perdeu passos naquela velocidade.").pack(anchor="w")
+                       "para a mesma marca. Se saiu do lugar, perdeu passos naquela\n"
+                       "velocidade. O M114 NAO serve aqui: ele reporta a posicao que o\n"
+                       "planejador acha que alcancou, nao a real. Passo perdido e\n"
+                       "justamente a diferenca entre as duas, e nao aparece no relatorio.").pack(anchor="w")
+
+        ttk.Label(f, foreground="#a33", justify="left",
+                  text="NO COREXY O DIAGONAL E O CASO CRITICO.\n"
+                       "Motor A = X+Y e motor B = X-Y (planner.cpp:1849). Num movimento\n"
+                       "so de X ou so de Y os dois motores giram a velocidade do carro.\n"
+                       "Num diagonal de 45 graus, o motor A faz 1,41x e o B fica parado.\n"
+                       "Testar so X e Y superestima o limite em 41%, e deslocamento de\n"
+                       "fatiador e diagonal quase sempre -- e o 'Testar XY' que define\n"
+                       "o travel_speed que voce pode usar.").pack(anchor="w", pady=(4, 0))
 
         self.var_spd = tk.IntVar(value=60)
         self.var_cyc = tk.IntVar(value=10)
@@ -1606,13 +1618,20 @@ class App(tk.Tk):
         a marca fisica, a maquina perdeu passos naquela velocidade.
         """
         spd, cyc = int(self.var_spd.get()), int(self.var_cyc.get())
-        lo, hi = 50, 150                      # dentro da mesa de 200x200
+        lo, hi = 20, 170                      # cabe em X (0-196) e em Y (0-190)
+        # No CoreXY um diagonal de 45 graus poe um motor a 1,41x a velocidade
+        # do carro: A = X+Y, e com vx = vy = F/raiz(2) isso da F*raiz(2).
+        fator = 2 ** 0.5 if len(axes) == 2 else 1.0
+        motor = spd * fator
         if not messagebox.askokcancel(
                 "Teste de velocidade",
                 f"Mover {axes} entre {lo} e {hi} mm, {cyc} vezes, a {spd} mm/s.\n\n"
-                "A maquina PRECISA estar referenciada (G28) antes.\n"
-                f"O carro vai primeiro para {lo} mm: marque a posicao\n"
-                "ANTES de rodar os ciclos, e confira a marca no fim.\n\n"
+                f"Velocidade exigida do motor mais rapido: {motor:.0f} mm/s"
+                + (f"\n(diagonal: o motor A faz 1,41x o que o carro faz)\n" if fator > 1
+                   else "\n(movimento em um eixo: os dois motores na mesma velocidade)\n")
+                + "\nA maquina PRECISA estar referenciada (G28) antes.\n"
+                f"O carro vai primeiro para {lo} mm: MARQUE A POSICAO\n"
+                "antes de rodar os ciclos, e confira a marca no fim.\n\n"
                 "Serao enviados comandos um a um, esperando o 'ok' de cada."):
             return
         feed = spd * 60
@@ -1620,7 +1639,8 @@ class App(tk.Tk):
         end = " ".join(f"{a}{hi}" for a in axes)
         total = 2 * cyc
         self.log(f"[VELOC] Inicio: {axes} {lo}<->{hi} mm, {cyc} ciclos "
-                 f"({total} movimentos) a {spd} mm/s (F{feed}).", "sys")
+                 f"({total} movimentos) a {spd} mm/s (F{feed}). "
+                 f"Motor mais rapido: {motor:.0f} mm/s.", "sys")
         self.send("G90")                      # absoluto
         self.send("M400")                     # esvazia o que estiver pendente
         self.send(f"G1 {start} F{feed}")
@@ -1631,9 +1651,9 @@ class App(tk.Tk):
             self.send(f"G1 {start} F{feed}")
         self.send("M400")
         self.send("M114")                     # deve ser identica a de partida
-        self.log(f"[VELOC] Fim a {spd} mm/s. Os dois M114 devem ser iguais "
-                 f"({lo} mm). Se forem e o carro estiver FORA da marca, "
-                 f"houve perda de passos.", "sys")
+        self.log(f"[VELOC] Fim a {spd} mm/s (motor {motor:.0f} mm/s). Os dois "
+                 f"M114 vao bater em {lo} mm de qualquer jeito -- quem decide e "
+                 f"a MARCA FISICA. Carro fora da marca = passos perdidos.", "sys")
 
     def core_single(self, motor):
         """Aciona um unico motor da CoreXY. A = X+Y, B = X-Y."""
