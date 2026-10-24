@@ -1612,55 +1612,92 @@ class App(tk.Tk):
         self.lbl_ang.config(text=f"Encontrados:  Z_SERVO_ANGLES {{ {d}, {s} }}")
 
     def speed_test(self, axes):
-        """Vai e volta entre dois pontos N vezes, para achar onde perde passos.
+        """Leva o carro ao ponto de partida e PARA, para voce marcar a posicao.
 
-        Termina na mesma coordenada em que comecou: se o carro nao voltar para
-        a marca fisica, a maquina perdeu passos naquela velocidade.
+        Os ciclos so comecam no segundo OK. A versao anterior enfileirava tudo
+        de uma vez: a maquina ia ao ponto e ja saia rodando, sem dar tempo de
+        marcar nada -- e sem marca o teste nao tem criterio, porque o M114
+        reporta a posicao que o planejador acha que alcancou, nunca a real.
         """
+        if not self.link.connected:
+            # Sem serial o send() descarta tudo, a fila nunca enche e o
+            # _quando_parado dispararia a etapa 2 na hora, como se o carro ja
+            # estivesse posicionado.
+            messagebox.showwarning("Sem conexao",
+                                   "Conecte a impressora antes de rodar o teste.")
+            return
         spd, cyc = int(self.var_spd.get()), int(self.var_cyc.get())
         lo, hi = 20, 170                      # cabe em X (0-196) e em Y (0-190)
         # No CoreXY um diagonal de 45 graus poe um motor a 1,41x a velocidade
         # do carro: A = X+Y, e com vx = vy = F/raiz(2) isso da F*raiz(2).
         fator = 2 ** 0.5 if len(axes) == 2 else 1.0
         motor = spd * fator
-        if not messagebox.askokcancel(
-                "Teste de velocidade",
-                f"Mover {axes} entre {lo} e {hi} mm, {cyc} vezes, a {spd} mm/s.\n\n"
-                f"Velocidade exigida do motor mais rapido: {motor:.0f} mm/s"
-                + (f"\n(diagonal: o motor A faz 1,41x o que o carro faz)\n" if fator > 1
-                   else "\n(movimento em um eixo: os dois motores na mesma velocidade)\n")
-                + "\nA maquina PRECISA estar referenciada (G28) antes.\n"
-                "O Z vai para 10mm e a malha e desligada antes dos ciclos.\n"
-                f"O carro vai primeiro para {lo} mm: MARQUE A POSICAO\n"
-                "antes de rodar os ciclos, e confira a marca no fim.\n\n"
-                "Serao enviados comandos um a um, esperando o 'ok' de cada."):
-            return
         feed = spd * 60
+
+        if not messagebox.askokcancel(
+                "Teste de velocidade - etapa 1 de 2",
+                f"Eixo {axes}, {cyc} ciclos entre {lo} e {hi} mm, a {spd} mm/s.\n\n"
+                f"Velocidade exigida do motor mais rapido: {motor:.0f} mm/s\n"
+                + ("(diagonal: o motor A faz 1,41x o que o carro faz)\n\n" if fator > 1
+                   else "(um eixo so: os dois motores na mesma velocidade)\n\n")
+                + "A maquina PRECISA estar referenciada (G28) antes.\n\n"
+                "AGORA o carro vai so ate o ponto de partida e PARA.\n"
+                "Os ciclos comecam depois, quando voce confirmar de novo."):
+            return
+
+        self.log(f"[VELOC] etapa 1: indo para o ponto de partida "
+                 f"({axes} = {lo} mm), Z 10, malha desligada.", "sys")
+        self.send("G90")
+        self.send("M400")
+        # AFASTA O BICO DA MESA. Sem isto o teste roda no Z em que a maquina
+        # estiver: com Z=0 o bico raspa no vidro durante todo o percurso, e o
+        # atrito faz o eixo perder passos. O resultado acusaria a mecanica por
+        # um problema criado pelo proprio teste.
+        self.send("M420 S0")
+        self.send("G1 Z10 F600")
+        self.send(" ".join(["G1"] + [f"{a}{lo}" for a in axes] + [f"F{feed}"]))
+        self.send("M400")
+        self.send("M114")
+        self._quando_parado(lambda: self._speed_ciclos(axes, spd, cyc, lo, hi,
+                                                       feed, motor, fator))
+
+    def _quando_parado(self, cb, tentativas=0):
+        """Espera a fila esvaziar e o ultimo ok chegar, entao chama cb."""
+        if (self.txq or self.awaiting_ok) and tentativas < 600:
+            self.after(200, lambda: self._quando_parado(cb, tentativas + 1))
+        else:
+            cb()
+
+    def _speed_ciclos(self, axes, spd, cyc, lo, hi, feed, motor, fator):
+        """Etapa 2: so roda depois que a marca foi feita."""
+        if not messagebox.askokcancel(
+                "Teste de velocidade - etapa 2 de 2",
+                f"O carro esta parado em {axes} = {lo} mm.\n\n"
+                "MARQUE A POSICAO AGORA.\n"
+                "Uma fita no perfil com um traco alinhado a borda do carro\n"
+                "serve. Uma foto do celular tambem, desde que enquadre algo\n"
+                "fixo junto.\n\n"
+                f"Ao confirmar, serao {2 * cyc} movimentos a {spd} mm/s\n"
+                f"(motor mais rapido a {motor:.0f} mm/s) e o carro volta\n"
+                f"para {lo} mm.\n\n"
+                "Marcou?"):
+            self.log("[VELOC] cancelado antes dos ciclos.", "sys")
+            return
+
+        total = 2 * cyc
         start = " ".join(f"{a}{lo}" for a in axes)
         end = " ".join(f"{a}{hi}" for a in axes)
-        total = 2 * cyc
-        self.log(f"[VELOC] Inicio: {axes} {lo}<->{hi} mm, {cyc} ciclos "
+        self.log(f"[VELOC] etapa 2: {axes} {lo}<->{hi} mm, {cyc} ciclos "
                  f"({total} movimentos) a {spd} mm/s (F{feed}). "
                  f"Motor mais rapido: {motor:.0f} mm/s.", "sys")
-        self.send("G90")                      # absoluto
-        self.send("M400")                     # esvazia o que estiver pendente
-        # AFASTA O BICO DA MESA antes de qualquer ciclo. Sem isto o teste roda
-        # no Z em que a maquina estiver: com Z=0 o bico raspa no vidro durante
-        # todo o percurso, e o atrito faz o eixo perder passos. O resultado
-        # acusaria a mecanica por um problema criado pelo proprio teste.
-        self.send("M420 S0")                  # malha fora: nada a corrigir aqui
-        self.send("G1 Z10 F600")
-        self.send(f"G1 {start} F{feed}")
-        self.send("M400")
-        self.send("M114")                     # posicao de partida, para o log
         for _ in range(cyc):
             self.send(f"G1 {end} F{feed}")
             self.send(f"G1 {start} F{feed}")
         self.send("M400")
-        self.send("M114")                     # deve ser identica a de partida
-        self.log(f"[VELOC] Fim a {spd} mm/s (motor {motor:.0f} mm/s). Os dois "
-                 f"M114 vao bater em {lo} mm de qualquer jeito -- quem decide e "
-                 f"a MARCA FISICA. Carro fora da marca = passos perdidos.", "sys")
+        self.send("M114")
+        self.log(f"[VELOC] fim a {spd} mm/s (motor {motor:.0f} mm/s). O M114 "
+                 f"vai dizer {lo} mm de qualquer jeito -- quem decide e a MARCA "
+                 f"FISICA. Carro fora da marca = passos perdidos.", "sys")
 
     def core_single(self, motor):
         """Aciona um unico motor da CoreXY. A = X+Y, B = X-Y."""
