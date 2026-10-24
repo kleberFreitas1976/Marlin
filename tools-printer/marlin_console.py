@@ -420,6 +420,7 @@ class App(tk.Tk):
 
         self.var_spd = tk.IntVar(value=60)
         self.var_cyc = tk.IntVar(value=10)
+        self.var_acc = tk.IntVar(value=0)
         sp = ttk.Frame(f); sp.pack(fill="x", pady=4)
         ttk.Label(sp, text="mm/s:").pack(side="left")
         ttk.Spinbox(sp, from_=10, to=400, increment=10, width=5,
@@ -433,6 +434,20 @@ class App(tk.Tk):
                    command=lambda: self.speed_test("Y")).pack(side="left", padx=3)
         ttk.Button(sp, text="Testar XY", width=10,
                    command=lambda: self.speed_test("XY")).pack(side="left", padx=3)
+
+        sa = ttk.Frame(f); sa.pack(fill="x", pady=2)
+        ttk.Label(sa, text="Aceleracao do teste (mm/s2, 0 = nao mexer):").pack(side="left")
+        ttk.Spinbox(sa, from_=0, to=10000, increment=500, width=6,
+                    textvariable=self.var_acc).pack(side="left", padx=3)
+        ttk.Label(f, foreground="#666", justify="left", text=(
+            "TESTE DE ACELERACAO: use os mesmos botoes acima, com a velocidade em\n"
+            "100 mm/s (a rampa so pesa se o carro chega na velocidade) e a\n"
+            "aceleracao preenchida. Comece em 3000 e suba de 500 em 500, marcando a\n"
+            "posicao a cada rodada. Acima de 3000 o teste sobe tambem o teto por\n"
+            "eixo (M201 X Y), que o firmware limita em 3000; ao fim manda M501,\n"
+            "que devolve tudo ao que esta na EEPROM. O limite de perda de passos\n"
+            "NAO e o limite de qualidade: antes de perder passo a peca ja mostra\n"
+            "ondulacao (ringing) nos cantos, e isso so se ve imprimindo.")).pack(anchor="w", pady=(2, 0))
 
         ttk.Separator(f).pack(fill="x", pady=6)
         ttk.Label(f, text="Diagnostico CoreXY — aciona UM motor de cada vez",
@@ -1690,11 +1705,22 @@ class App(tk.Tk):
         self.log(f"[VELOC] etapa 2: {axes} {lo}<->{hi} mm, {cyc} ciclos "
                  f"({total} movimentos) a {spd} mm/s (F{feed}). "
                  f"Motor mais rapido: {motor:.0f} mm/s.", "sys")
+        acc = int(self.var_acc.get())
+        if acc > 0:
+            # O planner corta a aceleracao no teto por eixo do M201. Sem subir o
+            # teto, um M204 acima de 3000 vira 3000 em silencio e o teste mede
+            # outra coisa.
+            self.send(f"M201 X{acc} Y{acc}")
+            self.send(f"M204 P{acc} T{acc}")
+            self.log(f"[VELOC] aceleracao {acc} mm/s2 aplicada "
+                     f"(M201 X/Y + M204 P/T). M501 restaura ao fim.", "sys")
         for _ in range(cyc):
             self.send(f"G1 {end} F{feed}")
             self.send(f"G1 {start} F{feed}")
         self.send("M400")
         self.send("M114")
+        if acc > 0:
+            self.send("M501")
         self.log(f"[VELOC] fim a {spd} mm/s (motor {motor:.0f} mm/s). O M114 "
                  f"vai dizer {lo} mm de qualquer jeito -- quem decide e a MARCA "
                  f"FISICA. Carro fora da marca = passos perdidos.", "sys")
