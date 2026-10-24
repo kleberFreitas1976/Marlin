@@ -40,7 +40,7 @@ motor tem 1,6.
 | X | 1,6 Ω | ~1,5 A | ~~0,733 V~~ → **1,45 V** | 1,03 A | 68% |
 | Y | 1,6 Ω | ~1,5 A | **1,46 V** | 1,03 A | 69% |
 | Z | 4,3 Ω | ~1,0 A | **1,00 V** | 0,71 A | 71% |
-| Z2 (driver E1) | *não medido* | ~1,0 A | **1,00 V** (confirmar) | 0,71 A | 71% |
+| Z2 (driver E1) | *não medido* | ~1,0 A | **1,00 V** | 0,71 A | 71% |
 | E0 | 2,5 Ω | ~1,2 A | **1,20 V** | 0,85 A | 71% |
 
 ### De onde vem o "nominal estimado"
@@ -183,9 +183,10 @@ ruído ouvido 2% do tempo por outro ouvido 100%.
       A diferença de 0,01 V entre eles está dentro da precisão do
       multímetro e do trimpot; não vale perseguir.
 - [x] Todos os eixos ajustados em 24/10/2026: X/Y 1,45 V, Z 1,00 V, E0 1,20 V
-- [ ] **Confirmar que o Z2 (driver E1) também ficou em 1,00 V.** São dois
-      motores carregando a mesma mesa; trimpots diferentes entre eles é fonte
-      de problema silencioso — um puxa mais que o outro e a mesa torce.
+- [x] Z2 (driver E1) confirmado em 1,00 V, igual ao Z. Os dois precisam
+      bater: se um tiver mais torque, o lado fraco fica para trás sob carga e
+      a mesa torce a cada subida — sem erro, sem ruído, aparecendo só na malha
+      como se fosse empeno.
 - [ ] Conferir a temperatura dos motores e dos drivers após 15 min
 - [ ] Refazer o teste de velocidade (referência: X 145, diagonal 110, a 35%)
 - [ ] Refazer o `M48` (referência: sigma 0,0077 e 0,0111, a 35%)
