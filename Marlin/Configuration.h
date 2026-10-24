@@ -1381,7 +1381,29 @@
  * Override with M203
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_FEEDRATE          { 300, 300, 5, 25 }
+#define DEFAULT_MAX_FEEDRATE          { 140, 140, 5, 25 }
+// Medido na maquina em 24/10/2026, subindo a velocidade ate o motor roncar
+// (sem perda de passo em nenhum ponto -- o ruido veio antes da falha):
+//
+//   X puro     145 mm/s limpo, 150 ja ronca   -> motor a ~147
+//   diagonal   110 mm/s limpo, 120 ja ronca   -> motor a ~155
+//
+// Os dois casos sao diferentes porque no X puro os DOIS motores giram na
+// velocidade do carro, enquanto num diagonal de 45 graus o motor A faz
+// 1,41x e o B fica parado (A = X+Y, B = X-Y).
+//
+// O numero aqui vale POR MOTOR, nao por eixo: planner.cpp:1965 monta
+// dist_mm.a = dx+dy e dist_mm.b = dx-dy para CoreXY, e o limitador de
+// planner.cpp:2242 compara esse valor contra o max_feedrate. Entao 140
+// limita o X puro em 140 mm/s e o diagonal em 140/1,41 = 99 mm/s, que e
+// exatamente a protecao que os dois testes pedem -- com um valor so.
+//
+// O ronco e do StealthChop: o TMC2209 em standalone nao tem UART nesta placa
+// (pins_MKS_TINYBEE.h nao define pinos de serial para os drivers), entao o
+// Marlin nao pode trocar para SpreadCycle acima de um limiar. Em alta taxa de
+// passos o StealthChop perde torque e zumbe. Forcar SpreadCycle pelo pino
+// SPREAD resolveria em alta, mas deixaria tudo barulhento nas velocidades de
+// impressao, que e onde a maquina passa o tempo.
 
 //#define LIMITED_MAX_FR_EDITING        // Limit edit via M203 or LCD to DEFAULT_MAX_FEEDRATE * 2
 #if ENABLED(LIMITED_MAX_FR_EDITING)
