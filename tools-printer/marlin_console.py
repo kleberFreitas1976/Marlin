@@ -1630,6 +1630,7 @@ class App(tk.Tk):
                 + (f"\n(diagonal: o motor A faz 1,41x o que o carro faz)\n" if fator > 1
                    else "\n(movimento em um eixo: os dois motores na mesma velocidade)\n")
                 + "\nA maquina PRECISA estar referenciada (G28) antes.\n"
+                "O Z vai para 10mm e a malha e desligada antes dos ciclos.\n"
                 f"O carro vai primeiro para {lo} mm: MARQUE A POSICAO\n"
                 "antes de rodar os ciclos, e confira a marca no fim.\n\n"
                 "Serao enviados comandos um a um, esperando o 'ok' de cada."):
@@ -1643,6 +1644,12 @@ class App(tk.Tk):
                  f"Motor mais rapido: {motor:.0f} mm/s.", "sys")
         self.send("G90")                      # absoluto
         self.send("M400")                     # esvazia o que estiver pendente
+        # AFASTA O BICO DA MESA antes de qualquer ciclo. Sem isto o teste roda
+        # no Z em que a maquina estiver: com Z=0 o bico raspa no vidro durante
+        # todo o percurso, e o atrito faz o eixo perder passos. O resultado
+        # acusaria a mecanica por um problema criado pelo proprio teste.
+        self.send("M420 S0")                  # malha fora: nada a corrigir aqui
+        self.send("G1 Z10 F600")
         self.send(f"G1 {start} F{feed}")
         self.send("M400")
         self.send("M114")                     # posicao de partida, para o log
