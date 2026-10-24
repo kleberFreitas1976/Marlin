@@ -37,8 +37,8 @@ motor tem 1,6.
 
 | Eixo | R por fase | Nominal estimado | Vref medido | Corrente atual | % do nominal |
 |---|---|---|---|---|---|
-| X | 1,6 Ω | ~1,5 A | **0,733 V** | 0,52 A | **35%** |
-| Y | 1,6 Ω | ~1,5 A | *não medido* | — | — |
+| X | 1,6 Ω | ~1,5 A | ~~0,733 V~~ → **1,45 V** | 1,03 A | 68% |
+| Y | 1,6 Ω | ~1,5 A | **1,46 V** | 1,03 A | 69% |
 | Z | 4,3 Ω | ~1,0 A | *não medido* | — | — |
 | Z2 (driver E1) | *não medido* | — | *não medido* | — | — |
 | E0 | 2,5 Ω | ~1,2 A | *não medido* | — | — |
@@ -179,7 +179,11 @@ ruído ouvido 2% do tempo por outro ouvido 100%.
 
 ## 7. Pendências
 
-- [ ] Medir o Vref de Y, Z, Z2 e E0 (só o X foi medido)
+- [x] X e Y ajustados em 24/10/2026: de 0,733 V para 1,45 e 1,46 V.
+      A diferença de 0,01 V entre eles está dentro da precisão do
+      multímetro e do trimpot; não vale perseguir.
+- [ ] Medir e ajustar o Vref de Z, Z2 e E0
+- [ ] Conferir a temperatura de X e Y após 15 min com a corrente nova
 - [ ] Medir a resistência do Z2
 - [ ] Confirmar o `Rsense` dos módulos (marca impressa na placa do driver)
 - [ ] Achar a corrente nominal real na etiqueta dos motores, se estiver legível
