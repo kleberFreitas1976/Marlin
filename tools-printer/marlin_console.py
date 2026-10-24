@@ -560,6 +560,68 @@ class App(tk.Tk):
             "Puxar filamento frio deixa um tampao dentro do bico."
         )).pack(anchor="w", pady=(0, 2))
 
+        # ---- Teste de fluxo do hotend ----
+        ttk.Separator(f).pack(fill="x", pady=6)
+        ttk.Label(f, text="Teste de fluxo do hotend",
+                  font=("TkDefaultFont", 9, "bold")).pack(anchor="w")
+        ttk.Label(f, foreground="#666", justify="left", text=(
+            "Acha quanto plastico o hotend derrete por segundo antes de a extrusora\n"
+            "escorregar. E o numero do filament_max_volumetric_speed do perfil, e e\n"
+            "um POR MATERIAL: o PETG costuma aguentar menos que o PLA no mesmo hotend.\n"
+            "\n"
+            "Carregue o filamento antes e deixe o bico livre, longe de qualquer peca:\n"
+            "o fio sai no ar. Marque o filamento com caneta a 100 mm da entrada da\n"
+            "extrusora. Depois de cada passo, o quanto a marca andou tem que ser igual\n"
+            "ao comprimento pedido. Menos que isso = escorregou.\n"
+            "\n"
+            "FALHOU = estalo da extrusora, fio saindo mais fino ou irregular, ou po de\n"
+            "filamento raspado na engrenagem. Suba 1 mm3/s por vez, a partir de 4.\n"
+            "\n"
+            "O teste mede o conjunto extrusora + hotend. No ar nao ha a contrapressao\n"
+            "da camada, entao o limite de impressao fica um pouco abaixo: o valor\n"
+            "sugerido no fim ja desconta 20%.")).pack(anchor="w", pady=(2, 4))
+
+        self.var_flow = tk.DoubleVar(value=4.0)
+        self.var_flow_len = tk.IntVar(value=50)
+        self.var_flow_temp = tk.IntVar(value=230)
+        self.flow_mat = "PETG"
+        self.flow_last_ok = None
+
+        fx0 = ttk.Frame(f); fx0.pack(fill="x", pady=3)
+        ttk.Label(fx0, text="Material:").pack(side="left")
+        for nome, tmp in (("PLA", 210), ("PETG", 230), ("ABS", 245)):
+            ttk.Button(fx0, text=nome, width=6,
+                       command=lambda n=nome, v=tmp: self.flow_set_mat(n, v)).pack(side="left", padx=2)
+        ttk.Label(fx0, text="   Bico (C):").pack(side="left")
+        ttk.Spinbox(fx0, from_=160, to=270, increment=5, width=5,
+                    textvariable=self.var_flow_temp).pack(side="left", padx=3)
+
+        fx1 = ttk.Frame(f); fx1.pack(fill="x", pady=3)
+        ttk.Label(fx1, text="Fluxo (mm3/s):").pack(side="left")
+        ttk.Spinbox(fx1, from_=1, to=40, increment=1, width=6, format="%.1f",
+                    textvariable=self.var_flow).pack(side="left", padx=3)
+        ttk.Label(fx1, text="   Comprimento (mm):").pack(side="left")
+        ttk.Spinbox(fx1, from_=10, to=190, increment=10, width=5,
+                    textvariable=self.var_flow_len).pack(side="left", padx=3)
+
+        self.lbl_flow_info = ttk.Label(f, foreground="#1f7a3f")
+        self.lbl_flow_info.pack(anchor="w", pady=2)
+        self.var_flow.trace_add("write", self._flow_info)
+        self.var_flow_len.trace_add("write", self._flow_info)
+        self._flow_info()
+
+        fx2 = ttk.Frame(f); fx2.pack(fill="x", pady=4)
+        ttk.Button(fx2, text="Extrudir", width=12,
+                   command=self.flow_extrude).pack(side="left", padx=3)
+        ttk.Button(fx2, text="Limpo: proximo (+1)", width=20,
+                   command=self.flow_ok).pack(side="left", padx=3)
+        ttk.Button(fx2, text="Falhou: calcular", width=16,
+                   command=self.flow_fail).pack(side="left", padx=3)
+
+        self.lbl_flow_res = ttk.Label(f, foreground="#666",
+                                      text="Nenhum passo limpo registrado ainda.")
+        self.lbl_flow_res.pack(anchor="w", pady=(0, 2))
+
         ttk.Separator(f).pack(fill="x", pady=6)
         ttk.Label(f, text="Ventoinha de peça (fan 0 = conector FAN1 da placa):").pack(anchor="w")
         fan = ttk.Frame(f); fan.pack(fill="x", pady=3)
@@ -1569,6 +1631,110 @@ class App(tk.Tk):
         self.send(f"M109 S{temp}")
         self.send("M83")
         self.send("G1 E30 F100")
+
+    # -- teste de fluxo -----------------------------------------------------
+    FLUXO_AREA_FIL = 3.141592653589793 * 0.875 ** 2          # mm2, filamento 1,75
+    # Secao da linha extrudada no modelo do PrusaSlicer (retangulo com pontas
+    # arredondadas): h * (largura - h * (1 - pi/4)), camada 0,2 e largura 0,45.
+    FLUXO_AREA_LINHA = 0.2 * (0.45 - 0.2 * (1 - 3.141592653589793 / 4))
+    FLUXO_E_MAX = 25.0         # mm/s, DEFAULT_MAX_FEEDRATE do E
+    FLUXO_LEN_MAX = 190        # mm, abaixo do EXTRUDE_MAXLENGTH (200)
+
+    def _flow_info(self, *_):
+        """Mostra o que o fluxo escolhido significa em mm/s de filamento e de impressao."""
+        try:
+            q = float(self.var_flow.get())
+            n = int(self.var_flow_len.get())
+        except (tk.TclError, ValueError):
+            return                     # campo vazio durante a digitacao
+        if q <= 0:
+            return
+        feed = q / self.FLUXO_AREA_FIL
+        vimp = q / self.FLUXO_AREA_LINHA
+        dur = n / feed
+        self.lbl_flow_info.config(
+            text=f"{q:.1f} mm3/s = filamento a {feed:.2f} mm/s  |  equivale a "
+                 f"{vimp:.0f} mm/s de impressao (camada 0,2 x largura 0,45)  |  "
+                 f"dura ~{dur:.0f} s")
+
+    def flow_set_mat(self, nome, temp):
+        self.flow_mat = nome
+        self.var_flow_temp.set(temp)
+        self.flow_last_ok = None
+        self.var_flow.set(4.0)
+        self.lbl_flow_res.config(
+            text=f"{nome} a {temp}C. Nenhum passo limpo registrado ainda.")
+
+    def flow_extrude(self):
+        if not self.link.connected:
+            messagebox.showwarning("Sem conexao", "Conecte a impressora antes do teste.")
+            return
+        q = float(self.var_flow.get())
+        n = int(self.var_flow_len.get())
+        temp = int(self.var_flow_temp.get())
+        feed = q / self.FLUXO_AREA_FIL
+        if feed > self.FLUXO_E_MAX:
+            messagebox.showwarning(
+                "Acima do limite do firmware",
+                f"{q:.1f} mm3/s pede o filamento a {feed:.1f} mm/s, e o firmware limita\n"
+                f"o extrusor a {self.FLUXO_E_MAX:.0f} mm/s (DEFAULT_MAX_FEEDRATE do E).\n"
+                f"Acima de {self.FLUXO_E_MAX * self.FLUXO_AREA_FIL:.0f} mm3/s ele cortaria o\n"
+                "valor em silencio e o teste mediria outra coisa.")
+            return
+        if n > self.FLUXO_LEN_MAX:
+            messagebox.showwarning(
+                "Comprimento demais",
+                f"O firmware recusa extrusao acima de {self.FLUXO_LEN_MAX + 10} mm de uma\n"
+                f"vez (EXTRUDE_MAXLENGTH). Use ate {self.FLUXO_LEN_MAX} mm.")
+            return
+        f = int(round(feed * 60))
+        self.log(f"[FLUXO] {self.flow_mat} {temp}C: {n} mm a {q:.1f} mm3/s "
+                 f"(filamento {feed:.2f} mm/s, F{f}). Dura ~{n / feed:.0f} s.", "sys")
+        self.send("M302 P0")           # protecao de extrusao a frio ligada
+        self.send(f"M109 S{temp}")
+        self.send("M83")
+        self.send(f"G1 E{n} F{f}")
+
+    def flow_ok(self):
+        """Marca o fluxo atual como limpo e prepara o proximo."""
+        q = float(self.var_flow.get())
+        self.flow_last_ok = q
+        self.log(f"[FLUXO] {self.flow_mat} {int(self.var_flow_temp.get())}C: "
+                 f"{q:.1f} mm3/s LIMPO", "sys")
+        self.var_flow.set(round(q + 1.0, 1))
+        self.lbl_flow_res.config(
+            text=f"Ultimo passo limpo: {q:.1f} mm3/s. Proximo: {q + 1.0:.1f}.")
+
+    def flow_fail(self):
+        """Fecha o teste: o limite e o ultimo passo limpo; sugere 80% dele."""
+        falhou = float(self.var_flow.get())
+        if self.flow_last_ok is None:
+            messagebox.showwarning(
+                "Nenhum passo limpo",
+                "Nenhum fluxo foi marcado como limpo antes da falha.\n\n"
+                "Volte a um fluxo menor, extrude, e marque 'Limpo' quando passar.")
+            return
+        ok = self.flow_last_ok
+        sug = round(ok * 0.8, 1)
+        vmax = sug / self.FLUXO_AREA_LINHA
+        temp = int(self.var_flow_temp.get())
+        self.log(f"[FLUXO] RESULTADO {self.flow_mat} {temp}C: limpo ate {ok:.1f} "
+                 f"mm3/s, falhou em {falhou:.1f}. filament_max_volumetric_speed "
+                 f"sugerido: {sug:.1f} (80%).", "sys")
+        self.lbl_flow_res.config(
+            foreground="#1f7a3f",
+            text=f"{self.flow_mat} {temp}C: limpo ate {ok:.1f}, falhou em {falhou:.1f}  ->  "
+                 f"filament_max_volumetric_speed = {sug:.1f}")
+        messagebox.showinfo(
+            "Resultado do teste de fluxo",
+            f"{self.flow_mat} a {temp}C\n\n"
+            f"Limpo ate:  {ok:.1f} mm3/s\n"
+            f"Falhou em:  {falhou:.1f} mm3/s\n\n"
+            f"Valor sugerido para o perfil (80% do limpo):\n"
+            f"  filament_max_volumetric_speed = {sug:.1f}\n\n"
+            f"Com camada de 0,2 e largura 0,45 isso e ate {vmax:.0f} mm/s de\n"
+            f"impressao. Em camada de 0,3 o mesmo fluxo da a velocidade menor.\n\n"
+            f"O resultado vale para esta temperatura e este filamento.")
 
     # -- ventoinhas ---------------------------------------------------------
     def fan_solo(self, idx):
