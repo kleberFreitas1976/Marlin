@@ -193,7 +193,15 @@ ruído ouvido 2% do tempo por outro ouvido 100%.
       **A corrente não moveu o limite.** A hipótese de que o ronco vinha de
       torque baixo não se confirmou em X. Restam: tensão de 12 V (a corrente
       não sobe a tempo, V/L) ou ressonância mecânica (~750 passos inteiros/s
-      a 150 mm/s). Falta refazer o diagonal (antes: limpo 110, ruído 120).
+      a 150 mm/s).
+      Diagonal refeito: limpo até 110, ruído em 120 -- igual a antes de
+      triplicar a corrente. **O ruído não depende da corrente e, segundo o
+      usuário, não vem do motor.** A hipótese dos 12 V perdeu força: as
+      rotações dos motores eram diferentes nos dois testes e o limite ficou
+      no mesmo lugar. Compatível com ruído de correia/polia/rolamento (a
+      correia está a ~150-170 mm/s nos dois inícios de ruído), mas NÃO
+      provado. Próximo passo: localizar com tubo/estetoscópio, checar
+      tensão e alinhamento das correias, parafusos das polias, e testar Y.
       O DEFAULT_MAX_FEEDRATE 140 estava compilado mas NÃO gravado na placa
       durante este teste.
 - [ ] Refazer o `M48` (referência: sigma 0,0077 e 0,0111, a 35%)
