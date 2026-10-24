@@ -188,7 +188,14 @@ ruído ouvido 2% do tempo por outro ouvido 100%.
       a mesa torce a cada subida — sem erro, sem ruído, aparecendo só na malha
       como se fosse empeno.
 - [ ] Conferir a temperatura dos motores e dos drivers após 15 min
-- [ ] Refazer o teste de velocidade (referência: X 145, diagonal 110, a 35%)
+- [~] Teste de velocidade refeito em 24/10/2026, X puro, motores a 68%:
+      limpo até 147, ruído a partir de 150. Antes, a 35%: 145 / 150.
+      **A corrente não moveu o limite.** A hipótese de que o ronco vinha de
+      torque baixo não se confirmou em X. Restam: tensão de 12 V (a corrente
+      não sobe a tempo, V/L) ou ressonância mecânica (~750 passos inteiros/s
+      a 150 mm/s). Falta refazer o diagonal (antes: limpo 110, ruído 120).
+      O DEFAULT_MAX_FEEDRATE 140 estava compilado mas NÃO gravado na placa
+      durante este teste.
 - [ ] Refazer o `M48` (referência: sigma 0,0077 e 0,0111, a 35%)
 - [ ] Testar se a aceleração do E pode subir de 1000 (era 10000 e patinava)
 - [ ] Medir a resistência do Z2
