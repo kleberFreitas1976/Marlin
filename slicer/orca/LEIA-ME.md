@@ -16,6 +16,8 @@ continua sendo a fonte de verdade.
 
 ## Importar
 
+0. A impressora genérica **Generic Marlin Printer** (MyMarlin 0.4 nozzle) precisa
+   estar ativada no Orca: os perfis herdam dela e dos filamentos genéricos.
 1. Orca → **Arquivo → Importar → Importar configurações**.
 2. Selecione os **seis `.json`** desta pasta de uma vez.
 3. Selecione a impressora **CoreXY MKS TinyBee**, o processo **CoreXY TinyBee
@@ -33,11 +35,19 @@ mesa em todos os tipos de placa do Orca.
 python slicer/orca/gerar_presets_orca.py
 ```
 
-Cada perfil sai **completo e independente**: a cadeia de herança do Orca
+Cada perfil sai com **todos os valores** (a cadeia de herança do Orca é
+resolvida pelo script) e herda do perfil de sistema correspondente
 (`MyMarlin 0.4 nozzle`, `0.20mm Standard @MyMarlin`, `Generic PLA/PETG/ABS
-@System`) é resolvida pelo script, e o resultado tem `inherits` vazio. Assim a
-importação não depende de a impressora genérica estar ativada no assistente do
-Orca. O que o bundle não define fica com o padrão do próprio Orca.
+@System`), como os presets que o próprio Orca grava. O que o bundle não define
+fica com o padrão do Orca.
+
+**Todo preset precisa da chave `version`.** Sem ela o Orca recusa a importação
+em silêncio: a janela diz "Foram importadas 0 configurações" e o log não
+registra motivo. A primeira versão destes arquivos não tinha a chave, porque foi
+copiada do formato dos presets de sistema, que não a usam.
+
+A linha de comando do Orca (`--load-settings`) **não serve** para testar estes
+arquivos: ela recusa até os presets de sistema do próprio Orca.
 
 O script confere que todas as chaves escritas existem nos perfis desta versão
 do Orca (2.4). Se uma versão futura renomear alguma, ele avisa.

@@ -1,9 +1,9 @@
 """Converte o bundle do PrusaSlicer (fonte de verdade) em presets do OrcaSlicer.
 
-Cada preset e gerado COMPLETO e independente: a cadeia de heranca do Orca
-(ex.: MyMarlin 0.4 nozzle -> fdm_machine_common) e resolvida aqui, e o
-resultado sai com inherits vazio. Assim a importacao nao depende de o usuario
-ter ativado a impressora generica no assistente do Orca.
+Cada preset sai com TODOS os valores (a cadeia de heranca do Orca e resolvida
+aqui) e herda do perfil de sistema correspondente, como os presets que o
+proprio Orca grava. A impressora generica "Generic Marlin Printer" precisa
+estar ativada no Orca antes da importacao.
 """
 import io, os, glob, json, sys
 
@@ -14,6 +14,10 @@ ORCA = r"C:\Program Files\OrcaSlicer\resources\profiles"
 BUNDLE = r"C:\tmp\Marlin\slicer\PrusaSlicer_CoreXY_TinyBee_bundle.ini"
 SAIDA = r"C:\tmp\Marlin\slicer\orca"
 BS = chr(92)
+# O Orca recusa preset de usuario sem "version", e recusa em silencio: a
+# janela diz "0 configuracoes importadas" e o log nao registra motivo. Os
+# presets de sistema nao tem essa chave (ela fica no arquivo do fabricante).
+VERSAO = "2.4.2.0"
 
 # ---------------------------------------------------------------- Orca: indice
 por_nome = {}                                   # (pasta_vendor, nome) e nome -> dict
@@ -77,12 +81,12 @@ def aplica(base, sobrescritas, tipo):
         out[k] = ajusta_tipo(out, k, v)
     return out
 
-def finaliza(d, nome, tipo, id_chave):
+def finaliza(d, nome, tipo, id_chave, pai):
     for k in ("setting_id", "base_id", "printer_model", "printer_variant",
               "default_filament_profile", "default_print_profile", "is_custom_defined"):
         d.pop(k, None)
-    d.update({"type": tipo, "name": nome, "inherits": "", "from": "User",
-              "instantiation": "true"})
+    d.update({"type": tipo, "name": nome, "inherits": pai, "from": "User",
+              "instantiation": "true", "version": VERSAO, "is_custom_defined": "0"})
     if id_chave == "filament_settings_id":
         d[id_chave] = [nome]
     else:
@@ -140,7 +144,8 @@ maquina = aplica(achata("MyMarlin 0.4 nozzle", "Custom"), {
     "machine_pause_gcode": P["pause_print_gcode"],
     "printer_notes": gcode(P["printer_notes"]),
 }, "machine")
-grava(finaliza(maquina, "CoreXY MKS TinyBee", "machine", "printer_settings_id"),
+grava(finaliza(maquina, "CoreXY MKS TinyBee", "machine", "printer_settings_id",
+               "MyMarlin 0.4 nozzle"),
       "CoreXY MKS TinyBee.json")
 
 # ---------------------------------------------------------------- processo
@@ -204,7 +209,8 @@ proc = aplica(achata("0.20mm Standard @MyMarlin", "Custom"), {
     "reduce_crossing_wall": S["avoid_crossing_perimeters"],
     "reduce_infill_retraction": S["only_retract_when_crossing_perimeters"],
 }, "process")
-grava(finaliza(proc, "CoreXY TinyBee 0.20mm", "process", "print_settings_id"),
+grava(finaliza(proc, "CoreXY TinyBee 0.20mm", "process", "print_settings_id",
+               "0.20mm Standard @MyMarlin"),
       "CoreXY TinyBee 0.20mm.json")
 
 # ---------------------------------------------------------------- filamentos
@@ -242,7 +248,7 @@ def filamento(secao, nome, base, extra=None):
             s[k + "_initial_layer"] = F["first_layer_bed_temperature"]
     s.update(extra or {})
     d = aplica(achata(base, "OrcaFilamentLibrary"), s, "filament")
-    grava(finaliza(d, nome, "filament", "filament_settings_id"), nome + ".json")
+    grava(finaliza(d, nome, "filament", "filament_settings_id", base), nome + ".json")
 
 filamento("filament:PLA Speed Plus GTMax3D", "PLA Speed Plus GTMax3D", "Generic PLA @System",
           {"nozzle_temperature_range_low": "190", "nozzle_temperature_range_high": "220",

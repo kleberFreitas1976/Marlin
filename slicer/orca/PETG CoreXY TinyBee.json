@@ -144,8 +144,9 @@
     "hot_plate_temp_initial_layer": [
         "75"
     ],
-    "inherits": "",
+    "inherits": "Generic PETG @System",
     "instantiation": "true",
+    "is_custom_defined": "0",
     "name": "PETG CoreXY TinyBee",
     "nozzle_temperature": [
         "230"
@@ -202,5 +203,6 @@
     "textured_plate_temp_initial_layer": [
         "75"
     ],
-    "type": "filament"
+    "type": "filament",
+    "version": "2.4.2.0"
 }

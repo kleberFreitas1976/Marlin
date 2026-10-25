@@ -147,8 +147,9 @@
     "hot_plate_temp_initial_layer": [
         "60"
     ],
-    "inherits": "",
+    "inherits": "Generic PLA @System",
     "instantiation": "true",
+    "is_custom_defined": "0",
     "name": "PLA CoreXY TinyBee",
     "nozzle_temperature": [
         "210"
@@ -205,5 +206,6 @@
     "textured_plate_temp_initial_layer": [
         "60"
     ],
-    "type": "filament"
+    "type": "filament",
+    "version": "2.4.2.0"
 }

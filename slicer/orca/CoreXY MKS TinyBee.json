@@ -16,8 +16,9 @@
     ],
     "from": "User",
     "gcode_flavor": "marlin2",
-    "inherits": "",
+    "inherits": "MyMarlin 0.4 nozzle",
     "instantiation": "true",
+    "is_custom_defined": "0",
     "layer_change_gcode": "G92 E0 ; exigido pela extrusao relativa: zera o acumulador do E a cada camada",
     "machine_end_gcode": "; ===== FIM DA IMPRESSAO =====\nM104 S0 ; desliga o bico\nM140 S0 ; desliga a mesa\nM107 ; ventoinha de peca (o dissipador e automatico via E0_AUTO_FAN)\nG91\nG1 E-2 F1800\nG1 Z10 F600\nG90\nG1 X5 Y185 F3000\nM84\n; ===== FIM =====",
     "machine_max_acceleration_e": [
@@ -130,6 +131,7 @@
     "single_extruder_multi_material": "1",
     "type": "machine",
     "use_relative_e_distances": "1",
+    "version": "2.4.2.0",
     "wipe": [
         "1"
     ],

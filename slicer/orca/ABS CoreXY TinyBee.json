@@ -144,8 +144,9 @@
     "hot_plate_temp_initial_layer": [
         "90"
     ],
-    "inherits": "",
+    "inherits": "Generic ABS @System",
     "instantiation": "true",
+    "is_custom_defined": "0",
     "name": "ABS CoreXY TinyBee",
     "nozzle_temperature": [
         "245"
@@ -202,5 +203,6 @@
     "textured_plate_temp_initial_layer": [
         "90"
     ],
-    "type": "filament"
+    "type": "filament",
+    "version": "2.4.2.0"
 }
