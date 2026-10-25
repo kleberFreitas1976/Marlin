@@ -198,6 +198,33 @@ Depois de baixar: repetir o teste de aceleração em XY a 3000 com 20 ciclos
 (os 7000/5000 limpos foram medidos com 1,45 V) e conferir a temperatura dos
 dissipadores dos drivers numa impressão de pelo menos 30 minutos.
 
+### O Z tambem esquentou demais, e a conta estava errada
+
+O que esquenta o motor e **I² x R**, nao a porcentagem do nominal:
+
+| Motor | R/fase | Vref | Corrente | Calor/fase |
+|---|---|---|---|---|
+| X, Y | 1,6 Ω | 1,45 V | 1,03 A | 1,7 W |
+| Z, Z2 | 4,3 Ω | 1,00 V | 0,71 A | **2,2 W** |
+| E | 2,5 Ω | 1,20 V | 0,85 A | 1,8 W (ficou OK) |
+
+A 1,0 V o Z dissipava mais que X e Y a 1,45 V, e fica energizado o tempo todo
+segurando a mesa. A propria estimativa dava 0,84 A de nominal para o Z
+(raiz(3/4,3)), mas a tabela arredondou para 1,0 A; com 0,84 o alvo de 70% teria
+sido ~0,83 V.
+
+**Valores recomendados a partir de 25/10/2026:**
+
+| Motor | Vref | Corrente | Calor/fase |
+|---|---|---|---|
+| X, Y | **1,0 V** | 0,71 A | 0,8 W |
+| Z, Z2 (iguais) | **0,8 V** | 0,57 A | 1,4 W |
+| E | 1,2 V (mantem) | 0,85 A | 1,8 W |
+
+Conferir depois: temperatura apos 30 min de impressao, teste de aceleracao em
+XY a 3000 com 20 ciclos, e `M48 P10` (referencia original: sigma 0,0077 e
+0,0111; se piorar muito, o Z ficou fraco demais).
+
 ## 7. Pendências
 
 - [x] X e Y ajustados em 24/10/2026: de 0,733 V para 1,45 e 1,46 V.
