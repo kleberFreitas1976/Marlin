@@ -1,0 +1,139 @@
+{
+    "before_layer_change_gcode": "",
+    "change_filament_gcode": "",
+    "deretraction_speed": [
+        "30"
+    ],
+    "disable_m73": "0",
+    "extruder_clearance_height_to_lid": "140",
+    "extruder_clearance_height_to_rod": "36",
+    "extruder_clearance_radius": "65",
+    "extruder_colour": [
+        "#FCE94F"
+    ],
+    "extruder_offset": [
+        "0x0"
+    ],
+    "from": "User",
+    "gcode_flavor": "marlin2",
+    "inherits": "",
+    "instantiation": "true",
+    "layer_change_gcode": "G92 E0 ; exigido pela extrusao relativa: zera o acumulador do E a cada camada",
+    "machine_end_gcode": "; ===== FIM DA IMPRESSAO =====\nM104 S0 ; desliga o bico\nM140 S0 ; desliga a mesa\nM107 ; ventoinha de peca (o dissipador e automatico via E0_AUTO_FAN)\nG91\nG1 E-2 F1800\nG1 Z10 F600\nG90\nG1 X5 Y185 F3000\nM84\n; ===== FIM =====",
+    "machine_max_acceleration_e": [
+        "1000"
+    ],
+    "machine_max_acceleration_extruding": [
+        "3000"
+    ],
+    "machine_max_acceleration_retracting": [
+        "1000"
+    ],
+    "machine_max_acceleration_travel": [
+        "3000",
+        "3000"
+    ],
+    "machine_max_acceleration_x": [
+        "3000"
+    ],
+    "machine_max_acceleration_y": [
+        "3000"
+    ],
+    "machine_max_acceleration_z": [
+        "100"
+    ],
+    "machine_max_jerk_e": [
+        "5"
+    ],
+    "machine_max_jerk_x": [
+        "8"
+    ],
+    "machine_max_jerk_y": [
+        "8"
+    ],
+    "machine_max_jerk_z": [
+        "0.3"
+    ],
+    "machine_max_junction_deviation": [
+        "0.013",
+        "0.013"
+    ],
+    "machine_max_speed_e": [
+        "25"
+    ],
+    "machine_max_speed_x": [
+        "140"
+    ],
+    "machine_max_speed_y": [
+        "140"
+    ],
+    "machine_max_speed_z": [
+        "5"
+    ],
+    "machine_min_extruding_rate": [
+        "0"
+    ],
+    "machine_min_travel_rate": [
+        "0"
+    ],
+    "machine_pause_gcode": "M601",
+    "machine_start_gcode": "; ===== INICIO - CoreXY MKS TinyBee =====\n; Malha de nivelamento cobre a mesa ate X=142 (o probe fica 54mm a esquerda\n; do bico e nao alcanca a borda direita). Mesa util: 196 x 190mm.\nM201 E1000 ; limita aceleracao do extrusor (o firmware usa 10000 e a BMG patina)\nM83 ; extrusao relativa\nM140 S{first_layer_bed_temperature[0]} ; inicia a mesa\nM104 S150 ; bico em espera durante o home: o plastico escorre bem menos que na temperatura de impressao\nM190 S{first_layer_bed_temperature[0]} ; espera a mesa\nG28 ; home com o bico a 150 (o nivelamento liga sozinho: ENABLE_LEVELING_AFTER_G28)\nM420 S1 ; garante a malha ativa\nM104 S{first_layer_temperature[0]} ; so agora sobe o bico para a primeira camada\nG1 Z5 F600\nG1 X55 Y50 F3000 ; vai ao ponto da purga enquanto aquece\nM109 S{first_layer_temperature[0]} ; espera o bico\nG1 Z{first_layer_height} F600\nG92 E0\nG1 X140 Y50 E8 F1000 ; linha 1, ida: purga e assenta o fio\nG1 Y50.6 F3000\nG1 X70 E4 F1000 ; linha 2, volta 15mm mais curta: para antes do resto de fio do inicio da linha 1\nG1 Y51.2 F3000\nG1 X140 E4 F1000 ; linha 3, ida: vai ate onde a linha 1 terminou\nG92 E0\nG1 Z2 F600\nG1 X60 Y60 F3000\n; ===== FIM DO INICIO =====",
+    "max_layer_height": [
+        "0.32"
+    ],
+    "min_layer_height": [
+        "0.08"
+    ],
+    "name": "CoreXY MKS TinyBee",
+    "nozzle_diameter": [
+        "0.4"
+    ],
+    "printable_area": [
+        "0x0",
+        "196x0",
+        "196x190",
+        "0x190"
+    ],
+    "printable_height": "250",
+    "printer_notes": "Marlin bugfix-2.1.x / MKS TinyBee / CoreXY / fonte 12V.\nMalha cobre a mesa ate X=142 (o probe fica 54mm a esquerda do bico).\nVentoinha de peca so funciona em 0% ou 100%.",
+    "printer_settings_id": "CoreXY MKS TinyBee",
+    "printer_structure": "corexy",
+    "printer_technology": "FFF",
+    "retract_before_wipe": [
+        "70%"
+    ],
+    "retract_length_toolchange": [
+        "1"
+    ],
+    "retract_lift_below": [
+        "249"
+    ],
+    "retract_restart_extra": [
+        "0"
+    ],
+    "retract_restart_extra_toolchange": [
+        "0"
+    ],
+    "retract_when_changing_layer": [
+        "1"
+    ],
+    "retraction_length": [
+        "6"
+    ],
+    "retraction_minimum_travel": [
+        "2"
+    ],
+    "retraction_speed": [
+        "40"
+    ],
+    "silent_mode": "0",
+    "single_extruder_multi_material": "1",
+    "type": "machine",
+    "use_relative_e_distances": "1",
+    "wipe": [
+        "1"
+    ],
+    "z_hop": [
+        "0.2"
+    ]
+}
