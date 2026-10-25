@@ -82,8 +82,32 @@ PLA Speed+ terão multiplicadores diferentes.
 
 | Filamento | Bico | Diâmetro medido | Espessura média | Multiplicador |
 |---|---|---|---|---|
-| GTMax3D PLA Speed+ | 210 °C | *não medido* | *não medido* | *não aplicado* |
+| GTMax3D PLA Speed+ | 210 °C | 1,85–1,90 mm (média 1,875) | 0,60 mm, com 1,75 no perfil | *pendente: refazer o cubo com 1,88* |
 | PETG | 230 °C | — | — | — |
+
+## Primeiro resultado (25/10/2026)
+
+Cubo de 20 mm no GTMax3D PLA Speed+ a 210 °C, com o diâmetro do perfil ainda em
+1,75: parede de **0,60 mm** contra 0,45 esperado, ou seja 33% de excesso. Uma
+primeira medida do rolo deu 1,70 a 1,95 mm; a medida refeita, com mais
+cuidado, deu **1,85 a 1,90 mm (média 1,875)**. O rolo é consistentemente
+grosso, e isso se corrige no perfil, não no multiplicador.
+
+```
+área com 1,875 mm = 2,761 mm²    área com 1,75 mm = 2,405 mm²
+volume subestimado pelo fatiador = 14,8%
+parede esperada só com o diâmetro certo = 0,60 / 1,148 = ~0,52 mm
+```
+
+O `filament_diameter` do perfil passou para **1,88**. Os ~0,52 mm esperados
+ainda ficam acima de 0,45: parte é o paquímetro apoiado nas ondulações das
+camadas (uns 0,03 mm), e o resto o multiplicador resolve. **O multiplicador
+só deve ser calculado depois de refazer o cubo com 1,88.**
+
+Rolo de 1,88 em hotend de 1,75 aumenta o atrito no tubo e na entrada do
+hotend. Se a extrusora começar a esforçar ou o fluxo máximo ficar bem menor
+que o esperado, isso entra na conta. O rolo está fora da especificação
+(1,75 ± 0,05) e vale falar com o fornecedor.
 
 ## Depois de aplicar
 

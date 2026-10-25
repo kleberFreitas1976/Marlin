@@ -583,6 +583,7 @@ class App(tk.Tk):
 
         self.var_flow = tk.DoubleVar(value=4.0)
         self.var_flow_len = tk.IntVar(value=50)
+        self.var_flow_dia = tk.DoubleVar(value=1.75)
         self.var_flow_temp = tk.IntVar(value=230)
         self.flow_mat = "PETG"
         self.flow_last_ok = None
@@ -603,11 +604,15 @@ class App(tk.Tk):
         ttk.Label(fx1, text="   Comprimento (mm):").pack(side="left")
         ttk.Spinbox(fx1, from_=10, to=190, increment=10, width=5,
                     textvariable=self.var_flow_len).pack(side="left", padx=3)
+        ttk.Label(fx1, text="   Diametro do filamento (mm):").pack(side="left")
+        ttk.Spinbox(fx1, from_=1.60, to=2.00, increment=0.01, width=6, format="%.2f",
+                    textvariable=self.var_flow_dia).pack(side="left", padx=3)
 
         self.lbl_flow_info = ttk.Label(f, foreground="#1f7a3f")
         self.lbl_flow_info.pack(anchor="w", pady=2)
         self.var_flow.trace_add("write", self._flow_info)
         self.var_flow_len.trace_add("write", self._flow_info)
+        self.var_flow_dia.trace_add("write", self._flow_info)
         self._flow_info()
 
         fx2 = ttk.Frame(f); fx2.pack(fill="x", pady=4)
@@ -1640,6 +1645,15 @@ class App(tk.Tk):
     FLUXO_E_MAX = 25.0         # mm/s, DEFAULT_MAX_FEEDRATE do E
     FLUXO_LEN_MAX = 190        # mm, abaixo do EXTRUDE_MAXLENGTH (200)
 
+    def _area_fil(self):
+        """Secao do filamento com o diametro informado. Medir o rolo: o nominal
+        de 1,75 nao vale sempre, e o volume cresce com o quadrado do diametro."""
+        try:
+            d = float(self.var_flow_dia.get())
+        except (tk.TclError, ValueError):
+            d = 1.75                   # campo vazio durante a digitacao
+        return 3.141592653589793 * (d / 2) ** 2
+
     def _flow_info(self, *_):
         """Mostra o que o fluxo escolhido significa em mm/s de filamento e de impressao."""
         try:
@@ -1649,7 +1663,7 @@ class App(tk.Tk):
             return                     # campo vazio durante a digitacao
         if q <= 0:
             return
-        feed = q / self.FLUXO_AREA_FIL
+        feed = q / self._area_fil()
         vimp = q / self.FLUXO_AREA_LINHA
         dur = n / feed
         self.lbl_flow_info.config(
@@ -1672,13 +1686,13 @@ class App(tk.Tk):
         q = float(self.var_flow.get())
         n = int(self.var_flow_len.get())
         temp = int(self.var_flow_temp.get())
-        feed = q / self.FLUXO_AREA_FIL
+        feed = q / self._area_fil()
         if feed > self.FLUXO_E_MAX:
             messagebox.showwarning(
                 "Acima do limite do firmware",
                 f"{q:.1f} mm3/s pede o filamento a {feed:.1f} mm/s, e o firmware limita\n"
                 f"o extrusor a {self.FLUXO_E_MAX:.0f} mm/s (DEFAULT_MAX_FEEDRATE do E).\n"
-                f"Acima de {self.FLUXO_E_MAX * self.FLUXO_AREA_FIL:.0f} mm3/s ele cortaria o\n"
+                f"Acima de {self.FLUXO_E_MAX * self._area_fil():.0f} mm3/s ele cortaria o\n"
                 "valor em silencio e o teste mediria outra coisa.")
             return
         if n > self.FLUXO_LEN_MAX:
@@ -1689,7 +1703,8 @@ class App(tk.Tk):
             return
         f = int(round(feed * 60))
         self.log(f"[FLUXO] {self.flow_mat} {temp}C: {n} mm a {q:.1f} mm3/s "
-                 f"(filamento {feed:.2f} mm/s, F{f}). Dura ~{n / feed:.0f} s.", "sys")
+                 f"(filamento {feed:.2f} mm/s, diam {float(self.var_flow_dia.get()):.2f}, "
+                 f"F{f}). Dura ~{n / feed:.0f} s.", "sys")
         self.send("M302 P0")           # protecao de extrusao a frio ligada
         self.send(f"M109 S{temp}")
         self.send("M83")

@@ -15,6 +15,12 @@ material e por temperatura**.
 
 ## Observações
 
+- **O diâmetro entra na conta.** O teste converte mm³/s em velocidade de
+  filamento pela área da seção. O PETG foi medido assumindo 1,75 mm; o
+  diâmetro daquele rolo não foi conferido. O console agora tem um campo de
+  diâmetro, e o log registra o valor usado. O GTMax3D PLA Speed+ mede 1,875
+  mm: com 1,75 no teste, o fluxo real sairia 15% maior que o mostrado.
+
 - Passos rodados em 24/10/2026, PETG a 230 °C: 4, 8, 10 e 7 mm³/s. Os botões
   de marcação não foram usados, então o resultado vem da leitura do log. O
   intervalo entre 7 e 8 não foi explorado (7,5 não foi testado).
