@@ -148,6 +148,30 @@ Testes para separar, na ordem: moeda na balanca; pesar 1 m de filamento
 (esperado 3,44 g para 1,875 mm); extrudar 2 x 100 mm no ar, pesar o fio
 (esperado 0,69 g) e olhar se ele sai liso ou com bolhas.
 
+## A balanca estava errada (25/10/2026)
+
+100 ml de agua pesaram **65** na balanca de bolso, e uma moeda de 50 centavos
+(cerca de 7,8 g) pesou 5,31. A balanca mostra uns 65% do peso real. O padrao
+bate com a unidade **dwt (pennyweight)**: 100 g = 64,3 dwt. Suspeita: botao
+MODE/UNIT fora de **g**.
+
+As tres pesagens acima, convertidas (x 1,555):
+
+| Peca | Lido | Em gramas | Previsto | Entregue |
+|---|---|---|---|---|
+| Cubo, diametro 1,75 no perfil | 0,54 | 0,84 g | 0,91 g (0,79 x 1,148) | ~93% |
+| Cubo, diametro 1,88 no perfil | 0,49 | 0,76 g | 0,79 g | ~96% |
+| Benchy (so o barco) | 2,93 | 4,56 g | 5,0 g | ~91% |
+
+**Nao ha falta de 40%.** O fluxo esta perto do certo, talvez 5 a 9% abaixo, o
+que combina com o aspecto do benchy. A parede de 0,59 mm do paquimetro fica
+sem explicacao e passa a ser tratada como erro de medida: parede fina e
+ondulada de plastico e facil de medir a mais.
+
+Pendente, com a balanca em g: repesar a moeda e o benchy; 1 m de filamento
+(esperado 3,44 g); 2 x 100 mm extrudados no ar (esperado 0,69 g). O
+multiplicador sai desse ultimo: 0,69 / massa medida.
+
 ## Depois de aplicar
 
 Reimprima o benchy. A ponta (proa) é o ponto mais sensível ao excesso de
