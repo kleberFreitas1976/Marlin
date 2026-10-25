@@ -177,6 +177,27 @@ ruído ouvido 2% do tempo por outro ouvido 100%.
 
 ---
 
+## 6b. 1,45 V em X e Y foi demais (25/10/2026)
+
+Numa impressão longa (teste de dobradiças em PLA) houve **deslocamento de
+camada** e os motores ficaram quentes a ponto de não dar para encostar a mão.
+Os testes de velocidade e aceleração tinham passado com essa corrente, mas eram
+rodadas curtas, com motor e driver frios.
+
+Mecanismo provável: o TMC2209 entra em proteção térmica, corta a saída por
+instantes e o motor perde passos. O alvo de 70% do nominal partiu de uma
+corrente **estimada** pela resistência, sem datasheet, e de um Rsense assumido.
+
+Recomendado: **X e Y em 1,0 V** (~0,71 A). O calor cresce com o quadrado da
+corrente, então de 1,45 para 1,0 V a dissipação cai pela metade. Ainda fica
+uns 37% acima dos 0,733 V originais, que imprimiram sem deslocamento. O
+aumento para 1,45 V também não mudou o ruído em alta velocidade, então o ganho
+dele era pequeno.
+
+Depois de baixar: repetir o teste de aceleração em XY a 3000 com 20 ciclos
+(os 7000/5000 limpos foram medidos com 1,45 V) e conferir a temperatura dos
+dissipadores dos drivers numa impressão de pelo menos 30 minutos.
+
 ## 7. Pendências
 
 - [x] X e Y ajustados em 24/10/2026: de 0,733 V para 1,45 e 1,46 V.
