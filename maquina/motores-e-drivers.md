@@ -225,6 +225,22 @@ Conferir depois: temperatura apos 30 min de impressao, teste de aceleracao em
 XY a 3000 com 20 ciclos, e `M48 P10` (referencia original: sigma 0,0077 e
 0,0111; se piorar muito, o Z ficou fraco demais).
 
+### Mesmo 1,0 V (X/Y) e 0,8 V (Z) ainda aqueceram muito (25/10/2026)
+
+Recomendacao: **voltar X, Y, Z e Z2 para 0,73 V**, o estado original, que
+imprimia sem deslocamento. E fica em 1,2 V (nao esquentou).
+
+- O aumento de corrente nao trouxe ganho comprovado: o ruido em alta velocidade
+  ficou no mesmo ponto com 0,733 V e com 1,45 V.
+- Trouxe aquecimento e um deslocamento de camada.
+- Os suportes dos motores sao impressos. PLA amolece por volta de 55-60 C, e
+  motor quente demais para encostar a mao pode deformar o suporte e mexer na
+  tensao e no alinhamento da correia.
+
+Se algum motor continuar quente demais a 0,73 V, a causa e outra: o driver
+daquele eixo, travamento mecanico (fuso do Z, por exemplo), ou o Vref nao
+correspondendo a corrente da formula, ja que o Rsense nunca foi confirmado.
+
 ## 7. Pendências
 
 - [x] X e Y ajustados em 24/10/2026: de 0,733 V para 1,45 e 1,46 V.
