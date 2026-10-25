@@ -127,6 +127,27 @@ foi gravado. Próximos passos, em ordem:
 3. Reimprimir com multiplicador 0,80: se a parede for a ~0,49, o fluxo
    comanda a espessura; se ficar em 0,59, a causa é outra.
 
+## Terceira medida (25/10/2026): o benchy tambem pesa 59% do previsto
+
+| Peca | Previsto | Pesado | Entregue |
+|---|---|---|---|
+| Cubo 20 mm, diametro 1,75 no perfil | ~0,79 g | 0,54 g | ~68% |
+| Cubo 20 mm, diametro 1,88 no perfil | 0,79 g | 0,49 g | ~62% |
+| Benchy reduzido (so o barco, sem purga e skirt) | 5,0 g | 2,93 g | **59%** |
+
+Tres pecas, mesmo resultado. Mas o benchy tem superficies de topo fechadas,
+o que nao combina com 40% de falta de material. As explicacoes possiveis:
+
+1. A balanca le baixo. Conferir com peso conhecido (moeda de R$ 1 = 7,00 g).
+2. O plastico depositado tem vazios (filamento umido formando bolhas): parede
+   mais grossa e mais leve ao mesmo tempo, que foi exatamente o que o cubo
+   mostrou (0,59 mm de parede com 62% da massa).
+3. A extrusora entrega menos comprimento que o comandado sob carga.
+
+Testes para separar, na ordem: moeda na balanca; pesar 1 m de filamento
+(esperado 3,44 g para 1,875 mm); extrudar 2 x 100 mm no ar, pesar o fio
+(esperado 0,69 g) e olhar se ele sai liso ou com bolhas.
+
 ## Depois de aplicar
 
 Reimprima o benchy. A ponta (proa) é o ponto mais sensível ao excesso de
