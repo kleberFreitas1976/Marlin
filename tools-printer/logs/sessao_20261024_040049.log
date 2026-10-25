@@ -1,0 +1,259 @@
+# Console Marlin - sessao iniciada Sat Oct 24 04:00:49 2026
+04:00:49 [sys] Console pronto. Clique em 'Localizar placa' para comecar.
+04:00:49 [sys] Log desta sessao: C:\tmp\Marlin\tools-printer\logs\sessao_20261024_040049.log
+04:01:05 [ok] Conectado em COM18 @ 250000.
+04:01:05 [tx] >> M115
+04:01:05 [rx] FIRMWARE_NAME:Marlin bugfix-2.1.x (Oct 21 2026 03:57:54) SOURCE_CODE_URL:github.com/MarlinFirmware/Marlin PROTOCOL_VERSION:1.0 MACHINE_TYPE:CoreXY TinyBee KINEMATICS:COREXYCartesian EXTRUDER_COUNT:1 UUID:cede2a2f-41a2-4748-9b12-c55c62f367ff
+04:01:05 [rx] Cap:SERIAL_XON_XOFF:0
+04:01:05 [rx] Cap:BINARY_FILE_TRANSFER:0
+04:01:05 [rx] Cap:EEPROM:1
+04:01:05 [rx] Cap:VOLUMETRIC:1
+04:01:05 [rx] Cap:AUTOREPORT_POS:0
+04:01:05 [rx] Cap:AUTOREPORT_TEMP:1
+04:01:05 [rx] Cap:PROGRESS:0
+04:01:05 [rx] Cap:PRINT_JOB:1
+04:01:05 [rx] Cap:AUTOLEVEL:1
+04:01:05 [rx] Cap:RUNOUT:1
+04:01:05 [rx] Cap:Z_PROBE:1
+04:01:05 [rx] Cap:LEVELING_DATA:1
+04:01:05 [rx] Cap:BUILD_PERCENT:1
+04:01:05 [rx] Cap:SOFTWARE_POWER:0
+04:01:05 [rx] Cap:TOGGLE_LIGHTS:0
+04:01:05 [rx] Cap:CASE_LIGHT_BRIGHTNESS:0
+04:01:05 [rx] Cap:EMERGENCY_PARSER:0
+04:01:05 [rx] Cap:HOST_ACTION_COMMANDS:1
+04:01:05 [rx] Cap:PROMPT_SUPPORT:1
+04:01:05 [rx] Cap:SDCARD:0
+04:01:05 [rx] Cap:REPEAT:0
+04:01:05 [rx] Cap:SD_WRITE:0
+04:01:05 [rx] Cap:AUTOREPORT_SD_STATUS:0
+04:01:05 [rx] Cap:LONG_FILENAME:0
+04:01:05 [rx] Cap:LFN_WRITE:0
+04:01:05 [rx] Cap:CUSTOM_FIRMWARE_UPLOAD:0
+04:01:05 [rx] Cap:EXTENDED_M20:0
+04:01:05 [rx] Cap:THERMAL_PROTECTION:1
+04:01:05 [rx] Cap:MOTION_MODES:0
+04:01:05 [rx] Cap:ARCS:1
+04:01:05 [rx] Cap:BABYSTEPPING:0
+04:01:05 [rx] Cap:EP_BABYSTEP:0
+04:01:05 [rx] Cap:CHAMBER_TEMPERATURE:0
+04:01:05 [rx] Cap:COOLER_TEMPERATURE:0
+04:01:05 [rx] Cap:MEATPACK:0
+04:01:05 [rx] Cap:CONFIG_EXPORT:0
+04:01:05 [ok] ok
+04:01:05 [tx] >> M119
+04:01:05 [rx] Reporting endstop status
+04:01:05 [rx] x_max: open
+04:01:05 [rx] y_min: open
+04:01:05 [rx] z_probe: TRIGGERED
+04:01:05 [rx] filament: open
+04:01:05 [ok] ok
+04:01:12 [tx] >> G28
+04:01:15 [sys] echo:busy: processing
+04:01:17 [sys] echo:busy: processing
+04:01:19 [sys] echo:busy: processing
+04:01:21 [sys] echo:busy: processing
+04:01:23 [sys] echo:busy: processing
+04:01:25 [sys] echo:busy: processing
+04:01:27 [sys] echo:busy: processing
+04:01:29 [sys] echo:busy: processing
+04:01:31 [sys] echo:busy: processing
+04:01:33 [sys] echo:busy: processing
+04:01:35 [sys] echo:busy: processing
+04:01:37 [sys] echo:busy: processing
+04:01:39 [sys] echo:busy: processing
+04:01:41 [sys] echo:busy: processing
+04:01:43 [sys] echo:busy: processing
+04:01:45 [sys] echo:busy: processing
+04:01:47 [sys] echo:busy: processing
+04:01:49 [sys] echo:busy: processing
+04:01:51 [sys] echo:busy: processing
+04:01:53 [sys] echo:busy: processing
+04:01:53 [rx] X:152.00 Y:105.00 Z:10.00 E:0.00 Count A:20560B:3760 Z:4000
+04:01:53 [ok] ok
+04:04:03 [tx] >> G91
+04:04:04 [ok] ok
+04:04:04 [tx] >> G1 Z-10 F600
+04:04:04 [sys] echo:Home XYZ First
+04:04:04 [rx] //action:notification Home XYZ First
+04:04:04 [ok] ok
+04:04:04 [tx] >> G90
+04:04:04 [ok] ok
+04:04:04 [tx] >> M114
+04:04:04 [rx] X:152.00 Y:105.00 Z:10.00 E:0.00 Count A:12160B:8400 Z:4000
+04:04:04 [ok] ok
+04:04:14 [tx] >> G28
+04:04:16 [sys] echo:busy: processing
+04:04:18 [sys] echo:busy: processing
+04:04:20 [sys] echo:busy: processing
+04:04:22 [sys] echo:busy: processing
+04:04:24 [sys] echo:busy: processing
+04:04:26 [sys] echo:busy: processing
+04:04:28 [sys] echo:busy: processing
+04:04:30 [sys] echo:busy: processing
+04:04:32 [sys] echo:busy: processing
+04:04:34 [sys] echo:busy: processing
+04:04:36 [sys] echo:busy: processing
+04:04:38 [sys] echo:busy: processing
+04:04:40 [sys] echo:busy: processing
+04:04:42 [sys] echo:busy: processing
+04:04:43 [rx] X:152.00 Y:105.00 Z:10.00 E:0.00 Count A:20560B:3760 Z:4000
+04:04:43 [ok] ok
+04:04:55 [tx] >> G91
+04:04:55 [ok] ok
+04:04:55 [tx] >> G1 Z-10 F600
+04:04:56 [ok] ok
+04:04:56 [tx] >> G90
+04:04:56 [ok] ok
+04:04:56 [tx] >> M114
+04:04:56 [rx] X:152.00 Y:105.00 Z:0.00 E:0.00 Count A:12160B:8400 Z:-14
+04:04:56 [ok] ok
+04:05:40 [sys] [VELOC] Inicio: X 50<->150 mm, 10 ciclos (20 movimentos) a 60 mm/s (F3600).
+04:05:40 [tx] >> G90
+04:05:40 [sys] [VELOC] Fim a 60 mm/s. Os dois M114 devem ser iguais (50 mm). Se forem e o carro estiver FORA da marca, houve perda de passos.
+04:05:40 [ok] ok
+04:05:40 [tx] >> M400
+04:05:40 [ok] ok
+04:05:40 [tx] >> G1 X50 F3600
+04:05:41 [ok] ok
+04:05:41 [tx] >> M400
+04:05:42 [ok] ok
+04:05:42 [tx] >> M114
+04:05:42 [rx] X:50.00 Y:105.00 Z:0.00 E:0.00 Count A:4000B:8400 Z:-76
+04:05:42 [ok] ok
+04:05:42 [tx] >> G1 X150 F3600
+04:05:43 [ok] ok
+04:05:43 [tx] >> G1 X50 F3600
+04:05:45 [ok] ok
+04:05:45 [tx] >> G1 X150 F3600
+04:05:46 [ok] ok
+04:05:46 [tx] >> G1 X50 F3600
+04:05:48 [ok] ok
+04:05:48 [tx] >> G1 X150 F3600
+04:05:50 [ok] ok
+04:05:50 [tx] >> G1 X50 F3600
+04:05:51 [ok] ok
+04:05:51 [tx] >> G1 X150 F3600
+04:05:53 [ok] ok
+04:05:53 [tx] >> G1 X50 F3600
+04:05:55 [ok] ok
+04:05:55 [tx] >> G1 X150 F3600
+04:05:57 [ok] ok
+04:05:57 [tx] >> G1 X50 F3600
+04:05:58 [ok] ok
+04:05:58 [tx] >> G1 X150 F3600
+04:06:00 [ok] ok
+04:06:00 [tx] >> G1 X50 F3600
+04:06:02 [ok] ok
+04:06:02 [tx] >> G1 X150 F3600
+04:06:03 [ok] ok
+04:06:03 [tx] >> G1 X50 F3600
+04:06:05 [ok] ok
+04:06:05 [tx] >> G1 X150 F3600
+04:06:07 [ok] ok
+04:06:07 [tx] >> G1 X50 F3600
+04:06:08 [ok] ok
+04:06:08 [tx] >> G1 X150 F3600
+04:06:10 [ok] ok
+04:06:10 [tx] >> G1 X50 F3600
+04:06:12 [ok] ok
+04:06:12 [tx] >> G1 X150 F3600
+04:06:13 [ok] ok
+04:06:13 [tx] >> G1 X50 F3600
+04:06:15 [ok] ok
+04:06:15 [tx] >> M400
+04:06:16 [ok] ok
+04:06:16 [tx] >> M114
+04:06:17 [rx] X:50.00 Y:105.00 Z:0.00 E:0.00 Count A:4000B:8400 Z:-76
+04:06:17 [ok] ok
+04:10:10 [tx] >> G28
+04:10:13 [sys] echo:busy: processing
+04:10:15 [sys] echo:busy: processing
+04:10:17 [sys] echo:busy: processing
+04:10:19 [sys] echo:busy: processing
+04:10:21 [sys] echo:busy: processing
+04:10:23 [sys] echo:busy: processing
+04:10:25 [sys] echo:busy: processing
+04:10:27 [sys] echo:busy: processing
+04:10:29 [sys] echo:busy: processing
+04:10:31 [sys] echo:busy: processing
+04:10:33 [sys] echo:busy: processing
+04:10:35 [sys] echo:busy: processing
+04:10:37 [sys] echo:busy: processing
+04:10:39 [sys] echo:busy: processing
+04:10:41 [sys] echo:busy: processing
+04:10:43 [sys] echo:busy: processing
+04:10:44 [rx] X:152.00 Y:105.00 Z:10.00 E:0.00 Count A:20560B:3760 Z:4000
+04:10:44 [ok] ok
+04:11:01 [sys] [VELOC] Inicio: X 50<->150 mm, 10 ciclos (20 movimentos) a 60 mm/s (F3600).
+04:11:01 [tx] >> G90
+04:11:01 [sys] [VELOC] Fim a 60 mm/s. Os dois M114 devem ser iguais (50 mm). Se forem e o carro estiver FORA da marca, houve perda de passos.
+04:11:01 [ok] ok
+04:11:01 [tx] >> M400
+04:11:02 [ok] ok
+04:11:02 [tx] >> G1 X50 F3600
+04:11:02 [ok] ok
+04:11:02 [tx] >> M400
+04:11:04 [ok] ok
+04:11:04 [tx] >> M114
+04:11:04 [rx] X:50.00 Y:105.00 Z:10.00 E:0.00 Count A:4000B:8400 Z:4000
+04:11:04 [ok] ok
+04:11:04 [tx] >> G1 X150 F3600
+04:11:04 [ok] ok
+04:11:04 [tx] >> G1 X50 F3600
+04:11:04 [ok] ok
+04:11:04 [tx] >> G1 X150 F3600
+04:11:05 [ok] ok
+04:11:05 [tx] >> G1 X50 F3600
+04:11:05 [ok] ok
+04:11:05 [tx] >> G1 X150 F3600
+04:11:05 [ok] ok
+04:11:05 [tx] >> G1 X50 F3600
+04:11:05 [ok] ok
+04:11:05 [tx] >> G1 X150 F3600
+04:11:06 [ok] ok
+04:11:06 [tx] >> G1 X50 F3600
+04:11:06 [ok] ok
+04:11:06 [tx] >> G1 X150 F3600
+04:11:06 [ok] ok
+04:11:06 [tx] >> G1 X50 F3600
+04:11:06 [ok] ok
+04:11:06 [tx] >> G1 X150 F3600
+04:11:07 [ok] ok
+04:11:07 [tx] >> G1 X50 F3600
+04:11:07 [ok] ok
+04:11:07 [tx] >> G1 X150 F3600
+04:11:07 [ok] ok
+04:11:07 [tx] >> G1 X50 F3600
+04:11:07 [ok] ok
+04:11:07 [tx] >> G1 X150 F3600
+04:11:08 [ok] ok
+04:11:08 [tx] >> G1 X50 F3600
+04:11:08 [ok] ok
+04:11:08 [tx] >> G1 X150 F3600
+04:11:08 [ok] ok
+04:11:08 [tx] >> G1 X50 F3600
+04:11:09 [ok] ok
+04:11:09 [tx] >> G1 X150 F3600
+04:11:11 [ok] ok
+04:11:11 [tx] >> G1 X50 F3600
+04:11:13 [ok] ok
+04:11:13 [tx] >> M400
+04:11:15 [sys] echo:busy: processing
+04:11:17 [sys] echo:busy: processing
+04:11:19 [sys] echo:busy: processing
+04:11:21 [sys] echo:busy: processing
+04:11:23 [sys] echo:busy: processing
+04:11:25 [sys] echo:busy: processing
+04:11:27 [sys] echo:busy: processing
+04:11:29 [sys] echo:busy: processing
+04:11:31 [sys] echo:busy: processing
+04:11:33 [sys] echo:busy: processing
+04:11:35 [sys] echo:busy: processing
+04:11:37 [sys] echo:busy: processing
+04:11:38 [ok] ok
+04:11:38 [tx] >> M114
+04:11:38 [rx] X:50.00 Y:105.00 Z:10.00 E:0.00 Count A:4000B:8400 Z:4000
+04:11:38 [ok] ok
+04:14:10 [sys] Desconectado.
+# sessao encerrada Sat Oct 24 04:17:47 2026

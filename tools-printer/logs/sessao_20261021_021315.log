@@ -1,0 +1,7 @@
+# Console Marlin - sessao iniciada Wed Oct 21 02:13:15 2026
+02:13:15 [sys] Console pronto. Clique em 'Localizar placa' para comecar.
+02:13:15 [sys] Log desta sessao: C:\tmp\Marlin\tools-printer\logs\sessao_20261021_021315.log
+02:13:15 [sys] [FILAMENTO] descarregar: 240C, bowden 500mm, total 600mm
+02:13:15 [sys] [FILAMENTO] fim da descarga. Desligue o bico se terminou.
+02:13:15 [sys] [FILAMENTO] carregar: 240C, bowden 500mm
+02:13:15 [sys] [FILAMENTO] fim da carga. Limpe a purga antes de imprimir.

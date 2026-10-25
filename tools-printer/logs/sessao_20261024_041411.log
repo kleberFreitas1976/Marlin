@@ -1,0 +1,6 @@
+# Console Marlin - sessao iniciada Sat Oct 24 04:14:11 2026
+04:14:11 [sys] Console pronto. Clique em 'Localizar placa' para comecar.
+04:14:11 [sys] Log desta sessao: C:\tmp\Marlin\tools-printer\logs\sessao_20261024_041411.log
+04:14:12 [sys] [VELOC] etapa 1: indo para o ponto de partida (XY = 20 mm), Z 10, malha desligada.
+04:14:12 [sys] [VELOC] etapa 2: XY 20<->170 mm, 3 ciclos (6 movimentos) a 120 mm/s (F7200). Motor mais rapido: 170 mm/s.
+04:14:12 [sys] [VELOC] fim a 120 mm/s (motor 170 mm/s). O M114 vai dizer 20 mm de qualquer jeito -- quem decide e a MARCA FISICA. Carro fora da marca = passos perdidos.

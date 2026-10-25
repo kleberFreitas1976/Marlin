@@ -1,0 +1,921 @@
+# Console Marlin - sessao iniciada Sat Oct 24 16:53:21 2026
+16:53:21 [sys] Console pronto. Clique em 'Localizar placa' para comecar.
+16:53:21 [sys] Log desta sessao: C:\tmp\Marlin\tools-printer\logs\sessao_20261024_165321.log
+16:53:29 [ok] Conectado em COM18 @ 250000.
+16:53:29 [tx] >> M115
+16:53:29 [rx] FIRMWARE_NAME:Marlin bugfix-2.1.x (Oct 21 2026 03:57:54) SOURCE_CODE_URL:github.com/MarlinFirmware/Marlin PROTOCOL_VERSION:1.0 MACHINE_TYPE:CoreXY TinyBee KINEMATICS:COREXYCartesian EXTRUDER_COUNT:1 UUID:cede2a2f-41a2-4748-9b12-c55c62f367ff
+16:53:29 [rx] Cap:SERIAL_XON_XOFF:0
+16:53:29 [rx] Cap:BINARY_FILE_TRANSFER:0
+16:53:29 [rx] Cap:EEPROM:1
+16:53:29 [rx] Cap:VOLUMETRIC:1
+16:53:29 [rx] Cap:AUTOREPORT_POS:0
+16:53:29 [rx] Cap:AUTOREPORT_TEMP:1
+16:53:29 [rx] Cap:PROGRESS:0
+16:53:29 [rx] Cap:PRINT_JOB:1
+16:53:29 [rx] Cap:AUTOLEVEL:1
+16:53:29 [rx] Cap:RUNOUT:1
+16:53:29 [rx] Cap:Z_PROBE:1
+16:53:29 [rx] Cap:LEVELING_DATA:1
+16:53:29 [rx] Cap:BUILD_PERCENT:1
+16:53:29 [rx] Cap:SOFTWARE_POWER:0
+16:53:29 [rx] Cap:TOGGLE_LIGHTS:0
+16:53:29 [rx] Cap:CASE_LIGHT_BRIGHTNESS:0
+16:53:29 [rx] Cap:EMERGENCY_PARSER:0
+16:53:29 [rx] Cap:HOST_ACTION_COMMANDS:1
+16:53:29 [rx] Cap:PROMPT_SUPPORT:1
+16:53:29 [rx] Cap:SDCARD:0
+16:53:29 [rx] Cap:REPEAT:0
+16:53:29 [rx] Cap:SD_WRITE:0
+16:53:29 [rx] Cap:AUTOREPORT_SD_STATUS:0
+16:53:29 [rx] Cap:LONG_FILENAME:0
+16:53:29 [rx] Cap:LFN_WRITE:0
+16:53:29 [rx] Cap:CUSTOM_FIRMWARE_UPLOAD:0
+16:53:29 [rx] Cap:EXTENDED_M20:0
+16:53:29 [rx] Cap:THERMAL_PROTECTION:1
+16:53:29 [rx] Cap:MOTION_MODES:0
+16:53:29 [rx] Cap:ARCS:1
+16:53:29 [rx] Cap:BABYSTEPPING:0
+16:53:29 [rx] Cap:EP_BABYSTEP:0
+16:53:29 [rx] Cap:CHAMBER_TEMPERATURE:0
+16:53:29 [rx] Cap:COOLER_TEMPERATURE:0
+16:53:29 [rx] Cap:MEATPACK:0
+16:53:29 [rx] Cap:CONFIG_EXPORT:0
+16:53:29 [ok] ok
+16:53:29 [tx] >> M119
+16:53:29 [rx] Reporting endstop status
+16:53:29 [rx] x_max: open
+16:53:29 [rx] y_min: open
+16:53:29 [rx] z_probe: TRIGGERED
+16:53:29 [rx] filament: open
+16:53:29 [ok] ok
+16:54:56 [tx] >> G28
+16:54:58 [sys] echo:busy: processing
+16:55:00 [sys] echo:busy: processing
+16:55:02 [sys] echo:busy: processing
+16:55:04 [sys] echo:busy: processing
+16:55:07 [sys] echo:busy: processing
+16:55:09 [sys] echo:busy: processing
+16:55:11 [sys] echo:busy: processing
+16:55:13 [sys] echo:busy: processing
+16:55:15 [sys] echo:busy: processing
+16:55:17 [sys] echo:busy: processing
+16:55:19 [sys] echo:busy: processing
+16:55:21 [sys] echo:busy: processing
+16:55:23 [sys] echo:busy: processing
+16:55:25 [sys] echo:busy: processing
+16:55:27 [rx] X:152.00 Y:105.00 Z:10.00 E:0.00 Count A:20560B:3760 Z:4000
+16:55:27 [ok] ok
+16:55:36 [sys] [VELOC] etapa 1: indo para o ponto de partida (X = 20 mm), Z 10, malha desligada.
+16:55:36 [tx] >> G90
+16:55:37 [ok] ok
+16:55:37 [tx] >> M400
+16:55:37 [ok] ok
+16:55:37 [tx] >> M420 S0
+16:55:37 [sys] echo:Bed Leveling OFF
+16:55:37 [sys] echo:Fade Height 10.00
+16:55:37 [ok] ok
+16:55:37 [tx] >> G1 Z10 F600
+16:55:37 [ok] ok
+16:55:37 [tx] >> G1 X20 F6000
+16:55:38 [ok] ok
+16:55:38 [tx] >> M400
+16:55:39 [ok] ok
+16:55:39 [tx] >> M114
+16:55:39 [rx] X:20.00 Y:105.00 Z:10.00 E:0.00 Count A:1600B:8400 Z:4000
+16:55:39 [ok] ok
+16:55:47 [sys] [VELOC] etapa 2: X 20<->170 mm, 5 ciclos (10 movimentos) a 100 mm/s (F6000). Motor mais rapido: 100 mm/s.
+16:55:47 [tx] >> M201 X3000 Y3000
+16:55:47 [sys] [VELOC] aceleracao 3000 mm/s2 aplicada (M201 X/Y + M204 P/T). M501 restaura ao fim.
+16:55:47 [sys] [VELOC] fim a 100 mm/s (motor 100 mm/s). O M114 vai dizer 20 mm de qualquer jeito -- quem decide e a MARCA FISICA. Carro fora da marca = passos perdidos.
+16:55:47 [ok] ok
+16:55:47 [tx] >> M204 P3000 T3000
+16:55:47 [ok] ok
+16:55:47 [tx] >> G1 X170 F6000
+16:55:48 [ok] ok
+16:55:48 [tx] >> G1 X20 F6000
+16:55:48 [ok] ok
+16:55:48 [tx] >> G1 X170 F6000
+16:55:48 [ok] ok
+16:55:48 [tx] >> G1 X20 F6000
+16:55:48 [ok] ok
+16:55:48 [tx] >> G1 X170 F6000
+16:55:49 [ok] ok
+16:55:49 [tx] >> G1 X20 F6000
+16:55:49 [err] Error:Serial status mismatch
+16:55:49 [ok] ok
+16:55:49 [tx] >> G1 X170 F6000
+16:55:49 [ok] ok
+16:55:49 [tx] >> G1 X20 F6000
+16:55:50 [ok] ok
+16:55:50 [tx] >> G1 X170 F6000
+16:55:50 [ok] ok
+16:55:50 [tx] >> G1 X20 F6000
+16:55:50 [ok] ok
+16:55:50 [tx] >> M400
+16:55:52 [sys] echo:busy: processing
+16:55:54 [sys] echo:busy: processing
+16:55:56 [sys] echo:busy: processing
+16:55:58 [sys] echo:busy: processing
+16:56:00 [sys] echo:busy: processing
+16:56:02 [sys] echo:busy: processing
+16:56:03 [ok] ok
+16:56:03 [tx] >> M114
+16:56:03 [rx] X:20.00 Y:105.00 Z:10.00 E:0.00 Count A:1600B:8400 Z:4000
+16:56:03 [ok] ok
+16:56:03 [tx] >> M501
+16:56:03 [sys] echo:V90 stored settings retrieved (666 bytes; crc 27654)
+16:56:03 [rx] //action:notification Stored settings retrieved
+16:56:03 [sys] echo:; Linear Units:
+16:56:03 [sys] echo:  G21 ; (mm)
+16:56:03 [sys] echo:; Auto Temp Control:
+16:56:03 [sys] echo:  M104 S210 B250 F0.10
+16:56:03 [sys] echo:; Temperature Units:
+16:56:03 [sys] echo:  M149 C ; Units in Celsius
+16:56:03 [sys] echo:; Filament settings (Disabled):
+16:56:03 [sys] echo:  M200 S0 D1.75
+16:56:03 [sys] echo:; Steps per unit:
+16:56:03 [sys] echo:  M92 X80.00 Y80.00 Z400.00 E415.00
+16:56:03 [sys] echo:; Max feedrates (units/s):
+16:56:03 [sys] echo:  M203 X300.00 Y300.00 Z5.00 E25.00
+16:56:03 [sys] echo:; Max Acceleration (units/s2):
+16:56:03 [sys] echo:  M201 X3000.00 Y3000.00 Z100.00 E1000.00
+16:56:03 [sys] echo:; Acceleration (units/s2) (P<print-accel> R<retract-accel> T<travel-accel>):
+16:56:03 [sys] echo:  M204 P3000.00 R3000.00 T3000.00
+16:56:03 [sys] echo:; Advanced (B<min_segment_time_us> S<min_feedrate> T<min_travel_feedrate> J<junc_dev>):
+16:56:03 [sys] echo:  M205 B20000.00 S0.00 T0.00 J0.01
+16:56:03 [sys] echo:; Home offset:
+16:56:03 [sys] echo:  M206 X0.00 Y0.00 Z0.00
+16:56:03 [sys] echo:; Auto Bed Leveling:
+16:56:03 [sys] echo:  M420 S0 Z10.00 ; Leveling OFF
+16:56:03 [sys] echo:  G29 W I0 J0 Z0.24000
+16:56:03 [sys] echo:  G29 W I1 J0 Z-0.08000
+16:56:03 [sys] echo:  G29 W I2 J0 Z0.14000
+16:56:03 [sys] echo:  G29 W I3 J0 Z-0.08250
+16:56:03 [sys] echo:  G29 W I4 J0 Z-0.01000
+16:56:03 [sys] echo:  G29 W I0 J1 Z0.12750
+16:56:03 [sys] echo:  G29 W I1 J1 Z-0.17000
+16:56:03 [sys] echo:  G29 W I2 J1 Z0.14000
+16:56:03 [sys] echo:  G29 W I3 J1 Z-0.14000
+16:56:03 [sys] echo:  G29 W I4 J1 Z0.00000
+16:56:03 [sys] echo:  G29 W I0 J2 Z0.10500
+16:56:03 [sys] echo:  G29 W I1 J2 Z-0.20500
+16:56:03 [sys] echo:  G29 W I2 J2 Z0.09750
+16:56:03 [sys] echo:  G29 W I3 J2 Z-0.15000
+16:56:03 [sys] echo:  G29 W I4 J2 Z-0.02500
+16:56:03 [sys] echo:  G29 W I0 J3 Z0.04250
+16:56:03 [sys] echo:  G29 W I1 J3 Z-0.27250
+16:56:03 [sys] echo:  G29 W I2 J3 Z0.06500
+16:56:03 [sys] echo:  G29 W I3 J3 Z-0.23000
+16:56:03 [sys] echo:  G29 W I4 J3 Z-0.06250
+16:56:03 [sys] echo:  G29 W I0 J4 Z-0.05750
+16:56:03 [sys] echo:  G29 W I1 J4 Z-0.33750
+16:56:04 [sys] echo:  G29 W I2 J4 Z-0.05750
+16:56:04 [sys] echo:  G29 W I3 J4 Z-0.26250
+16:56:04 [sys] echo:  G29 W I4 J4 Z-0.15500
+16:56:04 [sys] echo:; Hotend PID:
+16:56:04 [sys] echo:  M301 P23.97 I1.66 D86.64
+16:56:04 [sys] echo:; Z-Probe Offset:
+16:56:04 [sys] echo:  M851 X-54.00 Y-10.00 Z-4.16 ; (mm)
+16:56:04 [sys] echo:; Filament runout sensor:
+16:56:04 [sys] echo:  M412 S1 ; Sensor ON
+16:56:04 [ok] ok
+16:56:22 [sys] [VELOC] etapa 1: indo para o ponto de partida (X = 20 mm), Z 10, malha desligada.
+16:56:22 [tx] >> G90
+16:56:22 [ok] ok
+16:56:22 [tx] >> M400
+16:56:22 [ok] ok
+16:56:22 [tx] >> M420 S0
+16:56:23 [sys] echo:Bed Leveling OFF
+16:56:23 [sys] echo:Fade Height 10.00
+16:56:23 [ok] ok
+16:56:23 [tx] >> G1 Z10 F600
+16:56:23 [ok] ok
+16:56:23 [tx] >> G1 X20 F6000
+16:56:23 [ok] ok
+16:56:23 [tx] >> M400
+16:56:23 [ok] ok
+16:56:23 [tx] >> M114
+16:56:24 [rx] X:20.00 Y:105.00 Z:10.00 E:0.00 Count A:1600B:8400 Z:4000
+16:56:24 [ok] ok
+16:56:25 [sys] [VELOC] etapa 2: X 20<->170 mm, 5 ciclos (10 movimentos) a 100 mm/s (F6000). Motor mais rapido: 100 mm/s.
+16:56:25 [tx] >> M201 X3500 Y3500
+16:56:25 [sys] [VELOC] aceleracao 3500 mm/s2 aplicada (M201 X/Y + M204 P/T). M501 restaura ao fim.
+16:56:25 [sys] [VELOC] fim a 100 mm/s (motor 100 mm/s). O M114 vai dizer 20 mm de qualquer jeito -- quem decide e a MARCA FISICA. Carro fora da marca = passos perdidos.
+16:56:25 [ok] ok
+16:56:25 [tx] >> M204 P3500 T3500
+16:56:26 [ok] ok
+16:56:26 [tx] >> G1 X170 F6000
+16:56:26 [ok] ok
+16:56:26 [tx] >> G1 X20 F6000
+16:56:26 [ok] ok
+16:56:26 [tx] >> G1 X170 F6000
+16:56:26 [ok] ok
+16:56:26 [tx] >> G1 X20 F6000
+16:56:27 [ok] ok
+16:56:27 [tx] >> G1 X170 F6000
+16:56:27 [ok] ok
+16:56:27 [tx] >> G1 X20 F6000
+16:56:27 [ok] ok
+16:56:27 [tx] >> G1 X170 F6000
+16:56:27 [ok] ok
+16:56:27 [tx] >> G1 X20 F6000
+16:56:28 [ok] ok
+16:56:28 [tx] >> G1 X170 F6000
+16:56:28 [ok] ok
+16:56:28 [tx] >> G1 X20 F6000
+16:56:28 [ok] ok
+16:56:28 [tx] >> M400
+16:56:30 [sys] echo:busy: processing
+16:56:32 [sys] echo:busy: processing
+16:56:34 [sys] echo:busy: processing
+16:56:36 [sys] echo:busy: processing
+16:56:38 [sys] echo:busy: processing
+16:56:40 [sys] echo:busy: processing
+16:56:41 [ok] ok
+16:56:41 [tx] >> M114
+16:56:41 [rx] X:20.00 Y:105.00 Z:10.00 E:0.00 Count A:1600B:8400 Z:4000
+16:56:41 [ok] ok
+16:56:41 [tx] >> M501
+16:56:41 [sys] echo:V90 stored settings retrieved (666 bytes; crc 27654)
+16:56:41 [rx] //action:notification Stored settings retrieved
+16:56:41 [sys] echo:; Linear Units:
+16:56:41 [sys] echo:  G21 ; (mm)
+16:56:41 [sys] echo:; Auto Temp Control:
+16:56:41 [sys] echo:  M104 S210 B250 F0.10
+16:56:41 [sys] echo:; Temperature Units:
+16:56:41 [sys] echo:  M149 C ; Units in Celsius
+16:56:41 [sys] echo:; Filament settings (Disabled):
+16:56:41 [sys] echo:  M200 S0 D1.75
+16:56:41 [sys] echo:; Steps per unit:
+16:56:41 [sys] echo:  M92 X80.00 Y80.00 Z400.00 E415.00
+16:56:41 [sys] echo:; Max feedrates (units/s):
+16:56:41 [sys] echo:  M203 X300.00 Y300.00 Z5.00 E25.00
+16:56:41 [sys] echo:; Max Acceleration (units/s2):
+16:56:41 [sys] echo:  M201 X3000.00 Y3000.00 Z100.00 E1000.00
+16:56:41 [sys] echo:; Acceleration (units/s2) (P<print-accel> R<retract-accel> T<travel-accel>):
+16:56:41 [sys] echo:  M204 P3000.00 R3000.00 T3000.00
+16:56:41 [sys] echo:; Advanced (B<min_segment_time_us> S<min_feedrate> T<min_travel_feedrate> J<junc_dev>):
+16:56:41 [sys] echo:  M205 B20000.00 S0.00 T0.00 J0.01
+16:56:41 [sys] echo:; Home offset:
+16:56:41 [sys] echo:  M206 X0.00 Y0.00 Z0.00
+16:56:41 [sys] echo:; Auto Bed Leveling:
+16:56:41 [sys] echo:  M420 S0 Z10.00 ; Leveling OFF
+16:56:41 [sys] echo:  G29 W I0 J0 Z0.24000
+16:56:41 [sys] echo:  G29 W I1 J0 Z-0.08000
+16:56:41 [sys] echo:  G29 W I2 J0 Z0.14000
+16:56:41 [sys] echo:  G29 W I3 J0 Z-0.08250
+16:56:41 [sys] echo:  G29 W I4 J0 Z-0.01000
+16:56:41 [sys] echo:  G29 W I0 J1 Z0.12750
+16:56:41 [sys] echo:  G29 W I1 J1 Z-0.17000
+16:56:41 [sys] echo:  G29 W I2 J1 Z0.14000
+16:56:41 [sys] echo:  G29 W I3 J1 Z-0.14000
+16:56:41 [sys] echo:  G29 W I4 J1 Z0.00000
+16:56:41 [sys] echo:  G29 W I0 J2 Z0.10500
+16:56:41 [sys] echo:  G29 W I1 J2 Z-0.20500
+16:56:41 [sys] echo:  G29 W I2 J2 Z0.09750
+16:56:41 [sys] echo:  G29 W I3 J2 Z-0.15000
+16:56:41 [sys] echo:  G29 W I4 J2 Z-0.02500
+16:56:41 [sys] echo:  G29 W I0 J3 Z0.04250
+16:56:41 [sys] echo:  G29 W I1 J3 Z-0.27250
+16:56:41 [sys] echo:  G29 W I2 J3 Z0.06500
+16:56:41 [sys] echo:  G29 W I3 J3 Z-0.23000
+16:56:41 [sys] echo:  G29 W I4 J3 Z-0.06250
+16:56:41 [sys] echo:  G29 W I0 J4 Z-0.05750
+16:56:41 [sys] echo:  G29 W I1 J4 Z-0.33750
+16:56:42 [sys] echo:  G29 W I2 J4 Z-0.05750
+16:56:42 [sys] echo:  G29 W I3 J4 Z-0.26250
+16:56:42 [sys] echo:  G29 W I4 J4 Z-0.15500
+16:56:42 [sys] echo:; Hotend PID:
+16:56:42 [sys] echo:  M301 P23.97 I1.66 D86.64
+16:56:42 [sys] echo:; Z-Probe Offset:
+16:56:42 [sys] echo:  M851 X-54.00 Y-10.00 Z-4.16 ; (mm)
+16:56:42 [sys] echo:; Filament runout sensor:
+16:56:42 [sys] echo:  M412 S1 ; Sensor ON
+16:56:42 [ok] ok
+16:57:12 [sys] [VELOC] etapa 1: indo para o ponto de partida (X = 20 mm), Z 10, malha desligada.
+16:57:12 [tx] >> G90
+16:57:12 [ok] ok
+16:57:12 [tx] >> M400
+16:57:12 [ok] ok
+16:57:12 [tx] >> M420 S0
+16:57:12 [sys] echo:Bed Leveling OFF
+16:57:12 [sys] echo:Fade Height 10.00
+16:57:12 [ok] ok
+16:57:12 [tx] >> G1 Z10 F600
+16:57:13 [ok] ok
+16:57:13 [tx] >> G1 X20 F6000
+16:57:13 [ok] ok
+16:57:13 [tx] >> M400
+16:57:13 [ok] ok
+16:57:13 [tx] >> M114
+16:57:13 [rx] X:20.00 Y:105.00 Z:10.00 E:0.00 Count A:1600B:8400 Z:4000
+16:57:13 [ok] ok
+16:57:19 [sys] [VELOC] etapa 2: X 20<->170 mm, 5 ciclos (10 movimentos) a 100 mm/s (F6000). Motor mais rapido: 100 mm/s.
+16:57:19 [tx] >> M201 X4000 Y4000
+16:57:19 [sys] [VELOC] aceleracao 4000 mm/s2 aplicada (M201 X/Y + M204 P/T). M501 restaura ao fim.
+16:57:19 [sys] [VELOC] fim a 100 mm/s (motor 100 mm/s). O M114 vai dizer 20 mm de qualquer jeito -- quem decide e a MARCA FISICA. Carro fora da marca = passos perdidos.
+16:57:19 [ok] ok
+16:57:19 [tx] >> M204 P4000 T4000
+16:57:19 [ok] ok
+16:57:19 [tx] >> G1 X170 F6000
+16:57:20 [ok] ok
+16:57:20 [tx] >> G1 X20 F6000
+16:57:20 [ok] ok
+16:57:20 [tx] >> G1 X170 F6000
+16:57:20 [ok] ok
+16:57:20 [tx] >> G1 X20 F6000
+16:57:20 [ok] ok
+16:57:20 [tx] >> G1 X170 F6000
+16:57:21 [ok] ok
+16:57:21 [tx] >> G1 X20 F6000
+16:57:21 [ok] ok
+16:57:21 [tx] >> G1 X170 F6000
+16:57:21 [ok] ok
+16:57:21 [tx] >> G1 X20 F6000
+16:57:21 [ok] ok
+16:57:21 [tx] >> G1 X170 F6000
+16:57:22 [ok] ok
+16:57:22 [tx] >> G1 X20 F6000
+16:57:22 [ok] ok
+16:57:22 [tx] >> M400
+16:57:24 [sys] echo:busy: processing
+16:57:26 [sys] echo:busy: processing
+16:57:28 [sys] echo:busy: processing
+16:57:30 [sys] echo:busy: processing
+16:57:32 [sys] echo:busy: processing
+16:57:34 [sys] echo:busy: processing
+16:57:35 [ok] ok
+16:57:35 [tx] >> M114
+16:57:35 [rx] X:20.00 Y:105.00 Z:10.00 E:0.00 Count A:1600B:8400 Z:4000
+16:57:35 [ok] ok
+16:57:35 [tx] >> M501
+16:57:35 [sys] echo:V90 stored settings retrieved (666 bytes; crc 27654)
+16:57:35 [rx] //action:notification Stored settings retrieved
+16:57:35 [sys] echo:; Linear Units:
+16:57:35 [sys] echo:  G21 ; (mm)
+16:57:35 [sys] echo:; Auto Temp Control:
+16:57:35 [sys] echo:  M104 S210 B250 F0.10
+16:57:35 [sys] echo:; Temperature Units:
+16:57:35 [sys] echo:  M149 C ; Units in Celsius
+16:57:35 [sys] echo:; Filament settings (Disabled):
+16:57:35 [sys] echo:  M200 S0 D1.75
+16:57:35 [sys] echo:; Steps per unit:
+16:57:35 [sys] echo:  M92 X80.00 Y80.00 Z400.00 E415.00
+16:57:35 [sys] echo:; Max feedrates (units/s):
+16:57:35 [sys] echo:  M203 X300.00 Y300.00 Z5.00 E25.00
+16:57:35 [sys] echo:; Max Acceleration (units/s2):
+16:57:35 [sys] echo:  M201 X3000.00 Y3000.00 Z100.00 E1000.00
+16:57:35 [sys] echo:; Acceleration (units/s2) (P<print-accel> R<retract-accel> T<travel-accel>):
+16:57:35 [sys] echo:  M204 P3000.00 R3000.00 T3000.00
+16:57:35 [sys] echo:; Advanced (B<min_segment_time_us> S<min_feedrate> T<min_travel_feedrate> J<junc_dev>):
+16:57:35 [sys] echo:  M205 B20000.00 S0.00 T0.00 J0.01
+16:57:35 [sys] echo:; Home offset:
+16:57:35 [sys] echo:  M206 X0.00 Y0.00 Z0.00
+16:57:35 [sys] echo:; Auto Bed Leveling:
+16:57:35 [sys] echo:  M420 S0 Z10.00 ; Leveling OFF
+16:57:35 [sys] echo:  G29 W I0 J0 Z0.24000
+16:57:35 [sys] echo:  G29 W I1 J0 Z-0.08000
+16:57:35 [sys] echo:  G29 W I2 J0 Z0.14000
+16:57:35 [sys] echo:  G29 W I3 J0 Z-0.08250
+16:57:35 [sys] echo:  G29 W I4 J0 Z-0.01000
+16:57:35 [sys] echo:  G29 W I0 J1 Z0.12750
+16:57:35 [sys] echo:  G29 W I1 J1 Z-0.17000
+16:57:35 [sys] echo:  G29 W I2 J1 Z0.14000
+16:57:35 [sys] echo:  G29 W I3 J1 Z-0.14000
+16:57:35 [sys] echo:  G29 W I4 J1 Z0.00000
+16:57:35 [sys] echo:  G29 W I0 J2 Z0.10500
+16:57:35 [sys] echo:  G29 W I1 J2 Z-0.20500
+16:57:35 [sys] echo:  G29 W I2 J2 Z0.09750
+16:57:35 [sys] echo:  G29 W I3 J2 Z-0.15000
+16:57:35 [sys] echo:  G29 W I4 J2 Z-0.02500
+16:57:35 [sys] echo:  G29 W I0 J3 Z0.04250
+16:57:35 [sys] echo:  G29 W I1 J3 Z-0.27250
+16:57:35 [sys] echo:  G29 W I2 J3 Z0.06500
+16:57:35 [sys] echo:  G29 W I3 J3 Z-0.23000
+16:57:35 [sys] echo:  G29 W I4 J3 Z-0.06250
+16:57:35 [sys] echo:  G29 W I0 J4 Z-0.05750
+16:57:35 [sys] echo:  G29 W I1 J4 Z-0.33750
+16:57:35 [sys] echo:  G29 W I2 J4 Z-0.05750
+16:57:35 [sys] echo:  G29 W I3 J4 Z-0.26250
+16:57:35 [sys] echo:  G29 W I4 J4 Z-0.15500
+16:57:35 [sys] echo:; Hotend PID:
+16:57:35 [sys] echo:  M301 P23.97 I1.66 D86.64
+16:57:35 [sys] echo:; Z-Probe Offset:
+16:57:35 [sys] echo:  M851 X-54.00 Y-10.00 Z-4.16 ; (mm)
+16:57:35 [sys] echo:; Filament runout sensor:
+16:57:35 [sys] echo:  M412 S1 ; Sensor ON
+16:57:35 [ok] ok
+17:01:52 [tx] >> M201
+17:01:53 [rx]   M201 X3000.00 Y3000.00 Z100.00 E1000.00
+17:01:53 [ok] ok
+17:05:50 [tx] >> G28
+17:05:53 [sys] echo:busy: processing
+17:05:55 [sys] echo:busy: processing
+17:05:57 [sys] echo:busy: processing
+17:05:59 [sys] echo:busy: processing
+17:06:01 [sys] echo:busy: processing
+17:06:03 [sys] echo:busy: processing
+17:06:05 [sys] echo:busy: processing
+17:06:07 [sys] echo:busy: processing
+17:06:09 [sys] echo:busy: processing
+17:06:11 [sys] echo:busy: processing
+17:06:13 [sys] echo:busy: processing
+17:06:15 [sys] echo:busy: processing
+17:06:17 [sys] echo:busy: processing
+17:06:19 [sys] echo:busy: processing
+17:06:21 [sys] echo:busy: processing
+17:06:23 [rx] X:152.00 Y:105.00 Z:10.00 E:0.00 Count A:20560B:3760 Z:4000
+17:06:23 [ok] ok
+17:06:28 [sys] [VELOC] etapa 1: indo para o ponto de partida (XY = 20 mm), Z 10, malha desligada.
+17:06:28 [tx] >> G90
+17:06:28 [ok] ok
+17:06:28 [tx] >> M400
+17:06:28 [ok] ok
+17:06:28 [tx] >> M420 S0
+17:06:28 [sys] echo:Bed Leveling OFF
+17:06:28 [sys] echo:Fade Height 10.00
+17:06:28 [ok] ok
+17:06:28 [tx] >> G1 Z10 F600
+17:06:29 [ok] ok
+17:06:29 [tx] >> G1 X20 Y20 F6000
+17:06:29 [ok] ok
+17:06:29 [tx] >> M400
+17:06:31 [ok] ok
+17:06:31 [tx] >> M114
+17:06:31 [rx] X:20.00 Y:20.00 Z:10.00 E:0.00 Count A:1600B:1600 Z:4000
+17:06:31 [ok] ok
+17:06:37 [sys] [VELOC] etapa 2: XY 20<->170 mm, 5 ciclos (10 movimentos) a 100 mm/s (F6000). Motor mais rapido: 141 mm/s.
+17:06:37 [tx] >> M201 X5000 Y5000
+17:06:37 [sys] [VELOC] aceleracao 5000 mm/s2 aplicada (M201 X/Y + M204 P/T). M501 restaura ao fim.
+17:06:37 [sys] [VELOC] fim a 100 mm/s (motor 141 mm/s). O M114 vai dizer 20 mm de qualquer jeito -- quem decide e a MARCA FISICA. Carro fora da marca = passos perdidos.
+17:06:38 [ok] ok
+17:06:38 [tx] >> M204 P5000 T5000
+17:06:38 [ok] ok
+17:06:38 [tx] >> G1 X170 Y170 F6000
+17:06:38 [ok] ok
+17:06:38 [tx] >> G1 X20 Y20 F6000
+17:06:38 [ok] ok
+17:06:38 [tx] >> G1 X170 Y170 F6000
+17:06:39 [ok] ok
+17:06:39 [tx] >> G1 X20 Y20 F6000
+17:06:39 [ok] ok
+17:06:39 [tx] >> G1 X170 Y170 F6000
+17:06:39 [ok] ok
+17:06:39 [tx] >> G1 X20 Y20 F6000
+17:06:39 [ok] ok
+17:06:39 [tx] >> G1 X170 Y170 F6000
+17:06:40 [ok] ok
+17:06:40 [tx] >> G1 X20 Y20 F6000
+17:06:40 [ok] ok
+17:06:40 [tx] >> G1 X170 Y170 F6000
+17:06:40 [ok] ok
+17:06:40 [tx] >> G1 X20 Y20 F6000
+17:06:40 [ok] ok
+17:06:40 [tx] >> M400
+17:06:43 [sys] echo:busy: processing
+17:06:45 [sys] echo:busy: processing
+17:06:47 [sys] echo:busy: processing
+17:06:49 [sys] echo:busy: processing
+17:06:51 [sys] echo:busy: processing
+17:06:53 [sys] echo:busy: processing
+17:06:55 [sys] echo:busy: processing
+17:06:57 [sys] echo:busy: processing
+17:06:59 [sys] echo:busy: processing
+17:07:00 [ok] ok
+17:07:00 [tx] >> M114
+17:07:00 [rx] X:20.00 Y:20.00 Z:10.00 E:0.00 Count A:1600B:1600 Z:4000
+17:07:00 [ok] ok
+17:07:00 [tx] >> M501
+17:07:00 [sys] echo:V90 stored settings retrieved (666 bytes; crc 27654)
+17:07:00 [rx] //action:notification Stored settings retrieved
+17:07:00 [sys] echo:; Linear Units:
+17:07:00 [sys] echo:  G21 ; (mm)
+17:07:00 [sys] echo:; Auto Temp Control:
+17:07:00 [sys] echo:  M104 S210 B250 F0.10
+17:07:00 [sys] echo:; Temperature Units:
+17:07:00 [sys] echo:  M149 C ; Units in Celsius
+17:07:00 [sys] echo:; Filament settings (Disabled):
+17:07:00 [sys] echo:  M200 S0 D1.75
+17:07:00 [sys] echo:; Steps per unit:
+17:07:00 [sys] echo:  M92 X80.00 Y80.00 Z400.00 E415.00
+17:07:00 [sys] echo:; Max feedrates (units/s):
+17:07:00 [sys] echo:  M203 X300.00 Y300.00 Z5.00 E25.00
+17:07:00 [sys] echo:; Max Acceleration (units/s2):
+17:07:00 [sys] echo:  M201 X3000.00 Y3000.00 Z100.00 E1000.00
+17:07:00 [sys] echo:; Acceleration (units/s2) (P<print-accel> R<retract-accel> T<travel-accel>):
+17:07:00 [sys] echo:  M204 P3000.00 R3000.00 T3000.00
+17:07:00 [sys] echo:; Advanced (B<min_segment_time_us> S<min_feedrate> T<min_travel_feedrate> J<junc_dev>):
+17:07:00 [sys] echo:  M205 B20000.00 S0.00 T0.00 J0.01
+17:07:00 [sys] echo:; Home offset:
+17:07:00 [sys] echo:  M206 X0.00 Y0.00 Z0.00
+17:07:00 [sys] echo:; Auto Bed Leveling:
+17:07:00 [sys] echo:  M420 S0 Z10.00 ; Leveling OFF
+17:07:00 [sys] echo:  G29 W I0 J0 Z0.24000
+17:07:00 [sys] echo:  G29 W I1 J0 Z-0.08000
+17:07:00 [sys] echo:  G29 W I2 J0 Z0.14000
+17:07:00 [sys] echo:  G29 W I3 J0 Z-0.08250
+17:07:00 [sys] echo:  G29 W I4 J0 Z-0.01000
+17:07:00 [sys] echo:  G29 W I0 J1 Z0.12750
+17:07:00 [sys] echo:  G29 W I1 J1 Z-0.17000
+17:07:00 [sys] echo:  G29 W I2 J1 Z0.14000
+17:07:00 [sys] echo:  G29 W I3 J1 Z-0.14000
+17:07:00 [sys] echo:  G29 W I4 J1 Z0.00000
+17:07:00 [sys] echo:  G29 W I0 J2 Z0.10500
+17:07:00 [sys] echo:  G29 W I1 J2 Z-0.20500
+17:07:00 [sys] echo:  G29 W I2 J2 Z0.09750
+17:07:00 [sys] echo:  G29 W I3 J2 Z-0.15000
+17:07:00 [sys] echo:  G29 W I4 J2 Z-0.02500
+17:07:00 [sys] echo:  G29 W I0 J3 Z0.04250
+17:07:00 [sys] echo:  G29 W I1 J3 Z-0.27250
+17:07:00 [sys] echo:  G29 W I2 J3 Z0.06500
+17:07:00 [sys] echo:  G29 W I3 J3 Z-0.23000
+17:07:00 [sys] echo:  G29 W I4 J3 Z-0.06250
+17:07:00 [sys] echo:  G29 W I0 J4 Z-0.05750
+17:07:00 [sys] echo:  G29 W I1 J4 Z-0.33750
+17:07:00 [sys] echo:  G29 W I2 J4 Z-0.05750
+17:07:00 [sys] echo:  G29 W I3 J4 Z-0.26250
+17:07:00 [sys] echo:  G29 W I4 J4 Z-0.15500
+17:07:00 [sys] echo:; Hotend PID:
+17:07:00 [sys] echo:  M301 P23.97 I1.66 D86.64
+17:07:00 [sys] echo:; Z-Probe Offset:
+17:07:00 [sys] echo:  M851 X-54.00 Y-10.00 Z-4.16 ; (mm)
+17:07:00 [sys] echo:; Filament runout sensor:
+17:07:00 [sys] echo:  M412 S1 ; Sensor ON
+17:07:00 [ok] ok
+17:07:17 [tx] >> G28 Z
+17:07:19 [sys] echo:busy: processing
+17:07:21 [sys] echo:busy: processing
+17:07:23 [sys] echo:busy: processing
+17:07:25 [sys] echo:busy: processing
+17:07:27 [sys] echo:busy: processing
+17:07:29 [sys] echo:busy: processing
+17:07:31 [sys] echo:busy: processing
+17:07:33 [sys] echo:busy: processing
+17:07:35 [sys] echo:busy: processing
+17:07:37 [sys] echo:busy: processing
+17:07:39 [sys] echo:busy: processing
+17:07:41 [sys] echo:busy: processing
+17:07:43 [rx] X:152.00 Y:105.00 Z:10.00 E:0.00 Count A:20560B:3760 Z:4000
+17:07:43 [ok] ok
+17:07:58 [sys] [VELOC] etapa 1: indo para o ponto de partida (X = 20 mm), Z 10, malha desligada.
+17:07:58 [tx] >> G90
+17:07:58 [ok] ok
+17:07:58 [tx] >> M400
+17:07:58 [err] Error:Serial status mismatch
+17:07:58 [ok] ok
+17:07:58 [tx] >> M420 S0
+17:07:59 [sys] echo:Bed Leveling OFF
+17:07:59 [sys] echo:Fade Height 10.00
+17:07:59 [ok] ok
+17:07:59 [tx] >> G1 Z10 F600
+17:07:59 [ok] ok
+17:07:59 [tx] >> G1 X20 F6000
+17:07:59 [ok] ok
+17:07:59 [tx] >> M400
+17:08:01 [ok] ok
+17:08:01 [tx] >> M114
+17:08:01 [rx] X:20.00 Y:105.00 Z:10.00 E:0.00 Count A:1600B:8400 Z:4000
+17:08:01 [ok] ok
+17:08:02 [sys] [VELOC] etapa 2: X 20<->170 mm, 5 ciclos (10 movimentos) a 100 mm/s (F6000). Motor mais rapido: 100 mm/s.
+17:08:02 [tx] >> M201 X5000 Y5000
+17:08:02 [sys] [VELOC] aceleracao 5000 mm/s2 aplicada (M201 X/Y + M204 P/T). M501 restaura ao fim.
+17:08:02 [sys] [VELOC] fim a 100 mm/s (motor 100 mm/s). O M114 vai dizer 20 mm de qualquer jeito -- quem decide e a MARCA FISICA. Carro fora da marca = passos perdidos.
+17:08:03 [ok] ok
+17:08:03 [tx] >> M204 P5000 T5000
+17:08:03 [ok] ok
+17:08:03 [tx] >> G1 X170 F6000
+17:08:03 [ok] ok
+17:08:03 [tx] >> G1 X20 F6000
+17:08:03 [ok] ok
+17:08:03 [tx] >> G1 X170 F6000
+17:08:04 [ok] ok
+17:08:04 [tx] >> G1 X20 F6000
+17:08:04 [ok] ok
+17:08:04 [tx] >> G1 X170 F6000
+17:08:04 [ok] ok
+17:08:04 [tx] >> G1 X20 F6000
+17:08:05 [ok] ok
+17:08:05 [tx] >> G1 X170 F6000
+17:08:05 [ok] ok
+17:08:05 [tx] >> G1 X20 F6000
+17:08:05 [ok] ok
+17:08:05 [tx] >> G1 X170 F6000
+17:08:05 [ok] ok
+17:08:05 [tx] >> G1 X20 F6000
+17:08:06 [ok] ok
+17:08:06 [tx] >> M400
+17:08:08 [sys] echo:busy: processing
+17:08:10 [sys] echo:busy: processing
+17:08:12 [sys] echo:busy: processing
+17:08:14 [sys] echo:busy: processing
+17:08:16 [sys] echo:busy: processing
+17:08:18 [sys] echo:busy: processing
+17:08:18 [ok] ok
+17:08:18 [tx] >> M114
+17:08:19 [rx] X:20.00 Y:105.00 Z:10.00 E:0.00 Count A:1600B:8400 Z:4000
+17:08:19 [ok] ok
+17:08:19 [tx] >> M501
+17:08:19 [sys] echo:V90 stored settings retrieved (666 bytes; crc 27654)
+17:08:19 [rx] //action:notification Stored settings retrieved
+17:08:19 [sys] echo:; Linear Units:
+17:08:19 [sys] echo:  G21 ; (mm)
+17:08:19 [sys] echo:; Auto Temp Control:
+17:08:19 [sys] echo:  M104 S210 B250 F0.10
+17:08:19 [sys] echo:; Temperature Units:
+17:08:19 [sys] echo:  M149 C ; Units in Celsius
+17:08:19 [sys] echo:; Filament settings (Disabled):
+17:08:19 [sys] echo:  M200 S0 D1.75
+17:08:19 [sys] echo:; Steps per unit:
+17:08:19 [sys] echo:  M92 X80.00 Y80.00 Z400.00 E415.00
+17:08:19 [sys] echo:; Max feedrates (units/s):
+17:08:19 [sys] echo:  M203 X300.00 Y300.00 Z5.00 E25.00
+17:08:19 [sys] echo:; Max Acceleration (units/s2):
+17:08:19 [sys] echo:  M201 X3000.00 Y3000.00 Z100.00 E1000.00
+17:08:19 [sys] echo:; Acceleration (units/s2) (P<print-accel> R<retract-accel> T<travel-accel>):
+17:08:19 [sys] echo:  M204 P3000.00 R3000.00 T3000.00
+17:08:19 [sys] echo:; Advanced (B<min_segment_time_us> S<min_feedrate> T<min_travel_feedrate> J<junc_dev>):
+17:08:19 [sys] echo:  M205 B20000.00 S0.00 T0.00 J0.01
+17:08:19 [sys] echo:; Home offset:
+17:08:19 [sys] echo:  M206 X0.00 Y0.00 Z0.00
+17:08:19 [sys] echo:; Auto Bed Leveling:
+17:08:19 [sys] echo:  M420 S0 Z10.00 ; Leveling OFF
+17:08:19 [sys] echo:  G29 W I0 J0 Z0.24000
+17:08:19 [sys] echo:  G29 W I1 J0 Z-0.08000
+17:08:19 [sys] echo:  G29 W I2 J0 Z0.14000
+17:08:19 [sys] echo:  G29 W I3 J0 Z-0.08250
+17:08:19 [sys] echo:  G29 W I4 J0 Z-0.01000
+17:08:19 [sys] echo:  G29 W I0 J1 Z0.12750
+17:08:19 [sys] echo:  G29 W I1 J1 Z-0.17000
+17:08:19 [sys] echo:  G29 W I2 J1 Z0.14000
+17:08:19 [sys] echo:  G29 W I3 J1 Z-0.14000
+17:08:19 [sys] echo:  G29 W I4 J1 Z0.00000
+17:08:19 [sys] echo:  G29 W I0 J2 Z0.10500
+17:08:19 [sys] echo:  G29 W I1 J2 Z-0.20500
+17:08:19 [sys] echo:  G29 W I2 J2 Z0.09750
+17:08:19 [sys] echo:  G29 W I3 J2 Z-0.15000
+17:08:19 [sys] echo:  G29 W I4 J2 Z-0.02500
+17:08:19 [sys] echo:  G29 W I0 J3 Z0.04250
+17:08:19 [sys] echo:  G29 W I1 J3 Z-0.27250
+17:08:19 [sys] echo:  G29 W I2 J3 Z0.06500
+17:08:19 [sys] echo:  G29 W I3 J3 Z-0.23000
+17:08:19 [sys] echo:  G29 W I4 J3 Z-0.06250
+17:08:19 [sys] echo:  G29 W I0 J4 Z-0.05750
+17:08:19 [sys] echo:  G29 W I1 J4 Z-0.33750
+17:08:19 [sys] echo:  G29 W I2 J4 Z-0.05750
+17:08:19 [sys] echo:  G29 W I3 J4 Z-0.26250
+17:08:19 [sys] echo:  G29 W I4 J4 Z-0.15500
+17:08:19 [sys] echo:; Hotend PID:
+17:08:19 [sys] echo:  M301 P23.97 I1.66 D86.64
+17:08:19 [sys] echo:; Z-Probe Offset:
+17:08:19 [sys] echo:  M851 X-54.00 Y-10.00 Z-4.16 ; (mm)
+17:08:19 [sys] echo:; Filament runout sensor:
+17:08:19 [sys] echo:  M412 S1 ; Sensor ON
+17:08:19 [ok] ok
+17:08:47 [sys] [VELOC] etapa 1: indo para o ponto de partida (XY = 20 mm), Z 10, malha desligada.
+17:08:47 [tx] >> G90
+17:08:47 [ok] ok
+17:08:47 [tx] >> M400
+17:08:48 [ok] ok
+17:08:48 [tx] >> M420 S0
+17:08:48 [sys] echo:Bed Leveling OFF
+17:08:48 [sys] echo:Fade Height 10.00
+17:08:48 [ok] ok
+17:08:48 [tx] >> G1 Z10 F600
+17:08:48 [ok] ok
+17:08:48 [tx] >> G1 X20 Y20 F6000
+17:08:49 [ok] ok
+17:08:49 [tx] >> M400
+17:08:49 [ok] ok
+17:08:49 [tx] >> M114
+17:08:50 [rx] X:20.00 Y:20.00 Z:10.00 E:0.00 Count A:1600B:1600 Z:4000
+17:08:50 [ok] ok
+17:08:53 [sys] [VELOC] cancelado antes dos ciclos.
+17:09:04 [sys] [VELOC] etapa 1: indo para o ponto de partida (X = 20 mm), Z 10, malha desligada.
+17:09:04 [tx] >> G90
+17:09:04 [ok] ok
+17:09:04 [tx] >> M400
+17:09:04 [ok] ok
+17:09:04 [tx] >> M420 S0
+17:09:04 [sys] echo:Bed Leveling OFF
+17:09:04 [sys] echo:Fade Height 10.00
+17:09:04 [ok] ok
+17:09:04 [tx] >> G1 Z10 F600
+17:09:05 [ok] ok
+17:09:05 [tx] >> G1 X20 F6000
+17:09:05 [ok] ok
+17:09:05 [tx] >> M400
+17:09:05 [ok] ok
+17:09:05 [tx] >> M114
+17:09:05 [rx] X:20.00 Y:20.00 Z:10.00 E:0.00 Count A:1600B:1600 Z:4000
+17:09:05 [ok] ok
+17:09:09 [sys] [VELOC] etapa 2: X 20<->170 mm, 5 ciclos (10 movimentos) a 100 mm/s (F6000). Motor mais rapido: 100 mm/s.
+17:09:09 [tx] >> M201 X6000 Y6000
+17:09:09 [sys] [VELOC] aceleracao 6000 mm/s2 aplicada (M201 X/Y + M204 P/T). M501 restaura ao fim.
+17:09:09 [sys] [VELOC] fim a 100 mm/s (motor 100 mm/s). O M114 vai dizer 20 mm de qualquer jeito -- quem decide e a MARCA FISICA. Carro fora da marca = passos perdidos.
+17:09:09 [ok] ok
+17:09:09 [tx] >> M204 P6000 T6000
+17:09:09 [ok] ok
+17:09:09 [tx] >> G1 X170 F6000
+17:09:10 [ok] ok
+17:09:10 [tx] >> G1 X20 F6000
+17:09:10 [ok] ok
+17:09:10 [tx] >> G1 X170 F6000
+17:09:10 [ok] ok
+17:09:10 [tx] >> G1 X20 F6000
+17:09:10 [ok] ok
+17:09:10 [tx] >> G1 X170 F6000
+17:09:11 [ok] ok
+17:09:11 [tx] >> G1 X20 F6000
+17:09:11 [ok] ok
+17:09:11 [tx] >> G1 X170 F6000
+17:09:11 [ok] ok
+17:09:11 [tx] >> G1 X20 F6000
+17:09:11 [ok] ok
+17:09:11 [tx] >> G1 X170 F6000
+17:09:12 [ok] ok
+17:09:12 [tx] >> G1 X20 F6000
+17:09:12 [ok] ok
+17:09:12 [tx] >> M400
+17:09:14 [sys] echo:busy: processing
+17:09:16 [sys] echo:busy: processing
+17:09:18 [sys] echo:busy: processing
+17:09:20 [sys] echo:busy: processing
+17:09:22 [sys] echo:busy: processing
+17:09:24 [sys] echo:busy: processing
+17:09:25 [ok] ok
+17:09:25 [tx] >> M114
+17:09:25 [rx] X:20.00 Y:20.00 Z:10.00 E:0.00 Count A:1600B:1600 Z:4000
+17:09:25 [ok] ok
+17:09:25 [tx] >> M501
+17:09:25 [sys] echo:V90 stored settings retrieved (666 bytes; crc 27654)
+17:09:25 [rx] //action:notification Stored settings retrieved
+17:09:25 [sys] echo:; Linear Units:
+17:09:25 [sys] echo:  G21 ; (mm)
+17:09:25 [sys] echo:; Auto Temp Control:
+17:09:25 [sys] echo:  M104 S210 B250 F0.10
+17:09:25 [sys] echo:; Temperature Units:
+17:09:25 [sys] echo:  M149 C ; Units in Celsius
+17:09:25 [sys] echo:; Filament settings (Disabled):
+17:09:25 [sys] echo:  M200 S0 D1.75
+17:09:25 [sys] echo:; Steps per unit:
+17:09:25 [sys] echo:  M92 X80.00 Y80.00 Z400.00 E415.00
+17:09:25 [sys] echo:; Max feedrates (units/s):
+17:09:25 [sys] echo:  M203 X300.00 Y300.00 Z5.00 E25.00
+17:09:25 [sys] echo:; Max Acceleration (units/s2):
+17:09:25 [sys] echo:  M201 X3000.00 Y3000.00 Z100.00 E1000.00
+17:09:25 [sys] echo:; Acceleration (units/s2) (P<print-accel> R<retract-accel> T<travel-accel>):
+17:09:25 [sys] echo:  M204 P3000.00 R3000.00 T3000.00
+17:09:25 [sys] echo:; Advanced (B<min_segment_time_us> S<min_feedrate> T<min_travel_feedrate> J<junc_dev>):
+17:09:25 [sys] echo:  M205 B20000.00 S0.00 T0.00 J0.01
+17:09:25 [sys] echo:; Home offset:
+17:09:25 [sys] echo:  M206 X0.00 Y0.00 Z0.00
+17:09:25 [sys] echo:; Auto Bed Leveling:
+17:09:25 [sys] echo:  M420 S0 Z10.00 ; Leveling OFF
+17:09:25 [sys] echo:  G29 W I0 J0 Z0.24000
+17:09:25 [sys] echo:  G29 W I1 J0 Z-0.08000
+17:09:25 [sys] echo:  G29 W I2 J0 Z0.14000
+17:09:25 [sys] echo:  G29 W I3 J0 Z-0.08250
+17:09:25 [sys] echo:  G29 W I4 J0 Z-0.01000
+17:09:25 [sys] echo:  G29 W I0 J1 Z0.12750
+17:09:25 [sys] echo:  G29 W I1 J1 Z-0.17000
+17:09:25 [sys] echo:  G29 W I2 J1 Z0.14000
+17:09:25 [sys] echo:  G29 W I3 J1 Z-0.14000
+17:09:25 [sys] echo:  G29 W I4 J1 Z0.00000
+17:09:25 [sys] echo:  G29 W I0 J2 Z0.10500
+17:09:25 [sys] echo:  G29 W I1 J2 Z-0.20500
+17:09:25 [sys] echo:  G29 W I2 J2 Z0.09750
+17:09:25 [sys] echo:  G29 W I3 J2 Z-0.15000
+17:09:25 [sys] echo:  G29 W I4 J2 Z-0.02500
+17:09:25 [sys] echo:  G29 W I0 J3 Z0.04250
+17:09:25 [sys] echo:  G29 W I1 J3 Z-0.27250
+17:09:25 [sys] echo:  G29 W I2 J3 Z0.06500
+17:09:25 [sys] echo:  G29 W I3 J3 Z-0.23000
+17:09:25 [sys] echo:  G29 W I4 J3 Z-0.06250
+17:09:25 [sys] echo:  G29 W I0 J4 Z-0.05750
+17:09:25 [sys] echo:  G29 W I1 J4 Z-0.33750
+17:09:25 [sys] echo:  G29 W I2 J4 Z-0.05750
+17:09:25 [sys] echo:  G29 W I3 J4 Z-0.26250
+17:09:25 [sys] echo:  G29 W I4 J4 Z-0.15500
+17:09:25 [sys] echo:; Hotend PID:
+17:09:25 [sys] echo:  M301 P23.97 I1.66 D86.64
+17:09:25 [sys] echo:; Z-Probe Offset:
+17:09:25 [sys] echo:  M851 X-54.00 Y-10.00 Z-4.16 ; (mm)
+17:09:25 [sys] echo:; Filament runout sensor:
+17:09:25 [sys] echo:  M412 S1 ; Sensor ON
+17:09:25 [ok] ok
+17:09:40 [sys] [VELOC] etapa 1: indo para o ponto de partida (X = 20 mm), Z 10, malha desligada.
+17:09:40 [tx] >> G90
+17:09:41 [ok] ok
+17:09:41 [tx] >> M400
+17:09:41 [ok] ok
+17:09:41 [tx] >> M420 S0
+17:09:41 [sys] echo:Bed Leveling OFF
+17:09:41 [sys] echo:Fade Height 10.00
+17:09:41 [ok] ok
+17:09:41 [tx] >> G1 Z10 F600
+17:09:42 [ok] ok
+17:09:42 [tx] >> G1 X20 F6000
+17:09:42 [ok] ok
+17:09:42 [tx] >> M400
+17:09:42 [ok] ok
+17:09:42 [tx] >> M114
+17:09:42 [rx] X:20.00 Y:20.00 Z:10.00 E:0.00 Count A:1600B:1600 Z:4000
+17:09:42 [ok] ok
+17:09:44 [sys] [VELOC] etapa 2: X 20<->170 mm, 5 ciclos (10 movimentos) a 100 mm/s (F6000). Motor mais rapido: 100 mm/s.
+17:09:44 [tx] >> M201 X7000 Y7000
+17:09:44 [sys] [VELOC] aceleracao 7000 mm/s2 aplicada (M201 X/Y + M204 P/T). M501 restaura ao fim.
+17:09:44 [sys] [VELOC] fim a 100 mm/s (motor 100 mm/s). O M114 vai dizer 20 mm de qualquer jeito -- quem decide e a MARCA FISICA. Carro fora da marca = passos perdidos.
+17:09:44 [ok] ok
+17:09:44 [tx] >> M204 P7000 T7000
+17:09:44 [ok] ok
+17:09:44 [tx] >> G1 X170 F6000
+17:09:44 [ok] ok
+17:09:44 [tx] >> G1 X20 F6000
+17:09:45 [ok] ok
+17:09:45 [tx] >> G1 X170 F6000
+17:09:45 [ok] ok
+17:09:45 [tx] >> G1 X20 F6000
+17:09:45 [ok] ok
+17:09:45 [tx] >> G1 X170 F6000
+17:09:45 [ok] ok
+17:09:45 [tx] >> G1 X20 F6000
+17:09:46 [ok] ok
+17:09:46 [tx] >> G1 X170 F6000
+17:09:46 [err] Error:Serial status mismatch
+17:09:46 [ok] ok
+17:09:46 [tx] >> G1 X20 F6000
+17:09:46 [ok] ok
+17:09:46 [tx] >> G1 X170 F6000
+17:09:47 [ok] ok
+17:09:47 [tx] >> G1 X20 F6000
+17:09:47 [ok] ok
+17:09:47 [tx] >> M400
+17:09:49 [sys] echo:busy: processing
+17:09:51 [sys] echo:busy: processing
+17:09:53 [sys] echo:busy: processing
+17:09:55 [sys] echo:busy: processing
+17:09:57 [sys] echo:busy: processing
+17:09:59 [sys] echo:busy: processing
+17:10:00 [ok] ok
+17:10:00 [tx] >> M114
+17:10:00 [rx] X:20.00 Y:20.00 Z:10.00 E:0.00 Count A:1600B:1600 Z:4000
+17:10:00 [ok] ok
+17:10:00 [tx] >> M501
+17:10:00 [sys] echo:V90 stored settings retrieved (666 bytes; crc 27654)
+17:10:00 [rx] //action:notification Stored settings retrieved
+17:10:00 [sys] echo:; Linear Units:
+17:10:00 [sys] echo:  G21 ; (mm)
+17:10:00 [sys] echo:; Auto Temp Control:
+17:10:00 [sys] echo:  M104 S210 B250 F0.10
+17:10:00 [sys] echo:; Temperature Units:
+17:10:00 [sys] echo:  M149 C ; Units in Celsius
+17:10:00 [sys] echo:; Filament settings (Disabled):
+17:10:00 [sys] echo:  M200 S0 D1.75
+17:10:00 [sys] echo:; Steps per unit:
+17:10:00 [sys] echo:  M92 X80.00 Y80.00 Z400.00 E415.00
+17:10:00 [sys] echo:; Max feedrates (units/s):
+17:10:00 [sys] echo:  M203 X300.00 Y300.00 Z5.00 E25.00
+17:10:00 [sys] echo:; Max Acceleration (units/s2):
+17:10:00 [sys] echo:  M201 X3000.00 Y3000.00 Z100.00 E1000.00
+17:10:00 [sys] echo:; Acceleration (units/s2) (P<print-accel> R<retract-accel> T<travel-accel>):
+17:10:00 [sys] echo:  M204 P3000.00 R3000.00 T3000.00
+17:10:00 [sys] echo:; Advanced (B<min_segment_time_us> S<min_feedrate> T<min_travel_feedrate> J<junc_dev>):
+17:10:00 [sys] echo:  M205 B20000.00 S0.00 T0.00 J0.01
+17:10:00 [sys] echo:; Home offset:
+17:10:00 [sys] echo:  M206 X0.00 Y0.00 Z0.00
+17:10:00 [sys] echo:; Auto Bed Leveling:
+17:10:00 [sys] echo:  M420 S0 Z10.00 ; Leveling OFF
+17:10:00 [sys] echo:  G29 W I0 J0 Z0.24000
+17:10:00 [sys] echo:  G29 W I1 J0 Z-0.08000
+17:10:00 [sys] echo:  G29 W I2 J0 Z0.14000
+17:10:00 [sys] echo:  G29 W I3 J0 Z-0.08250
+17:10:00 [sys] echo:  G29 W I4 J0 Z-0.01000
+17:10:00 [sys] echo:  G29 W I0 J1 Z0.12750
+17:10:00 [sys] echo:  G29 W I1 J1 Z-0.17000
+17:10:00 [sys] echo:  G29 W I2 J1 Z0.14000
+17:10:00 [sys] echo:  G29 W I3 J1 Z-0.14000
+17:10:00 [sys] echo:  G29 W I4 J1 Z0.00000
+17:10:00 [sys] echo:  G29 W I0 J2 Z0.10500
+17:10:00 [sys] echo:  G29 W I1 J2 Z-0.20500
+17:10:00 [sys] echo:  G29 W I2 J2 Z0.09750
+17:10:00 [sys] echo:  G29 W I3 J2 Z-0.15000
+17:10:00 [sys] echo:  G29 W I4 J2 Z-0.02500
+17:10:00 [sys] echo:  G29 W I0 J3 Z0.04250
+17:10:00 [sys] echo:  G29 W I1 J3 Z-0.27250
+17:10:00 [sys] echo:  G29 W I2 J3 Z0.06500
+17:10:00 [sys] echo:  G29 W I3 J3 Z-0.23000
+17:10:00 [sys] echo:  G29 W I4 J3 Z-0.06250
+17:10:00 [sys] echo:  G29 W I0 J4 Z-0.05750
+17:10:00 [sys] echo:  G29 W I1 J4 Z-0.33750
+17:10:00 [sys] echo:  G29 W I2 J4 Z-0.05750
+17:10:00 [sys] echo:  G29 W I3 J4 Z-0.26250
+17:10:00 [sys] echo:  G29 W I4 J4 Z-0.15500
+17:10:00 [sys] echo:; Hotend PID:
+17:10:00 [sys] echo:  M301 P23.97 I1.66 D86.64
+17:10:00 [sys] echo:; Z-Probe Offset:
+17:10:00 [sys] echo:  M851 X-54.00 Y-10.00 Z-4.16 ; (mm)
+17:10:00 [sys] echo:; Filament runout sensor:
+17:10:00 [sys] echo:  M412 S1 ; Sensor ON
+17:10:00 [ok] ok
+17:13:34 [sys] Desconectado.
+# sessao encerrada Sat Oct 24 17:20:08 2026

@@ -1,0 +1,397 @@
+# Console Marlin - sessao iniciada Sat Oct 24 17:28:27 2026
+17:28:28 [sys] Console pronto. Clique em 'Localizar placa' para comecar.
+17:28:28 [sys] Log desta sessao: C:\tmp\Marlin\tools-printer\logs\sessao_20261024_172827.log
+17:30:05 [ok] Conectado em COM18 @ 250000.
+17:30:05 [tx] >> M115
+17:30:05 [rx] FIRMWARE_NAME:Marlin bugfix-2.1.x (Oct 24 2026 17:16:07) SOURCE_CODE_URL:github.com/MarlinFirmware/Marlin PROTOCOL_VERSION:1.0 MACHINE_TYPE:CoreXY TinyBee KINEMATICS:COREXYCartesian EXTRUDER_COUNT:1 UUID:cede2a2f-41a2-4748-9b12-c55c62f367ff
+17:30:05 [rx] Cap:SERIAL_XON_XOFF:0
+17:30:05 [rx] Cap:BINARY_FILE_TRANSFER:0
+17:30:05 [rx] Cap:EEPROM:1
+17:30:05 [rx] Cap:VOLUMETRIC:1
+17:30:05 [rx] Cap:AUTOREPORT_POS:0
+17:30:05 [rx] Cap:AUTOREPORT_TEMP:1
+17:30:05 [rx] Cap:PROGRESS:0
+17:30:05 [rx] Cap:PRINT_JOB:1
+17:30:05 [rx] Cap:AUTOLEVEL:1
+17:30:05 [rx] Cap:RUNOUT:1
+17:30:05 [rx] Cap:Z_PROBE:1
+17:30:05 [rx] Cap:LEVELING_DATA:1
+17:30:05 [rx] Cap:BUILD_PERCENT:1
+17:30:05 [rx] Cap:SOFTWARE_POWER:0
+17:30:05 [rx] Cap:TOGGLE_LIGHTS:0
+17:30:05 [rx] Cap:CASE_LIGHT_BRIGHTNESS:0
+17:30:05 [rx] Cap:EMERGENCY_PARSER:0
+17:30:05 [rx] Cap:HOST_ACTION_COMMANDS:1
+17:30:05 [rx] Cap:PROMPT_SUPPORT:1
+17:30:05 [rx] Cap:SDCARD:0
+17:30:05 [rx] Cap:REPEAT:0
+17:30:05 [rx] Cap:SD_WRITE:0
+17:30:05 [rx] Cap:AUTOREPORT_SD_STATUS:0
+17:30:05 [rx] Cap:LONG_FILENAME:0
+17:30:05 [rx] Cap:LFN_WRITE:0
+17:30:05 [rx] Cap:CUSTOM_FIRMWARE_UPLOAD:0
+17:30:05 [rx] Cap:EXTENDED_M20:0
+17:30:05 [rx] Cap:THERMAL_PROTECTION:1
+17:30:05 [rx] Cap:MOTION_MODES:0
+17:30:05 [rx] Cap:ARCS:1
+17:30:05 [rx] Cap:BABYSTEPPING:0
+17:30:05 [rx] Cap:EP_BABYSTEP:0
+17:30:05 [rx] Cap:CHAMBER_TEMPERATURE:0
+17:30:05 [rx] Cap:COOLER_TEMPERATURE:0
+17:30:05 [rx] Cap:MEATPACK:0
+17:30:05 [rx] Cap:CONFIG_EXPORT:0
+17:30:05 [ok] ok
+17:30:05 [tx] >> M119
+17:30:05 [rx] Reporting endstop status
+17:30:05 [rx] x_max: open
+17:30:05 [rx] y_min: open
+17:30:05 [rx] z_probe: TRIGGERED
+17:30:05 [rx] filament: open
+17:30:05 [ok] ok
+17:30:17 [tx] >> G28
+17:30:19 [sys] echo:busy: processing
+17:30:21 [sys] echo:busy: processing
+17:30:23 [sys] echo:busy: processing
+17:30:25 [sys] echo:busy: processing
+17:30:27 [sys] echo:busy: processing
+17:30:29 [sys] echo:busy: processing
+17:30:31 [sys] echo:busy: processing
+17:30:33 [sys] echo:busy: processing
+17:30:35 [sys] echo:busy: processing
+17:30:37 [sys] echo:busy: processing
+17:30:39 [sys] echo:busy: processing
+17:30:41 [sys] echo:busy: processing
+17:30:43 [sys] echo:busy: processing
+17:30:45 [sys] echo:busy: processing
+17:30:47 [sys] echo:busy: processing
+17:30:49 [sys] echo:busy: processing
+17:30:50 [rx] X:152.00 Y:105.00 Z:10.00 E:0.00 Count A:20560B:3760 Z:4000
+17:30:50 [ok] ok
+17:31:00 [tx] >> G28
+17:31:02 [sys] echo:busy: processing
+17:31:04 [sys] echo:busy: processing
+17:31:06 [sys] echo:busy: processing
+17:31:08 [sys] echo:busy: processing
+17:31:10 [sys] echo:busy: processing
+17:31:12 [sys] echo:busy: processing
+17:31:14 [sys] echo:busy: processing
+17:31:16 [sys] echo:busy: processing
+17:31:18 [sys] echo:busy: processing
+17:31:20 [sys] echo:busy: processing
+17:31:22 [sys] echo:busy: processing
+17:31:25 [sys] echo:busy: processing
+17:31:27 [sys] echo:busy: processing
+17:31:27 [rx] X:152.00 Y:105.00 Z:10.00 E:0.00 Count A:20560B:3760 Z:4000
+17:31:27 [ok] ok
+17:31:28 [tx] >> G91
+17:31:28 [ok] ok
+17:31:28 [tx] >> G1 Z50 F600
+17:31:29 [ok] ok
+17:31:29 [tx] >> G90
+17:31:29 [ok] ok
+17:31:29 [tx] >> M114
+17:31:29 [rx] X:152.00 Y:105.00 Z:60.00 E:0.00 Count A:12160B:8400 Z:24000
+17:31:29 [ok] ok
+17:31:52 [sys] [FLUXO] PETG 230C: 50 mm a 4.0 mm3/s (filamento 1.66 mm/s, F100). Dura ~30 s.
+17:31:52 [tx] >> M302 P0
+17:31:53 [ok] ok
+17:31:53 [tx] >> M109 S230
+17:31:53 [temp]  T:24.06 /230.00 B:25.03 /0.00 @:0 B@:0 W:?
+17:31:53 [rx] //action:prompt_end
+17:31:53 [rx] //action:prompt_begin FilamentRunout T0
+17:31:53 [rx] //action:prompt_show
+17:31:53 [rx] //action:filament_runout T0
+17:31:53 [rx] //action:pause filament_runout 0
+17:31:54 [temp]  T:24.49 /230.00 B:24.41 /0.00 @:127 B@:0 W:?
+17:31:55 [sys] echo:busy: processing
+17:31:55 [temp]  T:24.37 /230.00 B:24.02 /0.00 @:127 B@:0 W:?
+17:31:56 [temp]  T:24.73 /230.00 B:24.18 /0.00 @:127 B@:0 W:?
+17:31:57 [sys] echo:busy: processing
+17:31:57 [temp]  T:25.20 /230.00 B:23.87 /0.00 @:127 B@:0 W:?
+17:31:58 [temp]  T:25.43 /230.00 B:23.36 /0.00 @:127 B@:0 W:?
+17:31:59 [sys] echo:busy: processing
+17:31:59 [temp]  T:26.99 /230.00 B:23.36 /0.00 @:127 B@:0 W:?
+17:32:00 [temp]  T:28.01 /230.00 B:23.44 /0.00 @:127 B@:0 W:?
+17:32:01 [sys] echo:busy: processing
+17:32:01 [temp]  T:28.84 /230.00 B:23.75 /0.00 @:127 B@:0 W:?
+17:32:02 [temp]  T:30.47 /230.00 B:24.30 /0.00 @:127 B@:0 W:?
+17:32:03 [sys] echo:busy: processing
+17:32:03 [temp]  T:31.69 /230.00 B:23.75 /0.00 @:127 B@:0 W:?
+17:32:04 [temp]  T:34.09 /230.00 B:24.49 /0.00 @:127 B@:0 W:?
+17:32:05 [sys] echo:busy: processing
+17:32:05 [temp]  T:35.63 /230.00 B:24.30 /0.00 @:127 B@:0 W:?
+17:32:06 [temp]  T:37.81 /230.00 B:23.63 /0.00 @:127 B@:0 W:?
+17:32:07 [sys] echo:busy: processing
+17:32:07 [temp]  T:39.77 /230.00 B:23.67 /0.00 @:127 B@:0 W:?
+17:32:08 [temp]  T:41.91 /230.00 B:25.54 /0.00 @:127 B@:0 W:?
+17:32:09 [sys] echo:busy: processing
+17:32:09 [temp]  T:43.81 /230.00 B:23.98 /0.00 @:127 B@:0 W:?
+17:32:10 [temp]  T:46.53 /230.00 B:23.71 /0.00 @:127 B@:0 W:?
+17:32:11 [sys] echo:busy: processing
+17:32:11 [temp]  T:48.37 /230.00 B:23.98 /0.00 @:127 B@:0 W:?
+17:32:12 [temp]  T:50.75 /230.00 B:23.44 /0.00 @:127 B@:0 W:?
+17:32:13 [sys] echo:busy: processing
+17:32:13 [temp]  T:53.35 /230.00 B:23.63 /0.00 @:127 B@:0 W:?
+17:32:14 [temp]  T:55.51 /230.00 B:24.45 /0.00 @:127 B@:0 W:?
+17:32:15 [sys] echo:busy: processing
+17:32:15 [temp]  T:57.72 /230.00 B:24.49 /0.00 @:127 B@:0 W:?
+17:32:16 [temp]  T:60.54 /230.00 B:24.34 /0.00 @:127 B@:0 W:?
+17:32:17 [sys] echo:busy: processing
+17:32:17 [temp]  T:62.59 /230.00 B:23.67 /0.00 @:127 B@:0 W:?
+17:32:18 [temp]  T:64.86 /230.00 B:24.37 /0.00 @:127 B@:0 W:?
+17:32:19 [sys] echo:busy: processing
+17:32:19 [temp]  T:67.24 /230.00 B:24.22 /0.00 @:127 B@:0 W:?
+17:32:20 [temp]  T:69.27 /230.00 B:24.22 /0.00 @:127 B@:0 W:?
+17:32:21 [sys] echo:busy: processing
+17:32:21 [temp]  T:71.38 /230.00 B:23.48 /0.00 @:127 B@:0 W:?
+17:32:22 [temp]  T:73.87 /230.00 B:24.77 /0.00 @:127 B@:0 W:?
+17:32:23 [sys] echo:busy: processing
+17:32:23 [temp]  T:75.88 /230.00 B:24.80 /0.00 @:127 B@:0 W:?
+17:32:24 [temp]  T:77.98 /230.00 B:24.14 /0.00 @:127 B@:0 W:?
+17:32:25 [sys] echo:busy: processing
+17:32:25 [temp]  T:80.31 /230.00 B:23.87 /0.00 @:127 B@:0 W:?
+17:32:26 [temp]  T:82.05 /230.00 B:24.10 /0.00 @:127 B@:0 W:?
+17:32:27 [sys] echo:busy: processing
+17:32:27 [temp]  T:84.04 /230.00 B:24.65 /0.00 @:127 B@:0 W:?
+17:32:28 [temp]  T:86.27 /230.00 B:24.49 /0.00 @:127 B@:0 W:?
+17:32:29 [sys] echo:busy: processing
+17:32:29 [temp]  T:88.24 /230.00 B:24.18 /0.00 @:127 B@:0 W:?
+17:32:30 [temp]  T:90.23 /230.00 B:24.02 /0.00 @:127 B@:0 W:?
+17:32:31 [sys] echo:busy: processing
+17:32:31 [temp]  T:92.45 /230.00 B:25.57 /0.00 @:127 B@:0 W:?
+17:32:32 [temp]  T:94.34 /230.00 B:23.16 /0.00 @:127 B@:0 W:?
+17:32:33 [sys] echo:busy: processing
+17:32:33 [temp]  T:96.17 /230.00 B:24.61 /0.00 @:127 B@:0 W:?
+17:32:34 [temp]  T:98.28 /230.00 B:24.88 /0.00 @:127 B@:0 W:?
+17:32:35 [sys] echo:busy: processing
+17:32:35 [temp]  T:100.16 /230.00 B:24.69 /0.00 @:127 B@:0 W:?
+17:32:36 [temp]  T:102.06 /230.00 B:23.36 /0.00 @:127 B@:0 W:?
+17:32:37 [sys] echo:busy: processing
+17:32:37 [temp]  T:104.13 /230.00 B:25.09 /0.00 @:127 B@:0 W:?
+17:32:38 [temp]  T:105.98 /230.00 B:24.80 /0.00 @:127 B@:0 W:?
+17:32:39 [sys] echo:busy: processing
+17:32:39 [temp]  T:107.74 /230.00 B:25.00 /0.00 @:127 B@:0 W:?
+17:32:40 [temp]  T:109.76 /230.00 B:24.77 /0.00 @:127 B@:0 W:?
+17:32:41 [sys] echo:busy: processing
+17:32:41 [temp]  T:111.48 /230.00 B:25.09 /0.00 @:127 B@:0 W:?
+17:32:42 [temp]  T:113.21 /230.00 B:24.57 /0.00 @:127 B@:0 W:?
+17:32:43 [sys] echo:busy: processing
+17:32:43 [temp]  T:115.22 /230.00 B:25.34 /0.00 @:127 B@:0 W:?
+17:32:44 [temp]  T:116.94 /230.00 B:24.65 /0.00 @:127 B@:0 W:?
+17:32:45 [sys] echo:busy: processing
+17:32:45 [temp]  T:118.59 /230.00 B:23.40 /0.00 @:127 B@:0 W:?
+17:32:46 [temp]  T:120.53 /230.00 B:26.51 /0.00 @:127 B@:0 W:?
+17:32:47 [sys] echo:busy: processing
+17:32:47 [temp]  T:122.14 /230.00 B:24.69 /0.00 @:127 B@:0 W:?
+17:32:48 [temp]  T:123.79 /230.00 B:24.80 /0.00 @:127 B@:0 W:?
+17:32:49 [sys] echo:busy: processing
+17:32:49 [temp]  T:125.77 /230.00 B:25.28 /0.00 @:127 B@:0 W:?
+17:32:50 [temp]  T:127.42 /230.00 B:24.45 /0.00 @:127 B@:0 W:?
+17:32:51 [sys] echo:busy: processing
+17:32:51 [temp]  T:128.99 /230.00 B:24.88 /0.00 @:127 B@:0 W:?
+17:32:52 [temp]  T:130.71 /230.00 B:25.17 /0.00 @:127 B@:0 W:?
+17:32:53 [sys] echo:busy: processing
+17:32:53 [temp]  T:132.31 /230.00 B:25.68 /0.00 @:127 B@:0 W:?
+17:32:54 [temp]  T:133.80 /230.00 B:25.60 /0.00 @:127 B@:0 W:?
+17:32:55 [sys] echo:busy: processing
+17:32:55 [temp]  T:135.59 /230.00 B:24.73 /0.00 @:127 B@:0 W:?
+17:32:56 [temp]  T:137.09 /230.00 B:24.84 /0.00 @:127 B@:0 W:?
+17:32:57 [sys] echo:busy: processing
+17:32:57 [temp]  T:138.58 /230.00 B:25.28 /0.00 @:127 B@:0 W:?
+17:32:58 [temp]  T:140.37 /230.00 B:24.69 /0.00 @:127 B@:0 W:?
+17:32:59 [sys] echo:busy: processing
+17:32:59 [temp]  T:141.76 /230.00 B:24.77 /0.00 @:127 B@:0 W:?
+17:33:00 [temp]  T:143.22 /230.00 B:25.09 /0.00 @:127 B@:0 W:?
+17:33:01 [sys] echo:busy: processing
+17:33:01 [temp]  T:144.65 /230.00 B:24.65 /0.00 @:127 B@:0 W:?
+17:33:02 [temp]  T:146.05 /230.00 B:25.51 /0.00 @:127 B@:0 W:?
+17:33:03 [sys] echo:busy: processing
+17:33:03 [temp]  T:147.62 /230.00 B:24.22 /0.00 @:127 B@:0 W:?
+17:33:04 [temp]  T:149.06 /230.00 B:25.40 /0.00 @:127 B@:0 W:?
+17:33:05 [sys] echo:busy: processing
+17:33:05 [temp]  T:150.35 /230.00 B:25.62 /0.00 @:127 B@:0 W:?
+17:33:06 [temp]  T:151.75 /230.00 B:24.26 /0.00 @:127 B@:0 W:?
+17:33:07 [sys] echo:busy: processing
+17:33:07 [temp]  T:153.41 /230.00 B:25.03 /0.00 @:127 B@:0 W:?
+17:33:08 [temp]  T:154.65 /230.00 B:24.80 /0.00 @:127 B@:0 W:?
+17:33:09 [sys] echo:busy: processing
+17:33:09 [temp]  T:156.01 /230.00 B:25.62 /0.00 @:127 B@:0 W:?
+17:33:10 [temp]  T:157.59 /230.00 B:25.11 /0.00 @:127 B@:0 W:?
+17:33:11 [sys] echo:busy: processing
+17:33:11 [temp]  T:158.79 /230.00 B:25.45 /0.00 @:127 B@:0 W:?
+17:33:12 [temp]  T:160.21 /230.00 B:24.69 /0.00 @:127 B@:0 W:?
+17:33:13 [sys] echo:busy: processing
+17:33:13 [temp]  T:161.79 /230.00 B:24.18 /0.00 @:127 B@:0 W:?
+17:33:14 [temp]  T:163.11 /230.00 B:25.60 /0.00 @:127 B@:0 W:?
+17:33:15 [sys] echo:busy: processing
+17:33:15 [temp]  T:164.37 /230.00 B:25.03 /0.00 @:127 B@:0 W:?
+17:33:16 [temp]  T:165.61 /230.00 B:25.91 /0.00 @:127 B@:0 W:?
+17:33:17 [sys] echo:busy: processing
+17:33:17 [temp]  T:166.98 /230.00 B:25.06 /0.00 @:127 B@:0 W:?
+17:33:18 [temp]  T:168.32 /230.00 B:25.74 /0.00 @:127 B@:0 W:?
+17:33:19 [sys] echo:busy: processing
+17:33:19 [temp]  T:169.60 /230.00 B:25.51 /0.00 @:127 B@:0 W:?
+17:33:20 [temp]  T:170.88 /230.00 B:25.17 /0.00 @:127 B@:0 W:?
+17:33:21 [sys] echo:busy: processing
+17:33:21 [temp]  T:171.97 /230.00 B:24.18 /0.00 @:127 B@:0 W:?
+17:33:22 [temp]  T:173.63 /230.00 B:25.14 /0.00 @:127 B@:0 W:?
+17:33:23 [sys] echo:busy: processing
+17:33:23 [temp]  T:174.61 /230.00 B:24.41 /0.00 @:127 B@:0 W:?
+17:33:24 [temp]  T:175.92 /230.00 B:24.06 /0.00 @:127 B@:0 W:?
+17:33:25 [sys] echo:busy: processing
+17:33:25 [temp]  T:177.48 /230.00 B:25.23 /0.00 @:127 B@:0 W:?
+17:33:26 [temp]  T:178.35 /230.00 B:24.45 /0.00 @:127 B@:0 W:?
+17:33:27 [sys] echo:busy: processing
+17:33:27 [temp]  T:179.48 /230.00 B:24.73 /0.00 @:127 B@:0 W:?
+17:33:28 [temp]  T:180.53 /230.00 B:25.62 /0.00 @:127 B@:0 W:?
+17:33:29 [sys] echo:busy: processing
+17:33:29 [temp]  T:181.87 /230.00 B:25.31 /0.00 @:127 B@:0 W:?
+17:33:30 [temp]  T:182.84 /230.00 B:24.84 /0.00 @:127 B@:0 W:?
+17:33:31 [sys] echo:busy: processing
+17:33:31 [temp]  T:183.99 /230.00 B:25.26 /0.00 @:127 B@:0 W:?
+17:33:32 [temp]  T:185.29 /230.00 B:25.48 /0.00 @:127 B@:0 W:?
+17:33:33 [sys] echo:busy: processing
+17:33:33 [temp]  T:186.54 /230.00 B:25.20 /0.00 @:127 B@:0 W:?
+17:33:34 [temp]  T:187.50 /230.00 B:25.03 /0.00 @:127 B@:0 W:?
+17:33:35 [sys] echo:busy: processing
+17:33:35 [temp]  T:188.78 /230.00 B:24.61 /0.00 @:127 B@:0 W:?
+17:33:36 [temp]  T:189.77 /230.00 B:25.37 /0.00 @:127 B@:0 W:?
+17:33:37 [sys] echo:busy: processing
+17:33:37 [temp]  T:191.42 /230.00 B:25.51 /0.00 @:127 B@:0 W:?
+17:33:38 [temp]  T:192.27 /230.00 B:24.80 /0.00 @:127 B@:0 W:?
+17:33:39 [sys] echo:busy: processing
+17:33:39 [temp]  T:193.52 /230.00 B:25.14 /0.00 @:127 B@:0 W:?
+17:33:40 [temp]  T:194.46 /230.00 B:24.77 /0.00 @:127 B@:0 W:?
+17:33:41 [sys] echo:busy: processing
+17:33:41 [temp]  T:195.57 /230.00 B:25.34 /0.00 @:127 B@:0 W:?
+17:33:42 [temp]  T:196.51 /230.00 B:25.51 /0.00 @:127 B@:0 W:?
+17:33:43 [sys] echo:busy: processing
+17:33:43 [temp]  T:197.64 /230.00 B:24.49 /0.00 @:127 B@:0 W:?
+17:33:44 [temp]  T:198.64 /230.00 B:25.11 /0.00 @:127 B@:0 W:?
+17:33:45 [sys] echo:busy: processing
+17:33:45 [temp]  T:199.77 /230.00 B:25.11 /0.00 @:127 B@:0 W:?
+17:33:46 [temp]  T:200.56 /230.00 B:25.48 /0.00 @:127 B@:0 W:?
+17:33:47 [sys] echo:busy: processing
+17:33:47 [temp]  T:201.53 /230.00 B:25.31 /0.00 @:127 B@:0 W:?
+17:33:48 [temp]  T:202.64 /230.00 B:25.17 /0.00 @:127 B@:0 W:?
+17:33:49 [sys] echo:busy: processing
+17:33:49 [temp]  T:203.68 /230.00 B:25.03 /0.00 @:127 B@:0 W:?
+17:33:50 [temp]  T:205.04 /230.00 B:25.57 /0.00 @:127 B@:0 W:?
+17:33:51 [sys] echo:busy: processing
+17:33:51 [temp]  T:205.47 /230.00 B:24.80 /0.00 @:127 B@:0 W:?
+17:33:52 [temp]  T:206.68 /230.00 B:25.57 /0.00 @:127 B@:0 W:?
+17:33:53 [sys] echo:busy: processing
+17:33:53 [temp]  T:207.50 /230.00 B:24.92 /0.00 @:127 B@:0 W:?
+17:33:54 [temp]  T:208.48 /230.00 B:25.31 /0.00 @:127 B@:0 W:?
+17:33:55 [sys] echo:busy: processing
+17:33:55 [temp]  T:209.30 /230.00 B:25.03 /0.00 @:127 B@:0 W:?
+17:33:56 [temp]  T:210.70 /230.00 B:25.45 /0.00 @:127 B@:0 W:?
+17:33:57 [sys] echo:busy: processing
+17:33:57 [temp]  T:210.98 /230.00 B:24.77 /0.00 @:127 B@:0 W:?
+17:33:58 [temp]  T:212.19 /230.00 B:25.74 /0.00 @:127 B@:0 W:?
+17:33:59 [sys] echo:busy: processing
+17:33:59 [temp]  T:213.52 /230.00 B:25.09 /0.00 @:127 B@:0 W:?
+17:34:00 [temp]  T:213.95 /230.00 B:25.03 /0.00 @:127 B@:0 W:?
+17:34:01 [sys] echo:busy: processing
+17:34:01 [temp]  T:214.49 /230.00 B:25.11 /0.00 @:127 B@:0 W:?
+17:34:02 [temp]  T:215.99 /230.00 B:25.09 /0.00 @:127 B@:0 W:?
+17:34:03 [sys] echo:busy: processing
+17:34:03 [temp]  T:216.72 /230.00 B:24.65 /0.00 @:127 B@:0 W:?
+17:34:04 [temp]  T:217.60 /230.00 B:25.23 /0.00 @:127 B@:0 W:?
+17:34:05 [sys] echo:busy: processing
+17:34:05 [temp]  T:219.01 /230.00 B:24.80 /0.00 @:127 B@:0 W:?
+17:34:06 [temp]  T:220.09 /230.00 B:25.03 /0.00 @:127 B@:0 W:?
+17:34:07 [sys] echo:busy: processing
+17:34:07 [temp]  T:220.76 /230.00 B:24.69 /0.00 @:127 B@:0 W:?
+17:34:08 [temp]  T:221.70 /230.00 B:24.73 /0.00 @:127 B@:0 W:?
+17:34:09 [sys] echo:busy: processing
+17:34:09 [temp]  T:222.37 /230.00 B:24.57 /0.00 @:127 B@:0 W:?
+17:34:10 [temp]  T:222.81 /230.00 B:25.43 /0.00 @:127 B@:0 W:?
+17:34:11 [sys] echo:busy: processing
+17:34:11 [temp]  T:223.93 /230.00 B:26.02 /0.00 @:127 B@:0 W:?
+17:34:12 [temp]  T:224.37 /230.00 B:25.17 /0.00 @:127 B@:0 W:?
+17:34:13 [sys] echo:busy: processing
+17:34:13 [temp]  T:225.06 /230.00 B:24.02 /0.00 @:127 B@:0 W:?
+17:34:14 [temp]  T:225.75 /230.00 B:24.37 /0.00 @:127 B@:0 W:?
+17:34:15 [sys] echo:busy: processing
+17:34:15 [temp]  T:226.88 /230.00 B:25.31 /0.00 @:127 B@:0 W:?
+17:34:16 [temp]  T:227.50 /230.00 B:26.42 /0.00 @:125 B@:0 W:?
+17:34:17 [sys] echo:busy: processing
+17:34:17 [temp]  T:228.75 /230.00 B:25.09 /0.00 @:106 B@:0 W:9
+17:34:18 [temp]  T:229.38 /230.00 B:25.57 /0.00 @:101 B@:0 W:8
+17:34:19 [sys] echo:busy: processing
+17:34:19 [temp]  T:230.06 /230.00 B:25.74 /0.00 @:93 B@:0 W:7
+17:34:20 [temp]  T:230.87 /230.00 B:25.06 /0.00 @:83 B@:0 W:6
+17:34:21 [sys] echo:busy: processing
+17:34:21 [temp]  T:230.81 /230.00 B:24.92 /0.00 @:94 B@:0 W:5
+17:34:22 [temp]  T:232.19 /230.00 B:25.80 /0.00 @:67 B@:0 W:4
+17:34:23 [sys] echo:busy: processing
+17:34:23 [temp]  T:232.87 /230.00 B:25.09 /0.00 @:57 B@:0 W:3
+17:34:24 [temp]  T:232.87 /230.00 B:25.14 /0.00 @:63 B@:0 W:9
+17:34:25 [sys] echo:busy: processing
+17:34:25 [temp]  T:232.87 /230.00 B:25.23 /0.00 @:68 B@:0 W:9
+17:34:26 [temp]  T:234.00 /230.00 B:25.82 /0.00 @:43 B@:0 W:9
+17:34:27 [sys] echo:busy: processing
+17:34:27 [temp]  T:234.37 /230.00 B:25.03 /0.00 @:36 B@:0 W:9
+17:34:28 [temp]  T:233.44 /230.00 B:25.57 /0.00 @:61 B@:0 W:9
+17:34:29 [sys] echo:busy: processing
+17:34:29 [temp]  T:233.63 /230.00 B:24.77 /0.00 @:55 B@:0 W:9
+17:34:30 [temp]  T:233.13 /230.00 B:25.17 /0.00 @:66 B@:0 W:9
+17:34:31 [sys] echo:busy: processing
+17:34:31 [temp]  T:232.75 /230.00 B:24.65 /0.00 @:72 B@:0 W:9
+17:34:32 [temp]  T:232.62 /230.00 B:25.45 /0.00 @:71 B@:0 W:9
+17:34:33 [sys] echo:busy: processing
+17:34:33 [temp]  T:231.63 /230.00 B:25.68 /0.00 @:91 B@:0 W:8
+17:34:34 [temp]  T:232.00 /230.00 B:25.45 /0.00 @:76 B@:0 W:7
+17:34:35 [sys] echo:busy: processing
+17:34:35 [temp]  T:230.94 /230.00 B:25.57 /0.00 @:98 B@:0 W:6
+17:34:36 [temp]  T:230.56 /230.00 B:25.68 /0.00 @:103 B@:0 W:5
+17:34:37 [sys] echo:busy: processing
+17:34:37 [temp]  T:230.31 /230.00 B:25.14 /0.00 @:104 B@:0 W:4
+17:34:38 [temp]  T:230.19 /230.00 B:25.62 /0.00 @:101 B@:0 W:3
+17:34:39 [sys] echo:busy: processing
+17:34:39 [temp]  T:229.94 /230.00 B:25.03 /0.00 @:103 B@:0 W:2
+17:34:40 [temp]  T:229.13 /230.00 B:24.88 /0.00 @:119 B@:0 W:1
+17:34:41 [sys] echo:busy: processing
+17:34:41 [temp]  T:229.44 /230.00 B:24.61 /0.00 @:107 B@:0 W:0
+17:34:41 [ok] ok
+17:34:41 [sys] echo:Unknown command: "M25"
+17:34:41 [ok] ok
+17:34:41 [tx] >> M83
+17:34:41 [ok] ok
+17:34:41 [tx] >> G1 E50 F100
+17:34:42 [ok] ok
+17:36:31 [sys] [FLUXO] PETG 230C: 50 mm a 8.0 mm3/s (filamento 3.33 mm/s, F200). Dura ~15 s.
+17:36:31 [tx] >> M302 P0
+17:36:31 [ok] ok
+17:36:31 [tx] >> M109 S230
+17:36:31 [temp]  T:229.25 /230.00 B:25.43 /0.00 @:106 B@:0 W:?
+17:36:31 [ok] ok
+17:36:31 [tx] >> M83
+17:36:31 [ok] ok
+17:36:31 [tx] >> G1 E50 F200
+17:36:32 [ok] ok
+17:37:34 [sys] [FLUXO] PETG 230C: 50 mm a 10.0 mm3/s (filamento 4.16 mm/s, F249). Dura ~12 s.
+17:37:34 [tx] >> M302 P0
+17:37:34 [ok] ok
+17:37:34 [tx] >> M109 S230
+17:37:34 [ok] ok
+17:37:34 [tx] >> M83
+17:37:34 [ok] ok
+17:37:34 [tx] >> G1 E50 F249
+17:37:34 [ok] ok
+17:39:03 [sys] [FLUXO] PETG 230C: 50 mm a 7.0 mm3/s (filamento 2.91 mm/s, F175). Dura ~17 s.
+17:39:03 [tx] >> M302 P0
+17:39:03 [ok] ok
+17:39:03 [tx] >> M109 S230
+17:39:03 [ok] ok
+17:39:03 [tx] >> M83
+17:39:03 [ok] ok
+17:39:03 [tx] >> G1 E50 F175
+17:39:04 [ok] ok
+17:40:34 [sys] [FLUXO] PETG 230C: 7.0 mm3/s LIMPO
+17:42:08 [tx] >> M104 S0
+17:42:08 [ok] ok
+17:42:15 [tx] >> M104 S0
+17:42:15 [ok] ok
+# sessao encerrada Sat Oct 24 17:42:30 2026

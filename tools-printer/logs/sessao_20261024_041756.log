@@ -1,0 +1,1310 @@
+# Console Marlin - sessao iniciada Sat Oct 24 04:17:56 2026
+04:17:56 [sys] Console pronto. Clique em 'Localizar placa' para comecar.
+04:17:56 [sys] Log desta sessao: C:\tmp\Marlin\tools-printer\logs\sessao_20261024_041756.log
+04:18:07 [ok] Conectado em COM18 @ 250000.
+04:18:07 [tx] >> M115
+04:18:07 [rx] FIRMWARE_NAME:Marlin bugfix-2.1.x (Oct 21 2026 03:57:54) SOURCE_CODE_URL:github.com/MarlinFirmware/Marlin PROTOCOL_VERSION:1.0 MACHINE_TYPE:CoreXY TinyBee KINEMATICS:COREXYCartesian EXTRUDER_COUNT:1 UUID:cede2a2f-41a2-4748-9b12-c55c62f367ff
+04:18:07 [rx] Cap:SERIAL_XON_XOFF:0
+04:18:07 [rx] Cap:BINARY_FILE_TRANSFER:0
+04:18:07 [rx] Cap:EEPROM:1
+04:18:07 [rx] Cap:VOLUMETRIC:1
+04:18:07 [rx] Cap:AUTOREPORT_POS:0
+04:18:07 [rx] Cap:AUTOREPORT_TEMP:1
+04:18:07 [rx] Cap:PROGRESS:0
+04:18:07 [rx] Cap:PRINT_JOB:1
+04:18:07 [rx] Cap:AUTOLEVEL:1
+04:18:07 [rx] Cap:RUNOUT:1
+04:18:07 [rx] Cap:Z_PROBE:1
+04:18:07 [rx] Cap:LEVELING_DATA:1
+04:18:07 [rx] Cap:BUILD_PERCENT:1
+04:18:07 [rx] Cap:SOFTWARE_POWER:0
+04:18:07 [rx] Cap:TOGGLE_LIGHTS:0
+04:18:07 [rx] Cap:CASE_LIGHT_BRIGHTNESS:0
+04:18:07 [rx] Cap:EMERGENCY_PARSER:0
+04:18:07 [rx] Cap:HOST_ACTION_COMMANDS:1
+04:18:07 [rx] Cap:PROMPT_SUPPORT:1
+04:18:07 [rx] Cap:SDCARD:0
+04:18:07 [rx] Cap:REPEAT:0
+04:18:07 [rx] Cap:SD_WRITE:0
+04:18:07 [rx] Cap:AUTOREPORT_SD_STATUS:0
+04:18:07 [rx] Cap:LONG_FILENAME:0
+04:18:07 [rx] Cap:LFN_WRITE:0
+04:18:07 [rx] Cap:CUSTOM_FIRMWARE_UPLOAD:0
+04:18:07 [rx] Cap:EXTENDED_M20:0
+04:18:07 [rx] Cap:THERMAL_PROTECTION:1
+04:18:07 [rx] Cap:MOTION_MODES:0
+04:18:07 [rx] Cap:ARCS:1
+04:18:07 [rx] Cap:BABYSTEPPING:0
+04:18:07 [rx] Cap:EP_BABYSTEP:0
+04:18:07 [rx] Cap:CHAMBER_TEMPERATURE:0
+04:18:07 [rx] Cap:COOLER_TEMPERATURE:0
+04:18:07 [rx] Cap:MEATPACK:0
+04:18:07 [rx] Cap:CONFIG_EXPORT:0
+04:18:07 [ok] ok
+04:18:07 [tx] >> M119
+04:18:08 [rx] Reporting endstop status
+04:18:08 [rx] x_max: open
+04:18:08 [rx] y_min: open
+04:18:08 [rx] z_probe: TRIGGERED
+04:18:08 [rx] filament: open
+04:18:08 [ok] ok
+04:18:23 [tx] >> G28
+04:18:25 [sys] echo:busy: processing
+04:18:27 [sys] echo:busy: processing
+04:18:29 [sys] echo:busy: processing
+04:18:31 [sys] echo:busy: processing
+04:18:33 [sys] echo:busy: processing
+04:18:35 [sys] echo:busy: processing
+04:18:37 [sys] echo:busy: processing
+04:18:39 [sys] echo:busy: processing
+04:18:41 [sys] echo:busy: processing
+04:18:43 [sys] echo:busy: processing
+04:18:45 [sys] echo:busy: processing
+04:18:47 [sys] echo:busy: processing
+04:18:49 [sys] echo:busy: processing
+04:18:51 [sys] echo:busy: processing
+04:18:53 [sys] echo:busy: processing
+04:18:54 [rx] X:152.00 Y:105.00 Z:10.00 E:0.00 Count A:20560B:3760 Z:4000
+04:18:54 [ok] ok
+04:20:17 [sys] [VELOC] etapa 1: indo para o ponto de partida (XY = 20 mm), Z 10, malha desligada.
+04:20:17 [tx] >> G90
+04:20:17 [ok] ok
+04:20:17 [tx] >> M400
+04:20:18 [ok] ok
+04:20:18 [tx] >> M420 S0
+04:20:18 [sys] echo:Bed Leveling OFF
+04:20:18 [sys] echo:Fade Height 10.00
+04:20:18 [ok] ok
+04:20:18 [tx] >> G1 Z10 F600
+04:20:18 [ok] ok
+04:20:18 [tx] >> G1 X20 Y20 F3600
+04:20:18 [ok] ok
+04:20:18 [tx] >> M400
+04:20:21 [sys] echo:busy: processing
+04:20:21 [ok] ok
+04:20:21 [tx] >> M114
+04:20:21 [rx] X:20.00 Y:20.00 Z:10.00 E:0.00 Count A:1600B:1600 Z:4000
+04:20:21 [ok] ok
+04:21:14 [sys] [VELOC] etapa 2: XY 20<->170 mm, 10 ciclos (20 movimentos) a 60 mm/s (F3600). Motor mais rapido: 85 mm/s.
+04:21:14 [tx] >> G1 X170 Y170 F3600
+04:21:14 [sys] [VELOC] fim a 60 mm/s (motor 85 mm/s). O M114 vai dizer 20 mm de qualquer jeito -- quem decide e a MARCA FISICA. Carro fora da marca = passos perdidos.
+04:21:15 [ok] ok
+04:21:15 [tx] >> G1 X20 Y20 F3600
+04:21:15 [ok] ok
+04:21:15 [tx] >> G1 X170 Y170 F3600
+04:21:15 [ok] ok
+04:21:15 [tx] >> G1 X20 Y20 F3600
+04:21:15 [ok] ok
+04:21:15 [tx] >> G1 X170 Y170 F3600
+04:21:16 [ok] ok
+04:21:16 [tx] >> G1 X20 Y20 F3600
+04:21:16 [ok] ok
+04:21:16 [tx] >> G1 X170 Y170 F3600
+04:21:16 [ok] ok
+04:21:16 [tx] >> G1 X20 Y20 F3600
+04:21:16 [ok] ok
+04:21:16 [tx] >> G1 X170 Y170 F3600
+04:21:17 [ok] ok
+04:21:17 [tx] >> G1 X20 Y20 F3600
+04:21:17 [ok] ok
+04:21:17 [tx] >> G1 X170 Y170 F3600
+04:21:17 [ok] ok
+04:21:17 [tx] >> G1 X20 Y20 F3600
+04:21:17 [ok] ok
+04:21:17 [tx] >> G1 X170 Y170 F3600
+04:21:18 [ok] ok
+04:21:18 [tx] >> G1 X20 Y20 F3600
+04:21:18 [ok] ok
+04:21:18 [tx] >> G1 X170 Y170 F3600
+04:21:18 [ok] ok
+04:21:18 [tx] >> G1 X20 Y20 F3600
+04:21:18 [ok] ok
+04:21:18 [tx] >> G1 X170 Y170 F3600
+04:21:21 [sys] echo:busy: processing
+04:21:22 [ok] ok
+04:21:22 [tx] >> G1 X20 Y20 F3600
+04:21:24 [sys] echo:busy: processing
+04:21:25 [ok] ok
+04:21:25 [tx] >> G1 X170 Y170 F3600
+04:21:27 [sys] echo:busy: processing
+04:21:29 [ok] ok
+04:21:29 [tx] >> G1 X20 Y20 F3600
+04:21:31 [sys] echo:busy: processing
+04:21:32 [ok] ok
+04:21:32 [tx] >> M400
+04:21:34 [sys] echo:busy: processing
+04:21:36 [sys] echo:busy: processing
+04:21:38 [sys] echo:busy: processing
+04:21:40 [sys] echo:busy: processing
+04:21:42 [sys] echo:busy: processing
+04:21:44 [sys] echo:busy: processing
+04:21:46 [sys] echo:busy: processing
+04:21:48 [sys] echo:busy: processing
+04:21:50 [sys] echo:busy: processing
+04:21:52 [sys] echo:busy: processing
+04:21:54 [sys] echo:busy: processing
+04:21:56 [sys] echo:busy: processing
+04:21:58 [sys] echo:busy: processing
+04:22:00 [sys] echo:busy: processing
+04:22:02 [sys] echo:busy: processing
+04:22:04 [sys] echo:busy: processing
+04:22:06 [sys] echo:busy: processing
+04:22:08 [sys] echo:busy: processing
+04:22:10 [sys] echo:busy: processing
+04:22:12 [sys] echo:busy: processing
+04:22:14 [sys] echo:busy: processing
+04:22:16 [sys] echo:busy: processing
+04:22:18 [sys] echo:busy: processing
+04:22:20 [sys] echo:busy: processing
+04:22:22 [sys] echo:busy: processing
+04:22:24 [ok] ok
+04:22:24 [tx] >> M114
+04:22:25 [rx] X:20.00 Y:20.00 Z:10.00 E:0.00 Count A:1600B:1600 Z:4000
+04:22:25 [ok] ok
+04:22:57 [tx] >> G28
+04:22:59 [sys] echo:busy: processing
+04:23:01 [sys] echo:busy: processing
+04:23:03 [sys] echo:busy: processing
+04:23:05 [sys] echo:busy: processing
+04:23:07 [sys] echo:busy: processing
+04:23:09 [sys] echo:busy: processing
+04:23:11 [sys] echo:busy: processing
+04:23:13 [sys] echo:busy: processing
+04:23:15 [sys] echo:busy: processing
+04:23:17 [sys] echo:busy: processing
+04:23:19 [sys] echo:busy: processing
+04:23:21 [sys] echo:busy: processing
+04:23:23 [sys] echo:busy: processing
+04:23:25 [sys] echo:busy: processing
+04:23:27 [rx] X:152.00 Y:105.00 Z:10.00 E:0.00 Count A:20560B:3760 Z:4000
+04:23:27 [ok] ok
+04:23:33 [sys] [VELOC] etapa 1: indo para o ponto de partida (X = 20 mm), Z 10, malha desligada.
+04:23:33 [tx] >> G90
+04:23:33 [ok] ok
+04:23:33 [tx] >> M400
+04:23:33 [ok] ok
+04:23:33 [tx] >> M420 S0
+04:23:34 [sys] echo:Bed Leveling OFF
+04:23:34 [sys] echo:Fade Height 10.00
+04:23:34 [ok] ok
+04:23:34 [tx] >> G1 Z10 F600
+04:23:34 [ok] ok
+04:23:34 [tx] >> G1 X20 F6000
+04:23:34 [ok] ok
+04:23:34 [tx] >> M400
+04:23:36 [ok] ok
+04:23:36 [tx] >> M114
+04:23:36 [rx] X:20.00 Y:105.00 Z:10.00 E:0.00 Count A:1600B:8400 Z:4000
+04:23:36 [ok] ok
+04:24:09 [sys] [VELOC] etapa 2: X 20<->170 mm, 10 ciclos (20 movimentos) a 100 mm/s (F6000). Motor mais rapido: 100 mm/s.
+04:24:09 [tx] >> G1 X170 F6000
+04:24:09 [sys] [VELOC] fim a 100 mm/s (motor 100 mm/s). O M114 vai dizer 20 mm de qualquer jeito -- quem decide e a MARCA FISICA. Carro fora da marca = passos perdidos.
+04:24:10 [ok] ok
+04:24:10 [tx] >> G1 X20 F6000
+04:24:10 [ok] ok
+04:24:10 [tx] >> G1 X170 F6000
+04:24:10 [ok] ok
+04:24:10 [tx] >> G1 X20 F6000
+04:24:10 [ok] ok
+04:24:10 [tx] >> G1 X170 F6000
+04:24:11 [ok] ok
+04:24:11 [tx] >> G1 X20 F6000
+04:24:11 [ok] ok
+04:24:11 [tx] >> G1 X170 F6000
+04:24:11 [ok] ok
+04:24:11 [tx] >> G1 X20 F6000
+04:24:11 [ok] ok
+04:24:11 [tx] >> G1 X170 F6000
+04:24:12 [ok] ok
+04:24:12 [tx] >> G1 X20 F6000
+04:24:12 [ok] ok
+04:24:12 [tx] >> G1 X170 F6000
+04:24:12 [ok] ok
+04:24:12 [tx] >> G1 X20 F6000
+04:24:12 [ok] ok
+04:24:12 [tx] >> G1 X170 F6000
+04:24:13 [ok] ok
+04:24:13 [tx] >> G1 X20 F6000
+04:24:13 [ok] ok
+04:24:13 [tx] >> G1 X170 F6000
+04:24:13 [ok] ok
+04:24:13 [tx] >> G1 X20 F6000
+04:24:13 [ok] ok
+04:24:13 [tx] >> G1 X170 F6000
+04:24:14 [ok] ok
+04:24:14 [tx] >> G1 X20 F6000
+04:24:14 [ok] ok
+04:24:14 [tx] >> G1 X170 F6000
+04:24:16 [ok] ok
+04:24:16 [tx] >> G1 X20 F6000
+04:24:17 [ok] ok
+04:24:17 [tx] >> M400
+04:24:20 [sys] echo:busy: processing
+04:24:22 [sys] echo:busy: processing
+04:24:24 [sys] echo:busy: processing
+04:24:26 [sys] echo:busy: processing
+04:24:28 [sys] echo:busy: processing
+04:24:30 [sys] echo:busy: processing
+04:24:32 [sys] echo:busy: processing
+04:24:34 [sys] echo:busy: processing
+04:24:36 [sys] echo:busy: processing
+04:24:38 [sys] echo:busy: processing
+04:24:40 [sys] echo:busy: processing
+04:24:40 [ok] ok
+04:24:40 [tx] >> M114
+04:24:40 [rx] X:20.00 Y:105.00 Z:10.00 E:0.00 Count A:1600B:8400 Z:4000
+04:24:40 [ok] ok
+04:25:30 [sys] [VELOC] etapa 1: indo para o ponto de partida (X = 20 mm), Z 10, malha desligada.
+04:25:30 [tx] >> G90
+04:25:31 [ok] ok
+04:25:31 [tx] >> M400
+04:25:31 [ok] ok
+04:25:31 [tx] >> M420 S0
+04:25:31 [sys] echo:Bed Leveling OFF
+04:25:31 [sys] echo:Fade Height 10.00
+04:25:31 [ok] ok
+04:25:31 [tx] >> G1 Z10 F600
+04:25:31 [ok] ok
+04:25:31 [tx] >> G1 X20 F8400
+04:25:32 [ok] ok
+04:25:32 [tx] >> M400
+04:25:32 [ok] ok
+04:25:32 [tx] >> M114
+04:25:32 [rx] X:20.00 Y:105.00 Z:10.00 E:0.00 Count A:1600B:8400 Z:4000
+04:25:32 [ok] ok
+04:25:35 [sys] [VELOC] etapa 2: X 20<->170 mm, 10 ciclos (20 movimentos) a 140 mm/s (F8400). Motor mais rapido: 140 mm/s.
+04:25:36 [tx] >> G1 X170 F8400
+04:25:36 [sys] [VELOC] fim a 140 mm/s (motor 140 mm/s). O M114 vai dizer 20 mm de qualquer jeito -- quem decide e a MARCA FISICA. Carro fora da marca = passos perdidos.
+04:25:36 [ok] ok
+04:25:36 [tx] >> G1 X20 F8400
+04:25:36 [ok] ok
+04:25:36 [tx] >> G1 X170 F8400
+04:25:36 [ok] ok
+04:25:36 [tx] >> G1 X20 F8400
+04:25:36 [ok] ok
+04:25:36 [tx] >> G1 X170 F8400
+04:25:37 [ok] ok
+04:25:37 [tx] >> G1 X20 F8400
+04:25:37 [ok] ok
+04:25:37 [tx] >> G1 X170 F8400
+04:25:37 [ok] ok
+04:25:37 [tx] >> G1 X20 F8400
+04:25:38 [ok] ok
+04:25:38 [tx] >> G1 X170 F8400
+04:25:38 [ok] ok
+04:25:38 [tx] >> G1 X20 F8400
+04:25:38 [ok] ok
+04:25:38 [tx] >> G1 X170 F8400
+04:25:38 [ok] ok
+04:25:38 [tx] >> G1 X20 F8400
+04:25:39 [ok] ok
+04:25:39 [tx] >> G1 X170 F8400
+04:25:39 [ok] ok
+04:25:39 [tx] >> G1 X20 F8400
+04:25:39 [ok] ok
+04:25:39 [tx] >> G1 X170 F8400
+04:25:39 [ok] ok
+04:25:39 [tx] >> G1 X20 F8400
+04:25:40 [ok] ok
+04:25:40 [tx] >> G1 X170 F8400
+04:25:40 [ok] ok
+04:25:40 [tx] >> G1 X20 F8400
+04:25:40 [ok] ok
+04:25:40 [tx] >> G1 X170 F8400
+04:25:40 [ok] ok
+04:25:40 [tx] >> G1 X20 F8400
+04:25:41 [ok] ok
+04:25:41 [tx] >> M400
+04:25:44 [sys] echo:busy: processing
+04:25:46 [sys] echo:busy: processing
+04:25:48 [sys] echo:busy: processing
+04:25:50 [sys] echo:busy: processing
+04:25:52 [sys] echo:busy: processing
+04:25:54 [sys] echo:busy: processing
+04:25:56 [sys] echo:busy: processing
+04:25:58 [sys] echo:busy: processing
+04:25:58 [ok] ok
+04:25:58 [tx] >> M114
+04:25:58 [rx] X:20.00 Y:105.00 Z:10.00 E:0.00 Count A:1600B:8400 Z:4000
+04:25:58 [ok] ok
+04:26:24 [sys] [VELOC] etapa 1: indo para o ponto de partida (X = 20 mm), Z 10, malha desligada.
+04:26:24 [tx] >> G90
+04:26:25 [ok] ok
+04:26:25 [tx] >> M400
+04:26:25 [ok] ok
+04:26:25 [tx] >> M420 S0
+04:26:25 [sys] echo:Bed Leveling OFF
+04:26:25 [sys] echo:Fade Height 10.00
+04:26:25 [ok] ok
+04:26:25 [tx] >> G1 Z10 F600
+04:26:25 [ok] ok
+04:26:25 [tx] >> G1 X20 F9600
+04:26:26 [ok] ok
+04:26:26 [tx] >> M400
+04:26:26 [ok] ok
+04:26:26 [tx] >> M114
+04:26:26 [rx] X:20.00 Y:105.00 Z:10.00 E:0.00 Count A:1600B:8400 Z:4000
+04:26:26 [ok] ok
+04:26:36 [sys] [VELOC] etapa 2: X 20<->170 mm, 10 ciclos (20 movimentos) a 160 mm/s (F9600). Motor mais rapido: 160 mm/s.
+04:26:36 [tx] >> G1 X170 F9600
+04:26:36 [sys] [VELOC] fim a 160 mm/s (motor 160 mm/s). O M114 vai dizer 20 mm de qualquer jeito -- quem decide e a MARCA FISICA. Carro fora da marca = passos perdidos.
+04:26:36 [ok] ok
+04:26:36 [tx] >> G1 X20 F9600
+04:26:36 [ok] ok
+04:26:36 [tx] >> G1 X170 F9600
+04:26:36 [ok] ok
+04:26:36 [tx] >> G1 X20 F9600
+04:26:37 [ok] ok
+04:26:37 [tx] >> G1 X170 F9600
+04:26:37 [ok] ok
+04:26:37 [tx] >> G1 X20 F9600
+04:26:37 [ok] ok
+04:26:37 [tx] >> G1 X170 F9600
+04:26:37 [ok] ok
+04:26:37 [tx] >> G1 X20 F9600
+04:26:38 [ok] ok
+04:26:38 [tx] >> G1 X170 F9600
+04:26:38 [ok] ok
+04:26:38 [tx] >> G1 X20 F9600
+04:26:38 [ok] ok
+04:26:38 [tx] >> G1 X170 F9600
+04:26:38 [ok] ok
+04:26:38 [tx] >> G1 X20 F9600
+04:26:39 [ok] ok
+04:26:39 [tx] >> G1 X170 F9600
+04:26:39 [ok] ok
+04:26:39 [tx] >> G1 X20 F9600
+04:26:39 [ok] ok
+04:26:39 [tx] >> G1 X170 F9600
+04:26:39 [ok] ok
+04:26:40 [tx] >> G1 X20 F9600
+04:26:40 [ok] ok
+04:26:40 [tx] >> G1 X170 F9600
+04:26:40 [ok] ok
+04:26:40 [tx] >> G1 X20 F9600
+04:26:40 [ok] ok
+04:26:40 [tx] >> G1 X170 F9600
+04:26:41 [ok] ok
+04:26:41 [tx] >> G1 X20 F9600
+04:26:41 [ok] ok
+04:26:41 [tx] >> M400
+04:26:43 [sys] echo:busy: processing
+04:26:45 [sys] echo:busy: processing
+04:26:47 [sys] echo:busy: processing
+04:26:49 [sys] echo:busy: processing
+04:26:51 [sys] echo:busy: processing
+04:26:53 [sys] echo:busy: processing
+04:26:55 [sys] echo:busy: processing
+04:26:55 [ok] ok
+04:26:55 [tx] >> M114
+04:26:56 [rx] X:20.00 Y:105.00 Z:10.00 E:0.00 Count A:1600B:8400 Z:4000
+04:26:56 [ok] ok
+04:27:22 [tx] >> G28
+04:27:24 [sys] echo:busy: processing
+04:27:26 [sys] echo:busy: processing
+04:27:28 [sys] echo:busy: processing
+04:27:30 [sys] echo:busy: processing
+04:27:32 [sys] echo:busy: processing
+04:27:34 [sys] echo:busy: processing
+04:27:36 [sys] echo:busy: processing
+04:27:38 [sys] echo:busy: processing
+04:27:40 [sys] echo:busy: processing
+04:27:42 [sys] echo:busy: processing
+04:27:44 [sys] echo:busy: processing
+04:27:44 [rx] X:152.00 Y:105.00 Z:10.00 E:0.00 Count A:20560B:3760 Z:4000
+04:27:44 [ok] ok
+04:27:53 [sys] [VELOC] etapa 1: indo para o ponto de partida (X = 20 mm), Z 10, malha desligada.
+04:27:53 [tx] >> G90
+04:27:53 [ok] ok
+04:27:53 [tx] >> M400
+04:27:53 [ok] ok
+04:27:53 [tx] >> M420 S0
+04:27:54 [sys] echo:Bed Leveling OFF
+04:27:54 [sys] echo:Fade Height 10.00
+04:27:54 [ok] ok
+04:27:54 [tx] >> G1 Z10 F600
+04:27:54 [ok] ok
+04:27:54 [tx] >> G1 X20 F9000
+04:27:54 [ok] ok
+04:27:54 [tx] >> M400
+04:27:55 [ok] ok
+04:27:55 [tx] >> M114
+04:27:55 [rx] X:20.00 Y:105.00 Z:10.00 E:0.00 Count A:1600B:8400 Z:4000
+04:27:55 [ok] ok
+04:28:09 [sys] [VELOC] cancelado antes dos ciclos.
+04:28:36 [sys] [VELOC] etapa 1: indo para o ponto de partida (X = 20 mm), Z 10, malha desligada.
+04:28:36 [tx] >> G90
+04:28:36 [ok] ok
+04:28:36 [tx] >> M400
+04:28:37 [ok] ok
+04:28:37 [tx] >> M420 S0
+04:28:37 [sys] echo:Bed Leveling OFF
+04:28:37 [sys] echo:Fade Height 10.00
+04:28:37 [ok] ok
+04:28:37 [tx] >> G1 Z10 F600
+04:28:37 [ok] ok
+04:28:37 [tx] >> G1 X20 F9000
+04:28:37 [ok] ok
+04:28:37 [tx] >> M400
+04:28:38 [ok] ok
+04:28:38 [tx] >> M114
+04:28:38 [rx] X:20.00 Y:105.00 Z:10.00 E:0.00 Count A:1600B:8400 Z:4000
+04:28:38 [ok] ok
+04:28:42 [sys] [VELOC] etapa 2: X 20<->170 mm, 2 ciclos (4 movimentos) a 150 mm/s (F9000). Motor mais rapido: 150 mm/s.
+04:28:42 [tx] >> G1 X170 F9000
+04:28:42 [sys] [VELOC] fim a 150 mm/s (motor 150 mm/s). O M114 vai dizer 20 mm de qualquer jeito -- quem decide e a MARCA FISICA. Carro fora da marca = passos perdidos.
+04:28:42 [ok] ok
+04:28:42 [tx] >> G1 X20 F9000
+04:28:42 [ok] ok
+04:28:42 [tx] >> G1 X170 F9000
+04:28:42 [ok] ok
+04:28:42 [tx] >> G1 X20 F9000
+04:28:43 [ok] ok
+04:28:43 [tx] >> M400
+04:28:45 [sys] echo:busy: processing
+04:28:46 [ok] ok
+04:28:46 [tx] >> M114
+04:28:46 [rx] X:20.00 Y:105.00 Z:10.00 E:0.00 Count A:1600B:8400 Z:4000
+04:28:46 [ok] ok
+04:28:59 [sys] [VELOC] etapa 1: indo para o ponto de partida (X = 20 mm), Z 10, malha desligada.
+04:28:59 [tx] >> G90
+04:28:59 [ok] ok
+04:28:59 [tx] >> M400
+04:28:59 [ok] ok
+04:28:59 [tx] >> M420 S0
+04:29:00 [sys] echo:Bed Leveling OFF
+04:29:00 [sys] echo:Fade Height 10.00
+04:29:00 [ok] ok
+04:29:00 [tx] >> G1 Z10 F600
+04:29:00 [ok] ok
+04:29:00 [tx] >> G1 X20 F8700
+04:29:00 [ok] ok
+04:29:00 [tx] >> M400
+04:29:00 [ok] ok
+04:29:00 [tx] >> M114
+04:29:01 [rx] X:20.00 Y:105.00 Z:10.00 E:0.00 Count A:1600B:8400 Z:4000
+04:29:01 [ok] ok
+04:29:02 [sys] [VELOC] etapa 2: X 20<->170 mm, 2 ciclos (4 movimentos) a 145 mm/s (F8700). Motor mais rapido: 145 mm/s.
+04:29:02 [tx] >> G1 X170 F8700
+04:29:02 [sys] [VELOC] fim a 145 mm/s (motor 145 mm/s). O M114 vai dizer 20 mm de qualquer jeito -- quem decide e a MARCA FISICA. Carro fora da marca = passos perdidos.
+04:29:03 [ok] ok
+04:29:03 [tx] >> G1 X20 F8700
+04:29:03 [ok] ok
+04:29:03 [tx] >> G1 X170 F8700
+04:29:03 [ok] ok
+04:29:03 [tx] >> G1 X20 F8700
+04:29:03 [ok] ok
+04:29:03 [tx] >> M400
+04:29:06 [sys] echo:busy: processing
+04:29:07 [ok] ok
+04:29:07 [tx] >> M114
+04:29:07 [rx] X:20.00 Y:105.00 Z:10.00 E:0.00 Count A:1600B:8400 Z:4000
+04:29:07 [ok] ok
+04:29:17 [tx] >> G28
+04:29:19 [sys] echo:busy: processing
+04:29:21 [sys] echo:busy: processing
+04:29:23 [sys] echo:busy: processing
+04:29:25 [sys] echo:busy: processing
+04:29:27 [sys] echo:busy: processing
+04:29:29 [sys] echo:busy: processing
+04:29:31 [sys] echo:busy: processing
+04:29:33 [sys] echo:busy: processing
+04:29:35 [sys] echo:busy: processing
+04:29:37 [sys] echo:busy: processing
+04:29:39 [sys] echo:busy: processing
+04:29:41 [sys] echo:busy: processing
+04:29:43 [sys] echo:busy: processing
+04:29:45 [sys] echo:busy: processing
+04:29:47 [sys] echo:busy: processing
+04:29:49 [sys] echo:busy: processing
+04:29:51 [sys] echo:busy: processing
+04:29:53 [sys] echo:busy: processing
+04:29:55 [sys] echo:busy: processing
+04:29:56 [rx] X:152.00 Y:105.00 Z:10.00 E:0.00 Count A:20560B:3760 Z:4000
+04:29:56 [ok] ok
+04:35:18 [tx] >> G28
+04:35:20 [sys] echo:busy: processing
+04:35:22 [sys] echo:busy: processing
+04:35:24 [sys] echo:busy: processing
+04:35:26 [sys] echo:busy: processing
+04:35:28 [sys] echo:busy: processing
+04:35:30 [sys] echo:busy: processing
+04:35:32 [sys] echo:busy: processing
+04:35:34 [sys] echo:busy: processing
+04:35:36 [sys] echo:busy: processing
+04:35:38 [sys] echo:busy: processing
+04:35:40 [sys] echo:busy: processing
+04:35:42 [sys] echo:busy: processing
+04:35:44 [sys] echo:busy: processing
+04:35:46 [sys] echo:busy: processing
+04:35:47 [rx] X:152.00 Y:105.00 Z:10.00 E:0.00 Count A:20560B:3760 Z:4000
+04:35:47 [ok] ok
+04:35:55 [sys] [VELOC] etapa 1: indo para o ponto de partida (XY = 20 mm), Z 10, malha desligada.
+04:35:55 [tx] >> G90
+04:35:55 [ok] ok
+04:35:55 [tx] >> M400
+04:35:55 [ok] ok
+04:35:55 [tx] >> M420 S0
+04:35:55 [sys] echo:Bed Leveling OFF
+04:35:55 [sys] echo:Fade Height 10.00
+04:35:55 [ok] ok
+04:35:55 [tx] >> G1 Z10 F600
+04:35:56 [ok] ok
+04:35:56 [tx] >> G1 X20 Y20 F5400
+04:35:56 [ok] ok
+04:35:56 [tx] >> M400
+04:35:58 [ok] ok
+04:35:58 [tx] >> M114
+04:35:58 [rx] X:20.00 Y:20.00 Z:10.00 E:0.00 Count A:1600B:1600 Z:4000
+04:35:58 [ok] ok
+04:36:38 [sys] [VELOC] etapa 2: XY 20<->170 mm, 5 ciclos (10 movimentos) a 90 mm/s (F5400). Motor mais rapido: 127 mm/s.
+04:36:38 [tx] >> G1 X170 Y170 F5400
+04:36:38 [sys] [VELOC] fim a 90 mm/s (motor 127 mm/s). O M114 vai dizer 20 mm de qualquer jeito -- quem decide e a MARCA FISICA. Carro fora da marca = passos perdidos.
+04:36:39 [ok] ok
+04:36:39 [tx] >> G1 X20 Y20 F5400
+04:36:39 [ok] ok
+04:36:39 [tx] >> G1 X170 Y170 F5400
+04:36:39 [ok] ok
+04:36:39 [tx] >> G1 X20 Y20 F5400
+04:36:39 [err] Error:Serial status mismatch
+04:36:39 [ok] ok
+04:36:39 [tx] >> G1 X170 Y170 F5400
+04:36:40 [ok] ok
+04:36:40 [tx] >> G1 X20 Y20 F5400
+04:36:40 [ok] ok
+04:36:40 [tx] >> G1 X170 Y170 F5400
+04:36:40 [ok] ok
+04:36:40 [tx] >> G1 X20 Y20 F5400
+04:36:40 [ok] ok
+04:36:40 [tx] >> G1 X170 Y170 F5400
+04:36:41 [ok] ok
+04:36:41 [tx] >> G1 X20 Y20 F5400
+04:36:41 [ok] ok
+04:36:41 [tx] >> M400
+04:36:43 [sys] echo:busy: processing
+04:36:45 [sys] echo:busy: processing
+04:36:47 [sys] echo:busy: processing
+04:36:49 [sys] echo:busy: processing
+04:36:51 [sys] echo:busy: processing
+04:36:53 [sys] echo:busy: processing
+04:36:55 [sys] echo:busy: processing
+04:36:57 [sys] echo:busy: processing
+04:36:59 [sys] echo:busy: processing
+04:37:01 [sys] echo:busy: processing
+04:37:02 [ok] ok
+04:37:02 [tx] >> M114
+04:37:02 [rx] X:20.00 Y:20.00 Z:10.00 E:0.00 Count A:1600B:1600 Z:4000
+04:37:02 [ok] ok
+04:37:22 [sys] [VELOC] etapa 1: indo para o ponto de partida (XY = 20 mm), Z 10, malha desligada.
+04:37:22 [tx] >> G90
+04:37:22 [ok] ok
+04:37:22 [tx] >> M400
+04:37:22 [ok] ok
+04:37:22 [tx] >> M420 S0
+04:37:22 [sys] echo:Bed Leveling OFF
+04:37:22 [sys] echo:Fade Height 10.00
+04:37:22 [ok] ok
+04:37:22 [tx] >> G1 Z10 F600
+04:37:23 [ok] ok
+04:37:23 [tx] >> G1 X20 Y20 F6600
+04:37:23 [err] Error:Serial status mismatch
+04:37:23 [ok] ok
+04:37:23 [tx] >> M400
+04:37:23 [ok] ok
+04:37:23 [tx] >> M114
+04:37:23 [rx] X:20.00 Y:20.00 Z:10.00 E:0.00 Count A:1600B:1600 Z:4000
+04:37:23 [ok] ok
+04:37:27 [sys] [VELOC] etapa 2: XY 20<->170 mm, 5 ciclos (10 movimentos) a 110 mm/s (F6600). Motor mais rapido: 156 mm/s.
+04:37:27 [tx] >> G1 X170 Y170 F6600
+04:37:27 [sys] [VELOC] fim a 110 mm/s (motor 156 mm/s). O M114 vai dizer 20 mm de qualquer jeito -- quem decide e a MARCA FISICA. Carro fora da marca = passos perdidos.
+04:37:27 [ok] ok
+04:37:27 [tx] >> G1 X20 Y20 F6600
+04:37:27 [ok] ok
+04:37:27 [tx] >> G1 X170 Y170 F6600
+04:37:28 [ok] ok
+04:37:28 [tx] >> G1 X20 Y20 F6600
+04:37:28 [ok] ok
+04:37:28 [tx] >> G1 X170 Y170 F6600
+04:37:28 [ok] ok
+04:37:28 [tx] >> G1 X20 Y20 F6600
+04:37:29 [ok] ok
+04:37:29 [tx] >> G1 X170 Y170 F6600
+04:37:29 [ok] ok
+04:37:29 [tx] >> G1 X20 Y20 F6600
+04:37:29 [ok] ok
+04:37:29 [tx] >> G1 X170 Y170 F6600
+04:37:29 [ok] ok
+04:37:29 [tx] >> G1 X20 Y20 F6600
+04:37:30 [ok] ok
+04:37:30 [tx] >> M400
+04:37:32 [sys] echo:busy: processing
+04:37:34 [sys] echo:busy: processing
+04:37:36 [sys] echo:busy: processing
+04:37:38 [sys] echo:busy: processing
+04:37:40 [sys] echo:busy: processing
+04:37:42 [sys] echo:busy: processing
+04:37:44 [sys] echo:busy: processing
+04:37:46 [sys] echo:busy: processing
+04:37:47 [ok] ok
+04:37:47 [tx] >> M114
+04:37:47 [rx] X:20.00 Y:20.00 Z:10.00 E:0.00 Count A:1600B:1600 Z:4000
+04:37:47 [ok] ok
+04:38:03 [sys] [VELOC] etapa 1: indo para o ponto de partida (XY = 20 mm), Z 10, malha desligada.
+04:38:03 [tx] >> G90
+04:38:03 [ok] ok
+04:38:03 [tx] >> M400
+04:38:04 [ok] ok
+04:38:04 [tx] >> M420 S0
+04:38:04 [sys] echo:Bed Leveling OFF
+04:38:04 [sys] echo:Fade Height 10.00
+04:38:04 [ok] ok
+04:38:04 [tx] >> G1 Z10 F600
+04:38:04 [ok] ok
+04:38:04 [tx] >> G1 X20 Y20 F7800
+04:38:04 [ok] ok
+04:38:04 [tx] >> M400
+04:38:05 [ok] ok
+04:38:05 [tx] >> M114
+04:38:05 [rx] X:20.00 Y:20.00 Z:10.00 E:0.00 Count A:1600B:1600 Z:4000
+04:38:05 [ok] ok
+04:38:09 [sys] [VELOC] etapa 2: XY 20<->170 mm, 5 ciclos (10 movimentos) a 130 mm/s (F7800). Motor mais rapido: 184 mm/s.
+04:38:09 [tx] >> G1 X170 Y170 F7800
+04:38:09 [sys] [VELOC] fim a 130 mm/s (motor 184 mm/s). O M114 vai dizer 20 mm de qualquer jeito -- quem decide e a MARCA FISICA. Carro fora da marca = passos perdidos.
+04:38:10 [ok] ok
+04:38:10 [tx] >> G1 X20 Y20 F7800
+04:38:10 [ok] ok
+04:38:10 [tx] >> G1 X170 Y170 F7800
+04:38:10 [ok] ok
+04:38:10 [tx] >> G1 X20 Y20 F7800
+04:38:10 [ok] ok
+04:38:10 [tx] >> G1 X170 Y170 F7800
+04:38:11 [ok] ok
+04:38:11 [tx] >> G1 X20 Y20 F7800
+04:38:11 [ok] ok
+04:38:11 [tx] >> G1 X170 Y170 F7800
+04:38:11 [ok] ok
+04:38:11 [tx] >> G1 X20 Y20 F7800
+04:38:11 [ok] ok
+04:38:11 [tx] >> G1 X170 Y170 F7800
+04:38:12 [ok] ok
+04:38:12 [tx] >> G1 X20 Y20 F7800
+04:38:12 [ok] ok
+04:38:12 [tx] >> M400
+04:38:14 [sys] echo:busy: processing
+04:38:16 [sys] echo:busy: processing
+04:38:18 [sys] echo:busy: processing
+04:38:20 [sys] echo:busy: processing
+04:38:22 [sys] echo:busy: processing
+04:38:24 [sys] echo:busy: processing
+04:38:26 [ok] ok
+04:38:26 [tx] >> M114
+04:38:26 [rx] X:20.00 Y:20.00 Z:10.00 E:0.00 Count A:1600B:1600 Z:4000
+04:38:26 [ok] ok
+04:38:42 [sys] [VELOC] etapa 1: indo para o ponto de partida (XY = 20 mm), Z 10, malha desligada.
+04:38:42 [tx] >> G90
+04:38:42 [ok] ok
+04:38:42 [tx] >> M400
+04:38:42 [ok] ok
+04:38:42 [tx] >> M420 S0
+04:38:43 [sys] echo:Bed Leveling OFF
+04:38:43 [sys] echo:Fade Height 10.00
+04:38:43 [ok] ok
+04:38:43 [tx] >> G1 Z10 F600
+04:38:43 [ok] ok
+04:38:43 [tx] >> G1 X20 Y20 F7200
+04:38:43 [ok] ok
+04:38:43 [tx] >> M400
+04:38:43 [ok] ok
+04:38:43 [tx] >> M114
+04:38:44 [rx] X:20.00 Y:20.00 Z:10.00 E:0.00 Count A:1600B:1600 Z:4000
+04:38:44 [ok] ok
+04:38:46 [sys] [VELOC] etapa 2: XY 20<->170 mm, 5 ciclos (10 movimentos) a 120 mm/s (F7200). Motor mais rapido: 170 mm/s.
+04:38:46 [tx] >> G1 X170 Y170 F7200
+04:38:46 [sys] [VELOC] fim a 120 mm/s (motor 170 mm/s). O M114 vai dizer 20 mm de qualquer jeito -- quem decide e a MARCA FISICA. Carro fora da marca = passos perdidos.
+04:38:46 [ok] ok
+04:38:46 [tx] >> G1 X20 Y20 F7200
+04:38:46 [ok] ok
+04:38:46 [tx] >> G1 X170 Y170 F7200
+04:38:46 [ok] ok
+04:38:46 [tx] >> G1 X20 Y20 F7200
+04:38:47 [ok] ok
+04:38:47 [tx] >> G1 X170 Y170 F7200
+04:38:47 [ok] ok
+04:38:47 [tx] >> G1 X20 Y20 F7200
+04:38:47 [ok] ok
+04:38:47 [tx] >> G1 X170 Y170 F7200
+04:38:47 [ok] ok
+04:38:47 [tx] >> G1 X20 Y20 F7200
+04:38:48 [ok] ok
+04:38:48 [tx] >> G1 X170 Y170 F7200
+04:38:48 [ok] ok
+04:38:48 [tx] >> G1 X20 Y20 F7200
+04:38:48 [ok] ok
+04:38:48 [tx] >> M400
+04:38:50 [sys] echo:busy: processing
+04:38:52 [sys] echo:busy: processing
+04:38:54 [sys] echo:busy: processing
+04:38:56 [sys] echo:busy: processing
+04:38:58 [sys] echo:busy: processing
+04:39:00 [sys] echo:busy: processing
+04:39:02 [sys] echo:busy: processing
+04:39:04 [ok] ok
+04:39:04 [tx] >> M114
+04:39:04 [rx] X:20.00 Y:20.00 Z:10.00 E:0.00 Count A:1600B:1600 Z:4000
+04:39:04 [ok] ok
+04:39:19 [sys] [VELOC] etapa 1: indo para o ponto de partida (XY = 20 mm), Z 10, malha desligada.
+04:39:19 [tx] >> G90
+04:39:19 [ok] ok
+04:39:19 [tx] >> M400
+04:39:19 [ok] ok
+04:39:19 [tx] >> M420 S0
+04:39:20 [sys] echo:Bed Leveling OFF
+04:39:20 [sys] echo:Fade Height 10.00
+04:39:20 [ok] ok
+04:39:20 [tx] >> G1 Z10 F600
+04:39:20 [ok] ok
+04:39:20 [tx] >> G1 X20 Y20 F6600
+04:39:20 [ok] ok
+04:39:20 [tx] >> M400
+04:39:20 [ok] ok
+04:39:20 [tx] >> M114
+04:39:21 [rx] X:20.00 Y:20.00 Z:10.00 E:0.00 Count A:1600B:1600 Z:4000
+04:39:21 [ok] ok
+04:39:22 [sys] [VELOC] etapa 2: XY 20<->170 mm, 5 ciclos (10 movimentos) a 110 mm/s (F6600). Motor mais rapido: 156 mm/s.
+04:39:22 [tx] >> G1 X170 Y170 F6600
+04:39:22 [sys] [VELOC] fim a 110 mm/s (motor 156 mm/s). O M114 vai dizer 20 mm de qualquer jeito -- quem decide e a MARCA FISICA. Carro fora da marca = passos perdidos.
+04:39:23 [ok] ok
+04:39:23 [tx] >> G1 X20 Y20 F6600
+04:39:23 [ok] ok
+04:39:23 [tx] >> G1 X170 Y170 F6600
+04:39:23 [ok] ok
+04:39:23 [tx] >> G1 X20 Y20 F6600
+04:39:23 [ok] ok
+04:39:23 [tx] >> G1 X170 Y170 F6600
+04:39:24 [ok] ok
+04:39:24 [tx] >> G1 X20 Y20 F6600
+04:39:24 [ok] ok
+04:39:24 [tx] >> G1 X170 Y170 F6600
+04:39:24 [ok] ok
+04:39:24 [tx] >> G1 X20 Y20 F6600
+04:39:24 [ok] ok
+04:39:24 [tx] >> G1 X170 Y170 F6600
+04:39:25 [ok] ok
+04:39:25 [tx] >> G1 X20 Y20 F6600
+04:39:25 [ok] ok
+04:39:25 [tx] >> M400
+04:39:27 [sys] echo:busy: processing
+04:39:29 [sys] echo:busy: processing
+04:39:31 [sys] echo:busy: processing
+04:39:33 [sys] echo:busy: processing
+04:39:35 [sys] echo:busy: processing
+04:39:37 [sys] echo:busy: processing
+04:39:39 [sys] echo:busy: processing
+04:39:41 [sys] echo:busy: processing
+04:39:42 [ok] ok
+04:39:42 [tx] >> M114
+04:39:43 [rx] X:20.00 Y:20.00 Z:10.00 E:0.00 Count A:1600B:1600 Z:4000
+04:39:43 [ok] ok
+04:44:28 [sys] Desconectado.
+16:24:26 [err] Nao conectado.
+16:24:33 [ok] Conectado em COM18 @ 250000.
+16:24:33 [tx] >> M115
+16:24:33 [rx] FIRMWARE_NAME:Marlin bugfix-2.1.x (Oct 21 2026 03:57:54) SOURCE_CODE_URL:github.com/MarlinFirmware/Marlin PROTOCOL_VERSION:1.0 MACHINE_TYPE:CoreXY TinyBee KINEMATICS:COREXYCartesian EXTRUDER_COUNT:1 UUID:cede2a2f-41a2-4748-9b12-c55c62f367ff
+16:24:33 [rx] Cap:SERIAL_XON_XOFF:0
+16:24:33 [rx] Cap:BINARY_FILE_TRANSFER:0
+16:24:33 [rx] Cap:EEPROM:1
+16:24:33 [rx] Cap:VOLUMETRIC:1
+16:24:33 [rx] Cap:AUTOREPORT_POS:0
+16:24:33 [rx] Cap:AUTOREPORT_TEMP:1
+16:24:33 [rx] Cap:PROGRESS:0
+16:24:33 [rx] Cap:PRINT_JOB:1
+16:24:33 [rx] Cap:AUTOLEVEL:1
+16:24:33 [rx] Cap:RUNOUT:1
+16:24:33 [rx] Cap:Z_PROBE:1
+16:24:33 [rx] Cap:LEVELING_DATA:1
+16:24:33 [rx] Cap:BUILD_PERCENT:1
+16:24:33 [rx] Cap:SOFTWARE_POWER:0
+16:24:33 [rx] Cap:TOGGLE_LIGHTS:0
+16:24:33 [rx] Cap:CASE_LIGHT_BRIGHTNESS:0
+16:24:33 [rx] Cap:EMERGENCY_PARSER:0
+16:24:33 [rx] Cap:HOST_ACTION_COMMANDS:1
+16:24:33 [rx] Cap:PROMPT_SUPPORT:1
+16:24:33 [rx] Cap:SDCARD:0
+16:24:33 [rx] Cap:REPEAT:0
+16:24:33 [rx] Cap:SD_WRITE:0
+16:24:33 [rx] Cap:AUTOREPORT_SD_STATUS:0
+16:24:33 [rx] Cap:LONG_FILENAME:0
+16:24:33 [rx] Cap:LFN_WRITE:0
+16:24:33 [rx] Cap:CUSTOM_FIRMWARE_UPLOAD:0
+16:24:33 [rx] Cap:EXTENDED_M20:0
+16:24:33 [rx] Cap:THERMAL_PROTECTION:1
+16:24:33 [rx] Cap:MOTION_MODES:0
+16:24:33 [rx] Cap:ARCS:1
+16:24:33 [rx] Cap:BABYSTEPPING:0
+16:24:33 [rx] Cap:EP_BABYSTEP:0
+16:24:33 [rx] Cap:CHAMBER_TEMPERATURE:0
+16:24:33 [rx] Cap:COOLER_TEMPERATURE:0
+16:24:33 [rx] Cap:MEATPACK:0
+16:24:33 [rx] Cap:CONFIG_EXPORT:0
+16:24:33 [ok] ok
+16:24:33 [tx] >> M119
+16:24:33 [rx] Reporting endstop status
+16:24:33 [rx] x_max: open
+16:24:33 [rx] y_min: open
+16:24:33 [rx] z_probe: TRIGGERED
+16:24:33 [rx] filament: open
+16:24:33 [ok] ok
+16:24:39 [tx] >> G28
+16:24:41 [sys] echo:busy: processing
+16:24:43 [sys] echo:busy: processing
+16:24:45 [sys] echo:busy: processing
+16:24:47 [sys] echo:busy: processing
+16:24:49 [sys] echo:busy: processing
+16:24:51 [sys] echo:busy: processing
+16:24:53 [sys] echo:busy: processing
+16:24:55 [sys] echo:busy: processing
+16:24:57 [sys] echo:busy: processing
+16:24:59 [sys] echo:busy: processing
+16:25:01 [sys] echo:busy: processing
+16:25:03 [sys] echo:busy: processing
+16:25:05 [sys] echo:busy: processing
+16:25:07 [sys] echo:busy: processing
+16:25:09 [sys] echo:busy: processing
+16:25:11 [sys] echo:busy: processing
+16:25:13 [sys] echo:busy: processing
+16:25:14 [rx] X:152.00 Y:105.00 Z:10.00 E:0.00 Count A:20560B:3760 Z:4000
+16:25:14 [ok] ok
+16:25:34 [sys] [VELOC] etapa 1: indo para o ponto de partida (X = 20 mm), Z 10, malha desligada.
+16:25:34 [tx] >> G90
+16:25:35 [ok] ok
+16:25:35 [tx] >> M400
+16:25:35 [ok] ok
+16:25:35 [tx] >> M420 S0
+16:25:35 [sys] echo:Bed Leveling OFF
+16:25:35 [sys] echo:Fade Height 10.00
+16:25:35 [ok] ok
+16:25:35 [tx] >> G1 Z10 F600
+16:25:35 [ok] ok
+16:25:35 [tx] >> G1 X20 F7200
+16:25:36 [ok] ok
+16:25:36 [tx] >> M400
+16:25:37 [ok] ok
+16:25:37 [tx] >> M114
+16:25:37 [rx] X:20.00 Y:105.00 Z:10.00 E:0.00 Count A:1600B:8400 Z:4000
+16:25:37 [ok] ok
+16:25:43 [sys] [VELOC] etapa 2: X 20<->170 mm, 2 ciclos (4 movimentos) a 120 mm/s (F7200). Motor mais rapido: 120 mm/s.
+16:25:43 [tx] >> G1 X170 F7200
+16:25:43 [sys] [VELOC] fim a 120 mm/s (motor 120 mm/s). O M114 vai dizer 20 mm de qualquer jeito -- quem decide e a MARCA FISICA. Carro fora da marca = passos perdidos.
+16:25:43 [ok] ok
+16:25:43 [tx] >> G1 X20 F7200
+16:25:43 [ok] ok
+16:25:43 [tx] >> G1 X170 F7200
+16:25:44 [ok] ok
+16:25:44 [tx] >> G1 X20 F7200
+16:25:44 [ok] ok
+16:25:44 [tx] >> M400
+16:25:46 [sys] echo:busy: processing
+16:25:48 [sys] echo:busy: processing
+16:25:48 [ok] ok
+16:25:48 [tx] >> M114
+16:25:49 [rx] X:20.00 Y:105.00 Z:10.00 E:0.00 Count A:1600B:8400 Z:4000
+16:25:49 [ok] ok
+16:25:58 [sys] [VELOC] etapa 1: indo para o ponto de partida (X = 20 mm), Z 10, malha desligada.
+16:25:58 [tx] >> G90
+16:25:58 [ok] ok
+16:25:58 [tx] >> M400
+16:25:58 [ok] ok
+16:25:58 [tx] >> M420 S0
+16:25:59 [sys] echo:Bed Leveling OFF
+16:25:59 [sys] echo:Fade Height 10.00
+16:25:59 [ok] ok
+16:25:59 [tx] >> G1 Z10 F600
+16:25:59 [ok] ok
+16:25:59 [tx] >> G1 X20 F8400
+16:25:59 [ok] ok
+16:25:59 [tx] >> M400
+16:25:59 [ok] ok
+16:25:59 [tx] >> M114
+16:26:00 [rx] X:20.00 Y:105.00 Z:10.00 E:0.00 Count A:1600B:8400 Z:4000
+16:26:00 [ok] ok
+16:26:05 [sys] [VELOC] etapa 2: X 20<->170 mm, 2 ciclos (4 movimentos) a 140 mm/s (F8400). Motor mais rapido: 140 mm/s.
+16:26:05 [tx] >> G1 X170 F8400
+16:26:05 [sys] [VELOC] fim a 140 mm/s (motor 140 mm/s). O M114 vai dizer 20 mm de qualquer jeito -- quem decide e a MARCA FISICA. Carro fora da marca = passos perdidos.
+16:26:05 [ok] ok
+16:26:05 [tx] >> G1 X20 F8400
+16:26:05 [ok] ok
+16:26:05 [tx] >> G1 X170 F8400
+16:26:05 [ok] ok
+16:26:05 [tx] >> G1 X20 F8400
+16:26:06 [ok] ok
+16:26:06 [tx] >> M400
+16:26:08 [sys] echo:busy: processing
+16:26:09 [ok] ok
+16:26:09 [tx] >> M114
+16:26:10 [rx] X:20.00 Y:105.00 Z:10.00 E:0.00 Count A:1600B:8400 Z:4000
+16:26:10 [ok] ok
+16:26:17 [sys] [VELOC] etapa 1: indo para o ponto de partida (XY = 20 mm), Z 10, malha desligada.
+16:26:17 [tx] >> G90
+16:26:18 [ok] ok
+16:26:18 [tx] >> M400
+16:26:18 [ok] ok
+16:26:18 [tx] >> M420 S0
+16:26:18 [sys] echo:Bed Leveling OFF
+16:26:18 [sys] echo:Fade Height 10.00
+16:26:18 [ok] ok
+16:26:18 [tx] >> G1 Z10 F600
+16:26:18 [ok] ok
+16:26:18 [tx] >> G1 X20 Y20 F9000
+16:26:19 [ok] ok
+16:26:19 [tx] >> M400
+16:26:19 [ok] ok
+16:26:19 [tx] >> M114
+16:26:19 [rx] X:20.00 Y:20.00 Z:10.00 E:0.00 Count A:1600B:1600 Z:4000
+16:26:19 [ok] ok
+16:26:21 [sys] [VELOC] etapa 2: XY 20<->170 mm, 2 ciclos (4 movimentos) a 150 mm/s (F9000). Motor mais rapido: 212 mm/s.
+16:26:21 [tx] >> G1 X170 Y170 F9000
+16:26:21 [sys] [VELOC] fim a 150 mm/s (motor 212 mm/s). O M114 vai dizer 20 mm de qualquer jeito -- quem decide e a MARCA FISICA. Carro fora da marca = passos perdidos.
+16:26:21 [ok] ok
+16:26:21 [tx] >> G1 X20 Y20 F9000
+16:26:22 [ok] ok
+16:26:22 [tx] >> G1 X170 Y170 F9000
+16:26:22 [ok] ok
+16:26:22 [tx] >> G1 X20 Y20 F9000
+16:26:22 [ok] ok
+16:26:22 [tx] >> M400
+16:26:24 [sys] echo:busy: processing
+16:26:26 [sys] echo:busy: processing
+16:26:27 [ok] ok
+16:26:27 [tx] >> M114
+16:26:27 [rx] X:20.00 Y:20.00 Z:10.00 E:0.00 Count A:1600B:1600 Z:4000
+16:26:27 [ok] ok
+16:28:12 [tx] >> G28
+16:28:15 [sys] echo:busy: processing
+16:28:17 [sys] echo:busy: processing
+16:28:19 [sys] echo:busy: processing
+16:28:21 [sys] echo:busy: processing
+16:28:23 [sys] echo:busy: processing
+16:28:25 [sys] echo:busy: processing
+16:28:27 [sys] echo:busy: processing
+16:28:29 [sys] echo:busy: processing
+16:28:31 [sys] echo:busy: processing
+16:28:33 [sys] echo:busy: processing
+16:28:35 [sys] echo:busy: processing
+16:28:37 [sys] echo:busy: processing
+16:28:39 [sys] echo:busy: processing
+16:28:41 [sys] echo:busy: processing
+16:28:43 [rx] X:152.00 Y:105.00 Z:10.00 E:0.00 Count A:20560B:3760 Z:4000
+16:28:43 [ok] ok
+16:28:53 [sys] [VELOC] etapa 1: indo para o ponto de partida (X = 20 mm), Z 10, malha desligada.
+16:28:53 [tx] >> G90
+16:28:53 [ok] ok
+16:28:53 [tx] >> M400
+16:28:53 [ok] ok
+16:28:53 [tx] >> M420 S0
+16:28:54 [sys] echo:Bed Leveling OFF
+16:28:54 [sys] echo:Fade Height 10.00
+16:28:54 [ok] ok
+16:28:54 [tx] >> G1 Z10 F600
+16:28:54 [ok] ok
+16:28:54 [tx] >> G1 X20 F9000
+16:28:54 [ok] ok
+16:28:54 [tx] >> M400
+16:28:55 [ok] ok
+16:28:55 [tx] >> M114
+16:28:55 [rx] X:20.00 Y:105.00 Z:10.00 E:0.00 Count A:1600B:8400 Z:4000
+16:28:55 [ok] ok
+16:28:58 [sys] [VELOC] cancelado antes dos ciclos.
+16:29:10 [sys] [VELOC] etapa 1: indo para o ponto de partida (X = 20 mm), Z 10, malha desligada.
+16:29:10 [tx] >> G90
+16:29:10 [ok] ok
+16:29:10 [tx] >> M400
+16:29:10 [ok] ok
+16:29:10 [tx] >> M420 S0
+16:29:10 [sys] echo:Bed Leveling OFF
+16:29:10 [sys] echo:Fade Height 10.00
+16:29:10 [ok] ok
+16:29:10 [tx] >> G1 Z10 F600
+16:29:11 [ok] ok
+16:29:11 [tx] >> G1 X20 F8700
+16:29:11 [ok] ok
+16:29:11 [tx] >> M400
+16:29:11 [ok] ok
+16:29:11 [tx] >> M114
+16:29:12 [rx] X:20.00 Y:105.00 Z:10.00 E:0.00 Count A:1600B:8400 Z:4000
+16:29:12 [ok] ok
+16:29:13 [sys] [VELOC] etapa 2: X 20<->170 mm, 2 ciclos (4 movimentos) a 145 mm/s (F8700). Motor mais rapido: 145 mm/s.
+16:29:13 [tx] >> G1 X170 F8700
+16:29:13 [sys] [VELOC] fim a 145 mm/s (motor 145 mm/s). O M114 vai dizer 20 mm de qualquer jeito -- quem decide e a MARCA FISICA. Carro fora da marca = passos perdidos.
+16:29:13 [ok] ok
+16:29:13 [tx] >> G1 X20 F8700
+16:29:14 [ok] ok
+16:29:14 [tx] >> G1 X170 F8700
+16:29:14 [ok] ok
+16:29:14 [tx] >> G1 X20 F8700
+16:29:14 [ok] ok
+16:29:14 [tx] >> M400
+16:29:16 [sys] echo:busy: processing
+16:29:18 [ok] ok
+16:29:18 [tx] >> M114
+16:29:18 [rx] X:20.00 Y:105.00 Z:10.00 E:0.00 Count A:1600B:8400 Z:4000
+16:29:18 [ok] ok
+16:29:33 [sys] [VELOC] etapa 1: indo para o ponto de partida (X = 20 mm), Z 10, malha desligada.
+16:29:33 [tx] >> G90
+16:29:33 [ok] ok
+16:29:33 [tx] >> M400
+16:29:33 [ok] ok
+16:29:33 [tx] >> M420 S0
+16:29:34 [sys] echo:Bed Leveling OFF
+16:29:34 [sys] echo:Fade Height 10.00
+16:29:34 [ok] ok
+16:29:34 [tx] >> G1 Z10 F600
+16:29:34 [ok] ok
+16:29:34 [tx] >> G1 X20 F8820
+16:29:34 [ok] ok
+16:29:34 [tx] >> M400
+16:29:34 [ok] ok
+16:29:34 [tx] >> M114
+16:29:35 [rx] X:20.00 Y:105.00 Z:10.00 E:0.00 Count A:1600B:8400 Z:4000
+16:29:35 [ok] ok
+16:29:36 [sys] [VELOC] etapa 2: X 20<->170 mm, 2 ciclos (4 movimentos) a 147 mm/s (F8820). Motor mais rapido: 147 mm/s.
+16:29:36 [tx] >> G1 X170 F8820
+16:29:36 [sys] [VELOC] fim a 147 mm/s (motor 147 mm/s). O M114 vai dizer 20 mm de qualquer jeito -- quem decide e a MARCA FISICA. Carro fora da marca = passos perdidos.
+16:29:36 [ok] ok
+16:29:36 [tx] >> G1 X20 F8820
+16:29:37 [ok] ok
+16:29:37 [tx] >> G1 X170 F8820
+16:29:37 [ok] ok
+16:29:37 [tx] >> G1 X20 F8820
+16:29:37 [ok] ok
+16:29:37 [tx] >> M400
+16:29:39 [sys] echo:busy: processing
+16:29:41 [ok] ok
+16:29:41 [tx] >> M114
+16:29:41 [rx] X:20.00 Y:105.00 Z:10.00 E:0.00 Count A:1600B:8400 Z:4000
+16:29:41 [ok] ok
+16:29:59 [sys] [VELOC] etapa 1: indo para o ponto de partida (X = 20 mm), Z 10, malha desligada.
+16:29:59 [tx] >> G90
+16:29:59 [ok] ok
+16:29:59 [tx] >> M400
+16:30:00 [ok] ok
+16:30:00 [tx] >> M420 S0
+16:30:00 [sys] echo:Bed Leveling OFF
+16:30:00 [sys] echo:Fade Height 10.00
+16:30:00 [ok] ok
+16:30:00 [tx] >> G1 Z10 F600
+16:30:00 [ok] ok
+16:30:00 [tx] >> G1 X20 F9000
+16:30:00 [ok] ok
+16:30:00 [tx] >> M400
+16:30:01 [ok] ok
+16:30:01 [tx] >> M114
+16:30:01 [rx] X:20.00 Y:105.00 Z:10.00 E:0.00 Count A:1600B:8400 Z:4000
+16:30:01 [ok] ok
+16:30:03 [sys] [VELOC] cancelado antes dos ciclos.
+16:30:12 [sys] [VELOC] etapa 1: indo para o ponto de partida (X = 20 mm), Z 10, malha desligada.
+16:30:12 [tx] >> G90
+16:30:13 [ok] ok
+16:30:13 [tx] >> M400
+16:30:13 [ok] ok
+16:30:13 [tx] >> M420 S0
+16:30:13 [sys] echo:Bed Leveling OFF
+16:30:13 [sys] echo:Fade Height 10.00
+16:30:13 [ok] ok
+16:30:13 [tx] >> G1 Z10 F600
+16:30:13 [ok] ok
+16:30:13 [tx] >> G1 X20 F9000
+16:30:14 [ok] ok
+16:30:14 [tx] >> M400
+16:30:14 [ok] ok
+16:30:14 [tx] >> M114
+16:30:14 [rx] X:20.00 Y:105.00 Z:10.00 E:0.00 Count A:1600B:8400 Z:4000
+16:30:14 [ok] ok
+16:30:16 [sys] [VELOC] etapa 2: X 20<->170 mm, 2 ciclos (4 movimentos) a 150 mm/s (F9000). Motor mais rapido: 150 mm/s.
+16:30:16 [tx] >> G1 X170 F9000
+16:30:16 [sys] [VELOC] fim a 150 mm/s (motor 150 mm/s). O M114 vai dizer 20 mm de qualquer jeito -- quem decide e a MARCA FISICA. Carro fora da marca = passos perdidos.
+16:30:16 [ok] ok
+16:30:16 [tx] >> G1 X20 F9000
+16:30:16 [ok] ok
+16:30:16 [tx] >> G1 X170 F9000
+16:30:16 [ok] ok
+16:30:16 [tx] >> G1 X20 F9000
+16:30:17 [ok] ok
+16:30:17 [tx] >> M400
+16:30:19 [sys] echo:busy: processing
+16:30:20 [ok] ok
+16:30:20 [tx] >> M114
+16:30:20 [rx] X:20.00 Y:105.00 Z:10.00 E:0.00 Count A:1600B:8400 Z:4000
+16:30:20 [ok] ok
+16:33:16 [sys] [VELOC] etapa 1: indo para o ponto de partida (XY = 20 mm), Z 10, malha desligada.
+16:33:16 [tx] >> G90
+16:33:16 [ok] ok
+16:33:16 [tx] >> M400
+16:33:17 [ok] ok
+16:33:17 [tx] >> M420 S0
+16:33:17 [sys] echo:Bed Leveling OFF
+16:33:17 [sys] echo:Fade Height 10.00
+16:33:17 [ok] ok
+16:33:17 [tx] >> G1 Z10 F600
+16:33:17 [sys] echo:Home XYZ First
+16:33:17 [rx] //action:notification Home XYZ First
+16:33:17 [ok] ok
+16:33:17 [tx] >> G1 X20 Y20 F6600
+16:33:17 [sys] echo:Home XYZ First
+16:33:17 [rx] //action:notification Home XYZ First
+16:33:17 [ok] ok
+16:33:17 [tx] >> M400
+16:33:18 [ok] ok
+16:33:18 [tx] >> M114
+16:33:18 [rx] X:20.00 Y:105.00 Z:10.00 E:0.00 Count A:1600B:8400 Z:4000
+16:33:18 [ok] ok
+16:33:20 [sys] [VELOC] etapa 2: XY 20<->170 mm, 2 ciclos (4 movimentos) a 110 mm/s (F6600). Motor mais rapido: 156 mm/s.
+16:33:20 [tx] >> G1 X170 Y170 F6600
+16:33:20 [sys] [VELOC] fim a 110 mm/s (motor 156 mm/s). O M114 vai dizer 20 mm de qualquer jeito -- quem decide e a MARCA FISICA. Carro fora da marca = passos perdidos.
+16:33:20 [sys] echo:Home XYZ First
+16:33:20 [rx] //action:notification Home XYZ First
+16:33:20 [ok] ok
+16:33:20 [tx] >> G1 X20 Y20 F6600
+16:33:20 [sys] echo:Home XYZ First
+16:33:20 [rx] //action:notification Home XYZ First
+16:33:20 [ok] ok
+16:33:20 [tx] >> G1 X170 Y170 F6600
+16:33:21 [sys] echo:Home XYZ First
+16:33:21 [rx] //action:notification Home XYZ First
+16:33:21 [ok] ok
+16:33:21 [tx] >> G1 X20 Y20 F6600
+16:33:21 [sys] echo:Home XYZ First
+16:33:21 [rx] //action:notification Home XYZ First
+16:33:21 [ok] ok
+16:33:21 [tx] >> M400
+16:33:21 [ok] ok
+16:33:21 [tx] >> M114
+16:33:21 [rx] X:20.00 Y:105.00 Z:10.00 E:0.00 Count A:1600B:8400 Z:4000
+16:33:21 [ok] ok
+16:33:27 [tx] >> G28
+16:33:30 [sys] echo:busy: processing
+16:33:32 [sys] echo:busy: processing
+16:33:34 [sys] echo:busy: processing
+16:33:36 [sys] echo:busy: processing
+16:33:38 [sys] echo:busy: processing
+16:33:40 [sys] echo:busy: processing
+16:33:42 [sys] echo:busy: processing
+16:33:44 [sys] echo:busy: processing
+16:33:46 [sys] echo:busy: processing
+16:33:48 [sys] echo:busy: processing
+16:33:50 [sys] echo:busy: processing
+16:33:52 [sys] echo:busy: processing
+16:33:54 [sys] echo:busy: processing
+16:33:56 [sys] echo:busy: processing
+16:33:58 [sys] echo:busy: processing
+16:34:00 [rx] X:152.00 Y:105.00 Z:10.00 E:0.00 Count A:20560B:3760 Z:4000
+16:34:00 [ok] ok
+16:34:05 [sys] [VELOC] etapa 1: indo para o ponto de partida (XY = 20 mm), Z 10, malha desligada.
+16:34:05 [tx] >> G90
+16:34:05 [ok] ok
+16:34:05 [tx] >> M400
+16:34:05 [ok] ok
+16:34:05 [tx] >> M420 S0
+16:34:06 [sys] echo:Bed Leveling OFF
+16:34:06 [sys] echo:Fade Height 10.00
+16:34:06 [ok] ok
+16:34:06 [tx] >> G1 Z10 F600
+16:34:06 [ok] ok
+16:34:06 [tx] >> G1 X20 Y20 F6600
+16:34:06 [ok] ok
+16:34:06 [tx] >> M400
+16:34:08 [ok] ok
+16:34:08 [tx] >> M114
+16:34:08 [rx] X:20.00 Y:20.00 Z:10.00 E:0.00 Count A:1600B:1600 Z:4000
+16:34:08 [ok] ok
+16:34:10 [sys] [VELOC] etapa 2: XY 20<->170 mm, 2 ciclos (4 movimentos) a 110 mm/s (F6600). Motor mais rapido: 156 mm/s.
+16:34:10 [tx] >> G1 X170 Y170 F6600
+16:34:10 [sys] [VELOC] fim a 110 mm/s (motor 156 mm/s). O M114 vai dizer 20 mm de qualquer jeito -- quem decide e a MARCA FISICA. Carro fora da marca = passos perdidos.
+16:34:10 [ok] ok
+16:34:10 [tx] >> G1 X20 Y20 F6600
+16:34:11 [ok] ok
+16:34:11 [tx] >> G1 X170 Y170 F6600
+16:34:11 [err] Error:Serial status mismatch
+16:34:11 [ok] ok
+16:34:11 [tx] >> G1 X20 Y20 F6600
+16:34:11 [ok] ok
+16:34:11 [tx] >> M400
+16:34:13 [sys] echo:busy: processing
+16:34:15 [sys] echo:busy: processing
+16:34:17 [sys] echo:busy: processing
+16:34:18 [ok] ok
+16:34:18 [tx] >> M114
+16:34:19 [rx] X:20.00 Y:20.00 Z:10.00 E:0.00 Count A:1600B:1600 Z:4000
+16:34:19 [ok] ok
+16:34:30 [sys] [VELOC] etapa 1: indo para o ponto de partida (XY = 20 mm), Z 10, malha desligada.
+16:34:30 [tx] >> G90
+16:34:31 [ok] ok
+16:34:31 [tx] >> M400
+16:34:31 [ok] ok
+16:34:31 [tx] >> M420 S0
+16:34:31 [sys] echo:Bed Leveling OFF
+16:34:31 [sys] echo:Fade Height 10.00
+16:34:31 [ok] ok
+16:34:31 [tx] >> G1 Z10 F600
+16:34:31 [ok] ok
+16:34:31 [tx] >> G1 X20 Y20 F7200
+16:34:32 [ok] ok
+16:34:32 [tx] >> M400
+16:34:32 [ok] ok
+16:34:32 [tx] >> M114
+16:34:32 [rx] X:20.00 Y:20.00 Z:10.00 E:0.00 Count A:1600B:1600 Z:4000
+16:34:32 [ok] ok
+16:34:34 [sys] [VELOC] etapa 2: XY 20<->170 mm, 2 ciclos (4 movimentos) a 120 mm/s (F7200). Motor mais rapido: 170 mm/s.
+16:34:34 [tx] >> G1 X170 Y170 F7200
+16:34:34 [sys] [VELOC] fim a 120 mm/s (motor 170 mm/s). O M114 vai dizer 20 mm de qualquer jeito -- quem decide e a MARCA FISICA. Carro fora da marca = passos perdidos.
+16:34:34 [ok] ok
+16:34:34 [tx] >> G1 X20 Y20 F7200
+16:34:34 [ok] ok
+16:34:34 [tx] >> G1 X170 Y170 F7200
+16:34:34 [ok] ok
+16:34:34 [tx] >> G1 X20 Y20 F7200
+16:34:35 [ok] ok
+16:34:35 [tx] >> M400
+16:34:37 [sys] echo:busy: processing
+16:34:39 [sys] echo:busy: processing
+16:34:41 [sys] echo:busy: processing
+16:34:41 [ok] ok
+16:34:41 [tx] >> M114
+16:34:41 [rx] X:20.00 Y:20.00 Z:10.00 E:0.00 Count A:1600B:1600 Z:4000
+16:34:41 [ok] ok
+16:34:47 [sys] [VELOC] etapa 1: indo para o ponto de partida (XY = 20 mm), Z 10, malha desligada.
+16:34:47 [tx] >> G90
+16:34:47 [ok] ok
+16:34:47 [tx] >> M400
+16:34:47 [ok] ok
+16:34:47 [tx] >> M420 S0
+16:34:47 [sys] echo:Bed Leveling OFF
+16:34:47 [sys] echo:Fade Height 10.00
+16:34:47 [ok] ok
+16:34:47 [tx] >> G1 Z10 F600
+16:34:48 [ok] ok
+16:34:48 [tx] >> G1 X20 Y20 F7200
+16:34:48 [ok] ok
+16:34:48 [tx] >> M400
+16:34:48 [ok] ok
+16:34:48 [tx] >> M114
+16:34:48 [rx] X:20.00 Y:20.00 Z:10.00 E:0.00 Count A:1600B:1600 Z:4000
+16:34:48 [ok] ok
+16:34:50 [sys] [VELOC] etapa 2: XY 20<->170 mm, 2 ciclos (4 movimentos) a 120 mm/s (F7200). Motor mais rapido: 170 mm/s.
+16:34:50 [tx] >> G1 X170 Y170 F7200
+16:34:50 [sys] [VELOC] fim a 120 mm/s (motor 170 mm/s). O M114 vai dizer 20 mm de qualquer jeito -- quem decide e a MARCA FISICA. Carro fora da marca = passos perdidos.
+16:34:50 [ok] ok
+16:34:50 [tx] >> G1 X20 Y20 F7200
+16:34:50 [ok] ok
+16:34:50 [tx] >> G1 X170 Y170 F7200
+16:34:50 [ok] ok
+16:34:50 [tx] >> G1 X20 Y20 F7200
+16:34:51 [ok] ok
+16:34:51 [tx] >> M400
+16:34:53 [sys] echo:busy: processing
+16:34:55 [sys] echo:busy: processing
+16:34:57 [sys] echo:busy: processing
+16:34:57 [ok] ok
+16:34:57 [tx] >> M114
+16:34:57 [rx] X:20.00 Y:20.00 Z:10.00 E:0.00 Count A:1600B:1600 Z:4000
+16:34:57 [ok] ok
+# sessao encerrada Sat Oct 24 16:53:14 2026

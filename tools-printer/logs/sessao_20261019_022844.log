@@ -1,0 +1,476 @@
+# Console Marlin - sessao iniciada Mon Oct 19 02:28:44 2026
+02:28:44 [sys] Console pronto. Clique em 'Localizar placa' para comecar.
+02:28:44 [sys] Log desta sessao: C:\tmp\Marlin\tools-printer\logs\sessao_20261019_022844.log
+02:28:51 [ok] Conectado em COM18 @ 250000.
+02:28:51 [tx] >> M115
+02:28:51 [rx] FIRMWARE_NAME:Marlin bugfix-2.1.x (Oct 17 2026 03:56:37) SOURCE_CODE_URL:github.com/MarlinFirmware/Marlin PROTOCOL_VERSION:1.0 MACHINE_TYPE:CoreXY TinyBee KINEMATICS:COREXYCartesian EXTRUDER_COUNT:1 UUID:cede2a2f-41a2-4748-9b12-c55c62f367ff
+02:28:51 [rx] Cap:SERIAL_XON_XOFF:0
+02:28:51 [rx] Cap:BINARY_FILE_TRANSFER:0
+02:28:51 [rx] Cap:EEPROM:1
+02:28:51 [rx] Cap:VOLUMETRIC:1
+02:28:51 [rx] Cap:AUTOREPORT_POS:0
+02:28:51 [rx] Cap:AUTOREPORT_TEMP:1
+02:28:51 [rx] Cap:PROGRESS:0
+02:28:51 [rx] Cap:PRINT_JOB:1
+02:28:51 [rx] Cap:AUTOLEVEL:1
+02:28:51 [rx] Cap:RUNOUT:1
+02:28:51 [rx] Cap:Z_PROBE:1
+02:28:51 [rx] Cap:LEVELING_DATA:1
+02:28:51 [rx] Cap:BUILD_PERCENT:1
+02:28:51 [rx] Cap:SOFTWARE_POWER:0
+02:28:51 [rx] Cap:TOGGLE_LIGHTS:0
+02:28:51 [rx] Cap:CASE_LIGHT_BRIGHTNESS:0
+02:28:51 [rx] Cap:EMERGENCY_PARSER:0
+02:28:51 [rx] Cap:HOST_ACTION_COMMANDS:1
+02:28:51 [rx] Cap:PROMPT_SUPPORT:1
+02:28:51 [rx] Cap:SDCARD:0
+02:28:51 [rx] Cap:REPEAT:0
+02:28:51 [rx] Cap:SD_WRITE:0
+02:28:51 [rx] Cap:AUTOREPORT_SD_STATUS:0
+02:28:51 [rx] Cap:LONG_FILENAME:0
+02:28:51 [rx] Cap:LFN_WRITE:0
+02:28:51 [rx] Cap:CUSTOM_FIRMWARE_UPLOAD:0
+02:28:51 [rx] Cap:EXTENDED_M20:0
+02:28:51 [rx] Cap:THERMAL_PROTECTION:1
+02:28:51 [rx] Cap:MOTION_MODES:0
+02:28:51 [rx] Cap:ARCS:1
+02:28:51 [rx] Cap:BABYSTEPPING:0
+02:28:51 [rx] Cap:EP_BABYSTEP:0
+02:28:51 [rx] Cap:CHAMBER_TEMPERATURE:0
+02:28:51 [rx] Cap:COOLER_TEMPERATURE:0
+02:28:51 [rx] Cap:MEATPACK:0
+02:28:51 [rx] Cap:CONFIG_EXPORT:0
+02:28:51 [ok] ok
+02:28:51 [tx] >> M119
+02:28:52 [rx] Reporting endstop status
+02:28:52 [rx] x_max: open
+02:28:52 [rx] y_min: open
+02:28:52 [rx] z_probe: TRIGGERED
+02:28:52 [rx] filament: open
+02:28:52 [ok] ok
+02:28:57 [tx] >> G28
+02:29:00 [sys] echo:busy: processing
+02:29:02 [sys] echo:busy: processing
+02:29:04 [sys] echo:busy: processing
+02:29:06 [sys] echo:busy: processing
+02:29:08 [sys] echo:busy: processing
+02:29:10 [sys] echo:busy: processing
+02:29:12 [sys] echo:busy: processing
+02:29:14 [sys] echo:busy: processing
+02:29:16 [sys] echo:busy: processing
+02:29:18 [sys] echo:busy: processing
+02:29:19 [rx] X:138.00 Y:86.00 Z:10.00 E:0.00 Count A:17920B:4160 Z:4000
+02:29:19 [ok] ok
+02:29:55 [tx] >> M851
+02:29:55 [rx]   M851 X-38.00 Y10.00 Z-0.62 ; (mm)
+02:29:55 [ok] ok
+02:30:43 [sys] [ZOFFSET] preparando: M851 Z0 / G28 / M420 S0 / M211 S0 / G1 Z0
+02:30:43 [tx] >> M851 Z0
+02:30:44 [ok] ok
+02:30:44 [tx] >> M500
+02:30:44 [sys] echo:Settings Stored (602 bytes; crc 14423)
+02:30:44 [rx] //action:notification Settings Stored
+02:30:44 [rx] //action:notification Settings Stored
+02:30:44 [ok] ok
+02:30:44 [tx] >> G28
+02:30:46 [sys] echo:busy: processing
+02:30:48 [sys] echo:busy: processing
+02:30:50 [sys] echo:busy: processing
+02:30:52 [sys] echo:busy: processing
+02:30:54 [sys] echo:busy: processing
+02:30:56 [sys] echo:busy: processing
+02:30:58 [sys] echo:busy: processing
+02:31:00 [sys] echo:busy: processing
+02:31:02 [sys] echo:busy: processing
+02:31:03 [rx] X:138.00 Y:86.00 Z:10.00 E:0.00 Count A:17920B:4160 Z:4000
+02:31:03 [ok] ok
+02:31:03 [tx] >> M420 S0
+02:31:03 [sys] echo:Bed Leveling OFF
+02:31:03 [sys] echo:Fade Height 10.00
+02:31:03 [ok] ok
+02:31:03 [tx] >> M211 S0
+02:31:03 [ok] ok
+02:31:03 [tx] >> G1 Z0 F300
+02:31:03 [ok] ok
+02:31:03 [tx] >> M114
+02:31:04 [rx] X:138.00 Y:86.00 Z:0.00 E:0.00 Count A:11040B:6880 Z:0
+02:31:04 [ok] ok
+02:31:50 [sys] [ZOFFSET] degrau -0.50 -> acumulado -0.500 mm
+02:31:50 [tx] >> G91
+02:31:50 [ok] ok
+02:31:50 [tx] >> G1 Z-0.500 F120
+02:31:50 [ok] ok
+02:31:50 [tx] >> G90
+02:31:50 [ok] ok
+02:31:50 [tx] >> M114
+02:31:51 [rx] X:138.00 Y:86.00 Z:-0.50 E:0.00 Count A:11040B:6880 Z:-200
+02:31:51 [ok] ok
+02:31:53 [sys] [ZOFFSET] degrau -0.50 -> acumulado -1.000 mm
+02:31:53 [tx] >> G91
+02:31:53 [ok] ok
+02:31:53 [tx] >> G1 Z-0.500 F120
+02:31:54 [ok] ok
+02:31:54 [tx] >> G90
+02:31:54 [ok] ok
+02:31:54 [tx] >> M114
+02:31:54 [rx] X:138.00 Y:86.00 Z:-1.00 E:0.00 Count A:11040B:6880 Z:-400
+02:31:54 [ok] ok
+02:31:55 [sys] [ZOFFSET] degrau -0.50 -> acumulado -1.500 mm
+02:31:55 [tx] >> G91
+02:31:55 [ok] ok
+02:31:55 [tx] >> G1 Z-0.500 F120
+02:31:55 [ok] ok
+02:31:55 [tx] >> G90
+02:31:56 [ok] ok
+02:31:56 [tx] >> M114
+02:31:56 [rx] X:138.00 Y:86.00 Z:-1.50 E:0.00 Count A:11040B:6880 Z:-600
+02:31:56 [ok] ok
+02:31:57 [sys] [ZOFFSET] degrau -0.50 -> acumulado -2.000 mm
+02:31:57 [tx] >> G91
+02:31:58 [ok] ok
+02:31:58 [tx] >> G1 Z-0.500 F120
+02:31:58 [ok] ok
+02:31:58 [tx] >> G90
+02:31:58 [ok] ok
+02:31:58 [tx] >> M114
+02:31:59 [rx] X:138.00 Y:86.00 Z:-2.00 E:0.00 Count A:11040B:6880 Z:-800
+02:31:59 [ok] ok
+02:32:00 [sys] [ZOFFSET] degrau -0.50 -> acumulado -2.500 mm
+02:32:00 [tx] >> G91
+02:32:00 [ok] ok
+02:32:00 [tx] >> G1 Z-0.500 F120
+02:32:00 [ok] ok
+02:32:00 [tx] >> G90
+02:32:01 [ok] ok
+02:32:01 [tx] >> M114
+02:32:01 [rx] X:138.00 Y:86.00 Z:-2.50 E:0.00 Count A:11040B:6880 Z:-1000
+02:32:01 [ok] ok
+02:32:52 [sys] [ZOFFSET] degrau -0.50 -> acumulado -3.000 mm
+02:32:52 [tx] >> G91
+02:32:53 [ok] ok
+02:32:53 [tx] >> G1 Z-0.500 F120
+02:32:53 [ok] ok
+02:32:53 [tx] >> G90
+02:32:53 [ok] ok
+02:32:53 [tx] >> M114
+02:32:53 [rx] X:138.00 Y:86.00 Z:-3.00 E:0.00 Count A:11040B:6880 Z:-1200
+02:32:53 [ok] ok
+02:33:10 [sys] [ZOFFSET] degrau +0.05 -> acumulado -2.950 mm
+02:33:10 [tx] >> G91
+02:33:10 [ok] ok
+02:33:10 [tx] >> G1 Z0.050 F120
+02:33:11 [ok] ok
+02:33:11 [tx] >> G90
+02:33:11 [ok] ok
+02:33:11 [tx] >> M114
+02:33:11 [rx] X:138.00 Y:86.00 Z:-2.95 E:0.00 Count A:11040B:6880 Z:-1180
+02:33:11 [ok] ok
+02:33:18 [sys] [ZOFFSET] degrau +0.05 -> acumulado -2.900 mm
+02:33:18 [tx] >> G91
+02:33:19 [ok] ok
+02:33:19 [tx] >> G1 Z0.050 F120
+02:33:19 [ok] ok
+02:33:19 [tx] >> G90
+02:33:19 [ok] ok
+02:33:19 [tx] >> M114
+02:33:19 [rx] X:138.00 Y:86.00 Z:-2.90 E:0.00 Count A:11040B:6880 Z:-1160
+02:33:19 [ok] ok
+02:33:32 [sys] [ZOFFSET] degrau +0.05 -> acumulado -2.850 mm
+02:33:32 [tx] >> G91
+02:33:32 [ok] ok
+02:33:32 [tx] >> G1 Z0.050 F120
+02:33:32 [ok] ok
+02:33:32 [tx] >> G90
+02:33:32 [ok] ok
+02:33:32 [tx] >> M114
+02:33:33 [rx] X:138.00 Y:86.00 Z:-2.85 E:0.00 Count A:11040B:6880 Z:-1140
+02:33:33 [ok] ok
+02:33:49 [sys] [ZOFFSET] degrau +0.05 -> acumulado -2.800 mm
+02:33:49 [tx] >> G91
+02:33:50 [ok] ok
+02:33:50 [tx] >> G1 Z0.050 F120
+02:33:50 [ok] ok
+02:33:50 [tx] >> G90
+02:33:50 [ok] ok
+02:33:50 [tx] >> M114
+02:33:50 [rx] X:138.00 Y:86.00 Z:-2.80 E:0.00 Count A:11040B:6880 Z:-1120
+02:33:50 [ok] ok
+02:34:09 [sys] [ZOFFSET] degrau -0.02 -> acumulado -2.820 mm
+02:34:09 [tx] >> G91
+02:34:09 [ok] ok
+02:34:09 [tx] >> G1 Z-0.020 F120
+02:34:09 [ok] ok
+02:34:09 [tx] >> G90
+02:34:10 [ok] ok
+02:34:10 [tx] >> M114
+02:34:10 [rx] X:138.00 Y:86.00 Z:-2.82 E:0.00 Count A:11040B:6880 Z:-1128
+02:34:10 [ok] ok
+02:35:07 [sys] [ZOFFSET] gravando M851 Z-2.820  (acumulado -2.820, M114 Z -2.820)
+02:35:07 [tx] >> M851 Z-2.820
+02:35:07 [ok] ok
+02:35:07 [tx] >> M211 S1
+02:35:08 [ok] ok
+02:35:08 [tx] >> M500
+02:35:08 [sys] echo:Settings Stored (602 bytes; crc 24661)
+02:35:08 [rx] //action:notification Settings Stored
+02:35:08 [rx] //action:notification Settings Stored
+02:35:08 [ok] ok
+02:35:08 [tx] >> M851
+02:35:08 [rx]   M851 X-38.00 Y10.00 Z-2.82 ; (mm)
+02:35:08 [ok] ok
+02:35:16 [tx] >> M114
+02:35:16 [rx] X:138.00 Y:86.00 Z:-2.82 E:0.00 Count A:11040B:6880 Z:-1128
+02:35:16 [ok] ok
+02:39:44 [tx] >> G28
+02:39:46 [sys] echo:busy: processing
+02:39:48 [sys] echo:busy: processing
+02:39:50 [sys] echo:busy: processing
+02:39:52 [sys] echo:busy: processing
+02:39:54 [sys] echo:busy: processing
+02:39:56 [sys] echo:busy: processing
+02:39:58 [sys] echo:busy: processing
+02:40:00 [sys] echo:busy: processing
+02:40:02 [sys] echo:busy: processing
+02:40:04 [sys] echo:busy: processing
+02:40:06 [sys] echo:busy: processing
+02:40:08 [sys] echo:busy: processing
+02:40:09 [rx] X:138.00 Y:86.00 Z:10.00 E:0.00 Count A:17920B:4160 Z:4000
+02:40:09 [ok] ok
+02:40:18 [tx] >> G91
+02:40:18 [ok] ok
+02:40:18 [tx] >> G1 Z-10 F600
+02:40:19 [ok] ok
+02:40:19 [tx] >> G90
+02:40:19 [ok] ok
+02:40:19 [tx] >> M114
+02:40:19 [rx] X:138.00 Y:86.00 Z:0.00 E:0.00 Count A:11040B:6880 Z:-82
+02:40:19 [ok] ok
+02:41:23 [tx] >> G91
+02:41:23 [ok] ok
+02:41:23 [tx] >> G1 Z10 F600
+02:41:23 [ok] ok
+02:41:23 [tx] >> G90
+02:41:23 [ok] ok
+02:41:23 [tx] >> M114
+02:41:24 [rx] X:138.00 Y:86.00 Z:10.00 E:0.00 Count A:11040B:6880 Z:4000
+02:41:24 [ok] ok
+02:47:15 [tx] >> M851
+02:47:15 [rx]   M851 X-38.00 Y10.00 Z-2.82 ; (mm)
+02:47:15 [ok] ok
+02:51:39 [tx] >> G28 X
+02:51:41 [sys] echo:busy: processing
+02:51:41 [rx] X:208.00 Y:86.00 Z:10.82 E:0.00 Count A:23520B:9760 Z:4328
+02:51:41 [ok] ok
+02:52:00 [tx] >> G91
+02:52:01 [ok] ok
+02:52:01 [tx] >> G1 Z-10 F600
+02:52:01 [sys] echo:Home YZ First
+02:52:01 [rx] //action:notification Home YZ First
+02:52:01 [ok] ok
+02:52:01 [tx] >> G90
+02:52:01 [ok] ok
+02:52:01 [tx] >> M114
+02:52:01 [rx] X:208.00 Y:86.00 Z:10.82 E:0.00 Count A:16640B:6880 Z:4328
+02:52:01 [ok] ok
+02:52:49 [tx] >> G91
+02:52:49 [ok] ok
+02:52:49 [tx] >> G1 X-10 F600
+02:52:49 [sys] echo:Home YZ First
+02:52:49 [rx] //action:notification Home YZ First
+02:52:49 [ok] ok
+02:52:49 [tx] >> G90
+02:52:49 [ok] ok
+02:52:49 [tx] >> M114
+02:52:49 [rx] X:208.00 Y:86.00 Z:10.82 E:0.00 Count A:16640B:6880 Z:4328
+02:52:49 [ok] ok
+02:52:52 [tx] >> G91
+02:52:52 [ok] ok
+02:52:52 [tx] >> G1 X-10 F600
+02:52:52 [sys] echo:Home YZ First
+02:52:52 [rx] //action:notification Home YZ First
+02:52:52 [ok] ok
+02:52:52 [tx] >> G90
+02:52:52 [ok] ok
+02:52:53 [tx] >> M114
+02:52:53 [rx] X:208.00 Y:86.00 Z:10.82 E:0.00 Count A:16640B:6880 Z:4328
+02:52:53 [ok] ok
+02:53:01 [tx] >> G28
+02:53:03 [sys] echo:busy: processing
+02:53:05 [sys] echo:busy: processing
+02:53:08 [sys] echo:busy: processing
+02:53:10 [sys] echo:busy: processing
+02:53:12 [sys] echo:busy: processing
+02:53:13 [sys] echo:busy: processing
+02:53:16 [sys] echo:busy: processing
+02:53:18 [sys] echo:busy: processing
+02:53:20 [sys] echo:busy: processing
+02:53:20 [rx] X:138.00 Y:86.00 Z:10.00 E:0.00 Count A:17920B:4160 Z:4000
+02:53:20 [ok] ok
+02:53:26 [tx] >> G28 X
+02:53:28 [sys] echo:busy: processing
+02:53:28 [rx] X:208.00 Y:86.00 Z:10.82 E:0.00 Count A:23520B:9760 Z:4328
+02:53:28 [ok] ok
+02:53:31 [tx] >> G91
+02:53:31 [ok] ok
+02:53:31 [tx] >> G1 Z-10 F600
+02:53:32 [ok] ok
+02:53:32 [tx] >> G90
+02:53:32 [ok] ok
+02:53:32 [tx] >> M114
+02:53:32 [rx] X:208.00 Y:86.00 Z:0.82 E:0.00 Count A:16640B:6880 Z:251
+02:53:32 [ok] ok
+02:53:44 [tx] >> G91
+02:53:44 [ok] ok
+02:53:44 [tx] >> G1 X-50 F600
+02:53:44 [ok] ok
+02:53:44 [tx] >> G90
+02:53:45 [ok] ok
+02:53:45 [tx] >> M114
+02:53:45 [rx] X:158.00 Y:86.00 Z:0.82 E:0.00 Count A:12640B:6880 Z:251
+02:53:45 [ok] ok
+02:53:50 [tx] >> G91
+02:53:50 [ok] ok
+02:53:50 [tx] >> G1 X-50 F600
+02:53:50 [ok] ok
+02:53:50 [tx] >> G90
+02:53:51 [ok] ok
+02:53:51 [tx] >> M114
+02:53:51 [rx] X:108.00 Y:86.00 Z:0.82 E:0.00 Count A:8640B:6880 Z:290
+02:53:51 [ok] ok
+02:53:58 [tx] >> G91
+02:53:58 [ok] ok
+02:53:58 [tx] >> G1 X-50 F600
+02:53:58 [ok] ok
+02:53:58 [tx] >> G90
+02:53:58 [ok] ok
+02:53:58 [tx] >> M114
+02:53:59 [rx] X:58.00 Y:86.00 Z:0.82 E:0.00 Count A:4640B:6880 Z:301
+02:53:59 [ok] ok
+02:54:08 [tx] >> G91
+02:54:08 [ok] ok
+02:54:08 [tx] >> G1 X-10 F600
+02:54:08 [ok] ok
+02:54:08 [tx] >> G90
+02:54:08 [ok] ok
+02:54:08 [tx] >> M114
+02:54:09 [rx] X:48.00 Y:86.00 Z:0.82 E:0.00 Count A:3840B:6880 Z:301
+02:54:09 [ok] ok
+02:54:12 [tx] >> G91
+02:54:13 [ok] ok
+02:54:13 [tx] >> G1 X-10 F600
+02:54:13 [ok] ok
+02:54:13 [tx] >> G90
+02:54:13 [ok] ok
+02:54:13 [tx] >> M114
+02:54:13 [rx] X:38.00 Y:86.00 Z:0.82 E:0.00 Count A:3040B:6880 Z:301
+02:54:13 [ok] ok
+02:54:17 [tx] >> G91
+02:54:17 [ok] ok
+02:54:17 [tx] >> G1 X-10 F600
+02:54:17 [ok] ok
+02:54:17 [tx] >> G90
+02:54:18 [ok] ok
+02:54:18 [tx] >> M114
+02:54:18 [rx] X:28.00 Y:86.00 Z:0.82 E:0.00 Count A:2240B:6880 Z:301
+02:54:18 [ok] ok
+02:54:19 [tx] >> G91
+02:54:19 [ok] ok
+02:54:19 [tx] >> G1 X-10 F600
+02:54:20 [ok] ok
+02:54:20 [tx] >> G90
+02:54:20 [ok] ok
+02:54:20 [tx] >> M114
+02:54:20 [rx] X:18.00 Y:86.00 Z:0.82 E:0.00 Count A:1440B:6880 Z:301
+02:54:20 [ok] ok
+02:54:37 [tx] >> G91
+02:54:37 [ok] ok
+02:54:37 [tx] >> G1 X-10 F600
+02:54:37 [ok] ok
+02:54:37 [tx] >> G90
+02:54:37 [ok] ok
+02:54:37 [tx] >> M114
+02:54:38 [rx] X:8.00 Y:86.00 Z:0.82 E:0.00 Count A:640B:6880 Z:301
+02:54:38 [ok] ok
+02:54:51 [tx] >> G91
+02:54:51 [ok] ok
+02:54:51 [tx] >> G1 Y10 F600
+02:54:52 [ok] ok
+02:54:52 [tx] >> G90
+02:54:52 [ok] ok
+02:54:52 [tx] >> M114
+02:54:52 [rx] X:8.00 Y:96.00 Z:0.82 E:0.00 Count A:640B:7680 Z:314
+02:54:52 [ok] ok
+02:54:54 [tx] >> G91
+02:54:54 [ok] ok
+02:54:54 [tx] >> G1 Y-10 F600
+02:54:54 [ok] ok
+02:54:54 [tx] >> G90
+02:54:55 [ok] ok
+02:54:55 [tx] >> M114
+02:54:55 [rx] X:8.00 Y:86.00 Z:0.82 E:0.00 Count A:640B:6880 Z:301
+02:54:55 [ok] ok
+02:54:56 [tx] >> G91
+02:54:56 [ok] ok
+02:54:56 [tx] >> G1 Y-10 F600
+02:54:56 [ok] ok
+02:54:56 [tx] >> G90
+02:54:57 [ok] ok
+02:54:57 [tx] >> M114
+02:54:57 [rx] X:8.00 Y:76.00 Z:0.82 E:0.00 Count A:640B:6080 Z:288
+02:54:57 [ok] ok
+02:54:58 [tx] >> G91
+02:54:58 [ok] ok
+02:54:58 [tx] >> G1 Y-10 F600
+02:54:58 [err] Error:Serial status mismatch
+02:54:58 [ok] ok
+02:54:58 [tx] >> G90
+02:54:59 [ok] ok
+02:54:59 [tx] >> M114
+02:54:59 [rx] X:8.00 Y:66.00 Z:0.82 E:0.00 Count A:640B:5280 Z:275
+02:54:59 [ok] ok
+02:55:00 [tx] >> G91
+02:55:00 [ok] ok
+02:55:00 [tx] >> G1 Y-10 F600
+02:55:00 [ok] ok
+02:55:00 [tx] >> G90
+02:55:01 [ok] ok
+02:55:01 [tx] >> M114
+02:55:01 [rx] X:8.00 Y:56.00 Z:0.82 E:0.00 Count A:640B:4480 Z:262
+02:55:01 [ok] ok
+02:55:03 [tx] >> G91
+02:55:04 [ok] ok
+02:55:04 [tx] >> G1 Y-10 F600
+02:55:04 [ok] ok
+02:55:04 [tx] >> G90
+02:55:04 [ok] ok
+02:55:04 [tx] >> M114
+02:55:04 [rx] X:8.00 Y:46.00 Z:0.82 E:0.00 Count A:640B:3680 Z:262
+02:55:04 [ok] ok
+02:55:28 [tx] >> G91
+02:55:28 [ok] ok
+02:55:28 [tx] >> G1 X1 F600
+02:55:28 [ok] ok
+02:55:28 [tx] >> G90
+02:55:28 [ok] ok
+02:55:28 [tx] >> M114
+02:55:29 [rx] X:9.00 Y:46.00 Z:0.82 E:0.00 Count A:720B:3680 Z:262
+02:55:29 [ok] ok
+02:55:29 [tx] >> G91
+02:55:29 [ok] ok
+02:55:29 [tx] >> G1 X1 F600
+02:55:29 [ok] ok
+02:55:29 [tx] >> G90
+02:55:30 [ok] ok
+02:55:30 [tx] >> M114
+02:55:30 [rx] X:10.00 Y:46.00 Z:0.82 E:0.00 Count A:800B:3680 Z:262
+02:55:30 [ok] ok
+02:55:47 [tx] >> M114
+02:55:47 [rx] X:10.00 Y:46.00 Z:0.82 E:0.00 Count A:800B:3680 Z:262
+02:55:47 [ok] ok
+02:57:20 [tx] >> G28 X
+02:57:22 [sys] echo:busy: processing
+02:57:24 [sys] echo:busy: processing
+02:57:26 [sys] echo:busy: processing
+02:57:28 [rx] X:208.00 Y:46.00 Z:10.82 E:0.00 Count A:20320B:12960 Z:4328
+02:57:28 [ok] ok
+# sessao encerrada Mon Oct 19 03:01:23 2026

@@ -1,0 +1,7 @@
+# Console Marlin - sessao iniciada Sat Oct 24 17:19:53 2026
+17:19:53 [sys] Console pronto. Clique em 'Localizar placa' para comecar.
+17:19:53 [sys] Log desta sessao: C:\tmp\Marlin\tools-printer\logs\sessao_20261024_171953.log
+17:19:53 [sys] [FLUXO] PETG 230C: 50 mm a 8.0 mm3/s (filamento 3.33 mm/s, F200). Dura ~15 s.
+17:19:53 [sys] [FLUXO] PETG 230C: 8.0 mm3/s LIMPO
+17:19:53 [sys] [FLUXO] PETG 230C: 9.0 mm3/s LIMPO
+17:19:53 [sys] [FLUXO] RESULTADO PETG 230C: limpo ate 9.0 mm3/s, falhou em 10.0. filament_max_volumetric_speed sugerido: 7.2 (80%).
