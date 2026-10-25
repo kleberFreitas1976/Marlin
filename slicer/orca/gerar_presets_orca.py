@@ -174,6 +174,9 @@ proc = aplica(achata("0.20mm Standard @MyMarlin", "Custom"), {
     "travel_speed_z": S["travel_speed_z"],
     "initial_layer_speed": S["first_layer_speed"],
     "initial_layer_infill_speed": S["first_layer_speed"],
+    # o skirt so existe na primeira camada; o padrao do Orca e 50 mm/s, o Prusa
+    # usa a velocidade da primeira camada (20)
+    "skirt_speed": S["first_layer_speed"],
     "default_acceleration": S["default_acceleration"],
     "outer_wall_acceleration": S["external_perimeter_acceleration"],
     "inner_wall_acceleration": S["perimeter_acceleration"],

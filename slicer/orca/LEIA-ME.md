@@ -67,9 +67,19 @@ do Orca (2.4). Se uma versão futura renomear alguma, ele avisa.
   E 1000 mm/s², junction deviation 0,013), então tanto faz se forem escritos
   no G-code.
 
-## Ainda não testado
+- **Skirt:** o padrão do Orca é 50 mm/s, mesmo na primeira camada. Aqui usa a
+  velocidade da primeira camada (20 mm/s), como no PrusaSlicer.
+- **Comandos no início do arquivo:** o Orca escreve `M201`, `M203`, `M204` e
+  `M205` antes do G-code de início. O `M205 X8 Y8 Z0.3 E5` (jerk) é **ignorado**
+  pelo firmware, porque `CLASSIC_JERK` está desligado (M200-M205.cpp só lê X/Y/Z/E
+  dentro de `#if ENABLED(CLASSIC_JERK)`). O `M205 J0.013` vale e é igual ao
+  firmware. O `M203 X140 Y140` garante o limite de velocidade mesmo que a EEPROM
+  ainda guarde os 300 antigos.
 
-Nenhuma peça foi fatiada com estes perfis. No primeiro fatiamento, confira o
-G-code como foi feito com o PrusaSlicer: início com bico a 150 °C no home e
-purga em três linhas, `M73` presente, temperaturas do filamento e
-desaceleração nas saliências.
+## Estado
+
+Importados e conferidos pelo G-code de um benchy completo (25/10/2026): os três
+perfis aplicados, bico a 150 °C no home e purga em três linhas, `M73` (192
+ocorrências), 215 → 205 °C e mesa 60 → 55 °C, ventoinha a 100% a partir da
+camada 2, sem arcos `G2/G3` e sem `M486`, saliências a 15 mm/s e 31% do
+perímetro externo desacelerado, fluxo máximo de 6,7 mm³/s. Ainda falta imprimir.
