@@ -151,11 +151,14 @@ Testes para separar, na ordem: moeda na balanca; pesar 1 m de filamento
 ## A balanca estava errada (25/10/2026)
 
 100 ml de agua pesaram **65** na balanca de bolso, e uma moeda de 50 centavos
-(cerca de 7,8 g) pesou 5,31. A balanca mostra uns 65% do peso real. O padrao
-bate com a unidade **dwt (pennyweight)**: 100 g = 64,3 dwt. Suspeita: botao
-MODE/UNIT fora de **g**.
+(cerca de 7,8 g) pesou 5,31. A balanca mostra uns 65% do peso real.
+A primeira suspeita foi a unidade dwt (100 g = 64,3 dwt), mas o visor esta em
+**g**: a balanca esta descalibrada. Fator medido pela agua: 100 / 65 = 1,54.
+Ate ser recalibrada (modo CAL com peso conhecido), toda pesagem nela precisa
+desse fator, e a precisao em pecas de menos de 1 g fica duvidosa.
 
-As tres pesagens acima, convertidas (x 1,555):
+As tres pesagens acima, convertidas (x 1,54, praticamente o mesmo que o
+fator de dwt usado na primeira versao desta tabela):
 
 | Peca | Lido | Em gramas | Previsto | Entregue |
 |---|---|---|---|---|
