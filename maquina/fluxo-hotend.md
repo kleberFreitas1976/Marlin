@@ -9,7 +9,8 @@ material e por temperatura**.
 | Material | Bico | Limpo até | Falhou em | Perfil (80% do limpo) | Equivale a (camada 0,2 × 0,45) |
 |---|---|---|---|---|---|
 | PETG | 230 °C | 7 mm³/s | 8 mm³/s | **5,6 mm³/s** | ~69 mm/s |
-| PLA | — | *não medido* | — | 8 (estimado) | — |
+| PLA comum | — | *não medido* | — | 8 (estimado) | — |
+| **GTMax3D PLA Speed+** | 210 °C | *não medido* | — | 8 (placeholder) | — |
 | ABS | — | *não medido* | — | 8 (estimado) | — |
 
 ## Observações
@@ -29,6 +30,9 @@ material e por temperatura**.
 
 ## Pendências
 
-- [ ] Medir o PLA
+- [ ] **Medir o GTMax3D PLA Speed+** (o filamento em uso agora). PLA de alta
+      velocidade costuma aguentar mais fluxo que o PLA comum, mas só vale
+      depois de medido. Os 8 mm³/s do perfil são placeholder.
+- [ ] Medir o PLA comum, se voltar a usar
 - [ ] Medir o ABS, se for usar
 - [ ] Refazer o PETG se a temperatura de impressão mudar
