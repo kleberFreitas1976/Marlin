@@ -241,6 +241,29 @@ Se algum motor continuar quente demais a 0,73 V, a causa e outra: o driver
 daquele eixo, travamento mecanico (fuso do Z, por exemplo), ou o Vref nao
 correspondendo a corrente da formula, ja que o Rsense nunca foi confirmado.
 
+### Atualizacao: com 1,0/0,8 V nao houve deslocamento (25/10/2026)
+
+Resultado com X/Y em 1,0 V e Z/Z2 em 0,8 V (E em 1,2 V): **sem deslocamento de
+camada**, motores de X e Y mais quentes que os do Z, e **da para segurar a mao**.
+Isso substitui a recomendacao anterior de voltar a 0,73 V, que era urgente
+enquanto havia deslocamento; sem ele nao ha motivo para reverter.
+
+X/Y mais quentes que Z e esperado: movem o tempo todo (CoreXY usa os dois
+motores em qualquer deslocamento), com perda no ferro do motor que cresce com a
+rotacao alem da perda na bobina. A conta por I2R sozinha subestimava X/Y.
+
+Decisao pelo teste longo (benchy de ~1h30 em Orca):
+
+| Resultado | Acao |
+|---|---|
+| sem deslocamento, da para segurar a mao ~3 s | manter 1,0 / 0,8 |
+| sem deslocamento, mas nao da para segurar | X/Y para 0,85 V |
+| deslocou | X/Y de volta a 0,73 V |
+
+Conferir tambem os suportes impressos dos motores: PLA amolece perto de 55-60 C.
+Se o calor incomodar, uma ventoinha pequena nos motores de X e Y e a saida sem
+mexer na eletronica.
+
 ## 7. Pendências
 
 - [x] X e Y ajustados em 24/10/2026: de 0,733 V para 1,45 e 1,46 V.
