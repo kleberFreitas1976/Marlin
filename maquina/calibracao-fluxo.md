@@ -175,6 +175,24 @@ Pendente, com a balanca em g: repesar a moeda e o benchy; 1 m de filamento
 (esperado 3,44 g); 2 x 100 mm extrudados no ar (esperado 0,69 g). O
 multiplicador sai desse ultimo: 0,69 / massa medida.
 
+## Teste de dobradicas print-in-place (25/10/2026)
+
+| Material | Solta a partir de | Fundiu em |
+|---|---|---|
+| PETG, diametro 1,75 no perfil (24/10) | 0,45 livre; 0,40 com esforco | abaixo de 0,35 |
+| GTMax3D PLA Speed+, diametro 1,88, 205 C | **0,15** | 0,10 |
+
+0,15 mm e um otimo resultado para PLA. Tambem confirma que **nao ha excesso
+de extrusao**: com os 30% que a parede de 0,59 mm do paquimetro sugeria, as
+folgas pequenas teriam fundido. Bate com a balanca corrigida (91 a 96%) e com o
+aspecto do benchy. **Multiplicador fica em 1,0.**
+
+Ressalvas: a impressao teve deslocamento de camada (motores superaquecidos com
+1,45 V), o que pode mexer no resultado; repetir depois de baixar a corrente. A
+diferenca PETG x PLA (0,25 a 0,30 mm) e maior que os ~0,1 mm esperados so pelo
+material: se o rolo de PETG tambem for grosso como o de PLA, ele imprimiu com
+~15% de excesso. Medir o diametro do PETG.
+
 ## Depois de aplicar
 
 Reimprima o benchy. A ponta (proa) é o ponto mais sensível ao excesso de
