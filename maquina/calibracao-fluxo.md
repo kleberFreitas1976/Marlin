@@ -82,7 +82,8 @@ PLA Speed+ terão multiplicadores diferentes.
 
 | Filamento | Bico | Diâmetro medido | Espessura média | Multiplicador |
 |---|---|---|---|---|
-| GTMax3D PLA Speed+ | 210 °C | 1,85–1,90 mm (média 1,875) | 0,60 mm, com 1,75 no perfil | *pendente: refazer o cubo com 1,88* |
+| GTMax3D PLA Speed+ | 210 °C | 1,85–1,90 mm (média 1,875) | 0,60 mm, com 1,75 no perfil | — |
+| GTMax3D PLA Speed+ | 210 °C | idem | **0,59 mm**, com 1,88 no perfil | *não aplicado: a parede não respondeu* |
 | PETG | 230 °C | — | — | — |
 
 ## Primeiro resultado (25/10/2026)
@@ -108,6 +109,23 @@ Rolo de 1,88 em hotend de 1,75 aumenta o atrito no tubo e na entrada do
 hotend. Se a extrusora começar a esforçar ou o fluxo máximo ficar bem menor
 que o esperado, isso entra na conta. O rolo está fora da especificação
 (1,75 ± 0,05) e vale falar com o fornecedor.
+
+## Segundo resultado (25/10/2026): a parede não respondeu
+
+Com `filament_diameter` em 1,88, a estimativa do fatiador para o cubo foi de
+0,23 m / 0,79 g (confere com 1,88; com 1,75 seriam 0,69 g), ou seja 13% menos
+filamento comandado que antes. A parede medida foi **0,59 mm**, contra 0,60
+com 1,75. Se a espessura acompanhasse o fluxo, cairia para ~0,52.
+
+A explicação pelo diâmetro, sozinha, não se confirmou. Nenhum multiplicador
+foi gravado. Próximos passos, em ordem:
+
+1. Pesar o cubo (sem skirt e sem purga): o fatiador prevê 0,79 g, e
+   `multiplicador = 0,79 / massa medida`. Independe do paquímetro.
+2. Conferir a marca gravada no bico: 0,59 é quase 0,6, e um bico de 0,6 mm
+   imprimiria essa largura mesmo com 0,45 no perfil.
+3. Reimprimir com multiplicador 0,80: se a parede for a ~0,49, o fluxo
+   comanda a espessura; se ficar em 0,59, a causa é outra.
 
 ## Depois de aplicar
 
