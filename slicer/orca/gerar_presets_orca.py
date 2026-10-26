@@ -46,6 +46,34 @@ for d in list(por_nome.values()):
         for k, v in d.items():
             universo[d["type"]].setdefault(k, v)
 
+# O Orca 2.5 guarda os perfis em arquivos .opc (formato proprio), sem JSONs
+# soltos. Nesse caso a base de cada preset passa a ser o arquivo ja gerado
+# antes: ele ja e completo (valores do Orca + os do bundle), e aplicar os valores
+# do bundle por cima de novo e idempotente. Os que o bundle mudou entram; o
+# restante fica como o Orca 2.4.2 tinha.
+def previo(arquivo):
+    p = os.path.join(SAIDA, arquivo)
+    if not os.path.exists(p):
+        sys.exit("sem JSONs do Orca instalado e sem " + arquivo + " para usar de base")
+    return json.load(io.open(p, encoding="utf-8"))
+
+if len(universo["machine"]) < 50:
+    print("AVISO: Orca sem JSONs soltos (2.5+): usando os arquivos ja gerados como base")
+    for arq, tipo in (("CoreXY MKS TinyBee.json", "machine"),
+                      ("CoreXY TinyBee 0.20mm.json", "process"),
+                      ("PLA Speed Plus GTMax3D.json", "filament"),
+                      ("PETG CoreXY TinyBee.json", "filament"),
+                      ("PLA CoreXY TinyBee.json", "filament"),
+                      ("ABS CoreXY TinyBee.json", "filament")):
+        for k, v in previo(arq).items():
+            universo[tipo].setdefault(k, v)
+    SEM_INSTALACAO = True
+else:
+    SEM_INSTALACAO = False
+
+def base_de(nome_orca, vendor, arquivo):
+    return previo(arquivo) if SEM_INSTALACAO else achata(nome_orca, vendor)
+
 # ---------------------------------------------------------------- Prusa: leitura
 sec, cur = {}, None
 for ln in io.open(BUNDLE, encoding="utf-8"):
@@ -104,7 +132,7 @@ def grava(d, arquivo):
 # ---------------------------------------------------------------- impressora
 P = sec["printer:CoreXY MKS TinyBee"]
 lim = lambda k: P[k].split(",")[0]
-maquina = aplica(achata("MyMarlin 0.4 nozzle", "Custom"), {
+maquina = aplica(base_de("MyMarlin 0.4 nozzle", "Custom", "CoreXY MKS TinyBee.json"), {
     "printable_area": P["bed_shape"].split(","),
     "printable_height": P["max_print_height"],
     "nozzle_diameter": P["nozzle_diameter"],
@@ -150,7 +178,7 @@ grava(finaliza(maquina, "CoreXY MKS TinyBee", "machine", "printer_settings_id",
 
 # ---------------------------------------------------------------- processo
 S = sec["print:CoreXY TinyBee 0.20mm"]
-proc = aplica(achata("0.20mm Standard @MyMarlin", "Custom"), {
+proc = aplica(base_de("0.20mm Standard @MyMarlin", "Custom", "CoreXY TinyBee 0.20mm.json"), {
     "layer_height": S["layer_height"],
     "initial_layer_print_height": S["first_layer_height"],
     "wall_loops": S["perimeters"],
@@ -250,7 +278,7 @@ def filamento(secao, nome, base, extra=None):
         if k + "_initial_layer" in universo["filament"]:
             s[k + "_initial_layer"] = F["first_layer_bed_temperature"]
     s.update(extra or {})
-    d = aplica(achata(base, "OrcaFilamentLibrary"), s, "filament")
+    d = aplica(base_de(base, "OrcaFilamentLibrary", nome + ".json"), s, "filament")
     grava(finaliza(d, nome, "filament", "filament_settings_id", base), nome + ".json")
 
 filamento("filament:PLA Speed Plus GTMax3D", "PLA Speed Plus GTMax3D", "Generic PLA @System",

@@ -52,6 +52,23 @@ arquivos: ela recusa até os presets de sistema do próprio Orca.
 O script confere que todas as chaves escritas existem nos perfis desta versão
 do Orca (2.4). Se uma versão futura renomear alguma, ele avisa.
 
+## Atualizar um preset que já existe
+
+O Orca **não sobrescreve** na importação: se já existe um preset com o mesmo
+nome, a importação pula o arquivo ("Preset already present, not loading"). Para
+trocar por uma versão nova, **apague antes** o preset antigo (ícone de lixeira
+ao lado do nome, no seletor de impressora, processo ou filamento) e importe de
+novo.
+
+## Orca 2.5 e o gerador
+
+O Orca 2.5.0 guarda os perfis de sistema em arquivos `.opc` (formato próprio, não
+é zip), sem os JSONs soltos que o gerador lia na 2.4.2. Quando a instalação não
+tem os JSONs, o gerador usa como base os próprios arquivos desta pasta, que já
+são completos, e aplica por cima os valores do bundle. É idempotente: só o que o
+bundle mudou muda. Efeito colateral: o que o Orca 2.5 tiver mudado nos padrões
+dele **não** entra por esse caminho.
+
 ## Diferenças em relação ao PrusaSlicer
 
 - **Saliências:** os nomes têm sentidos opostos. No Prusa, `overhang_speed_N` é
@@ -67,6 +84,9 @@ do Orca (2.4). Se uma versão futura renomear alguma, ele avisa.
   E 1000 mm/s², junction deviation 0,013), então tanto faz se forem escritos
   no G-code.
 
+- **Purga:** fica na borda da frente da mesa (Y 3 a 4,2), e a área de
+  impressão começa em Y = 5 nos dois fatiadores, para a peça nunca cair em
+  cima dela.
 - **Skirt:** o padrão do Orca é 50 mm/s, mesmo na primeira camada. Aqui usa a
   velocidade da primeira camada (20 mm/s), como no PrusaSlicer.
 - **Comandos no início do arquivo:** o Orca escreve `M201`, `M203`, `M204` e
