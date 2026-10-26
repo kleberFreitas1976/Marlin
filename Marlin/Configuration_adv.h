@@ -2603,18 +2603,21 @@
  */
 #if PROBE_SELECTED && !IS_KINEMATIC
   /**
-   * Margens assimetricas por limitacao FISICA, nao por escolha:
-   * o probe fica 38mm a esquerda do bico, entao o probe so alcanca ate
-   * X = X_MAX_POS - 38 = 170 numa mesa que vai ate 201.
-   * RIGHT 34 poe o ponto direito em 167, exigindo o bico em 205 (3mm de folga).
-   * Reduzir este valor exigiria remontar o probe mais perto do bico.
+   * A malha cobre o MAXIMO que o probe alcanca; quem decide e a geometria, nao a margem.
+   * probe.h:256-262 usa o mais restritivo entre a margem e o alcance:
+   *
+   *   X esquerda  max(0 + 5,  X_MIN_POS + offset.x = 0 - 54)   = 5
+   *   X direita   min(196 - 5, X_MAX_POS + offset.x = 196 - 54) = 142   <- ALCANCE
+   *   Y frente    max(0 + 5,  Y_MIN_POS + offset.y = -15 - 10)  = 5
+   *   Y fundo     min(181 - 5, Y_MAX_POS + offset.y = 181 - 10) = 171   <- ALCANCE
+   *
+   * Os 54mm da direita e os 10mm do fundo NAO PODEM ser sondados: o probe fica 54mm a
+   * esquerda e 10mm a frente do bico, e o bico nao passa dos limites do carro. Ali o
+   * Marlin repete o valor da borda da malha (EXTRAPOLATE_BEYOND_GRID esta desligado).
+   * Chegar la exigiria remontar o probe mais perto do bico, ou do lado direito.
    */
-  #define PROBING_MARGIN_LEFT 15
-  #define PROBING_MARGIN_RIGHT 54   // = |offset X| do probe. Com o bico no maximo
-                                    // (196) o probe alcanca 142, e probe.h:262 ja
-                                    // limitaria por ali de qualquer jeito; o valor
-                                    // explicito evita a impressao de que a malha
-                                    // chega mais a direita do que chega.
+  #define PROBING_MARGIN_LEFT 5
+  #define PROBING_MARGIN_RIGHT 5    // o alcance (142) limita antes que esta margem
   //#define PROBING_MARGIN_FRONT PROBING_MARGIN
   //#define PROBING_MARGIN_BACK PROBING_MARGIN
 #endif

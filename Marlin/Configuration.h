@@ -1795,7 +1795,11 @@
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
 // Mesa 200x200 com parafusos de 10x10mm nos 4 cantos. Margem de 15mm mantem
 // os 9 pontos da malha 3x3 em 15 / 100 / 185, fora da area dos parafusos.
-#define PROBING_MARGIN 15
+// Frente, fundo e esquerda: 5mm. Era 15 (o padrao). Quem limita a malha de fato e o
+// ALCANCE do probe (ver Configuration_adv.h, PROBING_MARGIN_RIGHT), nao a margem.
+// Cuidado na frente: com 5mm o probe desce a 5mm das presilhas do vidro, que ficam
+// entre o home e Y=0. Conferir o primeiro ponto da frente na primeira malha.
+#define PROBING_MARGIN 5
 
 // X and Y axis travel speed between probes.
 // Leave undefined to use the average of the current XY homing feedrate.
