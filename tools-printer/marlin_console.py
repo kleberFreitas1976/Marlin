@@ -1823,7 +1823,7 @@ class App(tk.Tk):
                                    "Conecte a impressora antes de rodar o teste.")
             return
         spd, cyc = int(self.var_spd.get()), int(self.var_cyc.get())
-        lo, hi = 20, 170                      # cabe em X (0-196) e em Y (0-190)
+        lo, hi = 20, 170                      # cabe em X (0-196) e em Y (0-181)
         # No CoreXY um diagonal de 45 graus poe um motor a 1,41x a velocidade
         # do carro: A = X+Y, e com vx = vy = F/raiz(2) isso da F*raiz(2).
         fator = 2 ** 0.5 if len(axes) == 2 else 1.0

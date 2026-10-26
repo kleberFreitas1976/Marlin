@@ -2074,7 +2074,11 @@
 // truncar em silencio tudo que o fatiador mandasse para a faixa inalcancavel,
 // deformando a peca em vez de avisar.
 #define X_BED_SIZE 196
-#define Y_BED_SIZE 190
+// Y: a origem fica 15mm depois do home. Essa faixa, do sensor Y min ate 15mm,
+// tem as presilhas do vidro e nao e area util. Antes a origem estava 6mm depois
+// do home (Y_MIN_POS -6), entao a area util perdeu 9mm: 190 -> 181. O curso total
+// nao mudou (de -15 a 181 sao os mesmos 196mm que de -6 a 190).
+#define Y_BED_SIZE 181
 
 // Travel limits (linear=mm, rotational=°) after homing, corresponding to endstop positions.
 #define X_MIN_POS 0     // Borda esquerda ALCANCAVEL, ja no referencial deslocado
@@ -2082,11 +2086,13 @@
                         // este lado: o probe bate no mecanismo antes dele, entao
                         // a protecao aqui e so por software.
                         // REVISAR sempre que a montagem do probe mudar.
-#define Y_MIN_POS -6    // Posicao do sensor Y min (home), 6mm a frente da mesa.
-                        // Nao e escolha: o home no minimo fixa esta coordenada.
+#define Y_MIN_POS -15   // Posicao do sensor Y min (home), 15mm antes do inicio da
+                        // area util. Nao e escolha: o home no minimo fixa esta
+                        // coordenada, e o que se escolheu foi onde fica o zero.
 #define Z_MIN_POS 0
 #define X_MAX_POS 196   // Sensor X max (home) = borda direita do vidro, apos a
-#define Y_MAX_POS 190   // Ponto maximo SEGURO medido em 21/10/2026. Igual ao
+#define Y_MAX_POS 181   // Ponto maximo SEGURO medido em 21/10/2026 (era 190 antes do
+                        // deslocamento da origem em Y). Igual ao
                         // Y_BED_SIZE de proposito: declarar mesa alem do curso
                         // faz o firmware truncar o movimento em silencio.
 #define Z_MAX_POS 250
