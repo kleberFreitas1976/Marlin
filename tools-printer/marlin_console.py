@@ -850,10 +850,12 @@ class App(tk.Tk):
         ttk.Label(f, text="Nivelamento (G29)",
                   font=("TkDefaultFont", 9, "bold")).pack(anchor="w")
         ttk.Label(f, foreground="#666", justify="left",
-                  text="Montagem do probe baixada: D = 2.82mm, alcance de busca de\n"
-                       "2.3mm (Z_PROBE_LOW_POINT -2.3). A inclinacao medida da mesa\n"
-                       "e de 0.59mm, entao a mesa inteira cabe no alcance. O quadrado\n"
-                       "central continua util para uma verificacao rapida.").pack(anchor="w")
+                  text="Probe: D = 4.16mm, alcance de busca de 3.6mm (Z_PROBE_LOW_POINT -3.6).\n"
+                       "A malha 5x5 cobre X 15-142 e Y 15-166. O probe fica 54mm a esquerda e\n"
+                       "10mm a frente do bico, entao 54mm da direita e o fundo da mesa nao\n"
+                       "sao alcancaveis. O quadrado central serve para uma verificacao rapida.\n"
+                       "Fluxo: 'Mesa inteira' sonda e mostra a malha; depois 'Gravar malha\n"
+                       "(M500)' guarda na EEPROM. Sem gravar, a malha some ao reiniciar.").pack(anchor="w")
 
         self.var_mesh = tk.IntVar(value=100)
         g0 = ttk.Frame(f); g0.pack(fill="x", pady=4)
@@ -872,6 +874,14 @@ class App(tk.Tk):
                    command=lambda: self.send("M420 S1")).pack(side="left", padx=3)
         ttk.Button(g, text="Desligar (M420 S0)",
                    command=lambda: self.send("M420 S0")).pack(side="left", padx=3)
+
+        g2 = ttk.Frame(f); g2.pack(fill="x", pady=3)
+        ttk.Button(g2, text="Gravar malha (M500)",
+                   command=lambda: self.confirm_send(
+                       "M500",
+                       "Gravar a malha atual na EEPROM com M500?\n\n"
+                       "Grava tambem os demais ajustes em vigor. Sem isto a malha\n"
+                       "se perde ao reiniciar a placa.")).pack(side="left", padx=3)
         return outer
 
     # --- aba calibração ---
@@ -1562,11 +1572,14 @@ class App(tk.Tk):
         """G29 sem restricao. Falha se a inclinacao exceder o alcance do probe."""
         if not messagebox.askokcancel(
                 "Nivelar mesa inteira",
-                "Sondar a MESA INTEIRA?\n\n"
-                "Alcance de busca atual: 2.3mm (D = 2.82mm).\n"
-                "Inclinacao medida da mesa: 0.59mm. Cabe com folga.\n\n"
-                "Em X a sondagem para em 167mm: o probe fica 38mm a\n"
-                "esquerda do bico e nao alcanca a borda direita."):
+                "Sondar a MESA INTEIRA (25 pontos, uns 4 minutos)?\n\n"
+                "Area sondada: X 15 a 142 e Y 15 a 166. O probe fica 54mm a\n"
+                "esquerda e 10mm a frente do bico, entao 54mm da direita e o\n"
+                "fundo nao sao alcancaveis.\n\n"
+                "Precisa de G28 feito e do firmware com a origem nova de Y\n"
+                "(o home reporta Y-15). Fique perto: no primeiro ponto, confira\n"
+                "se o probe nao toca nas presilhas do vidro.\n\n"
+                "Depois, use 'Gravar malha (M500)'."):
             return
         self.log("[MALHA] G29 sem restricao (mesa inteira)", "sys")
         self.send("G29")
