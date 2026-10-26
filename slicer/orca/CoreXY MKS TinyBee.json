@@ -1,4 +1,10 @@
 {
+    "bed_exclude_area": [
+        "0x0",
+        "196x0",
+        "196x5",
+        "0x5"
+    ],
     "before_layer_change_gcode": "",
     "change_filament_gcode": "",
     "deretraction_speed": [
@@ -90,8 +96,8 @@
         "0.4"
     ],
     "printable_area": [
-        "0x5",
-        "196x5",
+        "0x0",
+        "196x0",
         "196x181",
         "0x181"
     ],

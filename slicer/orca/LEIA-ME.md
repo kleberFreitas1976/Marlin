@@ -84,9 +84,11 @@ dele **não** entra por esse caminho.
   E 1000 mm/s², junction deviation 0,013), então tanto faz se forem escritos
   no G-code.
 
-- **Purga:** fica na borda da frente da mesa (Y 3 a 4,2), e a área de
-  impressão começa em Y = 5 nos dois fatiadores, para a peça nunca cair em
-  cima dela.
+- **Purga:** fica 2 mm dentro da borda da frente (Y 2 a 3,2). No Orca a mesa é
+  desenhada inteira (Y 0 a 181) e a faixa de **Y 0 a 5 é uma zona proibida**
+  (`bed_exclude_area`), então a purga aparece dentro da mesa e nenhuma peça pode
+  ser colocada sobre ela. O PrusaSlicer não tem zona proibida: lá a reserva é a
+  própria forma da mesa (`bed_shape` começa em Y = 5), e a purga aparece fora.
 - **Skirt:** o padrão do Orca é 50 mm/s, mesmo na primeira camada. Aqui usa a
   velocidade da primeira camada (20 mm/s), como no PrusaSlicer.
 - **Comandos no início do arquivo:** o Orca escreve `M201`, `M203`, `M204` e

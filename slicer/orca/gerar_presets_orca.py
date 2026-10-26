@@ -132,8 +132,24 @@ def grava(d, arquivo):
 # ---------------------------------------------------------------- impressora
 P = sec["printer:CoreXY MKS TinyBee"]
 lim = lambda k: P[k].split(",")[0]
+# A faixa da frente que o bundle reserva para a purga (bed_shape comeca em Y > 0)
+# vira, no Orca, uma ZONA PROIBIDA dentro da mesa, e nao um recorte da mesa: assim a
+# purga aparece dentro da area desenhada e nenhuma peca pode ser colocada sobre ela.
+# O PrusaSlicer nao tem esse recurso, e la a reserva continua sendo a forma da mesa.
+pts = [tuple(float(v) for v in p.split("x")) for p in P["bed_shape"].split(",")]
+xmin = min(p[0] for p in pts); xmax = max(p[0] for p in pts)
+ymin = min(p[1] for p in pts); ymax = max(p[1] for p in pts)
+fmt = lambda v: f"{v:g}"
+AREA = [f"{fmt(xmin)}x0", f"{fmt(xmax)}x0", f"{fmt(xmax)}x{fmt(ymax)}", f"{fmt(xmin)}x{fmt(ymax)}"]
+EXCL = (["0x0"] if ymin <= 0 else
+        [f"{fmt(xmin)}x0", f"{fmt(xmax)}x0", f"{fmt(xmax)}x{fmt(ymin)}", f"{fmt(xmin)}x{fmt(ymin)}"])
+# bed_exclude_area nao existia no indice do Orca 2.4.2 usado para montar a base, mas
+# o Orca 2.5 grava a chave no rodape do G-code ("bed_exclude_area = 0x0").
+universo["machine"].setdefault("bed_exclude_area", ["0x0"])
+
 maquina = aplica(base_de("MyMarlin 0.4 nozzle", "Custom", "CoreXY MKS TinyBee.json"), {
-    "printable_area": P["bed_shape"].split(","),
+    "printable_area": AREA,
+    "bed_exclude_area": EXCL,
     "printable_height": P["max_print_height"],
     "nozzle_diameter": P["nozzle_diameter"],
     "gcode_flavor": "marlin2",
