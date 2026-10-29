@@ -205,6 +205,10 @@ class App(tk.Tk):
         self.txq = deque()
         self.awaiting_ok = False
         self.last_rx = 0.0
+        # observadores das linhas recebidas e dos comandos enviados (tela de nivelamento)
+        self.line_hooks = []
+        self.tx_hooks = []
+        self.tela_nivel = None
 
         # passos/mm correntes (espelham o firmware; M503 atualiza)
         self.var_steps = {ax: tk.DoubleVar(value=v) for ax, v in
@@ -285,6 +289,9 @@ class App(tk.Tk):
         tk.Button(bar, text="PARADA (M112)", bg=BG_ERR, fg="white",
                   font=("TkDefaultFont", 10, "bold"), padx=14,
                   command=self.emergency_stop).pack(side="right")
+        tk.Button(bar, text="Tela de nivelamento", bg="#2d5b8a", fg="white",
+                  font=("TkDefaultFont", 10, "bold"), padx=12,
+                  command=self.abrir_nivelamento).pack(side="right", padx=8)
 
     def _build_status(self, parent):
         card = ttk.LabelFrame(parent, text="Status", padding=8)
@@ -849,6 +856,8 @@ class App(tk.Tk):
         ttk.Separator(f).pack(fill="x", pady=8)
         ttk.Label(f, text="Nivelamento (G29)",
                   font=("TkDefaultFont", 9, "bold")).pack(anchor="w")
+        ttk.Button(f, text="Abrir a tela de nivelamento (mapa da mesa e molas)",
+                   command=self.abrir_nivelamento).pack(anchor="w", pady=4)
         ttk.Label(f, foreground="#666", justify="left",
                   text="Probe: D = 4.16mm, alcance de busca de 3.6mm (Z_PROBE_LOW_POINT -3.6).\n"
                        "A malha 5x5 cobre X 15-142 e Y 15-166. O probe fica 54mm a esquerda e\n"
@@ -1337,6 +1346,7 @@ class App(tk.Tk):
             return
         cmd = self.txq.popleft()
         self.log(f">> {cmd}", "tx")
+        self._avisa(self.tx_hooks, cmd)
         if self.link.send(cmd):
             self.awaiting_ok = True
             self.last_rx = time.time()
@@ -1378,6 +1388,22 @@ class App(tk.Tk):
         else:
             self.hist_idx = len(self.history)
             self.var_cmd.set("")
+
+    def _avisa(self, hooks, texto):
+        """Repassa a linha aos observadores; um erro neles nao derruba o console."""
+        for h in list(hooks):
+            try:
+                h(texto)
+            except Exception as exc:  # noqa: BLE001
+                self._to_file(f"erro no observador {h}: {exc!r}", "err")
+
+    def abrir_nivelamento(self):
+        if self.tela_nivel is not None and self.tela_nivel.winfo_exists():
+            self.tela_nivel.deiconify()
+            self.tela_nivel.lift()
+            return
+        from nivelamento import TelaNivelamento
+        self.tela_nivel = TelaNivelamento(self)
 
     def confirm_send(self, cmd, question):
         if messagebox.askokcancel("Confirmar", question):
@@ -2005,6 +2031,7 @@ class App(tk.Tk):
         self.last_rx = time.time()
         if not line:
             return
+        self._avisa(self.line_hooks, line)
 
         low = line.lower()
 

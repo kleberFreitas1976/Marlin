@@ -38,6 +38,39 @@ de PID (`M303`) e extrusão manual com aviso de bico frio.
 (45° ativo, 0° recolhido), ajusta o offset Z (`M851`), sonda um ponto (`G30`),
 testa repetibilidade (`M48`), roda o nivelamento (`G29`) e mostra a malha (`M420 V`).
 
+**Tela de nivelamento** — botão azul *Tela de nivelamento* na barra de conexão
+(ou na aba Probe). Abre uma janela própria, em `nivelamento.py`:
+
+- **Mapa da mesa** visto de cima, com a frente embaixo: um card por ponto,
+  colorido em cinco faixas (excelente ≤ 0,05 · bom ≤ 0,10 · aceitável ≤ 0,20 ·
+  ruim ≤ 0,30 · crítico), e um mapa de calor entre os pontos. Passe o mouse
+  num card para ver os detalhes. A cor pode mostrar o desvio da média, o que
+  sobra depois de acertar as molas, ou a mudança desde a medição anterior.
+- **Cards das quatro molas** com a ação: SUBIR/DESCER e quantas voltas
+  (arredondado para ⅛), o sentido de giro (configure uma vez na aba Molas) e
+  qual mola é a referência e fica parada.
+- **Diagnóstico local**, sem internet: inclinação, ondulação que as molas não
+  corrigem (e se ela acompanha o X, o Y ou é uma cúpula), pontos que destoam,
+  repetibilidade contra a medição anterior (diz qual das duas leituras estava
+  errada), deslocamento geral por temperatura e o próximo passo.
+- **Medição**: malha `G29` 5×5 (a que vale para imprimir) ou medição rápida por
+  `G30` em 3×3, 4×4 ou 5×5 (só para acertar molas). A área de sondagem (L, R, F, B)
+  muda sem regravar o firmware. O número de pontos do `G29` é fixo na
+  compilação (`GRID_MAX_POINTS_X`).
+- **Ações**: Home, Medir, Ler malha, ligar/desligar a compensação, Gravar
+  (`M500`), carregar da EEPROM, subir Z, liberar motores ou mantê-los ligados
+  (`M84 S0`, o Home não se perde enquanto você gira as molas), aquecer mesa.
+- **Histórico** guardado em `nivelamento.json`, com notas, e *Colar malha do
+  log* para ler um `M420 V` copiado de um log.
+- **Rendimento das molas**: 0,85 mm por volta, medido em 25/10 (a rosca M3 anda
+  0,5 mm, mas o que importa é a inclinação da mesa). A aba Molas recalcula a
+  partir de duas medições e das voltas dadas.
+- **IA local opcional**: com o [Ollama](https://ollama.com) instalado, a aba
+  *IA local* pede uma segunda opinião a um modelo rodando no próprio computador.
+  Nada disso é necessário para nivelar.
+
+Para ver a tela sem impressora: `python tools-printer/nivelamento.py`.
+
 **Calibração** — lê e grava passos/mm (`M92`), operações de EEPROM
 (`M500`/`M501`/`M502`/`M503`) e atalhos de informação. Inclui os comandos
 `[ESP111]` e `[ESP420]` do ESP3D para ver IP e status do Wi-Fi.
