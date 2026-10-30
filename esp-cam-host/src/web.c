@@ -177,6 +177,7 @@ static size_t estado_json(char *j, size_t tam)
         (unsigned)(heap_caps_get_free_size(MALLOC_CAP_SPIRAM) / 1024));
 }
 
+size_t web_estado_completo(char *j, size_t tam);
 static size_t estado_completo(char *j, size_t tam)
 {
     size_t n = estado_json(j, tam);
@@ -189,6 +190,8 @@ static size_t estado_completo(char *j, size_t tam)
     n += snprintf(j + n, tam - n, "}");
     return n;
 }
+
+size_t web_estado_completo(char *j, size_t tam) { return estado_completo(j, tam); }
 
 // ------------------------------------------------------------------ WebSocket
 #define WS_MAX 8
@@ -636,6 +639,7 @@ esp_err_t web_inicia(void)
     web_rotas_arquivos(s_srv);
     web_rotas_timelapse(s_srv);
     web_rotas_reles(s_srv);
+    web_rotas_nuvem(s_srv);
     // por ultimo: a interface responde tudo o que nao for API
     const httpd_uri_t interface = {.uri = "/*", .method = HTTP_GET, .handler = pag_arquivo};
     httpd_register_uri_handler(s_srv, &interface);

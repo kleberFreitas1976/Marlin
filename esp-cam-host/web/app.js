@@ -140,7 +140,36 @@ async function rele(acao, extra = {}) {
   return { ok: r.ok, motivo: d.motivo };
 }
 
+async function nuvemLe() {
+  try {
+    const d = await (await fetch('/api/nuvem', { cache: 'no-store' })).json();
+    $('nuAtivo').checked = d.ativo;
+    if (document.activeElement !== $('nuUrl')) $('nuUrl').value = d.url;
+    $('nuChave').placeholder = d.temChave ? '(definida; deixe vazio para manter)' : '(ainda não definida)';
+    $('nuIntervalo').value = d.intervalo;
+    $('nuFoto').value = d.foto;
+    const ok = d.ativo && d.haSegundos >= 0 && d.haSegundos < d.intervalo * 3;
+    chip('nvChip', !d.ativo ? '' : ok ? 'ok' : 'erro', !d.ativo ? 'desligada' : ok ? 'em contato' : 'sem contato');
+    $('nuStatus').textContent = !d.ativo ? '' : (d.haSegundos >= 0 ? `Último contato há ${d.haSegundos} s. ` : 'Ainda sem contato. ') +
+      `${d.envios} envios, ${d.falhas} falhas.` + (d.erro ? ' Último erro: ' + d.erro : '');
+  } catch (_) { /* placa reiniciando */ }
+}
+
+async function nuvemSalva() {
+  const corpo = new URLSearchParams({ ativo: $('nuAtivo').checked ? 1 : 0, url: $('nuUrl').value.trim(),
+                                      intervalo: $('nuIntervalo').value, foto: $('nuFoto').value });
+  if ($('nuChave').value) corpo.set('chave', $('nuChave').value);
+  const r = await fetch('/api/nuvem', { method: 'POST', body: corpo });
+  const d = await r.json().catch(() => ({}));
+  aviso(r.ok ? 'Nuvem configurada' : 'Não salvou: ' + (d.erro || r.status), !r.ok);
+  $('nuChave').value = '';
+  nuvemLe();
+}
+
 function ligaEnergia() {
+  $('nuSalva').onclick = nuvemSalva;
+  nuvemLe();
+  setInterval(() => { if (document.querySelector('#sistema.ativa')) nuvemLe(); }, 10000);
   $('rlDesliga').onclick = async () => {
     if (!confirm('Desligar a impressora pelo relé?\n\nSe o bico estiver quente, espera ele ficar abaixo de 50 °C.')) return;
     const r = await rele('desliga_impressora');

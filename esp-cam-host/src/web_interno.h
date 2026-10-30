@@ -25,3 +25,9 @@ size_t web_timelapse_json(char *j, size_t tam);
 // Reles e luz (web_reles_api.c)
 void web_rotas_reles(httpd_handle_t srv);
 size_t web_reles_json(char *j, size_t tam);
+
+// Nuvem (web_nuvem_api.c)
+void web_rotas_nuvem(httpd_handle_t srv);
+
+// Estado completo em JSON (o mesmo do WebSocket)
+size_t web_estado_completo(char *j, size_t tam);

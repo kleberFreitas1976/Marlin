@@ -9,3 +9,5 @@ managed_components/
 !CMakeLists.txt
 !src/CMakeLists.txt
 src/web_arquivos.c
+hosting/config.php
+hosting/dados/

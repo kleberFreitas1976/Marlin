@@ -422,6 +422,20 @@
         <div class="pares lista" id="infoTb"></div>
       </div>
       <div class="cartao">
+        <div class="cab"><h2>Nuvem (site na hospedagem)</h2><span class="chip" id="nvChip"></span></div>
+        <label class="radio"><input type="checkbox" id="nuAtivo"> Enviar status e fotos para o site</label>
+        <div class="area" style="grid-template-columns:1fr">
+          <label>Endereço da API <input id="nuUrl" placeholder="https://seudominio/impressora/api.php" style="flex:1"></label>
+          <label>Chave <input id="nuChave" type="password" placeholder="(mantida)" style="flex:1" autocomplete="off"></label>
+          <label>Contato a cada <span><input type="number" id="nuIntervalo" min="5" max="600"> s</span></label>
+          <label>Foto durante a impressão a cada <span><input type="number" id="nuFoto" min="10" max="3600"> s</span></label>
+        </div>
+        <div class="presets"><button id="nuSalva">Salvar</button></div>
+        <p class="dica" id="nuStatus"></p>
+        <p class="dica">Arquivos do site em <code>esp-cam-host/hosting</code> (ver LEIA-ME de lá).
+          A chave fica só na placa e no config.php do site.</p>
+      </div>
+      <div class="cartao">
         <div class="cab"><h2>ESP32-S3-CAM</h2><a href="/wifi"><button class="sec">Configurar Wi-Fi</button></a></div>
         <div class="pares lista" id="infoEsp"></div>
       </div>

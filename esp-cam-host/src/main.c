@@ -18,6 +18,7 @@
 #include "freertos/task.h"
 #include "mbedtls/base64.h"
 #include "nvs_flash.h"
+#include "nuvem.h"
 #include "rede.h"
 #include "reles.h"
 #include "timelapse.h"
@@ -25,6 +26,7 @@
 #include "impressao.h"
 #include "marlin.h"
 #include "web.h"
+#include "web_interno.h"
 
 static const char *TAG = "principal";
 
@@ -253,6 +255,19 @@ static void executa(char *linha)
     else if (!strcasecmp(cmd, "sd")) sd_ok() ? sd_lista(arg ? arg : SD_RAIZ) : (void)printf("SD ausente\n");
     else if (!strcasecmp(cmd, "reinicia")) esp_restart();
     else if (!strcasecmp(cmd, "gerateste")) gera_teste();
+    else if (!strcasecmp(cmd, "nuvemteste")) {
+        // aponta a nuvem para um servidor de teste (tools/nuvem_teste.py); "nuvemteste off" desliga
+        nuvem_config_t c;
+        nuvem_config(&c);
+        c.ativo = arg && strcmp(arg, "off");
+        if (c.ativo) {
+            strlcpy(c.url, arg, sizeof c.url);
+            strlcpy(c.chave, "teste", sizeof c.chave);
+            c.intervalo_s = 5;
+        }
+        nuvem_grava_config(&c, c.ativo);
+        printf("nuvem %s\n", c.ativo ? c.url : "desligada");
+    }
     else if (!strcasecmp(cmd, "baixa")) baixa_serial(arg);
     else if (!strcasecmp(cmd, "imp")) mostra_impressao();
     else if (!strcasecmp(cmd, "imprime")) {
@@ -311,6 +326,7 @@ void app_main(void)
     sd_inicia();
     rede_inicia();
     web_inicia();
+    nuvem_inicia(web_estado_completo);
     imp_inicia();
     tl_inicia();
     imp_ouvintes(tl_camada, tl_foto, ciclo_impressao);
