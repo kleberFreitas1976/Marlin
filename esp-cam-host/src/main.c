@@ -19,6 +19,7 @@
 #include "mbedtls/base64.h"
 #include "nvs_flash.h"
 #include "rede.h"
+#include "usb_serial.h"
 #include "web.h"
 
 static const char *TAG = "principal";
@@ -41,6 +42,7 @@ static void mostra_info(void)
         printf("SD: %llu MB livres de %llu MB\n", sd_livre_bytes() >> 20, sd_total_bytes() >> 20);
     else
         printf("SD: ausente\n");
+    printf("TinyBee: %s\n", usb_serial_conectado() ? "conectada na USB-OTG" : "nao conectada");
     printf("Wi-Fi: %s %s%s\n", rede_ssid()[0] ? rede_ssid() : "(nenhuma rede)",
            rede_conectado() ? rede_ip() : "desconectado",
            rede_ap_ativo() ? "  | AP \"" AP_SSID "\" ligado: http://" AP_IP "/wifi" : "");
@@ -122,8 +124,48 @@ static void foto_sd(void)
     camera_devolve(fb);
 }
 
+// ---------------------------------------------------------------- TinyBee (fase 2)
+// Por enquanto so ecoa o que o Marlin responde. A fila com controle por "ok" vem
+// na fase 3 (marlin_link).
+static char s_linha_tb[256];
+static size_t s_n_tb;
+
+static void tb_recebe(const uint8_t *d, size_t n)
+{
+    for (size_t i = 0; i < n; i++) {
+        char c = (char)d[i];
+        if (c == '\n' || c == '\r') {
+            if (s_n_tb) {
+                s_linha_tb[s_n_tb] = '\0';
+                printf("TB< %s\n", s_linha_tb);
+                s_n_tb = 0;
+            }
+        } else if (s_n_tb < sizeof s_linha_tb - 1) {
+            s_linha_tb[s_n_tb++] = c;
+        }
+    }
+}
+
+static void tb_estado(bool conectado)
+{
+    printf("TB: %s\n", conectado ? "conectada" : "desconectada");
+}
+
+static void tb_envia(const char *gcode)
+{
+    char buf[200];
+    int n = snprintf(buf, sizeof buf, "%s\n", gcode);
+    esp_err_t err = usb_serial_envia(buf, n);
+    if (err != ESP_OK) printf("TB: nao enviou (%s)\n", esp_err_to_name(err));
+}
+
 static void executa(char *linha)
 {
+    // "m <G-code>": manda a linha inteira para o Marlin
+    if ((linha[0] == 'm' || linha[0] == 'M') && linha[1] == ' ') {
+        tb_envia(linha + 2);
+        return;
+    }
     char *cmd = strtok(linha, " \t");
     char *arg = strtok(NULL, " \t");
     if (!cmd) return;
@@ -140,7 +182,7 @@ static void executa(char *linha)
     else if (!strcasecmp(cmd, "reinicia")) esp_restart();
     else
         printf("comandos: info | foto [vga|svga|xga|hd|sxga|uxga|qxga|qsxga] | fotosd | "
-               "sd [pasta] | formatar SIM | reinicia\n");
+               "sd [pasta] | formatar SIM | m <G-code para a TinyBee> | reinicia\n");
 }
 
 static void console(void *arg)
@@ -177,6 +219,7 @@ void app_main(void)
     sd_inicia();
     rede_inicia();
     web_inicia();
+    usb_serial_inicia(tb_recebe, tb_estado);
     mostra_info();
 
     xTaskCreate(console, "console", 6144, NULL, 3, NULL);

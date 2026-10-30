@@ -27,3 +27,8 @@ CONFIG_HTTPD_MAX_REQ_HDR_LEN=1024
 # Console a 921600 (precisa da UART "custom" acima): a foto de teste vai pelo
 # console em base64
 CONFIG_ESP_CONSOLE_UART_BAUDRATE=921600
+
+# A USB nativa (GPIO19/20) vira host para a TinyBee: o USB-Serial-JTAG divide o
+# mesmo PHY e nao pode ficar como console secundario.
+CONFIG_ESP_CONSOLE_SECONDARY_NONE=y
+CONFIG_USJ_ENABLE_USB_SERIAL_JTAG=n
