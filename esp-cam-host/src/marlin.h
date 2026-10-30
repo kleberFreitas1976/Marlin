@@ -5,14 +5,17 @@
 
 // Conversa com o Marlin da TinyBee pela USB (usb_serial).
 //
-// Envio controlado pelo "ok": uma linha por vez, a proxima so depois do "ok" da
-// anterior. Despejar comandos estoura o buffer de recepcao do Marlin e ele
-// executa linhas truncadas. Comandos demorados (G28, G29, M109) mandam
-// "busy: processing" a cada 2 s (HOST_KEEPALIVE_FEATURE), e isso renova a espera.
+// Envio controlado pelo "ok", com janela: ate MARLIN_JANELA linhas em transito e
+// no maximo MARLIN_JANELA_BYTES, e cada "ok" libera a mais antiga. Despejar sem
+// controle estoura o buffer de recepcao do Marlin e ele executa linhas truncadas.
+// Comandos demorados (G28, G29, M109) mandam "busy: processing" a cada 2 s
+// (HOST_KEEPALIVE_FEATURE), e isso renova a espera.
 
 #define MARLIN_LINHA_MAX 96          // MAX_CMD_SIZE do Marlin
 #define MARLIN_FILA_MAX  64
 #define MARLIN_SILENCIO_S 30         // sem nenhuma resposta: destrava a fila
+#define MARLIN_JANELA 4              // linhas em transito (sem "ok")
+#define MARLIN_JANELA_BYTES 200      // RX da UART do Marlin no ESP32: 256 bytes
 
 typedef enum {
     MARLIN_TX,       // comando enviado
@@ -57,3 +60,12 @@ void marlin_emergencia(void);
 
 // Copia do estado atual (protegida por mutex)
 void marlin_estado(marlin_estado_t *saida);
+
+// Fonte de linhas da impressao: chamada quando ha espaco na janela e a fila de
+// comandos manuais esta vazia. Escreve a proxima linha e devolve true, ou false
+// se nao ha linha agora (pausa, fim). NULL desliga.
+typedef bool (*marlin_fonte_t)(char *linha, size_t tam);
+void marlin_fonte(marlin_fonte_t fonte);
+
+// Nada esperando "ok", nada na fila
+bool marlin_ocioso(void);

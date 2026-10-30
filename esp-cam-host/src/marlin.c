@@ -25,9 +25,25 @@ static SemaphoreHandle_t s_mtx;
 static StreamBufferHandle_t s_rx;
 static QueueHandle_t s_fila;
 static volatile bool s_conectou, s_desconectou;
-static bool s_aguardando;
+// Janela de envio: ate MARLIN_JANELA linhas em transito, sem passar de
+// MARLIN_JANELA_BYTES (o buffer de recepcao da UART do Marlin no ESP32 e de 256
+// bytes). Cada "ok" libera a linha mais antiga. Com uma linha por vez, trechos
+// cheios de segmentos curtos (curvas) esvaziam o planejador e a peca sai marcada.
+static int s_voo;                                  // linhas enviadas sem "ok"
+static int s_voo_bytes;
+static uint8_t s_voo_tam[MARLIN_JANELA];          // tamanho de cada uma, em ordem
+static bool s_aguardando;                          // s_voo > 0
 static char s_ultimo_cmd[MARLIN_LINHA_MAX + 1];   // ultimo comando enviado
 static int64_t s_ultimo_rx;
+static marlin_fonte_t s_fonte;                     // impressao em andamento (print_job)
+static linha_t s_pendente;                         // proxima linha que nao coube na janela
+static bool s_tem_pendente;
+
+static void zera_janela(void)
+{
+    s_voo = s_voo_bytes = 0;
+    s_aguardando = false;
+}
 
 // Configuracao pedida a cada conexao e a cada reinicio do Marlin. Os relatorios
 // automaticos so vao para a porta que os pediu: a TFT24 nao recebe nada disto.
@@ -121,7 +137,12 @@ static void processa(char *l)
     s_e.linhas_rx++;
 
     if (!strncmp(l, "ok", 2)) {
-        s_aguardando = false;
+        if (s_voo > 0) {
+            s_voo_bytes -= s_voo_tam[0];
+            memmove(s_voo_tam, s_voo_tam + 1, (MARLIN_JANELA - 1) * sizeof s_voo_tam[0]);
+            s_voo--;
+        }
+        s_aguardando = s_voo > 0;
         s_e.ocupada = false;
         tipo = MARLIN_OK;
         le_temperatura(l);                 // "ok T:..." do M105
@@ -155,7 +176,7 @@ static void processa(char *l)
     if (strstr(l, "Bed Leveling ON")) s_e.compensacao = 1;
     if (strstr(l, "Bed Leveling OFF")) s_e.compensacao = 0;
     bool reiniciou = !strcmp(l, "start");
-    if (reiniciou) s_aguardando = false;
+    if (reiniciou) zera_janela();
     xSemaphoreGive(s_mtx);
 
     avisa(tipo, l);
@@ -178,7 +199,7 @@ static void tarefa(void *arg)
             xSemaphoreTake(s_mtx, portMAX_DELAY);
             s_e.conectada = true;
             s_e.respondendo = false;
-            s_aguardando = false;
+            zera_janela();
             xSemaphoreGive(s_mtx);
             n = 0;
             avisa(MARLIN_SIS, "TinyBee conectada pela USB");
@@ -188,7 +209,8 @@ static void tarefa(void *arg)
             s_desconectou = false;
             xSemaphoreTake(s_mtx, portMAX_DELAY);
             s_e.conectada = s_e.respondendo = false;
-            s_aguardando = false;
+            zera_janela();
+            s_tem_pendente = false;
             xSemaphoreGive(s_mtx);
             xQueueReset(s_fila);
             avisa(MARLIN_ERRO, "TinyBee desconectada da USB");
@@ -210,26 +232,51 @@ static void tarefa(void *arg)
 
         // Nada chegou ha tempo demais: a fila nao pode ficar presa para sempre
         if (s_aguardando && esp_timer_get_time() - s_ultimo_rx > MARLIN_SILENCIO_S * 1000000LL) {
-            s_aguardando = false;
+            zera_janela();
             ESP_LOGW(TAG, "sem resposta ha %d s: destravando a fila", MARLIN_SILENCIO_S);
             avisa(MARLIN_ERRO, "Sem resposta da TinyBee ha 30 s: destravando a fila");
         }
 
-        linha_t cmd;
-        if (!s_aguardando && s_e.conectada && xQueueReceive(s_fila, &cmd, 0) == pdTRUE) {
-            char saida[MARLIN_LINHA_MAX + 2];
-            int k = snprintf(saida, sizeof saida, "%s\n", cmd.s);
-            if (usb_serial_envia(saida, k) == ESP_OK) {
-                s_aguardando = true;
-                s_ultimo_rx = esp_timer_get_time();
-                strlcpy(s_ultimo_cmd, cmd.s, sizeof s_ultimo_cmd);
-                xSemaphoreTake(s_mtx, portMAX_DELAY);
-                s_e.linhas_tx++;
-                xSemaphoreGive(s_mtx);
-                avisa(MARLIN_TX, cmd.s);
+        // Envia enquanto houver espaco na janela. Comandos manuais (fila) passam
+        // na frente das linhas da impressao (fonte).
+        while (s_e.conectada && s_voo < MARLIN_JANELA) {
+            linha_t cmd;
+            bool da_fonte = false;
+            if (s_tem_pendente) {
+                cmd = s_pendente;
+                da_fonte = true;
+            } else if (xQueueReceive(s_fila, &cmd, 0) == pdTRUE) {
+            } else if (s_fonte && s_fonte(cmd.s, sizeof cmd.s)) {
+                da_fonte = true;
             } else {
-                avisa(MARLIN_ERRO, "Falha ao escrever na USB");
+                break;
             }
+            int k = (int)strlen(cmd.s) + 1;
+            if (s_voo > 0 && s_voo_bytes + k > MARLIN_JANELA_BYTES) {
+                if (da_fonte) {               // guarda para depois do proximo ok
+                    s_pendente = cmd;
+                    s_tem_pendente = true;
+                } else {
+                    xQueueSendToFront(s_fila, &cmd, 0);
+                }
+                break;
+            }
+            s_tem_pendente = false;
+            char saida[MARLIN_LINHA_MAX + 2];
+            snprintf(saida, sizeof saida, "%s\n", cmd.s);
+            if (usb_serial_envia(saida, k) != ESP_OK) {
+                avisa(MARLIN_ERRO, "Falha ao escrever na USB");
+                break;
+            }
+            s_voo_tam[s_voo++] = (uint8_t)k;
+            s_voo_bytes += k;
+            s_aguardando = true;
+            s_ultimo_rx = esp_timer_get_time();
+            strlcpy(s_ultimo_cmd, cmd.s, sizeof s_ultimo_cmd);
+            xSemaphoreTake(s_mtx, portMAX_DELAY);
+            s_e.linhas_tx++;
+            xSemaphoreGive(s_mtx);
+            if (!da_fonte) avisa(MARLIN_TX, cmd.s);   // as da impressao nao inundam o console
         }
     }
 }
@@ -285,9 +332,11 @@ void marlin_limpa_fila(void)
 
 void marlin_emergencia(void)
 {
+    s_fonte = NULL;
+    s_tem_pendente = false;
     xQueueReset(s_fila);
     usb_serial_envia("M112\n", 5);
-    s_aguardando = false;
+    zera_janela();
     avisa(MARLIN_ERRO, "M112: PARADA DE EMERGENCIA. A TinyBee precisa ser reiniciada.");
 }
 
@@ -295,6 +344,17 @@ void marlin_estado(marlin_estado_t *saida)
 {
     xSemaphoreTake(s_mtx, portMAX_DELAY);
     *saida = s_e;
-    saida->fila = (int)uxQueueMessagesWaiting(s_fila) + (s_aguardando ? 1 : 0);
+    saida->fila = (int)uxQueueMessagesWaiting(s_fila) + s_voo;
     xSemaphoreGive(s_mtx);
+}
+
+void marlin_fonte(marlin_fonte_t fonte)
+{
+    s_fonte = fonte;
+    if (!fonte) s_tem_pendente = false;
+}
+
+bool marlin_ocioso(void)
+{
+    return s_voo == 0 && !s_tem_pendente && uxQueueMessagesWaiting(s_fila) == 0;
 }

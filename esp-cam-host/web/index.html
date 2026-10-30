@@ -35,6 +35,27 @@
 <main>
   <!-- ======================================================= PAINEL -->
   <section id="painel" class="aba ativa">
+    <div class="cartao impressao" id="cartaoImp" hidden>
+      <div class="impCorpo">
+        <img id="impMini" alt="" hidden>
+        <div class="impDados">
+          <div class="cab"><h2 id="impNome">Impressão</h2><span class="chip" id="impEstado"></span></div>
+          <div class="barraImp"><i id="impBarra"></i><span id="impPct"></span></div>
+          <div class="pares">
+            <div><span>Camada</span><b id="impCamada">–</b></div>
+            <div><span>Decorrido</span><b id="impDecorrido">–</b></div>
+            <div><span>Restante</span><b id="impRestante">–</b></div>
+            <div><span>Término</span><b id="impTermino">–</b></div>
+          </div>
+          <div class="dica" id="impAviso"></div>
+        </div>
+      </div>
+      <div class="presets" id="impBotoes">
+        <button id="impPausa">⏸ Pausar</button>
+        <button id="impRetoma" class="verde">▶ Retomar</button>
+        <button id="impCancela" class="perigo">✕ Cancelar</button>
+      </div>
+    </div>
     <div class="grade">
       <div class="cartao cam">
         <div class="cab"><h2>Câmera</h2>
@@ -294,8 +315,40 @@
 
   <!-- ======================================================= ARQUIVOS -->
   <section id="arquivos" class="aba">
-    <div class="cartao"><h2>Arquivos</h2>
-      <p class="dica">Em construção: envio de G-code, miniatura e impressão pelo cartão.</p></div>
+    <div class="arqGrade">
+      <div class="cartao">
+        <div class="cab"><h2>Enviar G-code</h2></div>
+        <div class="soltar" id="arqSoltar">
+          <div>Arraste o arquivo .gcode aqui</div>
+          <button id="arqEscolher">Escolher arquivo</button>
+          <input type="file" id="arqInput" accept=".gcode,.gco,.g" hidden>
+        </div>
+        <div class="progresso" id="arqProg" hidden><i></i><span></span></div>
+        <p class="dica">Direto do OrcaSlicer: em Impressora → Conexão (ícone de Wi-Fi), tipo
+          <b>OctoPrint</b>, endereço <code id="arqEndereco">http://IP</code>, chave de API = a senha
+          da página. O botão “Enviar” manda para cá; “Enviar e imprimir” já começa.</p>
+      </div>
+      <div class="cartao">
+        <div class="cab"><h2>No cartão</h2><button class="sec" id="arqAtualiza">Atualizar</button></div>
+        <div id="arqLista" class="arqLista"><p class="dica">Carregando…</p></div>
+      </div>
+    </div>
+    <div class="cartao visual" id="arqVisual" hidden>
+      <div class="cab"><h2 id="visTitulo">Pré-visualização</h2>
+        <div class="botoes"><button class="sec" id="visFecha">Fechar</button></div></div>
+      <div class="visCorpo">
+        <canvas id="visCanvas"></canvas>
+        <div class="visLado">
+          <label class="dica">Camada <b id="visCamada">–</b> de <b id="visTotal">–</b> · Z <b id="visZ">–</b> mm</label>
+          <input type="range" id="visFaixa" min="0" max="0" value="0">
+          <div class="presets"><button class="sec" id="visMenos">◀</button><button class="sec" id="visMais">▶</button>
+            <label class="chk"><input type="checkbox" id="visAnt" checked> camada anterior</label>
+            <label class="chk"><input type="checkbox" id="visMesa"> mesa inteira</label></div>
+          <div id="visLegenda" class="visLegenda"></div>
+          <div id="visInfo" class="pares lista"></div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- ======================================================= SISTEMA -->
@@ -316,5 +369,6 @@
 <div class="aviso" id="aviso"></div>
 <script src="app.js"></script>
 <script src="nivel.js"></script>
+<script src="arquivos.js"></script>
 </body>
 </html>

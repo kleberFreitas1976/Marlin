@@ -36,7 +36,7 @@ function conecta() {
   ws.onmessage = (ev) => {
     let m;
     try { m = JSON.parse(ev.data); } catch (_) { return; }
-    if (m.t === 'e') { atualiza(m); if (window.Nivel) Nivel.estado(m); }
+    if (m.t === 'e') { atualiza(m); if (window.Nivel) Nivel.estado(m); if (window.Arquivos) Arquivos.estado(m); }
     else if (m.t === 'l') { linhaConsole(m); if (window.Nivel) Nivel.linha(m); }
   };
   ws.onclose = () => {
@@ -208,6 +208,7 @@ function liga() {
     if (b.dataset.aba !== 'painel') pararVivo();
     if (b.dataset.aba === 'painel') desenhaGrafico();
     if (b.dataset.aba === 'nivel' && window.Nivel) Nivel.mostra();
+    if (b.dataset.aba === 'arquivos' && window.Arquivos) Arquivos.atualiza();
     history.replaceState(null, '', '#/' + b.dataset.aba);   // '#/' evita rolar ate a secao
   });
   const inicial = location.hash.replace(/^#\/?/, '');
@@ -282,6 +283,7 @@ function ajustaTemp(qual, v) {
 }
 
 // ---------------------------------------------------------------- inicio
+window.avisoGlobal = aviso;
 liga();
 sessao().then(conecta).catch(() => {
   aviso('Não consegui abrir a sessão. Recarregue a página.', true);

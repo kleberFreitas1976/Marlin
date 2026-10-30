@@ -9,6 +9,7 @@ Uso:  python tools/servidor_teste.py [porta]      (padrao 8765)
       abra http://localhost:8765/
 """
 import base64
+import urllib.parse
 import hashlib
 import json
 import os
@@ -189,10 +190,80 @@ def estado():
             "cam": {"sensor": "OV5640", "ligada": False, "larg": 2560, "alt": 1920},
             "sd": {"ok": True, "livreMB": 30421, "totalMB": 30421},
             "rede": {"ssid": "Simulada", "ip": "127.0.0.1", "rssi": -55, "ap": False},
-            "sis": {"seg": int(time.time() - INICIO), "ram": 150, "psram": 7800}}
+            "sis": {"seg": int(time.time() - INICIO), "ram": 150, "psram": 7800}, "imp": JOB}
 
 
 INICIO = time.time()
+
+# ---------------------------------------------------------------- arquivos e impressao simulados
+SD = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".pio", "sd_teste")
+os.makedirs(os.path.join(SD, "gcodes", ".meta"), exist_ok=True)
+JOB = {"estado": "parada", "nome": "", "bytes": 0, "total": 0, "linhas": 0, "camada": 0,
+       "camadas": 0, "decorrido": 0, "estimado": -1, "restante": -1, "aviso": "", "tft": False,
+       "tftNome": "", "tftCamada": 0, "tftCamadas": 0, "tftDecorrido": 0}
+
+
+def meta_de(nome):
+    """Le tempo, camadas e miniatura como o firmware faz na chegada."""
+    caminho = os.path.join(SD, "gcodes", nome)
+    m = {"tempo": -1, "camadas": 0, "filamentoG": 0, "material": "", "bico": 0, "mesa": 0, "miniatura": ""}
+    mini, dentro = [], False
+    for l in open(caminho, encoding="utf-8", errors="ignore"):
+        if dentro:
+            if "thumbnail end" in l:
+                dentro = False
+                open(os.path.join(SD, "gcodes", ".meta", nome + ".png"), "wb").write(
+                    base64.b64decode("".join(mini)))
+                m["miniatura"] = "png"
+            else:
+                mini.append(l.strip("; \r\n"))
+            continue
+        if "thumbnail begin" in l:
+            dentro, mini = True, []
+        elif "LAYER_CHANGE" in l:
+            m["camadas"] += 1
+        elif "estimated printing time (normal mode)" in l:
+            t = l.split("=")[-1]
+            m["tempo"] = sum(int(v[:-1]) * {"d": 86400, "h": 3600, "m": 60, "s": 1}[v[-1]]
+                             for v in t.split() if v[:-1].isdigit())
+        elif "filament used [g]" in l:
+            m["filamentoG"] = float(l.split("=")[-1])
+        elif l.startswith("; filament_type") and not m["material"]:
+            m["material"] = l.split("=")[-1].strip().split(";")[0]
+        elif l.startswith("; first_layer_temperature") or l.startswith("; nozzle_temperature_initial_layer"):
+            m["bico"] = int(float(l.split("=")[-1].split(",")[0]))
+        elif l.startswith("; first_layer_bed_temperature") or l.startswith("; hot_plate_temp_initial_layer"):
+            m["mesa"] = int(float(l.split("=")[-1].split(",")[0]))
+    return m
+
+
+def lista_arquivos():
+    out = []
+    pasta = os.path.join(SD, "gcodes")
+    for n in os.listdir(pasta):
+        c = os.path.join(pasta, n)
+        if os.path.isfile(c) and n.lower().endswith((".gcode", ".gco", ".g")):
+            out.append({"nome": n, "tam": os.path.getsize(c), "data": int(os.path.getmtime(c)),
+                        "meta": meta_de(n)})
+    return out
+
+
+def simula_impressao():
+    """Avanca a impressao simulada: o arquivo inteiro em ~60 s."""
+    while True:
+        time.sleep(1)
+        if JOB["estado"] == "imprimindo":
+            JOB["decorrido"] += 1
+            JOB["bytes"] = min(JOB["total"], JOB["bytes"] + max(1, JOB["total"] // 60))
+            p = JOB["bytes"] / max(1, JOB["total"])
+            JOB["camada"] = int(p * JOB["camadas"])
+            JOB["restante"] = int(JOB["decorrido"] * (1 - p) / p) if p > 0.1 else JOB["estimado"]
+            if JOB["bytes"] >= JOB["total"]:
+                JOB.update(estado="concluida", aviso="Impressao concluida", restante=0)
+        elif JOB["estado"] == "pausando":
+            JOB.update(estado="pausada", aviso="Pausada: bico estacionado, aquecimento mantido")
+        elif JOB["estado"] == "cancelando":
+            JOB.update(estado="cancelada", aviso="Impressao cancelada")
 
 
 def relogio():
@@ -242,6 +313,20 @@ class Manipulador(BaseHTTPRequestHandler):
             return self.websocket()
         if caminho == "/api/sessao":
             return self.responde(200, "application/json", json.dumps({"token": TOKEN}).encode())
+        q = urllib.parse.parse_qs(urllib.parse.urlparse(self.path).query)
+        nome = os.path.basename(q.get("nome", [""])[0])
+        if caminho == "/api/arquivos":
+            return self.responde(200, "application/json", json.dumps(lista_arquivos()).encode())
+        if caminho == "/api/miniatura":
+            c = os.path.join(SD, "gcodes", ".meta", nome + ".png")
+            if os.path.exists(c):
+                return self.responde(200, "image/png", open(c, "rb").read())
+            return self.responde(404, "application/json", b'{"erro":"sem miniatura"}')
+        if caminho == "/api/arquivo":
+            c = os.path.join(SD, "gcodes", nome)
+            if os.path.exists(c):
+                return self.responde(200, "text/plain", open(c, "rb").read())
+            return self.responde(404, "application/json", b'{"erro":"nao encontrado"}')
         if caminho == "/api/nivel":
             dados = open(NIVEL, "rb").read() if os.path.exists(NIVEL) else b'{"cfg":{},"historico":[]}'
             return self.responde(200, "application/json", dados)
@@ -260,8 +345,41 @@ class Manipulador(BaseHTTPRequestHandler):
         self.responde(200, TIPOS.get(os.path.splitext(arq)[1], "application/octet-stream"),
                       open(arq, "rb").read())
 
+    def do_DELETE(self):
+        q = urllib.parse.parse_qs(urllib.parse.urlparse(self.path).query)
+        nome = os.path.basename(q.get("nome", [""])[0])
+        c = os.path.join(SD, "gcodes", nome)
+        if os.path.exists(c):
+            os.remove(c)
+            return self.responde(200, "application/json", b'{"ok":true}')
+        self.responde(404, "application/json", b'{"erro":"nao encontrado"}')
+
     def do_POST(self):
         n = int(self.headers.get("Content-Length", 0))
+        caminho = self.path.split("?")[0]
+        q = urllib.parse.parse_qs(urllib.parse.urlparse(self.path).query)
+        nome = os.path.basename(q.get("nome", [""])[0])
+        if caminho == "/api/arquivos":
+            open(os.path.join(SD, "gcodes", nome), "wb").write(self.rfile.read(n))
+            return self.responde(200, "application/json", b'{"ok":true}')
+        if caminho == "/api/imprimir":
+            if JOB["estado"] in ("imprimindo", "pausando", "pausada", "cancelando"):
+                return self.responde(409, "application/json", b'{"erro":"ja ha uma impressao em andamento"}')
+            m = meta_de(nome)
+            JOB.update(estado="imprimindo", nome=nome, bytes=0,
+                       total=os.path.getsize(os.path.join(SD, "gcodes", nome)), camada=0,
+                       camadas=m["camadas"], decorrido=0, estimado=m["tempo"], restante=m["tempo"],
+                       aviso="Imprimindo")
+            return self.responde(200, "application/json", b'{"ok":true}')
+        if caminho == "/api/impressao":
+            acao = q.get("acao", [""])[0]
+            if acao == "pausa" and JOB["estado"] == "imprimindo":
+                JOB.update(estado="pausando", aviso="Pausando")
+            elif acao == "retoma" and JOB["estado"] == "pausada":
+                JOB.update(estado="imprimindo", aviso="Imprimindo")
+            elif acao == "cancela":
+                JOB.update(estado="cancelando", aviso="Cancelando")
+            return self.responde(200, "application/json", b'{"ok":true}')
         corpo = self.rfile.read(n).decode()
         if self.path == "/api/nivel":
             open(NIVEL, "w", encoding="utf-8").write(corpo)
@@ -314,6 +432,7 @@ class Manipulador(BaseHTTPRequestHandler):
 if __name__ == "__main__":
     porta = int(sys.argv[1]) if len(sys.argv) > 1 else 8765
     threading.Thread(target=relogio, daemon=True).start()
+    threading.Thread(target=simula_impressao, daemon=True).start()
     srv = ThreadingHTTPServer(("127.0.0.1", porta), Manipulador)
     print(f"interface de teste em http://localhost:{porta}/  (Ctrl+C para sair)")
     srv.serve_forever()

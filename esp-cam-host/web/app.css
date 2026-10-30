@@ -124,6 +124,47 @@ canvas { width:100%; display:block; }
 .aviso.mostra { transform:translateX(-50%) translateY(0); }
 .aviso.erro { border-color:var(--erro); }
 
+/* impressao */
+.impressao { margin-bottom:14px; }
+.impCorpo { display:flex; gap:14px; align-items:flex-start; }
+.impCorpo img { width:110px; height:110px; object-fit:contain; background:var(--painel2); border-radius:8px; }
+.impDados { flex:1; min-width:0; }
+.impDados h2 { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.barraImp { position:relative; height:22px; background:var(--painel2); border-radius:11px; overflow:hidden; }
+.barraImp i { display:block; height:100%; width:0; background:linear-gradient(90deg,#2d5b8a,#4aa3ff); transition:width .6s; }
+.barraImp span { position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  font-size:13px; font-weight:700; }
+button.perigo { background:#9c2b2b; }
+
+/* arquivos */
+.arqGrade { display:grid; gap:14px; grid-template-columns:minmax(280px,380px) 1fr; align-items:start; }
+.soltar { border:2px dashed var(--borda); border-radius:12px; padding:26px 14px; text-align:center;
+  display:flex; flex-direction:column; gap:10px; align-items:center; color:var(--suave); }
+.soltar.sobre { border-color:var(--acento); background:#1b2a3a; color:var(--texto); }
+.progresso { position:relative; height:22px; background:var(--painel2); border-radius:11px; overflow:hidden; margin-top:10px; }
+.progresso i { display:block; height:100%; width:0; background:var(--ok); }
+.progresso span { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:12px; }
+.arqLista { display:grid; gap:8px; }
+.arqItem { display:flex; gap:12px; align-items:center; background:var(--painel2); border-radius:10px; padding:8px; }
+.arqItem img, .arqItem .semMini { width:64px; height:64px; object-fit:contain; border-radius:6px;
+  background:#15191d; flex:none; display:flex; align-items:center; justify-content:center; color:var(--suave); font-size:11px; }
+.arqItem .info { flex:1; min-width:0; }
+.arqItem .nome { font-weight:600; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.arqItem .det { color:var(--suave); font-size:12px; margin-top:3px; }
+.arqItem .acoes { display:flex; gap:6px; flex-wrap:wrap; justify-content:flex-end; }
+.arqItem .acoes button { padding:7px 10px; font-size:13px; }
+.visual { margin-top:14px; }
+.visCorpo { display:grid; grid-template-columns:minmax(0,1fr) 300px; gap:14px; }
+#visCanvas { height:520px; background:#15191d; border-radius:8px; }
+.visLado input[type=range] { width:100%; margin:10px 0; }
+.visLegenda { display:grid; grid-template-columns:1fr 1fr; gap:4px 10px; font-size:12px; color:var(--suave); margin:10px 0; }
+.visLegenda span::before { content:""; display:inline-block; width:10px; height:10px; border-radius:2px;
+  margin-right:6px; vertical-align:-1px; background:var(--c); }
+@media (max-width:900px) {
+  .arqGrade, .visCorpo { grid-template-columns:1fr; }
+  #visCanvas { height:380px; }
+}
+
 /* nivelamento */
 .nivelGrade { display:grid; gap:14px; grid-template-columns:minmax(0,1fr) 380px;
   grid-template-areas:"mapa lado" "diag lado"; align-items:start; }

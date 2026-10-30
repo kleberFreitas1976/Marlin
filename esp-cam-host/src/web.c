@@ -29,6 +29,7 @@
 #include "segredos.h"
 #include "usb_serial.h"
 #include "web_arquivos.h"
+#include "web_interno.h"
 
 static const char *TAG = "web";
 
@@ -111,6 +112,29 @@ static bool autorizado(httpd_req_t *req)
     return false;
 }
 
+bool web_autorizado(httpd_req_t *req) { return autorizado(req); }
+bool web_senha_ok(httpd_req_t *req) { return senha_ok(req); }
+size_t web_json_esc(char *dst, size_t tam, const char *src) { return json_esc(dst, tam, src); }
+
+bool web_parametro(httpd_req_t *req, const char *chave, char *saida, size_t tam)
+{
+    char q[300], v[200];
+    if (httpd_req_get_url_query_str(req, q, sizeof q) != ESP_OK ||
+        httpd_query_key_value(q, chave, v, sizeof v) != ESP_OK)
+        return false;
+    size_t o = 0;                      // decodifica %XX e '+'
+    for (const char *p = v; *p && o < tam - 1; p++) {
+        if (*p == '+') saida[o++] = ' ';
+        else if (*p == '%' && p[1] && p[2]) {
+            char h[3] = {p[1], p[2], 0};
+            saida[o++] = (char)strtol(h, NULL, 16);
+            p += 2;
+        } else saida[o++] = *p;
+    }
+    saida[o] = '\0';
+    return o > 0;
+}
+
 static int le_corpo(httpd_req_t *req, char *buf, size_t tam)
 {
     int n = req->content_len < tam - 1 ? req->content_len : tam - 1;
@@ -140,7 +164,7 @@ static size_t estado_json(char *j, size_t tam)
         "\"cam\":{\"sensor\":\"%s\",\"ligada\":%s,\"larg\":%d,\"alt\":%d},"
         "\"sd\":{\"ok\":%s,\"livreMB\":%llu,\"totalMB\":%llu},"
         "\"rede\":{\"ssid\":\"%s\",\"ip\":\"%s\",\"rssi\":%d,\"ap\":%s},"
-        "\"sis\":{\"seg\":%lld,\"ram\":%u,\"psram\":%u}}",
+        "\"sis\":{\"seg\":%lld,\"ram\":%u,\"psram\":%u},\"imp\":",
         e.conectada ? "true" : "false", e.respondendo ? "true" : "false", fw,
         e.ocupada ? "true" : "false", e.fila, e.bico, e.bico_alvo, e.bico_pwm, e.mesa,
         e.mesa_alvo, e.mesa_pwm, e.x, e.y, e.z, e.e, e.velocidade, e.fluxo, e.compensacao,
@@ -151,6 +175,15 @@ static size_t estado_json(char *j, size_t tam)
         rede_ap_ativo() ? "true" : "false", esp_timer_get_time() / 1000000,
         (unsigned)(heap_caps_get_free_size(MALLOC_CAP_INTERNAL) / 1024),
         (unsigned)(heap_caps_get_free_size(MALLOC_CAP_SPIRAM) / 1024));
+}
+
+static size_t estado_completo(char *j, size_t tam)
+{
+    size_t n = estado_json(j, tam);
+    if (n + 600 >= tam) return n;
+    n += web_impressao_json(j + n, tam - n);
+    n += snprintf(j + n, tam - n, "}");
+    return n;
 }
 
 // ------------------------------------------------------------------ WebSocket
@@ -259,8 +292,8 @@ static esp_err_t ws_manipula(httpd_req_t *req)
                 break;
             }
         xSemaphoreGive(s_ws_mtx);
-        char j[1400];
-        size_t n = estado_json(j, sizeof j);
+        char j[2200];
+        size_t n = estado_completo(j, sizeof j);
         ws_envia(fd, j, n);
         ws_historico(fd);
         return ESP_OK;
@@ -292,11 +325,11 @@ static esp_err_t ws_manipula(httpd_req_t *req)
 
 static void tarefa_estado(void *arg)
 {
-    char j[1400];
+    static char j[2200];
     while (true) {
         vTaskDelay(pdMS_TO_TICKS(1000));
         if (!ws_alguem()) continue;
-        size_t n = estado_json(j, sizeof j);
+        size_t n = estado_completo(j, sizeof j);
         ws_envia(-1, j, n);
     }
 }
@@ -315,8 +348,8 @@ static esp_err_t api_sessao(httpd_req_t *req)
 static esp_err_t api_estado(httpd_req_t *req)
 {
     if (!autorizado(req)) return ESP_OK;
-    char j[1400];
-    estado_json(j, sizeof j);
+    char j[2200];
+    estado_completo(j, sizeof j);
     httpd_resp_set_type(req, "application/json");
     return httpd_resp_sendstr(req, j);
 }
@@ -570,7 +603,7 @@ esp_err_t web_inicia(void)
     for (int i = 0; i < WS_MAX; i++) s_ws[i] = -1;
 
     httpd_config_t c = HTTPD_DEFAULT_CONFIG();
-    c.max_uri_handlers = 24;
+    c.max_uri_handlers = 32;
     c.max_open_sockets = 7;         // com os 3 internos e o video, cabe nos 16 do lwIP
     c.lru_purge_enable = true;      // celulares abrem muitas conexoes no portal cativo
     c.uri_match_fn = httpd_uri_match_wildcard;
@@ -593,10 +626,13 @@ esp_err_t web_inicia(void)
         {.uri = "/api/wifi/estado", .method = HTTP_GET, .handler = api_wifi_estado},
         {.uri = "/api/wifi/redes", .method = HTTP_GET, .handler = api_wifi_redes},
         {.uri = "/api/wifi", .method = HTTP_POST, .handler = api_wifi_grava},
-        {.uri = "/*", .method = HTTP_GET, .handler = pag_arquivo},   // por ultimo
     };
     for (size_t i = 0; i < sizeof rotas / sizeof rotas[0]; i++)
         httpd_register_uri_handler(s_srv, &rotas[i]);
+    web_rotas_arquivos(s_srv);
+    // por ultimo: a interface responde tudo o que nao for API
+    const httpd_uri_t interface = {.uri = "/*", .method = HTTP_GET, .handler = pag_arquivo};
+    httpd_register_uri_handler(s_srv, &interface);
 
     httpd_handle_t hv = NULL;
     httpd_config_t cv = HTTPD_DEFAULT_CONFIG();
