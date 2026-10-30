@@ -192,6 +192,17 @@ grava(finaliza(maquina, "CoreXY MKS TinyBee", "machine", "printer_settings_id",
                "MyMarlin 0.4 nozzle"),
       "CoreXY MKS TinyBee.json")
 
+# Variante com estacionamento a cada camada para o time-lapse: igual, so muda o
+# G-code de troca de camada (secao propria no bundle).
+PT = sec.get("printer:CoreXY MKS TinyBee (time-lapse)")
+if PT:
+    tl = dict(maquina)
+    tl["layer_change_gcode"] = gcode(PT["layer_gcode"])
+    tl["printer_notes"] = gcode(PT["printer_notes"])
+    grava(finaliza(tl, "CoreXY MKS TinyBee (time-lapse)", "machine", "printer_settings_id",
+                   "MyMarlin 0.4 nozzle"),
+          "CoreXY MKS TinyBee (time-lapse).json")
+
 # ---------------------------------------------------------------- processo
 S = sec["print:CoreXY TinyBee 0.20mm"]
 proc = aplica(base_de("0.20mm Standard @MyMarlin", "Custom", "CoreXY TinyBee 0.20mm.json"), {

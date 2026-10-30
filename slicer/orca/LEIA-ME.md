@@ -8,6 +8,7 @@ continua sendo a fonte de verdade.
 | Arquivo | Tipo |
 |---|---|
 | `CoreXY MKS TinyBee.json` | impressora |
+| `CoreXY MKS TinyBee (time-lapse).json` | impressora, com estacionamento a cada camada para o time-lapse |
 | `CoreXY TinyBee 0.20mm.json` | processo (perfil de impressão) |
 | `PLA Speed Plus GTMax3D.json` | filamento — o rolo em uso, diâmetro medido 1,88 |
 | `PETG CoreXY TinyBee.json` | filamento |
@@ -68,6 +69,23 @@ tem os JSONs, o gerador usa como base os próprios arquivos desta pasta, que já
 são completos, e aplica por cima os valores do bundle. É idempotente: só o que o
 bundle mudou muda. Efeito colateral: o que o Orca 2.5 tiver mudado nos padrões
 dele **não** entra por esse caminho.
+
+## Linhas para a ESP32-S3-CAM
+
+As duas impressoras mandam ao Marlin linhas `M118 P1 TL:...`, que ele repassa
+para a porta USB, onde fica a ESP32-S3-CAM. Assim ela acompanha também as
+impressões feitas pela TFT24:
+
+| Onde | Linha |
+|---|---|
+| Início | `M118 P1 TL:INICIO {input_filename_base}` |
+| Troca de camada | `M118 P1 TL:CAMADA {layer_num+1}/{total_layer_count}` |
+| Fim | `M118 P1 TL:FIM` |
+
+A variante **(time-lapse)** acrescenta, a cada camada: sobe 0,6 mm, estaciona no
+fundo-esquerda (X5 Y176), `M400`, `M118 P1 TL:FOTO`, espera 0,4 s e desce. O
+próximo deslocamento do arquivo leva o bico de volta. Custa uns 2 a 3 s por
+camada. Use-a só quando quiser o vídeo.
 
 ## Diferenças em relação ao PrusaSlicer
 
