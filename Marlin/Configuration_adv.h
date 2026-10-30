@@ -2844,7 +2844,9 @@
 
 // The ASCII buffer for serial input
 #define MAX_CMD_SIZE 96
-#define BUFSIZE 4
+#define BUFSIZE 16   // Era 4. A ESP32-S3-CAM envia impressoes pela USB (como o OctoPrint)
+                     // e a TFT24 continua mandando comandos: com 16 linhas na fila os
+                     // dois nao esperam um pelo outro. Custa 16 x 96 bytes de RAM.
 
 /**
  * Host Transmit Buffer Size
@@ -4178,7 +4180,8 @@
 /**
  * Auto-report position with M154 S<seconds>
  */
-//#define AUTO_REPORT_POSITION
+#define AUTO_REPORT_POSITION   // M154: a ESP32-S3-CAM acompanha a posicao sem perguntar.
+                               // So vai para a porta que pediu; a TFT24 nao recebe.
 #if ENABLED(AUTO_REPORT_POSITION)
   //#define AUTO_REPORT_REAL_POSITION // Auto-report the real position
 #endif
@@ -4192,7 +4195,7 @@
   // Include capabilities in M115 output
   #define EXTENDED_CAPABILITIES_REPORT
   #if ENABLED(EXTENDED_CAPABILITIES_REPORT)
-    //#define M115_GEOMETRY_REPORT
+    #define M115_GEOMETRY_REPORT   // A ESP32-S3-CAM le o tamanho da mesa pelo M115
   #endif
 #endif
 
