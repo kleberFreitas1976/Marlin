@@ -1,0 +1,10 @@
+.pio/
+sdkconfig.*
+!sdkconfig.defaults
+secrets.ini
+src/segredos.h
+managed_components/
+
+# O .gitignore da raiz do Marlin ignora todo CMakeLists.txt; o ESP-IDF precisa destes
+!CMakeLists.txt
+!src/CMakeLists.txt
