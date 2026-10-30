@@ -28,6 +28,8 @@ size_t web_reles_json(char *j, size_t tam);
 
 // Nuvem (web_nuvem_api.c)
 void web_rotas_nuvem(httpd_handle_t srv);
+// Atualizacao do firmware (web_ota_api.c)
+void web_rotas_ota(httpd_handle_t srv);
 
 // Estado completo em JSON (o mesmo do WebSocket)
 size_t web_estado_completo(char *j, size_t tam);

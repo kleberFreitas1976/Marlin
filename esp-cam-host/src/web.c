@@ -610,7 +610,7 @@ esp_err_t web_inicia(void)
     for (int i = 0; i < WS_MAX; i++) s_ws[i] = -1;
 
     httpd_config_t c = HTTPD_DEFAULT_CONFIG();
-    c.max_uri_handlers = 40;
+    c.max_uri_handlers = 48;
     c.max_open_sockets = 7;         // com os 3 internos e o video, cabe nos 16 do lwIP
     c.lru_purge_enable = true;      // celulares abrem muitas conexoes no portal cativo
     c.uri_match_fn = httpd_uri_match_wildcard;
@@ -640,6 +640,7 @@ esp_err_t web_inicia(void)
     web_rotas_timelapse(s_srv);
     web_rotas_reles(s_srv);
     web_rotas_nuvem(s_srv);
+    web_rotas_ota(s_srv);
     // por ultimo: a interface responde tudo o que nao for API
     const httpd_uri_t interface = {.uri = "/*", .method = HTTP_GET, .handler = pag_arquivo};
     httpd_register_uri_handler(s_srv, &interface);

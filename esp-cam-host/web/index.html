@@ -438,6 +438,12 @@
       <div class="cartao">
         <div class="cab"><h2>ESP32-S3-CAM</h2><a href="/wifi"><button class="sec">Configurar Wi-Fi</button></a></div>
         <div class="pares lista" id="infoEsp"></div>
+        <div class="linhaForm"><button class="sec" id="otaEscolher">Atualizar firmware…</button>
+          <span class="dica" id="otaVersao"></span>
+          <input type="file" id="otaArquivo" accept=".bin" hidden></div>
+        <div class="progresso" id="otaProg" hidden><i></i><span></span></div>
+        <p class="dica">Arquivo: <code>esp-cam-host/.pio/build/esp32s3cam/firmware.bin</code>, gerado
+          pelo PlatformIO. A placa confere a imagem antes de trocar; se a nova não subir, continua na antiga.</p>
       </div>
     </div>
   </section>

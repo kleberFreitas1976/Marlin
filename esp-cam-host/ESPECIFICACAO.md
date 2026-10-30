@@ -254,6 +254,11 @@ esp-cam-host/
 
 ## 14. Fases
 
+**Situação em 30/10/2026:** fases 1 a 8 implementadas, mais a atualização do
+firmware pela página. O que foi testado e o que ainda precisa de alguém olhando
+a impressora está no [README](README.md). A fase 9 (telas de calibração) segue
+pendente.
+
 | Fase | Entrega |
 |---|---|
 | 1 | ESP-IDF rodando: PSRAM, **ID da câmera**, foto no navegador, SD |

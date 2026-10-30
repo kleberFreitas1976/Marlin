@@ -166,7 +166,33 @@ async function nuvemSalva() {
   nuvemLe();
 }
 
+async function otaVersao() {
+  try {
+    const d = await (await fetch('/api/firmware', { cache: 'no-store' })).json();
+    $('otaVersao').textContent = `atual: ${d.compilado} (${d.particao})`;
+  } catch (_) { /* reiniciando */ }
+}
+
+function otaEnvia(arq) {
+  if (!/\.bin$/i.test(arq.name)) return aviso('Escolha o firmware.bin', true);
+  if (!confirm(`Gravar ${arq.name} (${(arq.size / 1048576).toFixed(2)} MB) na placa e reiniciar?`)) return;
+  const prog = $('otaProg'), barra = prog.querySelector('i'), txt = prog.querySelector('span');
+  prog.hidden = false;
+  const x = new XMLHttpRequest();
+  x.open('POST', '/api/ota');
+  x.upload.onprogress = (e) => { barra.style.width = (e.loaded / e.total * 100) + '%'; txt.textContent = `enviando ${Math.round(e.loaded / e.total * 100)}%`; };
+  x.onload = () => {
+    if (x.status === 200) { txt.textContent = 'gravado; a placa está reiniciando…'; setTimeout(() => location.reload(), 12000); }
+    else { txt.textContent = 'falhou: ' + x.responseText; barra.style.background = 'var(--erro)'; }
+  };
+  x.onerror = () => { txt.textContent = 'conexão interrompida'; };
+  x.send(arq);
+}
+
 function ligaEnergia() {
+  $('otaEscolher').onclick = () => $('otaArquivo').click();
+  $('otaArquivo').onchange = () => { if ($('otaArquivo').files[0]) otaEnvia($('otaArquivo').files[0]); $('otaArquivo').value = ''; };
+  otaVersao();
   $('nuSalva').onclick = nuvemSalva;
   nuvemLe();
   setInterval(() => { if (document.querySelector('#sistema.ativa')) nuvemLe(); }, 10000);
