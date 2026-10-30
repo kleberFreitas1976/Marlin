@@ -36,8 +36,8 @@ function conecta() {
   ws.onmessage = (ev) => {
     let m;
     try { m = JSON.parse(ev.data); } catch (_) { return; }
-    if (m.t === 'e') atualiza(m);
-    else if (m.t === 'l') linhaConsole(m);
+    if (m.t === 'e') { atualiza(m); if (window.Nivel) Nivel.estado(m); }
+    else if (m.t === 'l') { linhaConsole(m); if (window.Nivel) Nivel.linha(m); }
   };
   ws.onclose = () => {
     chip('chipTb', 'erro', 'sem conexão');
@@ -207,6 +207,7 @@ function liga() {
     document.querySelectorAll('.aba').forEach((s) => s.classList.toggle('ativa', s.id === b.dataset.aba));
     if (b.dataset.aba !== 'painel') pararVivo();
     if (b.dataset.aba === 'painel') desenhaGrafico();
+    if (b.dataset.aba === 'nivel' && window.Nivel) Nivel.mostra();
     history.replaceState(null, '', '#/' + b.dataset.aba);   // '#/' evita rolar ate a secao
   });
   const inicial = location.hash.replace(/^#\/?/, '');

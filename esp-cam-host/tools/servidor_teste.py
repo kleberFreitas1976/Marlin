@@ -23,6 +23,9 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 PASTA = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "web")
 TOKEN = "teste0000000000000000000000000000"
+# historico do nivelamento simulado (no lugar do cartao SD)
+NIVEL = os.environ.get("NIVEL_TESTE", os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                                  "..", ".pio", "nivelamento_teste.json"))
 TIPOS = {".html": "text/html; charset=utf-8", ".js": "application/javascript",
          ".css": "text/css", ".svg": "image/svg+xml", ".png": "image/png", ".jpg": "image/jpeg"}
 
@@ -37,6 +40,18 @@ class Marlin:
         self.malha = [[-0.235, 0.195, 0.008, 0.263, 0.263], [-0.305, 0.190, -0.075, 0.245, 0.278],
                       [-0.367, 0.077, -0.122, 0.195, 0.235], [-0.467, 0.023, -0.237, 0.113, 0.182],
                       [-0.562, -0.133, -0.293, 0.000, 0.120]]
+
+    def altura(self, x, y):
+        """Mesa simulada: a malha real de 26/10 interpolada, mais ruido de probe."""
+        base = [[-0.235, 0.195, 0.008, 0.263, 0.263], [-0.305, 0.190, -0.075, 0.245, 0.278],
+                [-0.367, 0.077, -0.122, 0.195, 0.235], [-0.467, 0.023, -0.237, 0.113, 0.182],
+                [-0.562, -0.133, -0.293, 0.000, 0.120]]
+        fx = (min(max(x, 15), 142) - 15) / (127 / 4)
+        fy = (min(max(y, 15), 166) - 15) / (151 / 4)
+        i0, j0 = min(int(fx), 3), min(int(fy), 3)
+        tx, ty = fx - i0, fy - j0
+        v = (base[j0][i0] * (1 - tx) + base[j0][i0 + 1] * tx) * (1 - ty) +             (base[j0 + 1][i0] * (1 - tx) + base[j0 + 1][i0 + 1] * tx) * ty
+        return v + random.gauss(0, 0.012)
 
     def passo(self, dt):
         for nome in ("bico", "mesa"):
@@ -106,6 +121,21 @@ class Marlin:
                 out.append("")
             out.append("echo:Bed Leveling " + ("ON" if self.comp else "OFF"))
             out.append("echo:Fade Height 10.00")
+        elif c == "G29":
+            # mede a malha simulada na area pedida, com um pouco de ruido
+            L, R, F, B = p.get("L", 15), p.get("R", 142), p.get("F", 15), p.get("B", 166)
+            g = [[round(self.altura(L + (R - L) * i / 4, F + (B - F) * j / 4), 3) for i in range(5)]
+                 for j in range(5)]
+            self.malha = g
+            out.append("Bilinear Leveling Grid:")
+            out.append("      0      1      2      3      4")
+            for j, l in enumerate(g):
+                out.append(f" {j} " + " ".join(f"{v:+.3f}" for v in l))
+            out.append("")
+            self.comp = 1
+        elif c == "G30":
+            x, y = p.get("X", self.x), p.get("Y", self.y)
+            out.append(f"Bed X:{x:.2f} Y:{y:.2f} Z:{self.altura(x, y):.3f}")
         elif c == "M119":
             out += ["Reporting endstop status", "x_max: open", "y_min: open",
                     "z_probe: TRIGGERED", "filament: open"]
@@ -184,6 +214,8 @@ def executa(texto):
             continue
         linha("tx", l.strip())
         time.sleep(0.05)
+        cmd = l.split()[0].upper() if l.split() else ""
+        time.sleep({"G28": 1.5, "G29": 4.0, "G30": 0.4}.get(cmd, 0))   # demora de mentira
         for r in MARLIN.comando(l):
             k = "ok" if r.startswith("ok") else "err" if r.startswith("Error") else \
                 "sis" if r.startswith("echo:") else "rx"
@@ -210,6 +242,9 @@ class Manipulador(BaseHTTPRequestHandler):
             return self.websocket()
         if caminho == "/api/sessao":
             return self.responde(200, "application/json", json.dumps({"token": TOKEN}).encode())
+        if caminho == "/api/nivel":
+            dados = open(NIVEL, "rb").read() if os.path.exists(NIVEL) else b'{"cfg":{},"historico":[]}'
+            return self.responde(200, "application/json", dados)
         if caminho == "/api/estado":
             return self.responde(200, "application/json", json.dumps(estado()).encode())
         if caminho == "/foto.jpg":
@@ -228,6 +263,9 @@ class Manipulador(BaseHTTPRequestHandler):
     def do_POST(self):
         n = int(self.headers.get("Content-Length", 0))
         corpo = self.rfile.read(n).decode()
+        if self.path == "/api/nivel":
+            open(NIVEL, "w", encoding="utf-8").write(corpo)
+            return self.responde(200, "text/plain", b"ok")
         if self.path == "/api/gcode":
             threading.Thread(target=executa, args=(corpo,), daemon=True).start()
             return self.responde(200, "application/json", b'{"enfileirados":1}')

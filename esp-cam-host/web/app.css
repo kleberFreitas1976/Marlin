@@ -124,6 +124,34 @@ canvas { width:100%; display:block; }
 .aviso.mostra { transform:translateX(-50%) translateY(0); }
 .aviso.erro { border-color:var(--erro); }
 
+/* nivelamento */
+.nivelGrade { display:grid; gap:14px; grid-template-columns:minmax(0,1fr) 380px;
+  grid-template-areas:"mapa lado" "diag lado"; align-items:start; }
+.nivelMapa { grid-area:mapa; } .nivelLado { grid-area:lado; display:grid; gap:14px; }
+.nivelDiag { grid-area:diag; }
+#nvCanvas { height:560px; background:var(--painel); }
+.segmentos { display:flex; gap:6px; flex-wrap:wrap; align-items:center; margin:6px 0 8px; }
+.acoesNivel { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; }
+.acoesNivel button { padding:9px 6px; font-size:13px; }
+button.verde { background:#1f7a4d; } button.roxo { background:#6a4c93; } button.laranja { background:#8a4b2d; }
+label.radio { display:flex; gap:8px; align-items:flex-start; margin:5px 0; color:var(--texto); font-size:14px; }
+.area { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px; }
+.area label { display:flex; justify-content:space-between; align-items:center; gap:6px; color:var(--suave); font-size:13px; }
+.molasPos { display:grid; grid-template-columns:1fr 1fr; gap:6px 10px; margin:8px 0; }
+.molasPos label { display:flex; align-items:center; justify-content:space-between; gap:4px; font-size:13px; color:var(--suave); }
+.molasPos input { width:62px; padding:5px 6px; }
+select.lista { width:100%; background:var(--painel2); color:var(--texto); border:1px solid var(--borda);
+  border-radius:8px; font:13px Consolas,monospace; padding:4px; }
+.diag div { margin:5px 0; line-height:1.45; }
+.diag b.ok { color:var(--ok); } .diag b.info { color:var(--acento); }
+.diag b.aviso { color:var(--aviso); } .diag b.erro { color:var(--erro); }
+details summary { cursor:pointer; margin-top:8px; }
+code { background:var(--painel2); padding:1px 5px; border-radius:4px; }
+@media (max-width:1100px) {
+  .nivelGrade { grid-template-columns:1fr; grid-template-areas:"mapa" "diag" "lado"; }
+  #nvCanvas { height:440px; }
+}
+
 @media (max-width:700px) {
   .cartao.cam, .cartao.grafico { grid-column:auto; }
   .chips { display:none; }

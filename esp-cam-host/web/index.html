@@ -200,8 +200,96 @@
 
   <!-- ======================================================= NIVELAMENTO -->
   <section id="nivel" class="aba">
-    <div class="cartao"><h2>Nivelamento</h2>
-      <p class="dica">Em construção: o mapa da mesa, as molas e o diagnóstico chegam na próxima etapa.</p></div>
+    <div class="nivelGrade">
+      <div class="cartao nivelMapa">
+        <div class="cab"><h2>Mapa da mesa</h2><span class="dica" id="nvResumo"></span></div>
+        <div class="segmentos" id="nvCor">
+          <span class="dica">Colorir por:</span>
+          <button class="sec ativo" data-cor="media">Desvio da média</button>
+          <button class="sec" data-cor="plano">O que sobra depois das molas</button>
+          <button class="sec" data-cor="anterior">Mudança desde a anterior</button>
+        </div>
+        <canvas id="nvCanvas"></canvas>
+        <div class="dica" id="nvStatus">Pronto</div>
+      </div>
+
+      <div class="nivelLado">
+        <div class="cartao">
+          <div class="cab"><h2>Ações</h2></div>
+          <div class="acoesNivel">
+            <button data-gcode="G28">⌂ Home</button>
+            <button class="verde" id="nvMedir">◎ Medir</button>
+            <button class="sec" data-gcode="M420 V">⟳ Ler malha</button>
+            <button class="sec" data-gcode="M420 S1">Ligar malha</button>
+            <button class="sec" data-gcode="M420 S0">Desligar malha</button>
+            <button class="roxo" data-confirma="Gravar na EEPROM a malha atual e os demais ajustes em vigor?" data-gcode="M500">💾 Gravar M500</button>
+            <button class="sec" data-gcode="M501&#10;M420 V">Carregar EEPROM</button>
+            <button class="sec" data-gcode="G91&#10;G1 Z20 F600&#10;G90">⇡ Subir Z 20</button>
+            <button class="sec" data-gcode="M84 S0">Motores ligados</button>
+            <button class="sec" data-confirma="Liberar os motores? Será preciso refazer o Home." data-gcode="M84">Liberar motores</button>
+            <button class="laranja" id="nvAquecer">🔥 Mesa 55 °C</button>
+            <button class="sec" data-gcode="M140 S0">Mesa desligada</button>
+          </div>
+        </div>
+
+        <div class="cartao">
+          <div class="cab"><h2>Medição</h2></div>
+          <label class="radio"><input type="radio" name="nvModo" value="G29" checked> Malha G29 5×5: a que o firmware usa ao imprimir</label>
+          <label class="radio"><input type="radio" name="nvModo" value="G30"> Medição rápida G30: só para acertar as molas</label>
+          <div class="segmentos" id="nvGrade"><span class="dica">Pontos da rápida:</span>
+            <button class="sec ativo" data-n="3">3×3</button><button class="sec" data-n="4">4×4</button>
+            <button class="sec" data-n="5">5×5</button></div>
+          <div class="area">
+            <label>Esquerda (L) <input type="number" id="nvL" step="1"></label>
+            <label>Direita (R) <input type="number" id="nvR" step="1"></label>
+            <label>Frente (F) <input type="number" id="nvF" step="1"></label>
+            <label>Fundo (B) <input type="number" id="nvB" step="1"></label>
+          </div>
+          <div class="presets"><button class="sec" id="nvAreaMax">Área máxima</button></div>
+          <p class="dica" id="nvTempo"></p>
+          <p class="dica">O probe alcança X 15–142 e Y 15–166 (fica 54 mm à esquerda e 10 mm à frente do bico).
+            A <b>área</b> muda sem regravar o firmware; o <b>número de pontos do G29</b> (5×5), só regravando.</p>
+        </div>
+
+        <div class="cartao">
+          <div class="cab"><h2>Molas</h2></div>
+          <div class="linhaForm"><label>Rendimento <input type="number" id="nvMmVolta" step="0.05" min="0.05"> mm/volta</label>
+            <button class="sec" id="nvMmPadrao">Padrão</button></div>
+          <p class="dica">Rosca M3: 0,5 mm por volta. O que vale é quanto a mesa inclina: medido em 25/10,
+            equivale a 0,85 mm/volta com os parafusos nos cantos da área útil.</p>
+          <div class="segmentos" id="nvSentido"><span class="dica">Sentido que SOBE a mesa:</span>
+            <button class="sec" data-s="horario">↻ horário</button><button class="sec" data-s="anti">↺ anti-horário</button>
+            <button class="sec" data-s="?">não sei</button></div>
+          <label class="radio"><input type="radio" name="nvRef" value="auto"> Mola parada: automático (menor giro total)</label>
+          <label class="radio"><input type="radio" name="nvRef" value="baixo"> A do canto mais baixo (as outras só descem: molas mais firmes)</label>
+          <label class="radio"><input type="radio" name="nvRef" value="alto"> A do canto mais alto (as outras só sobem)</label>
+          <div class="linhaForm"><label>Tolerância <input type="number" id="nvTol" step="0.01" min="0.01"> mm</label></div>
+          <details><summary class="dica">Posição dos parafusos e calibração</summary>
+            <div class="molasPos" id="nvMolasPos"></div>
+            <p class="dica">Calibrar: meça, gire as molas, meça de novo. Informe as voltas entre a medição
+              mostrada e a anterior (positivo = subiu). Gire em <b>par</b> (os dois de um lado) para um número confiável.</p>
+            <div class="molasPos" id="nvGiros"></div>
+            <div class="presets"><button class="sec" id="nvCalibrar">Calcular rendimento</button></div>
+          </details>
+        </div>
+
+        <div class="cartao">
+          <div class="cab"><h2>Histórico</h2>
+            <div class="botoes"><button class="sec" id="nvImportar">Importar</button>
+              <button class="sec" id="nvAnotar">Anotar</button>
+              <button class="sec" id="nvApagar">Apagar</button></div></div>
+          <select id="nvHist" size="7" class="lista"></select>
+          <input type="file" id="nvArquivo" accept=".json" hidden>
+          <p class="dica">Importar: o <code>nivelamento.json</code> do console Python (tools-printer).
+            O histórico fica no cartão SD da placa.</p>
+        </div>
+      </div>
+
+      <div class="cartao nivelDiag">
+        <div class="cab"><h2>Diagnóstico</h2><span class="dica">análise local, sem internet</span></div>
+        <div id="nvDiag" class="diag"></div>
+      </div>
+    </div>
   </section>
 
   <!-- ======================================================= ARQUIVOS -->
@@ -227,5 +315,6 @@
 
 <div class="aviso" id="aviso"></div>
 <script src="app.js"></script>
+<script src="nivel.js"></script>
 </body>
 </html>

@@ -337,6 +337,72 @@ static esp_err_t api_gcode(httpd_req_t *req)
     return httpd_resp_sendstr(req, j);
 }
 
+// ------------------------------------------------------------------ nivelamento
+// O historico e a configuracao da tela de nivelamento ficam num JSON no SD. A
+// pagina le, altera e grava o arquivo inteiro (no formato do nivelamento.json do
+// console Python, para poder importar de la).
+#define NIVEL_ARQ SD_RAIZ "/nivelamento.json"
+#define NIVEL_MAX (512 * 1024)
+
+static esp_err_t api_nivel_le(httpd_req_t *req)
+{
+    if (!autorizado(req)) return ESP_OK;
+    httpd_resp_set_type(req, "application/json");
+    httpd_resp_set_hdr(req, "Cache-Control", "no-store");
+    if (!sd_ok()) {
+        httpd_resp_set_status(req, "503 Service Unavailable");
+        return httpd_resp_sendstr(req, "{\"erro\":\"sem cartao SD\"}");
+    }
+    FILE *f = fopen(NIVEL_ARQ, "rb");
+    if (!f) return httpd_resp_sendstr(req, "{\"cfg\":{},\"historico\":[]}");
+    char *buf = malloc(4096);
+    size_t n;
+    while (buf && (n = fread(buf, 1, 4096, f)) > 0) httpd_resp_send_chunk(req, buf, n);
+    free(buf);
+    fclose(f);
+    return httpd_resp_send_chunk(req, NULL, 0);
+}
+
+static esp_err_t api_nivel_grava(httpd_req_t *req)
+{
+    if (!autorizado(req)) return ESP_OK;
+    if (!sd_ok()) {
+        httpd_resp_set_status(req, "503 Service Unavailable");
+        return httpd_resp_sendstr(req, "sem cartao SD");
+    }
+    if (req->content_len > NIVEL_MAX) {
+        httpd_resp_set_status(req, "413 Payload Too Large");
+        return httpd_resp_sendstr(req, "grande demais");
+    }
+    // grava num temporario e troca no fim: uma queda no meio nao estraga o historico
+    FILE *f = fopen(NIVEL_ARQ ".tmp", "wb");
+    if (!f) {
+        httpd_resp_send_500(req);
+        return ESP_FAIL;
+    }
+    char *buf = malloc(4096);
+    size_t falta = req->content_len;
+    bool ok = buf != NULL;
+    while (ok && falta) {
+        int r = httpd_req_recv(req, buf, falta < 4096 ? falta : 4096);
+        if (r <= 0) ok = false;
+        else {
+            ok = fwrite(buf, 1, r, f) == (size_t)r;
+            falta -= r;
+        }
+    }
+    free(buf);
+    fclose(f);
+    if (!ok) {
+        remove(NIVEL_ARQ ".tmp");
+        httpd_resp_send_500(req);
+        return ESP_FAIL;
+    }
+    remove(NIVEL_ARQ);
+    rename(NIVEL_ARQ ".tmp", NIVEL_ARQ);
+    return httpd_resp_sendstr(req, "ok");
+}
+
 static esp_err_t api_emergencia(httpd_req_t *req)
 {
     if (!autorizado(req)) return ESP_OK;
@@ -520,6 +586,8 @@ esp_err_t web_inicia(void)
         {.uri = "/api/estado", .method = HTTP_GET, .handler = api_estado},
         {.uri = "/api/gcode", .method = HTTP_POST, .handler = api_gcode},
         {.uri = "/api/emergencia", .method = HTTP_POST, .handler = api_emergencia},
+        {.uri = "/api/nivel", .method = HTTP_GET, .handler = api_nivel_le},
+        {.uri = "/api/nivel", .method = HTTP_POST, .handler = api_nivel_grava},
         {.uri = "/foto.jpg", .method = HTTP_GET, .handler = pag_foto},
         {.uri = "/wifi", .method = HTTP_GET, .handler = pag_wifi},
         {.uri = "/api/wifi/estado", .method = HTTP_GET, .handler = api_wifi_estado},
