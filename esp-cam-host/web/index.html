@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#16191d">
+<title>Impressora</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="topo">
+ <div class="barraTopo">
+  <div class="marca">
+    <span class="logo">◆</span>
+    <div><div class="titulo">CoreXY TinyBee</div>
+         <div class="sub" id="subTitulo">conectando…</div></div>
+  </div>
+  <div class="chips">
+    <span class="chip" id="chipTb" title="Ligação USB com a TinyBee">TinyBee</span>
+    <span class="chip" id="chipRede" title="Wi-Fi">Wi-Fi</span>
+    <span class="chip" id="chipSd" title="Cartão SD">SD</span>
+  </div>
+  <button class="parada" id="btnParada" title="M112: para tudo na hora">PARADA</button>
+ </div>
+ <nav class="abas" id="abas">
+  <button data-aba="painel" class="ativa">Painel</button>
+  <button data-aba="controle">Controle</button>
+  <button data-aba="console">Console</button>
+  <button data-aba="nivel">Nivelamento</button>
+  <button data-aba="arquivos">Arquivos</button>
+  <button data-aba="sistema">Sistema</button>
+ </nav>
+</header>
+
+<main>
+  <!-- ======================================================= PAINEL -->
+  <section id="painel" class="aba ativa">
+    <div class="grade">
+      <div class="cartao cam">
+        <div class="cab"><h2>Câmera</h2>
+          <div class="botoes">
+            <button id="btnFoto" class="sec">Foto</button>
+            <button id="btnVivo">Ao vivo</button>
+          </div></div>
+        <div class="quadroCam"><img id="imgCam" alt="" hidden>
+          <div class="semImagem" id="semImagem">Clique em Foto ou Ao vivo</div></div>
+        <div class="dica" id="dicaCam"></div>
+      </div>
+
+      <div class="cartao temp" id="cartaoBico">
+        <div class="cab"><h2>Bico</h2><span class="pwm" id="pwmBico"></span></div>
+        <div class="valor"><span id="tBico">--</span><small>°C</small></div>
+        <div class="alvo">alvo <b id="aBico">--</b></div>
+        <div class="barra"><i id="barraBico"></i></div>
+        <div class="linhaForm">
+          <input type="number" id="inBico" min="0" max="280" step="5" placeholder="°C">
+          <button data-temp="bico">Aplicar</button>
+          <button class="sec" data-temp-preset="bico:0">Desligar</button>
+        </div>
+        <div class="presets">
+          <button class="sec" data-temp-preset="bico:150">150 espera</button>
+          <button class="sec" data-temp-preset="bico:205">205 PLA</button>
+          <button class="sec" data-temp-preset="bico:235">235 PETG</button>
+        </div>
+      </div>
+
+      <div class="cartao temp" id="cartaoMesa">
+        <div class="cab"><h2>Mesa</h2><span class="pwm" id="pwmMesa"></span></div>
+        <div class="valor"><span id="tMesa">--</span><small>°C</small></div>
+        <div class="alvo">alvo <b id="aMesa">--</b></div>
+        <div class="barra"><i id="barraMesa"></i></div>
+        <div class="linhaForm">
+          <input type="number" id="inMesa" min="0" max="110" step="5" placeholder="°C">
+          <button data-temp="mesa">Aplicar</button>
+          <button class="sec" data-temp-preset="mesa:0">Desligar</button>
+        </div>
+        <div class="presets">
+          <button class="sec" data-temp-preset="mesa:55">55 PLA</button>
+          <button class="sec" data-temp-preset="mesa:60">60 PLA 1ª</button>
+          <button class="sec" data-temp-preset="mesa:75">75 PETG</button>
+        </div>
+      </div>
+
+      <div class="cartao grafico">
+        <div class="cab"><h2>Temperaturas</h2><span class="dica">últimos 10 minutos</span></div>
+        <canvas id="grafico" height="190"></canvas>
+        <div class="legenda"><span class="lBico">bico</span><span class="lMesa">mesa</span>
+          <span class="lAlvo">alvo (tracejado)</span></div>
+      </div>
+
+      <div class="cartao">
+        <div class="cab"><h2>Posição</h2><span class="dica" id="dicaPos"></span></div>
+        <div class="eixos">
+          <div><span>X</span><b id="pX">--</b></div><div><span>Y</span><b id="pY">--</b></div>
+          <div><span>Z</span><b id="pZ">--</b></div><div><span>E</span><b id="pE">--</b></div>
+        </div>
+        <div class="pares">
+          <div><span>Velocidade</span><b id="pVel">--</b></div>
+          <div><span>Fluxo</span><b id="pFluxo">--</b></div>
+          <div><span>Malha</span><b id="pComp">--</b></div>
+          <div><span>Fila</span><b id="pFila">--</b></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================= CONTROLE -->
+  <section id="controle" class="aba">
+    <div class="grade">
+      <div class="cartao">
+        <div class="cab"><h2>Mover</h2><span class="dica">com Home feito</span></div>
+        <div class="passos" id="passos">
+          <span>Passo</span>
+          <button class="sec" data-passo="0.1">0,1</button>
+          <button class="sec" data-passo="1">1</button>
+          <button class="sec ativo" data-passo="10">10</button>
+          <button class="sec" data-passo="50">50</button>
+          <span>mm</span>
+        </div>
+        <div class="jog">
+          <div class="xy">
+            <button data-jog="Y+">Y+<small>fundo</small></button>
+            <button data-jog="X-">X−</button>
+            <button class="home" data-gcode="G28 X Y">⌂ XY</button>
+            <button data-jog="X+">X+</button>
+            <button data-jog="Y-">Y−<small>frente</small></button>
+          </div>
+          <div class="z">
+            <button data-jog="Z+">Z+<small>mesa desce</small></button>
+            <button class="home" data-gcode="G28">⌂ tudo</button>
+            <button data-jog="Z-">Z−<small>mesa sobe</small></button>
+          </div>
+        </div>
+        <div class="presets">
+          <button class="sec" data-gcode="G1 Z20 F600">Z em 20</button>
+          <button class="sec" data-gcode="G1 X98 Y90 F3000">centro da mesa</button>
+          <button class="sec" data-confirma="Desligar os motores? O carro fica solto e será preciso refazer o Home." data-gcode="M84">liberar motores</button>
+        </div>
+      </div>
+
+      <div class="cartao">
+        <div class="cab"><h2>Filamento</h2><span class="dica" id="dicaFil"></span></div>
+        <div class="linhaForm">
+          <label>Comprimento <input type="number" id="inFilMm" value="10" min="1" max="100"> mm</label>
+          <label>Velocidade <input type="number" id="inFilVel" value="3" min="1" max="20"> mm/s</label>
+        </div>
+        <div class="presets">
+          <button data-extrude="1">Extrudar</button>
+          <button class="sec" data-extrude="-1">Recolher</button>
+        </div>
+        <p class="dica">O Marlin recusa extrudar com o bico abaixo de 170 °C.</p>
+      </div>
+
+      <div class="cartao">
+        <div class="cab"><h2>Ventoinha e ajustes</h2></div>
+        <div class="presets">
+          <button data-gcode="M106 S255">Ventoinha 100%</button>
+          <button class="sec" data-gcode="M107">Ventoinha desligada</button>
+        </div>
+        <div class="linhaForm">
+          <label>Velocidade <input type="number" id="inVel" value="100" min="10" max="300"> %</label>
+          <button class="sec" id="btnVel">M220</button>
+        </div>
+        <div class="linhaForm">
+          <label>Fluxo <input type="number" id="inFluxo" value="100" min="50" max="150"> %</label>
+          <button class="sec" id="btnFluxo">M221</button>
+        </div>
+        <div class="presets">
+          <button class="sec" data-gcode="M420 S1">Malha ligada</button>
+          <button class="sec" data-gcode="M420 S0">Malha desligada</button>
+          <button class="sec" data-gcode="M84 S0">Motores sempre ligados</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================= CONSOLE -->
+  <section id="console" class="aba">
+    <div class="cartao consoleCartao">
+      <div class="cab"><h2>Console G-code</h2>
+        <div class="botoes">
+          <label class="chk"><input type="checkbox" id="chkOk"> mostrar “ok”</label>
+          <button class="sec" id="btnLimpaTela">Limpar tela</button>
+          <button class="sec" id="btnLimpaFila">Parar fila</button>
+        </div></div>
+      <div class="log" id="log"></div>
+      <form class="envio" id="formEnvio">
+        <input id="inGcode" autocomplete="off" spellcheck="false" placeholder="G-code (↑ ↓ histórico)">
+        <button>Enviar</button>
+      </form>
+      <div class="presets">
+        <button class="sec" data-gcode="M105">M105 temperaturas</button>
+        <button class="sec" data-gcode="M114">M114 posição</button>
+        <button class="sec" data-gcode="M119">M119 fins de curso</button>
+        <button class="sec" data-gcode="M420 V">M420 V malha</button>
+        <button class="sec" data-gcode="M503">M503 configuração</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================= NIVELAMENTO -->
+  <section id="nivel" class="aba">
+    <div class="cartao"><h2>Nivelamento</h2>
+      <p class="dica">Em construção: o mapa da mesa, as molas e o diagnóstico chegam na próxima etapa.</p></div>
+  </section>
+
+  <!-- ======================================================= ARQUIVOS -->
+  <section id="arquivos" class="aba">
+    <div class="cartao"><h2>Arquivos</h2>
+      <p class="dica">Em construção: envio de G-code, miniatura e impressão pelo cartão.</p></div>
+  </section>
+
+  <!-- ======================================================= SISTEMA -->
+  <section id="sistema" class="aba">
+    <div class="grade">
+      <div class="cartao">
+        <div class="cab"><h2>TinyBee</h2></div>
+        <div class="pares lista" id="infoTb"></div>
+      </div>
+      <div class="cartao">
+        <div class="cab"><h2>ESP32-S3-CAM</h2><a href="/wifi"><button class="sec">Configurar Wi-Fi</button></a></div>
+        <div class="pares lista" id="infoEsp"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="aviso" id="aviso"></div>
+<script src="app.js"></script>
+</body>
+</html>
