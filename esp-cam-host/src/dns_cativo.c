@@ -6,6 +6,7 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "lwip/sockets.h"
+#include "rede.h"
 
 static const char *TAG = "dns";
 static TaskHandle_t s_tarefa;
@@ -42,7 +43,7 @@ static void servidor(void *arg)
         buf[7] = 1;             // 1 resposta
         buf[8] = buf[9] = buf[10] = buf[11] = 0;
         // resposta: ponteiro para o nome, tipo A, classe IN, TTL 60, 4 bytes de IP
-        const uint8_t resp[] = {0xC0, 0x0C, 0, 1, 0, 1, 0, 0, 0, 60, 0, 4, 192, 168, 4, 1};
+        const uint8_t resp[] = {0xC0, 0x0C, 0, 1, 0, 1, 0, 0, 0, 60, 0, 4, AP_IP_BYTES};
         memcpy(buf + p, resp, sizeof resp);
         sendto(sock, buf, p + sizeof resp, 0, (struct sockaddr *)&de, tam);
     }

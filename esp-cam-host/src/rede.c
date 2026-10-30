@@ -149,6 +149,13 @@ esp_err_t rede_inicia(void)
     s_sta = esp_netif_create_default_wifi_sta();
     s_ap = esp_netif_create_default_wifi_ap();
     esp_netif_set_hostname(s_sta, "impressora-cam");
+    esp_netif_ip_info_t ip_ap;
+    esp_netif_set_ip4_addr(&ip_ap.ip, AP_IP_BYTES);
+    esp_netif_set_ip4_addr(&ip_ap.gw, AP_IP_BYTES);
+    esp_netif_set_ip4_addr(&ip_ap.netmask, 255, 255, 255, 0);
+    esp_netif_dhcps_stop(s_ap);
+    esp_netif_set_ip_info(s_ap, &ip_ap);
+    esp_netif_dhcps_start(s_ap);
 
     wifi_init_config_t wcfg = WIFI_INIT_CONFIG_DEFAULT();
     ESP_ERROR_CHECK(esp_wifi_init(&wcfg));

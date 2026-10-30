@@ -23,17 +23,21 @@ extern const char wifi_html_inicio[] asm("_binary_wifi_html_start");
 // ------------------------------------------------------------------ acesso
 // Quem esta no AP de configuracao ja passou pela senha do AP: nao pede de novo
 // (o navegador do portal cativo dos celulares nao lida bem com a senha HTTP).
+// Decide pelo endereco LOCAL da conexao (por qual interface ela entrou), nao pelo
+// IP de quem chega: a rede de casa pode usar a mesma faixa.
 static bool via_ap(httpd_req_t *req)
 {
+    if (!rede_ap_ativo()) return false;
     struct sockaddr_storage end;
     socklen_t tam = sizeof end;
-    if (getpeername(httpd_req_to_sockfd(req), (struct sockaddr *)&end, &tam) != 0) return false;
+    if (getsockname(httpd_req_to_sockfd(req), (struct sockaddr *)&end, &tam) != 0) return false;
     uint32_t ip;
     if (end.ss_family == AF_INET6)
         ip = ((struct sockaddr_in6 *)&end)->sin6_addr.un.u32_addr[3];   // IPv4 mapeado
     else
         ip = ((struct sockaddr_in *)&end)->sin_addr.s_addr;
-    return (ntohl(ip) & 0xFFFFFF00) == 0xC0A80400;     // 192.168.4.x
+    const uint8_t ap[4] = {AP_IP_BYTES};
+    return ntohl(ip) == ((uint32_t)ap[0] << 24 | ap[1] << 16 | ap[2] << 8 | ap[3]);
 }
 
 // HTTP Basic: qualquer usuario, a senha e a de secrets.ini (web_senha).
