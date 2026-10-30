@@ -18,6 +18,7 @@
 #include "freertos/task.h"
 #include "mbedtls/base64.h"
 #include "nvs_flash.h"
+#include "rede.h"
 #include "web.h"
 
 static const char *TAG = "principal";
@@ -40,7 +41,9 @@ static void mostra_info(void)
         printf("SD: %llu MB livres de %llu MB\n", sd_livre_bytes() >> 20, sd_total_bytes() >> 20);
     else
         printf("SD: ausente\n");
-    printf("Wi-Fi: %s\n", web_conectado() ? web_ip() : "desconectado");
+    printf("Wi-Fi: %s %s%s\n", rede_ssid()[0] ? rede_ssid() : "(nenhuma rede)",
+           rede_conectado() ? rede_ip() : "desconectado",
+           rede_ap_ativo() ? "  | AP \"" AP_SSID "\" ligado: http://" AP_IP "/wifi" : "");
 }
 
 static const struct { const char *nome; framesize_t tam; } RESOLUCOES[] = {
@@ -127,11 +130,17 @@ static void executa(char *linha)
     if (!strcasecmp(cmd, "info")) mostra_info();
     else if (!strcasecmp(cmd, "foto")) foto_serial(arg);
     else if (!strcasecmp(cmd, "fotosd")) foto_sd();
+    else if (!strcasecmp(cmd, "formatar")) {
+        if (arg && !strcmp(arg, "SIM"))
+            sd_formata();
+        else
+            printf("apaga o cartao SD (so se ele nao montar). Para confirmar: formatar SIM\n");
+    }
     else if (!strcasecmp(cmd, "sd")) sd_ok() ? sd_lista(arg ? arg : SD_RAIZ) : (void)printf("SD ausente\n");
     else if (!strcasecmp(cmd, "reinicia")) esp_restart();
     else
         printf("comandos: info | foto [vga|svga|xga|hd|sxga|uxga|qxga|qsxga] | fotosd | "
-               "sd [pasta] | reinicia\n");
+               "sd [pasta] | formatar SIM | reinicia\n");
 }
 
 static void console(void *arg)
@@ -166,6 +175,7 @@ void app_main(void)
 
     camera_inicia();
     sd_inicia();
+    rede_inicia();
     web_inicia();
     mostra_info();
 

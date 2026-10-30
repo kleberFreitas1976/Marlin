@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Rede Wi-Fi — Impressora</title>
+<style>
+  :root { --fundo:#16191d; --painel:#1f242a; --painel2:#272d34; --borda:#3a424c;
+          --texto:#e6e9ec; --suave:#9aa4ae; --acento:#4aa3ff; --ok:#1f9d55; --erro:#e03b3b; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--fundo); color:var(--texto);
+         font:16px "Segoe UI",system-ui,sans-serif; }
+  main { max-width:520px; margin:0 auto; padding:20px 16px 40px; }
+  h1 { font-size:22px; margin:4px 0 16px; }
+  .cartao { background:var(--painel); border:1px solid var(--borda); border-radius:12px;
+            padding:16px; margin-bottom:14px; }
+  .linha { display:flex; justify-content:space-between; gap:12px; padding:3px 0; }
+  .suave { color:var(--suave); font-size:14px; }
+  .ok { color:var(--ok); font-weight:600; } .erro { color:var(--erro); font-weight:600; }
+  button { background:#2d5b8a; color:#fff; border:0; border-radius:8px; padding:11px 16px;
+           font:inherit; font-weight:600; cursor:pointer; }
+  button.sec { background:var(--painel2); color:var(--texto); }
+  button:disabled { opacity:.5; }
+  ul { list-style:none; margin:8px 0 0; padding:0; }
+  li { display:flex; align-items:center; gap:10px; padding:11px 12px; border-radius:8px;
+       background:var(--painel2); margin-bottom:6px; cursor:pointer; }
+  li:hover, li.sel { outline:2px solid var(--acento); }
+  li .nome { flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .sinal { display:inline-flex; gap:2px; align-items:flex-end; height:16px; }
+  .sinal i { width:4px; background:var(--borda); border-radius:1px; }
+  .sinal i.on { background:var(--acento); }
+  label { display:block; margin:12px 0 4px; color:var(--suave); font-size:14px; }
+  input { width:100%; padding:11px 12px; border-radius:8px; border:1px solid var(--borda);
+          background:var(--painel2); color:var(--texto); font:inherit; }
+  .acoes { display:flex; gap:8px; margin-top:14px; flex-wrap:wrap; }
+  #msg { margin-top:12px; min-height:22px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Rede Wi-Fi da impressora</h1>
+
+  <div class="cartao">
+    <div class="linha"><span class="suave">Rede configurada</span><span id="ssid">—</span></div>
+    <div class="linha"><span class="suave">Situação</span><span id="situacao">—</span></div>
+    <div class="linha"><span class="suave">Endereço na rede</span><span id="ip">—</span></div>
+    <div class="linha"><span class="suave">Modo configuração (AP)</span><span id="ap">—</span></div>
+  </div>
+
+  <div class="cartao">
+    <div class="linha"><strong>Redes encontradas</strong>
+      <button class="sec" id="btnProcura" onclick="procura()">Procurar</button></div>
+    <ul id="redes"><li class="suave">Procurando...</li></ul>
+
+    <label for="campoSsid">Nome da rede</label>
+    <input id="campoSsid" maxlength="32" autocomplete="off">
+    <label for="campoSenha">Senha</label>
+    <input id="campoSenha" type="password" maxlength="64">
+    <label class="suave"><input type="checkbox" style="width:auto"
+      onchange="campoSenha.type=this.checked?'text':'password'"> mostrar senha</label>
+
+    <div class="acoes"><button id="btnSalva" onclick="salva()">Salvar e conectar</button>
+      <a href="/"><button class="sec">Voltar</button></a></div>
+    <div id="msg"></div>
+  </div>
+  <p class="suave">Sem rede, a placa cria a rede <b>Impressora-CAM</b> para esta configuração.
+    Depois de conectar na sua rede, ela continua disponível por 2 minutos e desliga.</p>
+</main>
+<script>
+const $ = id => document.getElementById(id);
+function barras(rssi) {
+  const n = rssi > -55 ? 4 : rssi > -65 ? 3 : rssi > -75 ? 2 : 1;
+  return '<span class="sinal">' + [6,9,12,16].map((h,i) =>
+    `<i style="height:${h}px" class="${i < n ? 'on' : ''}"></i>`).join('') + '</span>';
+}
+function esc(t) { return t.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+async function estado() {
+  try {
+    const e = await (await fetch('/api/wifi/estado')).json();
+    $('ssid').textContent = e.ssid || 'nenhuma';
+    $('situacao').innerHTML = e.conectado
+      ? `<span class="ok">conectada</span> (${e.rssi} dBm)` : '<span class="erro">desconectada</span>';
+    $('ip').innerHTML = e.ip ? `<a style="color:#4aa3ff" href="http://${e.ip}/">${e.ip}</a>` : '—';
+    $('ap').textContent = e.ap ? 'ligado' : 'desligado';
+  } catch (_) {}
+}
+async function procura() {
+  $('btnProcura').disabled = true;
+  $('redes').innerHTML = '<li class="suave">Procurando...</li>';
+  try {
+    const lista = await (await fetch('/api/wifi/redes')).json();
+    lista.sort((a, b) => b.rssi - a.rssi);
+    $('redes').innerHTML = lista.length ? lista.map(r =>
+      `<li data-ssid="${esc(r.ssid)}">${barras(r.rssi)}<span class="nome">${esc(r.ssid)}</span>` +
+      `<span class="suave">${r.aberta ? 'aberta' : '🔒'}</span></li>`).join('')
+      : '<li class="suave">Nenhuma rede encontrada</li>';
+    document.querySelectorAll('#redes li[data-ssid]').forEach(li => li.onclick = () => {
+      document.querySelectorAll('#redes li').forEach(x => x.classList.remove('sel'));
+      li.classList.add('sel');
+      $('campoSsid').value = li.dataset.ssid;
+      $('campoSenha').focus();
+    });
+  } catch (_) {
+    $('redes').innerHTML = '<li class="suave">Falha ao procurar</li>';
+  }
+  $('btnProcura').disabled = false;
+}
+async function salva() {
+  const ssid = $('campoSsid').value.trim(), senha = $('campoSenha').value;
+  if (!ssid) { $('msg').innerHTML = '<span class="erro">Escolha ou digite a rede.</span>'; return; }
+  if (senha && senha.length < 8) { $('msg').innerHTML = '<span class="erro">Senha Wi-Fi tem no mínimo 8 caracteres.</span>'; return; }
+  $('btnSalva').disabled = true;
+  $('msg').textContent = 'Gravando...';
+  const corpo = new URLSearchParams({ssid, senha});
+  try {
+    const r = await fetch('/api/wifi', {method: 'POST', body: corpo});
+    if (!r.ok) throw new Error(await r.text());
+    $('msg').textContent = 'Gravada. Conectando...';
+    let t = 0;
+    const vigia = setInterval(async () => {
+      await estado();
+      t += 2;
+      if ($('situacao').textContent.startsWith('conectada')) {
+        clearInterval(vigia);
+        $('msg').innerHTML = `<span class="ok">Conectada!</span> Agora use ${$('ip').innerHTML} ` +
+          'na sua rede.';
+      } else if (t > 30) {
+        clearInterval(vigia);
+        $('msg').innerHTML = '<span class="erro">Não conectou em 30 s. Confira a senha.</span>';
+      }
+    }, 2000);
+  } catch (e) {
+    $('msg').innerHTML = '<span class="erro">Erro: ' + esc(String(e.message || e)) + '</span>';
+  }
+  $('btnSalva').disabled = false;
+}
+estado(); procura(); setInterval(estado, 5000);
+</script>
+</body>
+</html>
