@@ -85,6 +85,7 @@ function atualiza(e) {
   if (document.querySelector('#painel.ativa')) desenhaGrafico();
 
   infoSistema(e);
+  if (e.rl) energia(e.rl);
 }
 
 function temp(nome, atual, alvo, pwm) {
@@ -111,6 +112,54 @@ function infoSistema(e) {
     par('Modo AP', e.rede.ap ? 'ligado' : 'desligado') +
     par('Ligada há', `${horas} h ${min} min`) +
     par('Memória livre', `${e.sis.ram} KB interna · ${br(e.sis.psram / 1024, 1)} MB PSRAM`);
+}
+
+// ---------------------------------------------------------------- energia e luz
+function energia(r) {
+  $('rlImp').textContent = r.impressoraDesligada ? 'DESLIGADA pelo relé' : r.aguardando
+    ? 'desliga quando o bico esfriar' : 'ligada';
+  chip('rlChip', r.impressoraDesligada ? 'erro' : r.aguardando || r.tudoAgendado ? 'aviso' : 'ok',
+       r.impressoraDesligada ? 'desligada' : r.aguardando || r.tudoAgendado ? 'aguardando esfriar' : 'ligada');
+  $('rlDesliga').hidden = r.impressoraDesligada || r.aguardando;
+  $('rlLiga').hidden = !r.impressoraDesligada;
+  $('rlCancela').hidden = !(r.aguardando || r.tudoAgendado);
+  if (document.activeElement !== $('rlLuz')) $('rlLuz').value = r.luz;
+  $('rlLuzTxt').textContent = r.luz + '%';
+  $('rlLuzAuto').checked = r.luzAuto;
+  const pol = document.querySelector(`input[name=rlPol][value="${r.ativoBaixo ? 1 : 0}"]`);
+  if (pol) pol.checked = true;
+}
+
+async function rele(acao, extra = {}) {
+  const q = new URLSearchParams({ acao, ...extra });
+  const r = await fetch('/api/reles?' + q, { method: 'POST' });
+  const d = await r.json().catch(() => ({}));
+  if (!r.ok) aviso('Não fez: ' + (d.motivo || r.status), true);
+  else if (d.motivo) aviso(d.motivo[0].toUpperCase() + d.motivo.slice(1));
+  if (d.estado) energia(d.estado);
+  return { ok: r.ok, motivo: d.motivo };
+}
+
+function ligaEnergia() {
+  $('rlDesliga').onclick = async () => {
+    if (!confirm('Desligar a impressora pelo relé?\n\nSe o bico estiver quente, espera ele ficar abaixo de 50 °C.')) return;
+    const r = await rele('desliga_impressora');
+    if (!r.ok && /impress/.test(r.motivo || '') &&
+        confirm('Há uma impressão em andamento. Desligar MESMO ASSIM, agora?')) rele('desliga_impressora', { forcar: 1 });
+  };
+  $('rlLiga').onclick = () => rele('liga_impressora');
+  $('rlCancela').onclick = () => rele('cancela');
+  $('rlTudo').onclick = () => {
+    if (!confirm('DESLIGAR TUDO, inclusive esta placa?\n\nSó volta apertando o botão de liga. Espera o bico esfriar antes.')) return;
+    rele('desliga_tudo');
+  };
+  $('rlLuz').onchange = () => rele('luz', { valor: $('rlLuz').value });
+  $('rlLuz').oninput = () => { $('rlLuzTxt').textContent = $('rlLuz').value + '%'; };
+  $('rlLuzAuto').onchange = () => rele('luz_auto', { valor: $('rlLuzAuto').checked ? 1 : 0 });
+  document.querySelectorAll('input[name=rlPol]').forEach((i) => i.addEventListener('change', () => {
+    if (confirm('Trocar a polaridade do módulo de relé? Com a errada, os relés funcionam ao contrário.'))
+      rele('polaridade', { valor: i.value });
+  }));
 }
 
 // ---------------------------------------------------------------- grafico
@@ -286,6 +335,7 @@ function ajustaTemp(qual, v) {
 // ---------------------------------------------------------------- inicio
 window.avisoGlobal = aviso;
 liga();
+ligaEnergia();
 sessao().then(conecta).catch(() => {
   aviso('Não consegui abrir a sessão. Recarregue a página.', true);
   setTimeout(() => location.reload(), 5000);

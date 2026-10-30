@@ -191,7 +191,7 @@ def estado():
             "sd": {"ok": True, "livreMB": 30421, "totalMB": 30421},
             "rede": {"ssid": "Simulada", "ip": "127.0.0.1", "rssi": -55, "ap": False},
             "sis": {"seg": int(time.time() - INICIO), "ram": 150, "psram": 7800}, "imp": JOB,
-            "tl": {"gravando": False, "pasta": "", "fotos": 0, "montando": False}}
+            "tl": {"gravando": False, "pasta": "", "fotos": 0, "montando": False}, "rl": RL}
 
 
 INICIO = time.time()
@@ -239,6 +239,8 @@ def meta_de(nome):
 
 
 TL = {"ativo": True, "modo": 0, "res": 15, "fps": 25}
+RL = {"impressoraDesligada": False, "aguardando": False, "tudoAgendado": False, "ativoBaixo": True,
+      "luz": 0, "luzAuto": True}
 
 
 def lista_timelapse():
@@ -399,6 +401,24 @@ class Manipulador(BaseHTTPRequestHandler):
                        camadas=m["camadas"], decorrido=0, estimado=m["tempo"], restante=m["tempo"],
                        aviso="Imprimindo")
             return self.responde(200, "application/json", b'{"ok":true}')
+        if caminho == "/api/reles":
+            acao, v = q.get("acao", [""])[0], q.get("valor", ["0"])[0]
+            quente = MARLIN.bico > 50 and not q.get("forcar")
+            if acao == "desliga_impressora":
+                RL.update(aguardando=True) if quente else RL.update(impressoraDesligada=True, aguardando=False)
+            elif acao == "liga_impressora":
+                RL.update(impressoraDesligada=False, aguardando=False)
+            elif acao == "cancela":
+                RL.update(aguardando=False, tudoAgendado=False)
+            elif acao == "luz":
+                RL["luz"] = int(v)
+            elif acao == "luz_auto":
+                RL["luzAuto"] = v == "1"
+            elif acao == "polaridade":
+                RL["ativoBaixo"] = v == "1"
+            motivo = "aguardando o bico esfriar" if quente and acao.startswith("desliga") else ""
+            return self.responde(200, "application/json",
+                                 json.dumps({"ok": True, "motivo": motivo, "estado": RL}).encode())
         if caminho == "/api/timelapse/config":
             for k in ("ativo", "modo", "res", "fps"):
                 if k in q:

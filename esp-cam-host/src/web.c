@@ -184,6 +184,8 @@ static size_t estado_completo(char *j, size_t tam)
     n += web_impressao_json(j + n, tam - n);
     n += snprintf(j + n, tam - n, ",\"tl\":");
     n += web_timelapse_json(j + n, tam - n);
+    n += snprintf(j + n, tam - n, ",\"rl\":");
+    n += web_reles_json(j + n, tam - n);
     n += snprintf(j + n, tam - n, "}");
     return n;
 }
@@ -633,6 +635,7 @@ esp_err_t web_inicia(void)
         httpd_register_uri_handler(s_srv, &rotas[i]);
     web_rotas_arquivos(s_srv);
     web_rotas_timelapse(s_srv);
+    web_rotas_reles(s_srv);
     // por ultimo: a interface responde tudo o que nao for API
     const httpd_uri_t interface = {.uri = "/*", .method = HTTP_GET, .handler = pag_arquivo};
     httpd_register_uri_handler(s_srv, &interface);

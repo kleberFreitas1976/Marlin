@@ -174,6 +174,30 @@
       </div>
 
       <div class="cartao">
+        <div class="cab"><h2>Energia e luz</h2><span class="chip" id="rlChip"></span></div>
+        <div class="pares lista">
+          <div><span>Impressora</span><b id="rlImp">–</b></div>
+        </div>
+        <div class="presets">
+          <button class="perigo" id="rlDesliga">Desligar impressora</button>
+          <button class="verde" id="rlLiga">Religar impressora</button>
+          <button class="sec" id="rlCancela">Cancelar espera</button>
+        </div>
+        <div class="presets">
+          <button class="perigo" id="rlTudo">Desligar TUDO</button>
+        </div>
+        <div class="linhaForm"><label>Luz <input type="range" id="rlLuz" min="0" max="100" step="5"></label>
+          <b id="rlLuzTxt"></b></div>
+        <label class="radio"><input type="checkbox" id="rlLuzAuto"> Acender a 100% durante a impressão (time-lapse)</label>
+        <details><summary class="dica">Módulo de relé</summary>
+          <label class="radio"><input type="radio" name="rlPol" value="1"> Aciona com nível baixo (o mais comum)</label>
+          <label class="radio"><input type="radio" name="rlPol" value="0"> Aciona com nível alto</label>
+        </details>
+        <p class="dica">Desligar espera o bico ficar abaixo de 50 °C, para não entupir. “Desligar tudo”
+          corta também a placa e só volta no botão de liga.</p>
+      </div>
+
+      <div class="cartao">
         <div class="cab"><h2>Ventoinha e ajustes</h2></div>
         <div class="presets">
           <button data-gcode="M106 S255">Ventoinha 100%</button>

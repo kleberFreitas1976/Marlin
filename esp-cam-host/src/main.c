@@ -19,6 +19,7 @@
 #include "mbedtls/base64.h"
 #include "nvs_flash.h"
 #include "rede.h"
+#include "reles.h"
 #include "timelapse.h"
 #include "arquivos.h"
 #include "impressao.h"
@@ -289,6 +290,13 @@ static void console(void *arg)
     }
 }
 
+// Inicio e fim de qualquer impressao (da placa ou da TFT)
+static void ciclo_impressao(bool comecou, const char *nome)
+{
+    tl_ciclo(comecou, nome);
+    reles_impressao(comecou);       // luz automatica para o time-lapse
+}
+
 void app_main(void)
 {
     esp_err_t err = nvs_flash_init();
@@ -298,13 +306,14 @@ void app_main(void)
     }
     ESP_LOGI(TAG, "iniciando");
 
+    reles_inicia();                 // antes de tudo: pinos dos reles em estado seguro
     camera_inicia();
     sd_inicia();
     rede_inicia();
     web_inicia();
     imp_inicia();
     tl_inicia();
-    imp_ouvintes(tl_camada, tl_foto, tl_ciclo);
+    imp_ouvintes(tl_camada, tl_foto, ciclo_impressao);
     marlin_inicia(marlin_linha);
     mostra_info();
 
