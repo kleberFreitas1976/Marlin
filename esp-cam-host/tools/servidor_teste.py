@@ -190,7 +190,8 @@ def estado():
             "cam": {"sensor": "OV5640", "ligada": False, "larg": 2560, "alt": 1920},
             "sd": {"ok": True, "livreMB": 30421, "totalMB": 30421},
             "rede": {"ssid": "Simulada", "ip": "127.0.0.1", "rssi": -55, "ap": False},
-            "sis": {"seg": int(time.time() - INICIO), "ram": 150, "psram": 7800}, "imp": JOB}
+            "sis": {"seg": int(time.time() - INICIO), "ram": 150, "psram": 7800}, "imp": JOB,
+            "tl": {"gravando": False, "pasta": "", "fotos": 0, "montando": False}}
 
 
 INICIO = time.time()
@@ -235,6 +236,23 @@ def meta_de(nome):
         elif l.startswith("; first_layer_bed_temperature") or l.startswith("; hot_plate_temp_initial_layer"):
             m["mesa"] = int(float(l.split("=")[-1].split(",")[0]))
     return m
+
+
+TL = {"ativo": True, "modo": 0, "res": 15, "fps": 25}
+
+
+def lista_timelapse():
+    pasta = os.path.join(SD, "timelapse")
+    os.makedirs(pasta, exist_ok=True)
+    out = []
+    for n in sorted(os.listdir(pasta)):
+        c = os.path.join(pasta, n)
+        if os.path.isdir(c):
+            fotos = len([f for f in os.listdir(c) if f.endswith(".jpg")])
+            avi = os.path.join(c, "timelapse.avi")
+            out.append({"pasta": n, "fotos": fotos, "avi": os.path.getsize(avi) if os.path.exists(avi) else 0,
+                        "data": int(os.path.getmtime(c))})
+    return out
 
 
 def lista_arquivos():
@@ -317,6 +335,16 @@ class Manipulador(BaseHTTPRequestHandler):
         nome = os.path.basename(q.get("nome", [""])[0])
         if caminho == "/api/arquivos":
             return self.responde(200, "application/json", json.dumps(lista_arquivos()).encode())
+        if caminho == "/api/timelapse":
+            d = {"config": TL, "gravando": False, "pasta": "", "fotos": 0, "montando": False,
+                 "lista": lista_timelapse()}
+            return self.responde(200, "application/json", json.dumps(d).encode())
+        if caminho == "/api/timelapse/foto":
+            pasta = os.path.basename(q.get("pasta", [""])[0])
+            c = os.path.join(SD, "timelapse", pasta, "%05d.jpg" % int(q.get("n", ["1"])[0]))
+            if os.path.exists(c):
+                return self.responde(200, "image/jpeg", open(c, "rb").read())
+            return self.responde(404, "application/json", b'{"erro":"nao encontrado"}')
         if caminho == "/api/miniatura":
             c = os.path.join(SD, "gcodes", ".meta", nome + ".png")
             if os.path.exists(c):
@@ -370,6 +398,11 @@ class Manipulador(BaseHTTPRequestHandler):
                        total=os.path.getsize(os.path.join(SD, "gcodes", nome)), camada=0,
                        camadas=m["camadas"], decorrido=0, estimado=m["tempo"], restante=m["tempo"],
                        aviso="Imprimindo")
+            return self.responde(200, "application/json", b'{"ok":true}')
+        if caminho == "/api/timelapse/config":
+            for k in ("ativo", "modo", "res", "fps"):
+                if k in q:
+                    TL[k] = int(q[k][0]) if k != "ativo" else q[k][0] == "1"
             return self.responde(200, "application/json", b'{"ok":true}')
         if caminho == "/api/impressao":
             acao = q.get("acao", [""])[0]

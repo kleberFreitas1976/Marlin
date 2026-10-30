@@ -7,12 +7,15 @@
 #include "rede.h"
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 #include "dns_cativo.h"
 #include "esp_event.h"
 #include "esp_log.h"
 #include "esp_netif.h"
+#include "esp_netif_sntp.h"
 #include "esp_timer.h"
 #include "esp_wifi.h"
 #include "freertos/FreeRTOS.h"
@@ -186,6 +189,13 @@ esp_err_t rede_inicia(void)
     }
     ESP_ERROR_CHECK(esp_wifi_start());
     esp_wifi_set_ps(WIFI_PS_NONE);       // video sem engasgos
+
+    // Relogio pela internet: datas das pastas do time-lapse e dos arquivos no SD.
+    // Sincroniza sozinho quando a rede de casa conecta. Horario de Brasilia.
+    setenv("TZ", "<-03>3", 1);
+    tzset();
+    esp_sntp_config_t sntp = ESP_NETIF_SNTP_DEFAULT_CONFIG("pool.ntp.org");
+    esp_netif_sntp_init(&sntp);
     return ESP_OK;
 }
 

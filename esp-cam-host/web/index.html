@@ -28,6 +28,7 @@
   <button data-aba="console">Console</button>
   <button data-aba="nivel">Nivelamento</button>
   <button data-aba="arquivos">Arquivos</button>
+  <button data-aba="timelapse">Time-lapse</button>
   <button data-aba="sistema">Sistema</button>
  </nav>
 </header>
@@ -351,6 +352,44 @@
     </div>
   </section>
 
+  <!-- ======================================================= TIME-LAPSE -->
+  <section id="timelapse" class="aba">
+    <div class="arqGrade">
+      <div class="cartao">
+        <div class="cab"><h2>Configuração</h2><span class="chip" id="tlChip"></span></div>
+        <label class="radio"><input type="checkbox" id="tlAtivo"> Gravar time-lapse em toda impressão</label>
+        <label class="radio"><input type="radio" name="tlModo" value="0"> Automático: foto no estacionamento (TL:FOTO) se o G-code tiver; senão, a cada camada</label>
+        <label class="radio"><input type="radio" name="tlModo" value="1"> Só no estacionamento (TL:FOTO)</label>
+        <label class="radio"><input type="radio" name="tlModo" value="2"> A cada camada, sem estacionar (a cabeça aparece)</label>
+        <div class="linhaForm">
+          <label>Resolução <select id="tlRes">
+            <!-- valores = framesize_t do esp32-camera (driver/include/sensor.h) -->
+            <option value="12">1024×768</option><option value="13">1280×720 (HD)</option>
+            <option value="14">1280×1024</option><option value="15">1600×1200</option>
+            <option value="16">1920×1080 (Full HD)</option><option value="19">2048×1536</option>
+            <option value="23">2560×1920 (máxima)</option></select></label>
+          <label>Vídeo <input type="number" id="tlFps" min="1" max="60"> fps</label>
+        </div>
+        <div class="presets"><button id="tlSalva">Salvar</button></div>
+        <p class="dica">Uma foto em 1600×1200 tem ~400 KB: uma impressão de 240 camadas usa ~100 MB
+          do cartão. O vídeo (AVI MJPEG) é montado no fim e abre no VLC e no Windows.
+          Para o modo com estacionamento, use no fatiador a impressora “CoreXY MKS TinyBee (time-lapse)”.</p>
+      </div>
+      <div class="cartao">
+        <div class="cab"><h2>Gravados</h2><button class="sec" id="tlAtualiza">Atualizar</button></div>
+        <div id="tlLista" class="arqLista"><p class="dica">Carregando…</p></div>
+      </div>
+    </div>
+    <div class="cartao visual" id="tlPlayer" hidden>
+      <div class="cab"><h2 id="tlTitulo">Time-lapse</h2>
+        <div class="botoes"><button class="sec" id="tlPlay">▶ Reproduzir</button>
+          <button class="sec" id="tlFecha">Fechar</button></div></div>
+      <div class="quadroCam"><img id="tlImg" alt=""></div>
+      <input type="range" id="tlFaixa" min="1" max="1" value="1" style="width:100%;margin-top:10px">
+      <div class="dica" id="tlQuadro"></div>
+    </div>
+  </section>
+
   <!-- ======================================================= SISTEMA -->
   <section id="sistema" class="aba">
     <div class="grade">
@@ -370,5 +409,6 @@
 <script src="app.js"></script>
 <script src="nivel.js"></script>
 <script src="arquivos.js"></script>
+<script src="timelapse.js"></script>
 </body>
 </html>

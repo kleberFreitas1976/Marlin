@@ -17,3 +17,7 @@ size_t web_json_esc(char *dst, size_t tam, const char *src);
 void web_rotas_arquivos(httpd_handle_t srv);
 // Estado da impressao em JSON (para o estado geral)
 size_t web_impressao_json(char *j, size_t tam);
+
+// Rotas e estado do time-lapse (web_timelapse_api.c)
+void web_rotas_timelapse(httpd_handle_t srv);
+size_t web_timelapse_json(char *j, size_t tam);

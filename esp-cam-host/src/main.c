@@ -19,6 +19,7 @@
 #include "mbedtls/base64.h"
 #include "nvs_flash.h"
 #include "rede.h"
+#include "timelapse.h"
 #include "arquivos.h"
 #include "impressao.h"
 #include "marlin.h"
@@ -191,6 +192,30 @@ static void gera_teste(void)
                                               : "falha ao gravar\n");
 }
 
+// Manda um arquivo do SD pelo console em base64 (diagnostico; tools/baixa_serial.py)
+static void baixa_serial(const char *caminho)
+{
+    FILE *f = caminho ? fopen(caminho, "rb") : NULL;
+    if (!f) {
+        printf("nao abriu %s\n", caminho ? caminho : "(nada)");
+        return;
+    }
+    fseek(f, 0, SEEK_END);
+    long tam = ftell(f);
+    fseek(f, 0, SEEK_SET);
+    printf("\n@@ARQ INICIO %ld\n", tam);
+    unsigned char in[57], out[80];
+    size_t n, s;
+    while ((n = fread(in, 1, sizeof in, f)) > 0) {
+        mbedtls_base64_encode(out, sizeof out, &s, in, n);
+        fwrite(out, 1, s, stdout);
+        fputc('\n', stdout);
+    }
+    printf("@@ARQ FIM\n");
+    fflush(stdout);
+    fclose(f);
+}
+
 static void mostra_impressao(void)
 {
     imp_info_t i;
@@ -227,6 +252,7 @@ static void executa(char *linha)
     else if (!strcasecmp(cmd, "sd")) sd_ok() ? sd_lista(arg ? arg : SD_RAIZ) : (void)printf("SD ausente\n");
     else if (!strcasecmp(cmd, "reinicia")) esp_restart();
     else if (!strcasecmp(cmd, "gerateste")) gera_teste();
+    else if (!strcasecmp(cmd, "baixa")) baixa_serial(arg);
     else if (!strcasecmp(cmd, "imp")) mostra_impressao();
     else if (!strcasecmp(cmd, "imprime")) {
         char erro[96];
@@ -277,6 +303,8 @@ void app_main(void)
     rede_inicia();
     web_inicia();
     imp_inicia();
+    tl_inicia();
+    imp_ouvintes(tl_camada, tl_foto, tl_ciclo);
     marlin_inicia(marlin_linha);
     mostra_info();
 
