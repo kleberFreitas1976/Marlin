@@ -25,6 +25,8 @@ static const char *TAG = "impressao";
 static SemaphoreHandle_t s_mtx;
 static imp_info_t s_i;
 static FILE *s_arq;
+static char s_caminho[200];     // para reabrir o arquivo se a leitura do SD falhar
+static bool s_erro_sd;
 static int64_t s_inicio_us, s_pausado_us, s_pausa_desde_us;
 static int64_t s_tft_inicio_us;
 static imp_camada_cb_t s_cb_camada;
@@ -102,6 +104,33 @@ static void termina(imp_estado_t fim, const char *aviso)
     ESP_LOGI(TAG, "%s: %s", s_i.nome, aviso);
 }
 
+// Le a proxima linha do arquivo. Uma falha de leitura do SD nao e fim de arquivo: visto
+// numa impressao real, o fgets devolveu NULL no byte 49152 de 560047 e a placa deu a
+// impressao por "concluida" na camada 2, com o bico e a mesa ligados. Agora reabre o
+// arquivo na mesma posicao e tenta de novo; se nao der, s_erro_sd.
+// Devolve false no fim do arquivo ou no erro.
+static bool le_linha(char *l, int tam)
+{
+    for (int tentativa = 0; tentativa < 6; tentativa++) {
+        if (s_arq && fgets(l, tam, s_arq)) return true;
+        if (s_arq && feof(s_arq) && !ferror(s_arq) && s_i.bytes >= s_i.total) return false;
+        ESP_LOGE(TAG, "falha lendo o SD no byte %lu de %lu (tentativa %d): reabrindo",
+                 (unsigned long)s_i.bytes, (unsigned long)s_i.total, tentativa + 1);
+        if (s_arq) fclose(s_arq);
+        vTaskDelay(pdMS_TO_TICKS(300 * (tentativa + 1)));
+        s_arq = fopen(s_caminho, "r");
+        if (s_arq) {
+            setvbuf(s_arq, NULL, _IOFBF, 16 * 1024);
+            if (fseek(s_arq, s_i.bytes, SEEK_SET) != 0) {
+                fclose(s_arq);
+                s_arq = NULL;
+            }
+        }
+    }
+    s_erro_sd = true;
+    return false;
+}
+
 // Fonte de linhas para o marlin.c (roda na tarefa dele)
 static bool proxima(char *saida, size_t tam)
 {
@@ -111,8 +140,14 @@ static bool proxima(char *saida, size_t tam)
     trava();
     while (s_i.estado == IMP_IMPRIMINDO && s_arq) {
         char l[256];
-        if (!fgets(l, sizeof l, s_arq)) {
-            termina(IMP_CONCLUIDA, "Impressao concluida");
+        if (!le_linha(l, sizeof l)) {
+            if (s_erro_sd) {
+                // como um cancelamento: espera a fila esvaziar, estaciona e desliga o aquecimento
+                s_i.estado = IMP_CANCELANDO;
+                strlcpy(s_i.aviso, "Falha lendo o cartao SD: parando", sizeof s_i.aviso);
+            } else {
+                termina(IMP_CONCLUIDA, "Impressao concluida");
+            }
             break;
         }
         s_i.bytes += strlen(l);
@@ -175,6 +210,7 @@ esp_err_t imp_imprime(const char *nome, char *erro, size_t tam)
     if (!motivo) {
         arq_caminho(nome, c, sizeof c);
         if (stat(c, &st) != 0 || !(s_arq = fopen(c, "r"))) motivo = "arquivo nao encontrado";
+        else strlcpy(s_caminho, c, sizeof s_caminho);
     }
     if (motivo) {
         solta();
@@ -183,6 +219,7 @@ esp_err_t imp_imprime(const char *nome, char *erro, size_t tam)
     }
     setvbuf(s_arq, NULL, _IOFBF, 16 * 1024);
     memset(&s_i, 0, sizeof s_i);
+    s_erro_sd = false;
     strlcpy(s_i.nome, nome, sizeof s_i.nome);
     s_i.total = st.st_size;
     s_i.estimado_s = arq_tempo_estimado(nome);
@@ -313,7 +350,8 @@ static void tarefa(void *arg)
             strlcpy(s_i.aviso, "Pausada: bico estacionado, aquecimento mantido", sizeof s_i.aviso);
         } else if (s_i.estado == IMP_CANCELANDO && marlin_ocioso()) {
             estaciona(true);
-            termina(IMP_CANCELADA, "Impressao cancelada");
+            if (s_erro_sd) termina(IMP_ERRO, "Parada: falha lendo o cartao SD (aquecimento desligado)");
+            else termina(IMP_CANCELADA, "Impressao cancelada");
             avisar = s_cb_ciclo;
             strlcpy(nome, s_i.nome, sizeof nome);
         }

@@ -38,10 +38,13 @@ static void mostra_info(void)
     esp_flash_get_size(NULL, &flash);
     printf("\nChip ESP32-S3 rev %d.%d, %d nucleos\n", chip.revision / 100, chip.revision % 100,
            chip.cores);
-    printf("Flash %lu MB, PSRAM %u KB (livre %u KB), RAM interna livre %u KB\n",
+    printf("Flash %lu MB, PSRAM %u KB (livre %u KB), RAM interna livre %u KB (minimo %u KB, "
+           "maior bloco %u KB)\n",
            (unsigned long)(flash >> 20), (unsigned)(esp_psram_get_size() / 1024),
            (unsigned)(heap_caps_get_free_size(MALLOC_CAP_SPIRAM) / 1024),
-           (unsigned)(heap_caps_get_free_size(MALLOC_CAP_INTERNAL) / 1024));
+           (unsigned)(heap_caps_get_free_size(MALLOC_CAP_INTERNAL) / 1024),
+           (unsigned)(heap_caps_get_minimum_free_size(MALLOC_CAP_INTERNAL) / 1024),
+           (unsigned)(heap_caps_get_largest_free_block(MALLOC_CAP_INTERNAL) / 1024));
     printf("Camera: %s (PID 0x%04x), resolucao maxima %dx%d, %s\n", camera_nome(), camera_pid(),
            camera_largura_max(), camera_altura_max(), camera_ligada() ? "ligada" : "desligada");
     if (sd_ok())

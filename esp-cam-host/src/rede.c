@@ -122,7 +122,8 @@ static void evento(void *arg, esp_event_base_t base, int32_t id, void *dados)
     if (base == WIFI_EVENT && id == WIFI_EVENT_STA_START) {
         tenta_conectar();
     } else if (base == WIFI_EVENT && id == WIFI_EVENT_STA_DISCONNECTED) {
-        if (s_conectado) ESP_LOGW(TAG, "Wi-Fi caiu");
+        wifi_event_sta_disconnected_t *d = (wifi_event_sta_disconnected_t *)dados;
+        if (s_conectado) ESP_LOGW(TAG, "Wi-Fi caiu (motivo %d, sinal %d dBm)", d->reason, d->rssi);
         s_conectado = false;
         s_ip[0] = '\0';
         // Com o AP ligado, tenta menos: cada tentativa atrapalha quem configura

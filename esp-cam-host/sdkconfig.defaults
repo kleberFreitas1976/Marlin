@@ -7,7 +7,13 @@ CONFIG_PARTITION_TABLE_CUSTOM_FILENAME="partitions.csv"
 CONFIG_SPIRAM=y
 CONFIG_SPIRAM_MODE_OCT=y
 CONFIG_SPIRAM_SPEED_80M=y
-CONFIG_SPIRAM_USE_CAPS_ALLOC=y
+# malloc comum vai para a PSRAM a partir de 4 KB, e o Wi-Fi e o lwIP tambem. Antes
+# tudo saia da RAM interna (~300 KB): durante a impressao sobravam 30 KB e o Wi-Fi
+# ficava sem buffer para receber, calado, "conectado" e sem responder nem ao ARP.
+CONFIG_SPIRAM_USE_MALLOC=y
+CONFIG_SPIRAM_MALLOC_ALWAYSINTERNAL=4096
+CONFIG_SPIRAM_MALLOC_RESERVE_INTERNAL=32768
+CONFIG_SPIRAM_TRY_ALLOCATE_WIFI_LWIP=y
 
 CONFIG_ESP_DEFAULT_CPU_FREQ_MHZ_240=y
 CONFIG_FREERTOS_HZ=1000
