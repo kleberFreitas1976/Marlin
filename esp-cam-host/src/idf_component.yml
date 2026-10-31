@@ -1,5 +1,7 @@
 dependencies:
   idf: ">=5.3"
   espressif/esp32-camera: "^2.0.13"
+  # nome na rede: http://impressora.local
+  espressif/mdns: "^1.4"
   # USB host: driver do CH340 da TinyBee (puxa o usb_host_cdc_acm)
   espressif/usb_host_ch34x_vcp: "^2"

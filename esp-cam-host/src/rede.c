@@ -20,6 +20,7 @@
 #include "esp_wifi.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "mdns.h"
 #include "nvs.h"
 #include "segredos.h"
 
@@ -151,7 +152,7 @@ esp_err_t rede_inicia(void)
     ESP_ERROR_CHECK(esp_event_loop_create_default());
     s_sta = esp_netif_create_default_wifi_sta();
     s_ap = esp_netif_create_default_wifi_ap();
-    esp_netif_set_hostname(s_sta, "impressora-cam");
+    esp_netif_set_hostname(s_sta, REDE_NOME);   // nome no roteador (DHCP)
     esp_netif_ip_info_t ip_ap;
     esp_netif_set_ip4_addr(&ip_ap.ip, AP_IP_BYTES);
     esp_netif_set_ip4_addr(&ip_ap.gw, AP_IP_BYTES);
@@ -196,6 +197,19 @@ esp_err_t rede_inicia(void)
     tzset();
     esp_sntp_config_t sntp = ESP_NETIF_SNTP_DEFAULT_CONFIG("pool.ntp.org");
     esp_netif_sntp_init(&sntp);
+
+    // http://impressora.local (mDNS): Windows 10+, macOS, iPhone, Android recente e Linux.
+    // Anuncia tambem o servico OctoPrint, para o fatiador achar a placa sozinho.
+    if (mdns_init() == ESP_OK) {
+        mdns_hostname_set(REDE_NOME);
+        mdns_instance_name_set("Impressora CoreXY (ESP32-S3-CAM)");
+        mdns_service_add(NULL, "_http", "_tcp", 80, NULL, 0);
+        mdns_txt_item_t oct[] = {{"path", "/"}, {"api", "0.1"}, {"version", "1.9.0"}};
+        mdns_service_add("Impressora CoreXY", "_octoprint", "_tcp", 80, oct, 3);
+        ESP_LOGI(TAG, "nome na rede: http://%s.local/", REDE_NOME);
+    } else {
+        ESP_LOGW(TAG, "mDNS nao iniciou: use o IP");
+    }
     return ESP_OK;
 }
 

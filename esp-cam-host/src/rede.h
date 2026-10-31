@@ -4,6 +4,9 @@
 #include "esp_err.h"
 
 // Rede de configuracao, quando nao ha Wi-Fi conhecido ou ele nao conecta
+// Nome na rede de casa: http://impressora.local (mDNS) e no roteador (DHCP)
+#define REDE_NOME "impressora"
+
 #define AP_SSID   "Impressora-CAM"
 #define AP_SENHA  "12345678"
 // Faixa pouco comum de proposito: o padrao do ESP-IDF (192.168.4.x) coincidiu com a

@@ -15,6 +15,8 @@ pela USB OTG. Especificação e decisões: [ESPECIFICACAO.md](ESPECIFICACAO.md).
 | Time-lapse | configuração, gravações, reprodutor, download do vídeo AVI |
 | Sistema | TinyBee, placa, Wi-Fi, nuvem (site na hospedagem), atualização do firmware |
 
+Na rede de casa: **http://impressora.local** (o IP muda; o nome, não).
+
 Sem rede Wi-Fi, a placa cria a rede **Impressora-CAM** (senha 12345678) com a
 página de configuração em `http://192.168.71.1/wifi`.
 
