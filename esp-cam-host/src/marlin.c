@@ -54,6 +54,7 @@ static enviada_t s_hist[HIST];
 static uint32_t s_n_prox = 1;       // proximo numero de linha
 static uint32_t s_reenvio;          // proxima a reenviar (0 = nenhuma)
 static uint32_t s_resend_k;         // ultimo "Resend" atendido
+static int s_resend_vezes;          // quantas vezes o mesmo numero foi pedido
 static int s_resend_ignorar;        // pedidos repetidos ainda a chegar (linhas que ja estavam a caminho)
 static bool s_corromper;            // teste: a proxima linha vai com checksum errado
 
@@ -183,6 +184,15 @@ static void processa(char *l)
         if (k == s_resend_k && s_resend_ignorar > 0) {
             s_resend_ignorar--;
         } else if (k > 0 && k < s_n_prox) {
+            s_resend_vezes = k == s_resend_k ? s_resend_vezes + 1 : 1;
+            // A mesma linha recusada de novo e de novo (texto que o Marlin nao aceita):
+            // troca por um M105 com o mesmo numero, senao o reenvio nunca acaba.
+            if (s_resend_vezes > 5 && s_hist[k % HIST].n == k) {
+                ESP_LOGE(TAG, "linha N%lu recusada %d vezes, trocada por M105: \"%s\"", (unsigned long)k,
+                         s_resend_vezes, s_hist[k % HIST].s);
+                strlcpy(s_hist[k % HIST].s, "M105", sizeof s_hist[0].s);
+                s_resend_vezes = 0;
+            }
             s_resend_k = k;
             s_resend_ignorar = s_voo > 0 ? s_voo - 1 : 0;
             s_reenvio = k;
@@ -363,6 +373,9 @@ static void tarefa(void *arg)
             } else {
                 break;
             }
+            // "*" e o inicio do checksum para o Marlin: o que vier depois no texto estragaria a linha
+            char *ast = strchr(cmd.s, '*');
+            if (ast && !num) *ast = '\0';
             // M110 (zera a numeracao) e M112 vao sem numero
             bool cru = !strncmp(cmd.s, "M110", 4) || !strncmp(cmd.s, "M112", 4);
             char saida[MARLIN_LINHA_MAX + 24];
@@ -372,6 +385,14 @@ static void tarefa(void *arg)
             } else {
                 uint32_t n_linha = num ? num : s_n_prox;
                 int p = snprintf(saida, sizeof saida, "N%lu %s", (unsigned long)n_linha, cmd.s);
+                // N + texto + "*cs" tem de caber no MAX_CMD_SIZE do Marlin; maior que isso ele
+                // corta, recusa o checksum e pede de novo para sempre. Descarta a linha.
+                if (!num && p + 4 >= MARLIN_LINHA_MAX) {
+                    ESP_LOGW(TAG, "linha longa demais para o Marlin, descartada: \"%.40s...\"", cmd.s);
+                    if (!da_fonte) avisa(MARLIN_ERRO, "Linha longa demais para o Marlin: descartada");
+                    s_tem_pendente = false;
+                    continue;
+                }
                 uint8_t cs = 0;
                 for (int i = 0; i < p; i++) cs ^= (uint8_t)saida[i];
                 if (s_corromper && !num) {

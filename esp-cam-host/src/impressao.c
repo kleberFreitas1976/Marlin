@@ -116,6 +116,14 @@ static bool proxima(char *saida, size_t tam)
             break;
         }
         s_i.bytes += strlen(l);
+        // Linha maior que o buffer (o bloco de configuracao do fatiador no fim do arquivo
+        // tem comentarios de milhares de caracteres): descarta o resto dela, senao o
+        // pedaco seguinte viraria uma "linha de G-code" de lixo.
+        if (!strchr(l, '\n')) {
+            int c;
+            while ((c = fgetc(s_arq)) != EOF && c != '\n') s_i.bytes++;
+            if (c == '\n') s_i.bytes++;
+        }
         char *p = l;
         while (*p == ' ' || *p == '\t') p++;
         if (*p == ';') {
