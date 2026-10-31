@@ -95,6 +95,8 @@ static esp_err_t liga(void)
     } else {
         sensor_t *s = esp_camera_sensor_get();
         s->set_reg(s, OV5640_SYS_CTRL0, 0xff, 0x02);
+        // camera_resolucao() em standby so guardou o tamanho: aplica agora
+        if (s->status.framesize != s_tam) s->set_framesize(s, s_tam);
     }
     // exposicao e balanco de branco automaticos precisam de alguns quadros
     vTaskDelay(pdMS_TO_TICKS(1200));
