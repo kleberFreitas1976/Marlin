@@ -253,6 +253,10 @@ void imp_cancela(void)
         s_i.estado = IMP_CANCELANDO;
         strlcpy(s_i.aviso, "Cancelando", sizeof s_i.aviso);
         marlin_fonte(NULL);
+        // M410 descarta os movimentos ja planejados: sem ele o bico termina ate 16
+        // movimentos antes de parar. Na pausa nao: cortar movimentos deixaria falha
+        // na peca, e a retomada volta ao fim do ultimo movimento enviado.
+        marlin_envia("M410", true);
     }
     solta();
 }

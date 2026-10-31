@@ -35,19 +35,47 @@ static uint8_t s_voo_tam[MARLIN_JANELA];          // tamanho de cada uma, em ord
 static bool s_aguardando;                          // s_voo > 0
 static char s_ultimo_cmd[MARLIN_LINHA_MAX + 1];   // ultimo comando enviado
 static int64_t s_ultimo_rx;
+// Ultimo sinal de que a janela anda: um "ok", um "busy" ou o envio com a janela vazia.
+// O relatorio de temperatura chega a cada 2 s e nao serve para isso.
+static int64_t s_ultimo_avanco;
 static marlin_fonte_t s_fonte;                     // impressao em andamento (print_job)
 static linha_t s_pendente;                         // proxima linha que nao coube na janela
 static bool s_tem_pendente;
+
+// Numero de linha e checksum (N123 G1 X10*45), como o OctoPrint: o Marlin recusa
+// uma linha corrompida no caminho e pede de novo ("Resend: N"). Ja apareceu um
+// "Serial status mismatch" do lado da TinyBee: um caractere pode se perder.
+#define HIST 64
+typedef struct {
+    uint32_t n;
+    char s[MARLIN_LINHA_MAX + 1];
+} enviada_t;
+static enviada_t s_hist[HIST];
+static uint32_t s_n_prox = 1;       // proximo numero de linha
+static uint32_t s_reenvio;          // proxima a reenviar (0 = nenhuma)
+static uint32_t s_resend_k;         // ultimo "Resend" atendido
+static int s_resend_ignorar;        // pedidos repetidos ainda a chegar (linhas que ja estavam a caminho)
+static bool s_corromper;            // teste: a proxima linha vai com checksum errado
 
 static void zera_janela(void)
 {
     s_voo = s_voo_bytes = 0;
     s_aguardando = false;
+    s_reenvio = 0;
+    s_resend_ignorar = 0;
+}
+
+static void zera_numeracao(void)
+{
+    s_n_prox = 1;
+    s_reenvio = 0;
+    s_resend_ignorar = 0;
+    memset(s_hist, 0, sizeof s_hist);
 }
 
 // Configuracao pedida a cada conexao e a cada reinicio do Marlin. Os relatorios
 // automaticos so vao para a porta que os pediu: a TFT24 nao recebe nada disto.
-static const char *INICIO[] = {"M115", "M155 S2", "M154 S2", "M420", "M220", "M221"};
+static const char *INICIO[] = {"M110 N0", "M115", "M155 S2", "M154 S2", "M420", "M220", "M221"};
 
 static void avisa(marlin_tipo_t tipo, const char *linha)
 {
@@ -137,6 +165,8 @@ static void processa(char *l)
     s_e.linhas_rx++;
 
     if (!strncmp(l, "ok", 2)) {
+        s_e.oks++;
+        s_ultimo_avanco = esp_timer_get_time();
         if (s_voo > 0) {
             s_voo_bytes -= s_voo_tam[0];
             memmove(s_voo_tam, s_voo_tam + 1, (MARLIN_JANELA - 1) * sizeof s_voo_tam[0]);
@@ -146,8 +176,22 @@ static void processa(char *l)
         s_e.ocupada = false;
         tipo = MARLIN_OK;
         le_temperatura(l);                 // "ok T:..." do M105
+    } else if (!strncmp(l, "Resend:", 7) || !strncmp(l, "rs ", 3)) {
+        uint32_t k = (uint32_t)strtoul(l + (l[0] == 'R' ? 7 : 3), NULL, 10);
+        // Cada linha que ja estava a caminho depois da ruim gera o mesmo pedido:
+        // atende o primeiro e ignora os repetidos.
+        if (k == s_resend_k && s_resend_ignorar > 0) {
+            s_resend_ignorar--;
+        } else if (k > 0 && k < s_n_prox) {
+            s_resend_k = k;
+            s_resend_ignorar = s_voo > 0 ? s_voo - 1 : 0;
+            s_reenvio = k;
+            s_e.reenvios++;
+        }
+        tipo = MARLIN_ERRO;
     } else if (!strncmp(l, "echo:busy", 9)) {
         s_e.ocupada = true;
+        s_ultimo_avanco = esp_timer_get_time();
         tipo = MARLIN_SIS;
     } else if (le_temperatura(l) && (l[0] == 'T' || l[0] == ' ')) {
         tipo = MARLIN_TEMP;
@@ -176,7 +220,10 @@ static void processa(char *l)
     if (strstr(l, "Bed Leveling ON")) s_e.compensacao = 1;
     if (strstr(l, "Bed Leveling OFF")) s_e.compensacao = 0;
     bool reiniciou = !strcmp(l, "start");
-    if (reiniciou) zera_janela();
+    if (reiniciou) {
+        zera_janela();
+        zera_numeracao();          // o Marlin reiniciou: a numeracao dele voltou a zero
+    }
     xSemaphoreGive(s_mtx);
 
     avisa(tipo, l);
@@ -203,6 +250,14 @@ static void tarefa(void *arg)
             xSemaphoreGive(s_mtx);
             n = 0;
             avisa(MARLIN_SIS, "TinyBee conectada pela USB");
+            // O CH340 acabou de receber a velocidade (250000): a primeira linha enviada
+            // logo em seguida chegava como lixo, sem fim de linha, e o Marlin nao
+            // respondia "ok" (o contador mostrava 7 enviadas e 6 oks). Espera, manda
+            // uma linha em branco para descartar o lixo e so entao comeca.
+            vTaskDelay(pdMS_TO_TICKS(500));
+            usb_serial_envia("\n", 1);
+            vTaskDelay(pdMS_TO_TICKS(100));
+            xStreamBufferReset(s_rx);
             pede_inicio();
         }
         if (s_desconectou) {
@@ -230,6 +285,21 @@ static void tarefa(void *arg)
             }
         }
 
+        // "ok" perdido: a linha mais antiga esta ha MARLIN_OK_PERDIDO_S sem "ok" e o Marlin
+        // nao disse "busy" nesse tempo. Libera a vaga, senao a janela fica com uma linha
+        // fantasma e a pausa e o cancelamento esperam o Marlin "ociosar" para sempre.
+        if (s_voo > 0 && esp_timer_get_time() - s_ultimo_avanco > MARLIN_OK_PERDIDO_S * 1000000LL) {
+            s_voo_bytes -= s_voo_tam[0];
+            memmove(s_voo_tam, s_voo_tam + 1, (MARLIN_JANELA - 1) * sizeof s_voo_tam[0]);
+            s_voo--;
+            s_aguardando = s_voo > 0;
+            s_ultimo_avanco = esp_timer_get_time();
+            s_e.oks_perdidos++;
+            ESP_LOGW(TAG, "ok perdido: liberando uma vaga da janela (enviadas %lu, oks %lu)",
+                     (unsigned long)s_e.linhas_tx, (unsigned long)s_e.oks);
+            avisa(MARLIN_SIS, "Um \"ok\" do Marlin nao chegou: liberando a fila");
+        }
+
         // Nada chegou ha tempo demais: a fila nao pode ficar presa para sempre
         if (s_aguardando && esp_timer_get_time() - s_ultimo_rx > MARLIN_SILENCIO_S * 1000000LL) {
             zera_janela();
@@ -242,7 +312,17 @@ static void tarefa(void *arg)
         while (s_e.conectada && s_voo < MARLIN_JANELA) {
             linha_t cmd;
             bool da_fonte = false;
-            if (s_tem_pendente) {
+            uint32_t num = 0;
+            if (s_reenvio && s_reenvio < s_n_prox && s_n_prox - s_reenvio <= HIST &&
+                s_hist[s_reenvio % HIST].n == s_reenvio) {
+                // reenvio pedido pelo Marlin: vem do historico, com o mesmo numero
+                num = s_reenvio;
+                strlcpy(cmd.s, s_hist[num % HIST].s, sizeof cmd.s);
+                da_fonte = true;               // nao repete no console
+            } else if (s_reenvio) {
+                s_reenvio = 0;                 // fora do historico: segue sem reenviar
+                continue;
+            } else if (s_tem_pendente) {
                 cmd = s_pendente;
                 da_fonte = true;
             } else if (xQueueReceive(s_fila, &cmd, 0) == pdTRUE) {
@@ -251,8 +331,25 @@ static void tarefa(void *arg)
             } else {
                 break;
             }
-            int k = (int)strlen(cmd.s) + 1;
+            // M110 (zera a numeracao) e M112 vao sem numero
+            bool cru = !strncmp(cmd.s, "M110", 4) || !strncmp(cmd.s, "M112", 4);
+            char saida[MARLIN_LINHA_MAX + 24];
+            int k;
+            if (cru) {
+                k = snprintf(saida, sizeof saida, "%s\n", cmd.s);
+            } else {
+                uint32_t n_linha = num ? num : s_n_prox;
+                int p = snprintf(saida, sizeof saida, "N%lu %s", (unsigned long)n_linha, cmd.s);
+                uint8_t cs = 0;
+                for (int i = 0; i < p; i++) cs ^= (uint8_t)saida[i];
+                if (s_corromper && !num) {
+                    cs ^= 0x55;
+                    s_corromper = false;
+                }
+                k = p + snprintf(saida + p, sizeof saida - p, "*%u\n", cs);
+            }
             if (s_voo > 0 && s_voo_bytes + k > MARLIN_JANELA_BYTES) {
+                if (num) break;               // reenvio: tenta de novo apos o proximo ok
                 if (da_fonte) {               // guarda para depois do proximo ok
                     s_pendente = cmd;
                     s_tem_pendente = true;
@@ -261,13 +358,23 @@ static void tarefa(void *arg)
                 }
                 break;
             }
-            s_tem_pendente = false;
-            char saida[MARLIN_LINHA_MAX + 2];
-            snprintf(saida, sizeof saida, "%s\n", cmd.s);
+            if (num) {
+                s_reenvio = num + 1 < s_n_prox ? num + 1 : 0;
+            } else {
+                s_tem_pendente = false;
+                if (cru) {
+                    if (!strncmp(cmd.s, "M110", 4)) zera_numeracao();
+                } else {
+                    s_hist[s_n_prox % HIST].n = s_n_prox;
+                    strlcpy(s_hist[s_n_prox % HIST].s, cmd.s, sizeof s_hist[0].s);
+                    s_n_prox++;
+                }
+            }
             if (usb_serial_envia(saida, k) != ESP_OK) {
                 avisa(MARLIN_ERRO, "Falha ao escrever na USB");
                 break;
             }
+            if (s_voo == 0) s_ultimo_avanco = esp_timer_get_time();
             s_voo_tam[s_voo++] = (uint8_t)k;
             s_voo_bytes += k;
             s_aguardando = true;
@@ -353,6 +460,8 @@ void marlin_fonte(marlin_fonte_t fonte)
     s_fonte = fonte;
     if (!fonte) s_tem_pendente = false;
 }
+
+void marlin_teste_corrompe(void) { s_corromper = true; }
 
 bool marlin_ocioso(void)
 {

@@ -16,6 +16,7 @@
 #define MARLIN_SILENCIO_S 30         // sem nenhuma resposta: destrava a fila
 #define MARLIN_JANELA 4              // linhas em transito (sem "ok")
 #define MARLIN_JANELA_BYTES 200      // RX da UART do Marlin no ESP32: 256 bytes
+#define MARLIN_OK_PERDIDO_S 15       // sem "ok" nem "busy": considera o ok perdido
 
 typedef enum {
     MARLIN_TX,       // comando enviado
@@ -40,6 +41,9 @@ typedef struct {
     bool ocupada;             // recebendo "busy"
     int fila;                 // comandos esperando
     uint32_t linhas_tx, linhas_rx;
+    uint32_t reenvios;        // linhas que o Marlin pediu de novo (checksum)
+    uint32_t oks;             // "ok" recebidos (deve acompanhar linhas_tx)
+    uint32_t oks_perdidos;    // vagas liberadas por "ok" que nao chegou
     // area da maquina (M115 com M115_GEOMETRY_REPORT)
     float area_min[3], area_max[3];
 } marlin_estado_t;
@@ -69,3 +73,6 @@ void marlin_fonte(marlin_fonte_t fonte);
 
 // Nada esperando "ok", nada na fila
 bool marlin_ocioso(void);
+
+// Teste: a proxima linha nova sai com checksum errado (o Marlin deve pedir de novo)
+void marlin_teste_corrompe(void);

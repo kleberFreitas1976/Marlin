@@ -153,10 +153,12 @@ static void tb_estado(void)
 {
     marlin_estado_t e;
     marlin_estado(&e);
-    printf("TinyBee: %s | bico %.1f/%.0f  mesa %.1f/%.0f | X%.2f Y%.2f Z%.2f | fila %d%s\n",
+    printf("TinyBee: %s | bico %.1f/%.0f  mesa %.1f/%.0f | X%.2f Y%.2f Z%.2f | fila %d | reenvios %lu"
+           " | enviadas %lu oks %lu perdidos %lu%s\n",
            !e.conectada ? "nao conectada" : e.respondendo ? "respondendo" : "conectada, calada",
            e.bico, e.bico_alvo, e.mesa, e.mesa_alvo, e.x, e.y, e.z, e.fila,
-           e.ocupada ? " | ocupada" : "");
+           (unsigned long)e.reenvios, (unsigned long)e.linhas_tx, (unsigned long)e.oks,
+           (unsigned long)e.oks_perdidos, e.ocupada ? " | ocupada" : "");
     if (e.firmware[0]) printf("Firmware: %s\n", e.firmware);
 }
 
@@ -255,6 +257,10 @@ static void executa(char *linha)
     else if (!strcasecmp(cmd, "sd")) sd_ok() ? sd_lista(arg ? arg : SD_RAIZ) : (void)printf("SD ausente\n");
     else if (!strcasecmp(cmd, "reinicia")) esp_restart();
     else if (!strcasecmp(cmd, "gerateste")) gera_teste();
+    else if (!strcasecmp(cmd, "corrompe")) {
+        marlin_teste_corrompe();
+        printf("a proxima linha para a TinyBee vai com checksum errado\n");
+    }
     else if (!strcasecmp(cmd, "nuvemteste")) {
         // aponta a nuvem para um servidor de teste (tools/nuvem_teste.py); "nuvemteste off" desliga
         nuvem_config_t c;
@@ -284,6 +290,33 @@ static void executa(char *linha)
                "imprime <arq> | imp | pausa | retoma | cancela | reinicia\n");
 }
 
+// Recebimento de arquivo pela serial (tools/envia_serial.py): "recebe <nome>",
+// depois linhas em base64, e "@@FIM". Grava em /sd/gcodes pelo mesmo caminho
+// do envio pela web (miniatura e dados sao extraidos).
+static arq_envio_t *s_recebendo;
+
+static bool linha_recebimento(const char *l)
+{
+    if (!s_recebendo) return false;
+    if (!strcmp(l, "@@FIM") || !strcmp(l, "@@CANCELA")) {
+        bool ok = !strcmp(l, "@@FIM");
+        printf(arq_envio_fecha(s_recebendo, ok) == ESP_OK ? "@@RECEBIDO\n" : "@@FALHOU\n");
+        s_recebendo = NULL;
+        return true;
+    }
+    unsigned char dec[100];
+    size_t n = 0;
+    if (mbedtls_base64_decode(dec, sizeof dec, &n, (const unsigned char *)l, strlen(l)) != 0 ||
+        arq_envio_dados(s_recebendo, dec, n) != ESP_OK) {
+        arq_envio_fecha(s_recebendo, false);
+        s_recebendo = NULL;
+        printf("@@FALHOU\n");
+        return true;
+    }
+    printf("+\n");               // confirma a linha: o PC so manda a proxima depois disto
+    return true;
+}
+
 static void console(void *arg)
 {
     uart_driver_install(UART_NUM_0, 1024, 0, 0, NULL, 0);
@@ -296,7 +329,14 @@ static void console(void *arg)
         if (c == '\r' || c == '\n') {
             if (n) {
                 buf[n] = '\0';
-                executa(buf);
+                if (!linha_recebimento(buf)) {
+                    if (!strncmp(buf, "recebe ", 7)) {
+                        s_recebendo = arq_envio_abre(buf + 7);
+                        printf(s_recebendo ? "@@PRONTO\n" : "@@FALHOU nome invalido ou sem SD\n");
+                    } else {
+                        executa(buf);
+                    }
+                }
                 n = 0;
             }
         } else if (n < sizeof buf - 1) {

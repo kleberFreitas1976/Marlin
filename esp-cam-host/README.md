@@ -39,6 +39,7 @@ Credenciais (Wi-Fi inicial e senha da página) em `secrets.ini`, fora do Git
 | `servidor_teste.py` | a interface em `http://localhost:8765` com uma TinyBee simulada, para desenvolver sem a impressora |
 | `nuvem_teste.py` | imita o `api.php` da hospedagem na rede local |
 | `foto_serial.py` | tira uma foto pelo console serial |
+| `envia_serial.py` | manda um G-code para o cartão pela serial (sem Wi-Fi) |
 | `gera_web.py`, `segredos.py` | rodam sozinhos na compilação |
 
 Console serial (921600): `ajuda` lista os comandos. Os úteis para diagnóstico:
@@ -54,8 +55,12 @@ Testado na placa (30/10/2026), sem mover nem aquecer a impressora:
   (estrutura conferida); nuvem com o simulador (status, comando, foto inteira);
 - senha em todas as rotas (sem senha: 401).
 
+Testado com a impressora sendo observada (31/10/2026), com um G-code só de movimento
+(bico frio, Z 20): **pausa estaciona em ~7 s, retomada volta à posição e segue,
+cancelamento termina em ~8 s**; linhas com número e checksum (uma linha corrompida de
+propósito foi pedida de novo e executada uma vez só).
+
 Falta testar com alguém olhando a impressora:
-- **pausar, retomar e cancelar** uma impressão real (movem o bico);
 - uma impressão real do Benchy pela placa, com time-lapse;
 - o envio direto pelo OrcaSlicer (cadastro da impressora OctoPrint);
 - os relés (ainda não instalados) e a luz;
