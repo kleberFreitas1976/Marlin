@@ -34,6 +34,9 @@ typedef struct {
     bool tft;
     char tft_nome[84];
     int tft_camada, tft_camadas, tft_decorrido_s;
+    // ultimo termino (da placa ou da TFT)
+    int fim_ha_s;             // segundos desde o fim; -1 se nada terminou desde o boot
+    bool fim_ok;              // terminou normalmente (nao cancelada nem com erro)
 } imp_info_t;
 
 void imp_inicia(void);

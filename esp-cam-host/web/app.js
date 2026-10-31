@@ -62,7 +62,8 @@ function atualiza(e) {
   const tb = e.tb;
   if (!tb.usb) chip('chipTb', 'erro', 'TinyBee desconectada');
   else if (!tb.resp) chip('chipTb', 'aviso', 'TinyBee sem resposta');
-  else chip('chipTb', tb.ocupada ? 'aviso' : 'ok', tb.ocupada ? 'TinyBee ocupada' : 'TinyBee ok');
+  // "busy" do Marlin: home, malha, espera de movimentos longos. E normal no inicio da impressao.
+  else chip('chipTb', 'ok', tb.ocupada ? 'TinyBee trabalhando' : 'TinyBee ok');
   chip('chipRede', e.rede.ip ? 'ok' : 'aviso',
        e.rede.ip ? `Wi-Fi ${e.rede.rssi} dBm` : (e.rede.ap ? 'modo AP' : 'sem Wi-Fi'));
   chip('chipSd', e.sd.ok ? 'ok' : 'aviso',
@@ -92,7 +93,8 @@ function temp(nome, atual, alvo, pwm) {
   $('t' + nome).textContent = br(atual, 1);
   $('a' + nome).textContent = alvo > 0 ? br(alvo, 0) + ' °C' : 'desligado';
   $('pwm' + nome).textContent = alvo > 0 || pwm > 0 ? `potência ${Math.round(pwm / 1.27)}%` : '';
-  $('barra' + nome).style.width = Math.min(100, pwm / 1.27) + '%';
+  // barra = quanto falta para o alvo (a potencia varia o tempo todo com o PID e fica no texto)
+  $('barra' + nome).style.width = (alvo > 0 ? Math.min(100, Math.max(0, atual / alvo * 100)) : 0) + '%';
   const c = $('cartao' + nome);
   c.classList.toggle('aquecendo', alvo > 0 && Math.abs(atual - alvo) > 3);
   c.classList.toggle('no-alvo', alvo > 0 && Math.abs(atual - alvo) <= 3);
@@ -122,10 +124,15 @@ function energia(r) {
        r.impressoraDesligada ? 'desligada' : r.aguardando || r.tudoAgendado ? 'aguardando esfriar' : 'ligada');
   $('rlDesliga').hidden = r.impressoraDesligada || r.aguardando;
   $('rlLiga').hidden = !r.impressoraDesligada;
-  $('rlCancela').hidden = !(r.aguardando || r.tudoAgendado);
+  $('rlCancela').hidden = !(r.aguardando || r.tudoAgendado || r.autoFalta >= 0);
   if (document.activeElement !== $('rlLuz')) $('rlLuz').value = r.luz;
   $('rlLuzTxt').textContent = r.luz + '%';
   $('rlLuzAuto').checked = r.luzAuto;
+  $('rlAuto').checked = r.auto;
+  if (document.activeElement !== $('rlAutoMin')) $('rlAutoMin').value = r.autoMin;
+  $('rlAutoTxt').textContent = r.autoFalta >= 0
+    ? `Desligando a impressora em ${Math.floor(r.autoFalta / 60)} min ${r.autoFalta % 60} s (Cancelar espera interrompe).`
+    : r.auto ? 'Ativo: vale para a próxima impressão que terminar.' : '';
   const pol = document.querySelector(`input[name=rlPol][value="${r.ativoBaixo ? 1 : 0}"]`);
   if (pol) pol.checked = true;
 }
@@ -211,6 +218,12 @@ function ligaEnergia() {
   $('rlLuz').onchange = () => rele('luz', { valor: $('rlLuz').value });
   $('rlLuz').oninput = () => { $('rlLuzTxt').textContent = $('rlLuz').value + '%'; };
   $('rlLuzAuto').onchange = () => rele('luz_auto', { valor: $('rlLuzAuto').checked ? 1 : 0 });
+  const auto = () => {
+    const m = Math.max(0, Math.min(720, parseInt($('rlAutoMin').value, 10) || 0));
+    rele('auto', { ativo: $('rlAuto').checked ? 1 : 0, valor: m });
+  };
+  $('rlAuto').onchange = auto;
+  $('rlAutoMin').onchange = auto;
   document.querySelectorAll('input[name=rlPol]').forEach((i) => i.addEventListener('change', () => {
     if (confirm('Trocar a polaridade do módulo de relé? Com a errada, os relés funcionam ao contrário.'))
       rele('polaridade', { valor: i.value });

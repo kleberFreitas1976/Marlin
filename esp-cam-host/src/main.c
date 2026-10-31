@@ -349,7 +349,9 @@ static void console(void *arg)
 static void ciclo_impressao(bool comecou, const char *nome)
 {
     tl_ciclo(comecou, nome);
-    reles_impressao(comecou);       // luz automatica para o time-lapse
+    imp_info_t i;
+    imp_info(&i);
+    reles_impressao(comecou, !comecou && i.fim_ok);   // luz do time-lapse e desligar depois do fim
 }
 
 void app_main(void)

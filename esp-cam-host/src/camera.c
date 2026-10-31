@@ -10,7 +10,7 @@
 
 static const char *TAG = "camera";
 
-static bool s_ok, s_ligada, s_manter;
+static bool s_ok, s_iniciada, s_ligada, s_manter;
 static const char *s_nome = "nenhum";
 static int s_pid;
 static int s_larg_max, s_alt_max;
@@ -57,16 +57,22 @@ static void descarta(int n)
     }
 }
 
+// OV5640 SYSTEM CTRL0: 0x42 = standby por software (para de capturar e esfria), 0x02 = normal
+#define OV5640_SYS_CTRL0 0x3008
+
+// Inicia o driver uma vez so e nunca o desfaz: o buffer de DMA (16 KB) precisa de RAM
+// interna contigua, e durante a impressao a maior sobra chega a 15 KB, entao reiniciar
+// a camera depois falhava ("DMA buffer malloc failed"). "Desligar" = standby do sensor.
 // Chamar com s_mtx tomado.
-static esp_err_t liga(void)
+static esp_err_t inicia_driver(void)
 {
-    if (s_ligada) return ESP_OK;
+    if (s_iniciada) return ESP_OK;
     // O tamanho dos buffers sai da resolucao do esp_camera_init: inicia ja na
     // maxima (buffers na PSRAM) e desce para a resolucao de trabalho.
     s_cfg.frame_size = s_maximo;
     esp_err_t err = esp_camera_init(&s_cfg);
     if (err != ESP_OK) {
-        ESP_LOGE(TAG, "camera nao ligou (0x%x)", err);
+        ESP_LOGE(TAG, "camera nao iniciou (0x%x)", err);
         return err;
     }
     sensor_t *s = esp_camera_sensor_get();
@@ -74,6 +80,22 @@ static esp_err_t liga(void)
     // Camera de cabeca para baixo: no OV5640 deste modulo basta inverter o vflip em relacao
     // ao padrao do driver (inverter tambem o hmirror deixou a imagem espelhada, testado).
     if (s_girar) s->set_vflip(s, !s->status.vflip);
+    s_iniciada = true;
+    s_ligada = true;
+    return ESP_OK;
+}
+
+// Chamar com s_mtx tomado.
+static esp_err_t liga(void)
+{
+    if (s_ligada) return ESP_OK;
+    if (!s_iniciada) {
+        esp_err_t err = inicia_driver();
+        if (err != ESP_OK) return err;
+    } else {
+        sensor_t *s = esp_camera_sensor_get();
+        s->set_reg(s, OV5640_SYS_CTRL0, 0xff, 0x02);
+    }
     // exposicao e balanco de branco automaticos precisam de alguns quadros
     vTaskDelay(pdMS_TO_TICKS(1200));
     descarta(4);
@@ -85,9 +107,10 @@ static esp_err_t liga(void)
 static void desliga(void)
 {
     if (!s_ligada) return;
-    esp_camera_deinit();
+    sensor_t *s = esp_camera_sensor_get();
+    s->set_reg(s, OV5640_SYS_CTRL0, 0xff, 0x42);
     s_ligada = false;
-    ESP_LOGI(TAG, "desligada (sem uso ha %d s)", CAMERA_DESLIGA_S);
+    ESP_LOGI(TAG, "standby");
 }
 
 static void vigia(void *arg)
@@ -127,8 +150,15 @@ esp_err_t camera_inicia(void)
     } else {
         s_nome = "desconhecido";
     }
-    esp_camera_deinit();          // so liga quando alguem usar
-    ESP_LOGI(TAG, "sensor %s (PID 0x%04x), resolucao maxima %dx%d; desligada ate o primeiro uso",
+    esp_camera_deinit();
+    // De novo, agora na resolucao maxima (buffers do tamanho certo), logo no boot,
+    // enquanto a RAM interna ainda esta inteira. Fica em standby ate o primeiro uso.
+    xSemaphoreTake(s_mtx, portMAX_DELAY);
+    err = inicia_driver();
+    if (err == ESP_OK) desliga();
+    xSemaphoreGive(s_mtx);
+    if (err != ESP_OK) return err;
+    ESP_LOGI(TAG, "sensor %s (PID 0x%04x), resolucao maxima %dx%d; em standby ate o primeiro uso",
              s_nome, s_pid, s_larg_max, s_alt_max);
     s_ok = true;
     xTaskCreate(vigia, "camera_vigia", 3072, NULL, 2, NULL);
@@ -169,7 +199,7 @@ esp_err_t camera_girar(bool sim)
     err = nvs_commit(h);
     nvs_close(h);
     xSemaphoreTake(s_mtx, portMAX_DELAY);
-    if (s_ligada && sim != s_girar) {
+    if (s_iniciada && sim != s_girar) {
         sensor_t *s = esp_camera_sensor_get();
         s->set_vflip(s, !s->status.vflip);
     }

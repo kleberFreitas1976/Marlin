@@ -156,10 +156,10 @@ size_t web_impressao_json(char *j, size_t tam)
         "{\"estado\":\"%s\",\"nome\":\"%s\",\"bytes\":%u,\"total\":%u,\"linhas\":%u,"
         "\"camada\":%d,\"camadas\":%d,\"decorrido\":%d,\"estimado\":%d,\"restante\":%d,"
         "\"aviso\":\"%s\",\"tft\":%s,\"tftNome\":\"%s\",\"tftCamada\":%d,\"tftCamadas\":%d,"
-        "\"tftDecorrido\":%d}",
+        "\"tftDecorrido\":%d,\"fimHa\":%d,\"fimOk\":%s}",
         EST[i.estado], nome, (unsigned)i.bytes, (unsigned)i.total, (unsigned)i.linhas, i.camada,
         i.camadas, i.decorrido_s, i.estimado_s, i.restante_s, aviso, i.tft ? "true" : "false",
-        tft, i.tft_camada, i.tft_camadas, i.tft_decorrido_s);
+        tft, i.tft_camada, i.tft_camadas, i.tft_decorrido_s, i.fim_ha_s, i.fim_ok ? "true" : "false");
 }
 
 // ------------------------------------------------------------------ OctoPrint

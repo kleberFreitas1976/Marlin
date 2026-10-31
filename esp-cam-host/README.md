@@ -60,8 +60,19 @@ Testado com a impressora sendo observada (31/10/2026), com um G-code só de movi
 cancelamento termina em ~8 s**; linhas com número e checksum (uma linha corrompida de
 propósito foi pedida de novo e executada uma vez só).
 
+Primeira impressão real pela placa (31/10/2026, Toro, 12 min): foi até o fim, com 6
+linhas corrompidas pedidas de novo e reenviadas. Achados e correções:
+- a câmera falhava durante a impressão: religar o driver pede 16 KB contíguos de RAM
+  interna, que não sobram com a impressão rodando. Agora o driver inicia uma vez no boot
+  e "desligar" é o standby do sensor;
+- a espera de aquecimento (M109/M190) era confundida com "ok" perdido; a resposta do
+  Marlin logo após conectar podia vir como lixo (agora M110 repetido até um "ok" limpo);
+- imagem desvirada (câmera de cabeça para baixo), barra de temperatura em relação ao
+  alvo, hora do término no cartão da impressão, desligar a impressora N minutos depois
+  de uma impressão concluída (aba Controle, Energia e luz).
+
 Falta testar com alguém olhando a impressora:
-- uma impressão real do Benchy pela placa, com time-lapse;
+- o time-lapse completo de uma impressão real (as fotos falharam na primeira);
 - o envio direto pelo OrcaSlicer (cadastro da impressora OctoPrint);
 - os relés (ainda não instalados) e a luz;
 - o site na hospedagem (o PHP não roda neste PC);

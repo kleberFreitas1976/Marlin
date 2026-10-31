@@ -25,6 +25,9 @@ typedef struct {
     bool ativo_baixo;            // polaridade do modulo de rele
     int luz;                     // 0-100 %
     bool luz_auto;               // acende durante a impressao (time-lapse)
+    bool auto_desligar;          // desliga a impressora depois que uma impressao termina bem
+    int auto_min;                // ... tantos minutos depois do fim
+    int auto_falta_s;            // contagem em andamento; -1 se nao ha
 } reles_estado_t;
 
 void reles_inicia(void);
@@ -40,5 +43,10 @@ void reles_luz(int pct);
 void reles_luz_auto(bool sim);
 void reles_polaridade(bool ativo_baixo);
 
-// Chamada no inicio/fim das impressoes (luz automatica)
-void reles_impressao(bool imprimindo);
+// Desligar a impressora sozinho minutos depois do fim de uma impressao concluida
+// (a da placa ou a da TFT); depois ainda espera o bico esfriar.
+void reles_auto(bool ativo, int minutos);
+
+// Chamada no inicio/fim das impressoes (luz automatica e desligamento automatico).
+// concluida: terminou normalmente (so vale no fim).
+void reles_impressao(bool imprimindo, bool concluida);

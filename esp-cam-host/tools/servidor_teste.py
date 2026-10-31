@@ -201,7 +201,8 @@ SD = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", ".pio", "sd_
 os.makedirs(os.path.join(SD, "gcodes", ".meta"), exist_ok=True)
 JOB = {"estado": "parada", "nome": "", "bytes": 0, "total": 0, "linhas": 0, "camada": 0,
        "camadas": 0, "decorrido": 0, "estimado": -1, "restante": -1, "aviso": "", "tft": False,
-       "tftNome": "", "tftCamada": 0, "tftCamadas": 0, "tftDecorrido": 0}
+       "tftNome": "", "tftCamada": 0, "tftCamadas": 0, "tftDecorrido": 0, "fimHa": -1, "fimOk": False}
+FIM = {"t": None}   # time.time() do ultimo termino
 
 
 def meta_de(nome):
@@ -240,7 +241,8 @@ def meta_de(nome):
 
 TL = {"ativo": True, "modo": 0, "res": 15, "fps": 25, "girar": True}
 RL = {"impressoraDesligada": False, "aguardando": False, "tudoAgendado": False, "ativoBaixo": True,
-      "luz": 0, "luzAuto": True}
+      "luz": 0, "luzAuto": True, "auto": False, "autoMin": 10, "autoFalta": -1}
+AUTO = {"em": None}
 
 
 def lista_timelapse():
@@ -272,6 +274,12 @@ def simula_impressao():
     """Avanca a impressao simulada: o arquivo inteiro em ~60 s."""
     while True:
         time.sleep(1)
+        JOB["fimHa"] = int(time.time() - FIM["t"]) if FIM["t"] else -1
+        if AUTO["em"]:
+            RL["autoFalta"] = max(0, int(AUTO["em"] - time.time()))
+            if time.time() >= AUTO["em"]:
+                AUTO["em"] = None
+                RL.update(autoFalta=-1, impressoraDesligada=True)
         if JOB["estado"] == "imprimindo":
             JOB["decorrido"] += 1
             JOB["bytes"] = min(JOB["total"], JOB["bytes"] + max(1, JOB["total"] // 60))
@@ -279,11 +287,15 @@ def simula_impressao():
             JOB["camada"] = int(p * JOB["camadas"])
             JOB["restante"] = int(JOB["decorrido"] * (1 - p) / p) if p > 0.1 else JOB["estimado"]
             if JOB["bytes"] >= JOB["total"]:
-                JOB.update(estado="concluida", aviso="Impressao concluida", restante=0)
+                JOB.update(estado="concluida", aviso="Impressao concluida", restante=0, fimOk=True)
+                FIM["t"] = time.time()
+                if RL["auto"]:
+                    AUTO["em"] = time.time() + RL["autoMin"] * 60
         elif JOB["estado"] == "pausando":
             JOB.update(estado="pausada", aviso="Pausada: bico estacionado, aquecimento mantido")
         elif JOB["estado"] == "cancelando":
-            JOB.update(estado="cancelada", aviso="Impressao cancelada")
+            JOB.update(estado="cancelada", aviso="Impressao cancelada", fimOk=False)
+            FIM["t"] = time.time()
 
 
 def relogio():
@@ -409,7 +421,14 @@ class Manipulador(BaseHTTPRequestHandler):
             elif acao == "liga_impressora":
                 RL.update(impressoraDesligada=False, aguardando=False)
             elif acao == "cancela":
-                RL.update(aguardando=False, tudoAgendado=False)
+                RL.update(aguardando=False, tudoAgendado=False, autoFalta=-1)
+                AUTO["em"] = None
+            elif acao == "auto":
+                RL["auto"] = q.get("ativo", ["1"])[0] == "1"
+                RL["autoMin"] = int(v)
+                if not RL["auto"]:
+                    AUTO["em"] = None
+                    RL["autoFalta"] = -1
             elif acao == "luz":
                 RL["luz"] = int(v)
             elif acao == "luz_auto":

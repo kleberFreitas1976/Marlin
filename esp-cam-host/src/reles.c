@@ -5,6 +5,7 @@
 
 #include "driver/gpio.h"
 #include "driver/ledc.h"
+#include "esp_timer.h"
 #include "esp_log.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -19,8 +20,9 @@ static const char *TAG = "reles";
 #define LUZ_TIMER LEDC_TIMER_1
 #define LUZ_CANAL LEDC_CHANNEL_1
 
-static reles_estado_t s_e = {.ativo_baixo = true, .luz_auto = true};
+static reles_estado_t s_e = {.ativo_baixo = true, .luz_auto = true, .auto_min = 10, .auto_falta_s = -1};
 static int s_luz_manual;
+static int64_t s_auto_em_us;     // quando desligar sozinho (0 = nada agendado)
 
 // ------------------------------------------------------------------ pinos
 static void rele(int pino, bool energizado)
@@ -44,6 +46,8 @@ static void grava(void)
     nvs_set_u8(h, "baixo", s_e.ativo_baixo);
     nvs_set_u8(h, "luz", s_luz_manual);
     nvs_set_u8(h, "luz_auto", s_e.luz_auto);
+    nvs_set_u8(h, "auto", s_e.auto_desligar);
+    nvs_set_u16(h, "auto_min", (uint16_t)s_e.auto_min);
     nvs_commit(h);
     nvs_close(h);
 }
@@ -90,6 +94,17 @@ static void tarefa(void *arg)
 {
     while (true) {
         vTaskDelay(pdMS_TO_TICKS(2000));
+        if (s_auto_em_us) {
+            int64_t falta = s_auto_em_us - esp_timer_get_time();
+            s_e.auto_falta_s = falta > 0 ? (int)(falta / 1000000) : 0;
+            if (falta <= 0) {
+                s_auto_em_us = 0;
+                s_e.auto_falta_s = -1;
+                char motivo[80];
+                ESP_LOGW(TAG, "desligamento automatico depois da impressao");
+                if (!s_e.impressora_desligada) reles_desliga_impressora(false, motivo, sizeof motivo);
+            }
+        }
         if ((s_e.aguardando_esfriar || s_e.tudo_agendado) && bico_frio()) {
             if (s_e.tudo_agendado) corta_tudo();
             else corta_impressora();
@@ -107,6 +122,9 @@ void reles_inicia(void)
         if (nvs_get_u8(h, "baixo", &u) == ESP_OK) s_e.ativo_baixo = u;
         if (nvs_get_u8(h, "luz", &u) == ESP_OK) s_luz_manual = u;
         if (nvs_get_u8(h, "luz_auto", &u) == ESP_OK) s_e.luz_auto = u;
+        if (nvs_get_u8(h, "auto", &u) == ESP_OK) s_e.auto_desligar = u;
+        uint16_t m;
+        if (nvs_get_u16(h, "auto_min", &m) == ESP_OK) s_e.auto_min = m;
         nvs_close(h);
     }
     gpio_reset_pin(RELE_IMPRESSORA_PIN);
@@ -170,6 +188,8 @@ esp_err_t reles_desliga_tudo(bool forcar, char *motivo, size_t tam)
 
 void reles_cancela_espera(void)
 {
+    s_auto_em_us = 0;
+    s_e.auto_falta_s = -1;
     s_e.aguardando_esfriar = false;
     s_e.tudo_agendado = false;
 }
@@ -195,8 +215,26 @@ void reles_polaridade(bool ativo_baixo)
     grava();
 }
 
-void reles_impressao(bool imprimindo)
+void reles_auto(bool ativo, int minutos)
 {
-    if (!s_e.luz_auto) return;
-    aplica_luz(imprimindo ? 100 : s_luz_manual);
+    s_e.auto_desligar = ativo;
+    if (minutos >= 0 && minutos <= 720) s_e.auto_min = minutos;
+    if (!ativo) {
+        s_auto_em_us = 0;
+        s_e.auto_falta_s = -1;
+    }
+    grava();
+}
+
+void reles_impressao(bool imprimindo, bool concluida)
+{
+    if (imprimindo) {                 // nova impressao: esquece um desligamento pendente
+        s_auto_em_us = 0;
+        s_e.auto_falta_s = -1;
+    } else if (concluida && s_e.auto_desligar && !s_e.impressora_desligada) {
+        s_auto_em_us = esp_timer_get_time() + (int64_t)s_e.auto_min * 60 * 1000000;
+        s_e.auto_falta_s = s_e.auto_min * 60;
+        ESP_LOGI(TAG, "impressao concluida: desliga a impressora em %d min", s_e.auto_min);
+    }
+    if (s_e.luz_auto) aplica_luz(imprimindo ? 100 : s_luz_manual);
 }

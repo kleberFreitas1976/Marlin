@@ -194,6 +194,9 @@ static void processa(char *l)
         s_ultimo_avanco = esp_timer_get_time();
         tipo = MARLIN_SIS;
     } else if (le_temperatura(l) && (l[0] == 'T' || l[0] == ' ')) {
+        // Esperando aquecer (M109/M190) o Marlin nao manda "busy", e sim a temperatura a
+        // cada 1 s com " W:" (TEMP_RESIDENCY_TIME). Conta como sinal de que esta trabalhando.
+        if (strstr(l, " W:")) s_ultimo_avanco = esp_timer_get_time();
         tipo = MARLIN_TEMP;
     } else if (le_posicao(l)) {
         // Resposta a um M114 pedido a mao aparece no console; o relatorio automatico, nao
@@ -234,6 +237,34 @@ static void processa(char *l)
     }
 }
 
+// A resposta do Marlin tambem pode chegar como lixo logo depois de conectar (visto:
+// "vJ7AJBJEK58CbhrQTJ" no lugar do "ok" do primeiro comando). Antes de usar a janela,
+// manda "M110 N0" sozinho, fora da contagem, ate receber um "ok" limpo.
+static void aperto_de_mao(void)
+{
+    char l[64];
+    for (int tentativa = 0; tentativa < 5; tentativa++) {
+        usb_serial_envia("M110 N0\n", 8);
+        size_t n = 0;
+        int64_t fim = esp_timer_get_time() + 1500000;
+        while (esp_timer_get_time() < fim) {
+            uint8_t c;
+            if (xStreamBufferReceive(s_rx, &c, 1, pdMS_TO_TICKS(50)) != 1) continue;
+            if (c != '\n' && c != '\r') {
+                if (n < sizeof l - 1) l[n++] = (char)c;
+                continue;
+            }
+            l[n] = '\0';
+            n = 0;
+            if (!strcmp(l, "ok")) {
+                ESP_LOGI(TAG, "TinyBee respondeu (tentativa %d)", tentativa + 1);
+                return;
+            }
+        }
+        ESP_LOGW(TAG, "sem \"ok\" limpo do M110 (tentativa %d)", tentativa + 1);
+    }
+}
+
 // ------------------------------------------------------------------ tarefa
 static void tarefa(void *arg)
 {
@@ -258,6 +289,7 @@ static void tarefa(void *arg)
             usb_serial_envia("\n", 1);
             vTaskDelay(pdMS_TO_TICKS(100));
             xStreamBufferReset(s_rx);
+            aperto_de_mao();
             pede_inicio();
         }
         if (s_desconectou) {

@@ -13,14 +13,16 @@ size_t web_reles_json(char *j, size_t tam)
     reles_estado(&e);
     return snprintf(j, tam,
                     "{\"impressoraDesligada\":%s,\"aguardando\":%s,\"tudoAgendado\":%s,"
-                    "\"ativoBaixo\":%s,\"luz\":%d,\"luzAuto\":%s}",
+                    "\"ativoBaixo\":%s,\"luz\":%d,\"luzAuto\":%s,\"auto\":%s,\"autoMin\":%d,"
+                    "\"autoFalta\":%d}",
                     e.impressora_desligada ? "true" : "false", e.aguardando_esfriar ? "true" : "false",
                     e.tudo_agendado ? "true" : "false", e.ativo_baixo ? "true" : "false", e.luz,
-                    e.luz_auto ? "true" : "false");
+                    e.luz_auto ? "true" : "false", e.auto_desligar ? "true" : "false", e.auto_min,
+                    e.auto_falta_s);
 }
 
-// POST /api/reles?acao=desliga_impressora|liga_impressora|desliga_tudo|cancela|luz|luz_auto|polaridade
-//                 [&forcar=1] [&valor=N]
+// POST /api/reles?acao=desliga_impressora|liga_impressora|desliga_tudo|cancela|luz|luz_auto|polaridade|auto
+//                 [&forcar=1] [&valor=N] [&ativo=0|1 (auto: valor = minutos)]
 static esp_err_t reles(httpd_req_t *req)
 {
     if (!web_autorizado(req)) return ESP_OK;
@@ -40,9 +42,14 @@ static esp_err_t reles(httpd_req_t *req)
     else if (!strcmp(acao, "luz")) reles_luz(atoi(v));
     else if (!strcmp(acao, "luz_auto")) reles_luz_auto(atoi(v) != 0);
     else if (!strcmp(acao, "polaridade")) reles_polaridade(atoi(v) != 0);
+    else if (!strcmp(acao, "auto")) {
+        char a[4] = "1";
+        web_parametro(req, "ativo", a, sizeof a);
+        reles_auto(atoi(a) != 0, v[0] ? atoi(v) : -1);
+    }
     else r = ESP_ERR_INVALID_ARG;
 
-    char j[300], m[120];
+    char j[420], m[120];
     web_json_esc(m, sizeof m, motivo);
     size_t n = snprintf(j, sizeof j, "{\"ok\":%s,\"motivo\":\"%s\",\"estado\":", r == ESP_OK ? "true" : "false", m);
     n += web_reles_json(j + n, sizeof j - n);

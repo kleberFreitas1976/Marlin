@@ -3,8 +3,8 @@
 #include "esp_err.h"
 #include "esp_camera.h"
 
-// A camera so fica ligada enquanto alguem usa (foto, video, time-lapse) e
-// desliga sozinha CAMERA_DESLIGA_S depois do ultimo uso: o OV5640 esquenta
+// A camera so captura enquanto alguem usa (foto, video, time-lapse) e entra em
+// standby sozinha CAMERA_DESLIGA_S depois do ultimo uso: o OV5640 esquenta
 // bastante capturando sem parar, e o calor piora a imagem.
 #define CAMERA_DESLIGA_S 20
 

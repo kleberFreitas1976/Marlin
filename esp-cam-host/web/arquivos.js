@@ -254,6 +254,13 @@ const Arquivos = (() => {
   }
 
   // ------------------------------------------------------------ cartao da impressao
+  // "14:32", ou "31/10 14:32" se nao for hoje
+  function hora(ms) {
+    const d = new Date(ms), h = d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+    return d.toDateString() === new Date().toDateString() ? h
+      : d.toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit' }) + ' ' + h;
+  }
+
   function estado(e) {
     const p = e.imp;
     if (!p) return;
@@ -273,7 +280,7 @@ const Arquivos = (() => {
       $('impDecorrido').textContent = duracao(p.tftDecorrido);
       const rest = pct > 0.05 ? p.tftDecorrido * (1 - pct) / pct : -1;
       $('impRestante').textContent = rest >= 0 ? '~' + duracao(rest) : '–';
-      $('impTermino').textContent = rest >= 0 ? new Date(Date.now() + rest * 1000).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }) : '–';
+      $('impTermino').textContent = rest >= 0 ? hora(Date.now() + rest * 1000) : '–';
       $('impAviso').textContent = 'Acompanhada pelas linhas M118 do G-code. Pausar e cancelar ficam na TFT.';
       $('impBotoes').hidden = true;
       $('impMini').hidden = true;
@@ -292,9 +299,10 @@ const Arquivos = (() => {
     $('impCamada').textContent = p.camadas ? `${p.camada} / ${p.camadas}` : (p.camada || '–');
     $('impDecorrido').textContent = duracao(p.decorrido);
     $('impRestante').textContent = ativa ? duracao(p.restante) : '–';
-    $('impTermino').textContent = ativa && p.restante > 0
-      ? new Date(Date.now() + p.restante * 1000).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }) : '–';
-    $('impAviso').textContent = p.aviso;
+    $('impTermino').textContent = ativa && p.restante > 0 ? hora(Date.now() + p.restante * 1000)
+      : recente && p.fimHa >= 0 ? hora(Date.now() - p.fimHa * 1000) : '–';
+    $('impAviso').textContent = recente && p.fimHa >= 0
+      ? `${p.aviso} às ${hora(Date.now() - p.fimHa * 1000)}` : p.aviso;
     $('impPausa').hidden = p.estado !== 'imprimindo';
     $('impRetoma').hidden = p.estado !== 'pausada';
     $('impCancela').hidden = p.estado === 'cancelando';

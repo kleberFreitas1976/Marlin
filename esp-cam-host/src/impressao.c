@@ -78,6 +78,14 @@ static void acompanha(const char *l)
     }
 }
 
+static int64_t s_fim_us = -1;     // esp_timer do ultimo termino
+
+static void marca_fim(bool ok)
+{
+    s_fim_us = esp_timer_get_time();
+    s_i.fim_ok = ok;
+}
+
 static void termina(imp_estado_t fim, const char *aviso)
 {
     // chamada com a trava tomada
@@ -90,6 +98,7 @@ static void termina(imp_estado_t fim, const char *aviso)
     strlcpy(s_i.aviso, aviso, sizeof s_i.aviso);
     s_i.decorrido_s = (int)((esp_timer_get_time() - s_inicio_us - s_pausado_us) / 1000000);
     s_i.restante_s = 0;
+    marca_fim(fim == IMP_CONCLUIDA);
     ESP_LOGI(TAG, "%s: %s", s_i.nome, aviso);
 }
 
@@ -325,6 +334,7 @@ void imp_info(imp_info_t *saida)
 {
     trava();
     *saida = s_i;
+    saida->fim_ha_s = s_fim_us < 0 ? -1 : (int)((esp_timer_get_time() - s_fim_us) / 1000000);
     solta();
 }
 
@@ -374,6 +384,7 @@ void imp_linha_marlin(marlin_tipo_t tipo, const char *l)
         trava();
         if (s_i.tft) {
             s_i.tft = false;
+            marca_fim(true);
             ciclo = s_cb_ciclo;
             strlcpy(nome, s_i.tft_nome, sizeof nome);
         }

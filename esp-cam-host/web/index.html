@@ -186,6 +186,11 @@
         <div class="presets">
           <button class="perigo" id="rlTudo">Desligar TUDO</button>
         </div>
+        <div class="linhaForm">
+          <label class="radio"><input type="checkbox" id="rlAuto"> Desligar a impressora</label>
+          <label><input type="number" id="rlAutoMin" min="0" max="720" step="1"> min depois que a impressão terminar</label>
+        </div>
+        <div class="dica" id="rlAutoTxt"></div>
         <div class="linhaForm"><label>Luz <input type="range" id="rlLuz" min="0" max="100" step="5"></label>
           <b id="rlLuzTxt"></b></div>
         <label class="radio"><input type="checkbox" id="rlLuzAuto"> Acender a 100% durante a impressão (time-lapse)</label>
@@ -193,7 +198,8 @@
           <label class="radio"><input type="radio" name="rlPol" value="1"> Aciona com nível baixo (o mais comum)</label>
           <label class="radio"><input type="radio" name="rlPol" value="0"> Aciona com nível alto</label>
         </details>
-        <p class="dica">Desligar espera o bico ficar abaixo de 50 °C, para não entupir. “Desligar tudo”
+        <p class="dica">Desligar (na hora ou depois da impressão) espera o bico ficar abaixo de 50 °C, para não entupir.
+          O desligamento depois da impressão só vale se ela terminar normalmente (cancelada, não). “Desligar tudo”
           corta também a placa e só volta no botão de liga.</p>
       </div>
 
