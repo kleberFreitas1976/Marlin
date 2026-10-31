@@ -467,6 +467,7 @@ static esp_err_t pag_foto(httpd_req_t *req)
 }
 
 #define LIMITE "quadro"
+#define STREAM_FPS 5
 static esp_err_t pag_stream(httpd_req_t *req)
 {
     if (!autorizado(req)) return ESP_OK;
@@ -477,7 +478,13 @@ static esp_err_t pag_stream(httpd_req_t *req)
     httpd_resp_set_type(req, "multipart/x-mixed-replace;boundary=" LIMITE);
     httpd_resp_set_hdr(req, "Access-Control-Allow-Origin", "*");
     char cab[96];
+    // Ate STREAM_FPS quadros por segundo: sem limite, o video ocupa todo o Wi-Fi
+    // (sinal fraco no quadro da impressora) e a pagina inteira fica instavel.
+    int64_t proximo = 0;
     while (true) {
+        int64_t espera = proximo - esp_timer_get_time();
+        if (espera > 0) vTaskDelay(pdMS_TO_TICKS(espera / 1000));
+        proximo = esp_timer_get_time() + 1000000 / STREAM_FPS;
         camera_fb_t *fb = esp_camera_fb_get();
         if (!fb) break;
         int n = snprintf(cab, sizeof cab, "--" LIMITE "\r\nContent-Type: image/jpeg\r\n"

@@ -371,6 +371,14 @@ void imp_linha_marlin(marlin_tipo_t tipo, const char *l)
         int n = 0, t = 0;
         sscanf(c + 6, " %d/%d", &n, &t);
         trava();
+        // A placa reiniciou (ou conectou) com a TFT ja imprimindo e perdeu o TL:INICIO:
+        // a primeira camada que chegar retoma o acompanhamento
+        if (!s_i.tft && !imp_ativa()) {
+            s_i.tft = true;
+            strlcpy(s_i.tft_nome, "impressao da TFT", sizeof s_i.tft_nome);
+            s_tft_inicio_us = esp_timer_get_time();
+            ESP_LOGI(TAG, "TL:CAMADA sem TL:INICIO: acompanhando a impressao da TFT");
+        }
         bool da_tft = s_i.tft && !imp_ativa();
         if (da_tft) {
             s_i.tft_camada = n;

@@ -52,8 +52,8 @@ static void mostra_info(void)
     marlin_estado(&tb);
     printf("TinyBee: %s\n", !tb.conectada ? "nao conectada"
                             : tb.respondendo ? "conectada e respondendo" : "conectada, sem resposta");
-    printf("Wi-Fi: %s %s%s\n", rede_ssid()[0] ? rede_ssid() : "(nenhuma rede)",
-           rede_conectado() ? rede_ip() : "desconectado",
+    printf("Wi-Fi: %s %s (%d dBm)%s\n", rede_ssid()[0] ? rede_ssid() : "(nenhuma rede)",
+           rede_conectado() ? rede_ip() : "desconectado", rede_rssi(),
            rede_ap_ativo() ? "  | AP \"" AP_SSID "\" ligado: http://" AP_IP "/wifi" : "");
 }
 

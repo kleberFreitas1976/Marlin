@@ -298,10 +298,25 @@ function vivo() {
   $('semImagem').textContent = 'Ligando a câmera…';
   $('semImagem').style.display = 'flex';
   const img = $('imgCam');
-  img.onload = () => { $('semImagem').style.display = 'none'; img.hidden = false; };
-  img.src = `http://${location.hostname}:81/stream?t=${S.token}`;
+  const mostra = () => { $('semImagem').style.display = 'none'; img.hidden = false; };
+  img.onload = mostra;
+  img.onerror = () => { if (S.vivo) { pararVivo(); $('semImagem').textContent = 'O vídeo caiu. Clique em Ao vivo de novo.'; } };
+  img.src = `http://${location.hostname}:81/stream?t=${S.token}&_=${Date.now()}`;
+  // Em vídeo MJPEG o navegador nem sempre dispara "load": confere se já há quadro
+  const t0 = Date.now();
+  clearInterval(S.vivoVigia);
+  S.vivoVigia = setInterval(() => {
+    if (!S.vivo) { clearInterval(S.vivoVigia); return; }
+    if (img.naturalWidth > 0) { mostra(); clearInterval(S.vivoVigia); }
+    else if (Date.now() - t0 > 15000) {
+      clearInterval(S.vivoVigia);
+      pararVivo();
+      $('semImagem').textContent = 'A câmera não respondeu. Clique em Ao vivo de novo.';
+    }
+  }, 300);
 }
 function pararVivo() {
+  clearInterval(S.vivoVigia);
   if (!S.vivo) return;
   S.vivo = false;
   $('btnVivo').textContent = 'Ao vivo';
