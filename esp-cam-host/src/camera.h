@@ -24,7 +24,7 @@ int camera_altura_max(void);
 // Resolucao das proximas fotos (FRAMESIZE_*). ESP_ERR_INVALID_ARG se o sensor nao suporta.
 esp_err_t camera_resolucao(framesize_t tam);
 
-// Imagem girada 180 graus (camera de cabeca para baixo). Gravado na NVS; padrao: sim.
+// Imagem desvirada (camera de cabeca para baixo). Gravado na NVS; padrao: sim.
 bool camera_girada(void);
 esp_err_t camera_girar(bool sim);
 

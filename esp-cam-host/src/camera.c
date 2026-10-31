@@ -71,10 +71,9 @@ static esp_err_t liga(void)
     }
     sensor_t *s = esp_camera_sensor_get();
     s->set_framesize(s, s_tam);
-    if (s_girar) {                // 180 graus = inverte os dois em relacao ao padrao do driver
-        s->set_vflip(s, !s->status.vflip);
-        s->set_hmirror(s, !s->status.hmirror);
-    }
+    // Camera de cabeca para baixo: no OV5640 deste modulo basta inverter o vflip em relacao
+    // ao padrao do driver (inverter tambem o hmirror deixou a imagem espelhada, testado).
+    if (s_girar) s->set_vflip(s, !s->status.vflip);
     // exposicao e balanco de branco automaticos precisam de alguns quadros
     vTaskDelay(pdMS_TO_TICKS(1200));
     descarta(4);
@@ -173,7 +172,6 @@ esp_err_t camera_girar(bool sim)
     if (s_ligada && sim != s_girar) {
         sensor_t *s = esp_camera_sensor_get();
         s->set_vflip(s, !s->status.vflip);
-        s->set_hmirror(s, !s->status.hmirror);
     }
     s_girar = sim;
     xSemaphoreGive(s_mtx);
