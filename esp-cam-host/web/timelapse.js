@@ -37,6 +37,7 @@ const Timelapse = (() => {
     if (r) r.checked = true;
     $('tlRes').value = String(c.res);
     $('tlFps').value = c.fps;
+    $('tlGirar').checked = c.girar !== false;
   }
 
   function desenhaLista(d) {
@@ -113,7 +114,8 @@ const Timelapse = (() => {
   async function salva() {
     const modo = document.querySelector('input[name=tlModo]:checked');
     const q = new URLSearchParams({ ativo: $('tlAtivo').checked ? 1 : 0, modo: modo ? modo.value : 0,
-                                    res: $('tlRes').value, fps: $('tlFps').value });
+                                    res: $('tlRes').value, fps: $('tlFps').value,
+                                    girar: $('tlGirar').checked ? 1 : 0 });
     const r = await fetch('/api/timelapse/config?' + q, { method: 'POST' });
     aviso(r.ok ? 'Configuração salva' : 'Não salvou', !r.ok);
     atualiza();

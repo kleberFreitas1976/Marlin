@@ -5,6 +5,7 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/semphr.h"
 #include "freertos/task.h"
+#include "nvs.h"
 #include "pinos.h"
 
 static const char *TAG = "camera";
@@ -17,6 +18,7 @@ static framesize_t s_maximo = FRAMESIZE_SVGA;
 static framesize_t s_tam = FRAMESIZE_SVGA;   // resolucao das fotos e do video
 static int s_usuarios;
 static int64_t s_ultimo_uso;
+static bool s_girar = true;   // camera montada de cabeca para baixo no quadro
 static SemaphoreHandle_t s_mtx;
 
 static camera_config_t s_cfg = {
@@ -69,6 +71,10 @@ static esp_err_t liga(void)
     }
     sensor_t *s = esp_camera_sensor_get();
     s->set_framesize(s, s_tam);
+    if (s_girar) {                // 180 graus = inverte os dois em relacao ao padrao do driver
+        s->set_vflip(s, !s->status.vflip);
+        s->set_hmirror(s, !s->status.hmirror);
+    }
     // exposicao e balanco de branco automaticos precisam de alguns quadros
     vTaskDelay(pdMS_TO_TICKS(1200));
     descarta(4);
@@ -100,6 +106,12 @@ static void vigia(void *arg)
 esp_err_t camera_inicia(void)
 {
     s_mtx = xSemaphoreCreateMutex();
+    nvs_handle_t h;
+    if (nvs_open("camera", NVS_READONLY, &h) == ESP_OK) {
+        uint8_t u;
+        if (nvs_get_u8(h, "girar", &u) == ESP_OK) s_girar = u;
+        nvs_close(h);
+    }
     esp_err_t err = esp_camera_init(&s_cfg);
     if (err != ESP_OK) {
         ESP_LOGE(TAG, "camera nao iniciou (0x%x). Confira a fita no conector e a trava.", err);
@@ -145,6 +157,27 @@ esp_err_t camera_resolucao(framesize_t tam)
     }
     xSemaphoreGive(s_mtx);
     return r;
+}
+
+bool camera_girada(void) { return s_girar; }
+
+esp_err_t camera_girar(bool sim)
+{
+    nvs_handle_t h;
+    esp_err_t err = nvs_open("camera", NVS_READWRITE, &h);
+    if (err != ESP_OK) return err;
+    nvs_set_u8(h, "girar", sim);
+    err = nvs_commit(h);
+    nvs_close(h);
+    xSemaphoreTake(s_mtx, portMAX_DELAY);
+    if (s_ligada && sim != s_girar) {
+        sensor_t *s = esp_camera_sensor_get();
+        s->set_vflip(s, !s->status.vflip);
+        s->set_hmirror(s, !s->status.hmirror);
+    }
+    s_girar = sim;
+    xSemaphoreGive(s_mtx);
+    return err;
 }
 
 void camera_manter_ligada(bool sim)

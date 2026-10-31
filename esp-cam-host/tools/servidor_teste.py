@@ -238,7 +238,7 @@ def meta_de(nome):
     return m
 
 
-TL = {"ativo": True, "modo": 0, "res": 15, "fps": 25}
+TL = {"ativo": True, "modo": 0, "res": 15, "fps": 25, "girar": True}
 RL = {"impressoraDesligada": False, "aguardando": False, "tudoAgendado": False, "ativoBaixo": True,
       "luz": 0, "luzAuto": True}
 
@@ -420,9 +420,9 @@ class Manipulador(BaseHTTPRequestHandler):
             return self.responde(200, "application/json",
                                  json.dumps({"ok": True, "motivo": motivo, "estado": RL}).encode())
         if caminho == "/api/timelapse/config":
-            for k in ("ativo", "modo", "res", "fps"):
+            for k in ("ativo", "modo", "res", "fps", "girar"):
                 if k in q:
-                    TL[k] = int(q[k][0]) if k != "ativo" else q[k][0] == "1"
+                    TL[k] = int(q[k][0]) if k not in ("ativo", "girar") else q[k][0] == "1"
             return self.responde(200, "application/json", b'{"ok":true}')
         if caminho == "/api/impressao":
             acao = q.get("acao", [""])[0]

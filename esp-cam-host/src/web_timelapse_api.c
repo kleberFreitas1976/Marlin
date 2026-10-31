@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "camera.h"
 #include "cartao_sd.h"
 #include "esp_camera.h"
 #include "timelapse.h"
@@ -38,9 +39,10 @@ static esp_err_t lista(httpd_req_t *req)
         return json(req, "500 Internal Server Error", "{\"erro\":\"sem memoria\"}");
     }
     snprintf(j, tam,
-             "{\"config\":{\"ativo\":%s,\"modo\":%d,\"res\":%d,\"fps\":%d},"
+             "{\"config\":{\"ativo\":%s,\"modo\":%d,\"res\":%d,\"fps\":%d,\"girar\":%s},"
              "\"gravando\":%s,\"pasta\":\"%s\",\"fotos\":%d,\"montando\":%s,\"lista\":%s}",
-             c.ativo ? "true" : "false", c.modo, c.resolucao, c.fps, tl_gravando() ? "true" : "false",
+             c.ativo ? "true" : "false", c.modo, c.resolucao, c.fps,
+             camera_girada() ? "true" : "false", tl_gravando() ? "true" : "false",
              pasta, fotos, montando ? "true" : "false", l);
     esp_err_t r = json(req, NULL, j);
     free(l);
@@ -48,7 +50,7 @@ static esp_err_t lista(httpd_req_t *req)
     return r;
 }
 
-// POST /api/timelapse/config?ativo=1&modo=0&res=13&fps=25
+// POST /api/timelapse/config?ativo=1&modo=0&res=13&fps=25&girar=1
 static esp_err_t config(httpd_req_t *req)
 {
     if (!web_autorizado(req)) return ESP_OK;
@@ -62,6 +64,8 @@ static esp_err_t config(httpd_req_t *req)
         if (r >= FRAMESIZE_VGA && r <= FRAMESIZE_QSXGA) c.resolucao = r;
     }
     if (web_parametro(req, "fps", v, sizeof v)) c.fps = atoi(v);
+    if (web_parametro(req, "girar", v, sizeof v) && camera_girar(atoi(v) != 0) != ESP_OK)
+        return json(req, "500 Internal Server Error", "{\"erro\":\"nao gravou\"}");
     if (tl_grava_config(&c) != ESP_OK) return json(req, "500 Internal Server Error", "{\"erro\":\"nao gravou\"}");
     return json(req, NULL, "{\"ok\":true}");
 }
