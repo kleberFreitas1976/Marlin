@@ -21,6 +21,8 @@
 #include "esp_system.h"
 #include "esp_timer.h"
 #include "freertos/FreeRTOS.h"
+#include "esp_heap_caps.h"
+#include "freertos/queue.h"
 #include "freertos/semphr.h"
 #include "freertos/task.h"
 #include "lwip/sockets.h"
@@ -249,9 +251,39 @@ static bool ws_alguem(void)
     return false;
 }
 
+// As linhas do Marlin chegam pela tarefa que alimenta a impressao. Montar o JSON,
+// guardar no historico e entregar ao servidor pode travar quando o Wi-Fi engasga
+// (a pilha de rede enche e o servidor segura s_ws_mtx ate 5 s por envio): visto
+// numa impressao real, que parou 18 s junto com uma queda do Wi-Fi. Por isso
+// web_linha_marlin so poe a linha numa fila, sem esperar; se encher, descarta.
+typedef struct {
+    marlin_tipo_t tipo;
+    char s[MARLIN_LINHA_MAX + 1];
+} linha_web_t;
+static QueueHandle_t s_fila_linhas;
+static uint32_t s_linhas_descartadas;
+
+static void linha_para_web(marlin_tipo_t tipo, const char *linha);
+
+static void tarefa_linhas(void *arg)
+{
+    linha_web_t l;
+    while (true) {
+        if (xQueueReceive(s_fila_linhas, &l, portMAX_DELAY) == pdTRUE) linha_para_web(l.tipo, l.s);
+    }
+}
+
 void web_linha_marlin(marlin_tipo_t tipo, const char *linha)
 {
     if (tipo == MARLIN_TEMP || tipo == MARLIN_POS) return;   // viram estado, nao console
+    if (!s_fila_linhas) return;
+    linha_web_t l = {.tipo = tipo};
+    strlcpy(l.s, linha, sizeof l.s);
+    if (xQueueSend(s_fila_linhas, &l, 0) != pdTRUE) s_linhas_descartadas++;
+}
+
+static void linha_para_web(marlin_tipo_t tipo, const char *linha)
+{
     static const char *const K[] = {"tx", "rx", "ok", "err", "sis"};
     char j[MARLIN_LINHA_MAX * 3 + 64], esc[MARLIN_LINHA_MAX * 3];
     json_esc(esc, sizeof esc, linha);
@@ -661,6 +693,8 @@ esp_err_t web_inicia(void)
         httpd_uri_t u = {.uri = "/stream", .method = HTTP_GET, .handler = pag_stream};
         httpd_register_uri_handler(hv, &u);
     }
+    s_fila_linhas = xQueueCreateWithCaps(64, sizeof(linha_web_t), MALLOC_CAP_SPIRAM);
+    xTaskCreate(tarefa_linhas, "web_linhas", 4096, NULL, 3, NULL);
     xTaskCreate(tarefa_estado, "web_estado", 4096, NULL, 3, NULL);
     ESP_LOGI(TAG, "servidor web no ar (%u arquivos de interface)", (unsigned)WEB_N_ARQUIVOS);
     return ESP_OK;

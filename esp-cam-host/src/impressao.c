@@ -7,10 +7,12 @@
 
 #include "arquivos.h"
 #include "cartao_sd.h"
+#include "esp_heap_caps.h"
 #include "esp_log.h"
 #include "esp_timer.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/semphr.h"
+#include "freertos/stream_buffer.h"
 #include "freertos/task.h"
 
 static const char *TAG = "impressao";
@@ -24,9 +26,24 @@ static const char *TAG = "impressao";
 
 static SemaphoreHandle_t s_mtx;
 static imp_info_t s_i;
-static FILE *s_arq;
-static char s_caminho[200];     // para reabrir o arquivo se a leitura do SD falhar
-static bool s_erro_sd;
+// Leitura antecipada: uma tarefa propria le o arquivo do SD para uma reserva na PSRAM,
+// e quem alimenta a TinyBee (proxima, na tarefa do marlin.c) so le da memoria. Assim a
+// impressao nunca espera o cartao: gravar uma foto do time-lapse ou receber um arquivo
+// no mesmo SD seguraria a leitura por decimos de segundo, o Marlin esvaziaria o buffer
+// de movimentos e o bico pararia sobre a peca (caroco).
+#define RESERVA_BYTES (128 * 1024)   // ~2-3 min de impressao
+#define LEITURA_BLOCO 4096
+static StreamBufferHandle_t s_reserva;
+static char s_caminho[200];          // para reabrir o arquivo se a leitura do SD falhar
+static volatile bool s_erro_sd, s_fim_arquivo, s_leitor_parar, s_leitor_ativo;
+static uint32_t s_lido;              // bytes do arquivo ja postos na reserva
+static uint32_t s_reserva_vazia;     // vezes que a TinyBee teve de esperar o SD (diagnostico)
+// montagem das linhas a partir da reserva (so a tarefa do marlin.c mexe)
+static uint8_t s_ped[512];
+static size_t s_ped_i, s_ped_n;
+static char s_lin[256];
+static size_t s_lin_n;
+static bool s_lin_longa;
 static int64_t s_inicio_us, s_pausado_us, s_pausa_desde_us;
 static int64_t s_tft_inicio_us;
 static imp_camada_cb_t s_cb_camada;
@@ -91,44 +108,107 @@ static void marca_fim(bool ok)
 static void termina(imp_estado_t fim, const char *aviso)
 {
     // chamada com a trava tomada
-    if (s_arq) {
-        fclose(s_arq);
-        s_arq = NULL;
-    }
+    s_leitor_parar = true;           // o leitor fecha o arquivo e termina sozinho
     marlin_fonte(NULL);
     s_i.estado = fim;
     strlcpy(s_i.aviso, aviso, sizeof s_i.aviso);
     s_i.decorrido_s = (int)((esp_timer_get_time() - s_inicio_us - s_pausado_us) / 1000000);
     s_i.restante_s = 0;
     marca_fim(fim == IMP_CONCLUIDA);
-    ESP_LOGI(TAG, "%s: %s", s_i.nome, aviso);
+    ESP_LOGI(TAG, "%s: %s (a TinyBee esperou o SD %lu vezes)", s_i.nome, aviso,
+             (unsigned long)s_reserva_vazia);
 }
 
-// Le a proxima linha do arquivo. Uma falha de leitura do SD nao e fim de arquivo: visto
-// numa impressao real, o fgets devolveu NULL no byte 49152 de 560047 e a placa deu a
-// impressao por "concluida" na camada 2, com o bico e a mesa ligados. Agora reabre o
-// arquivo na mesma posicao e tenta de novo; se nao der, s_erro_sd.
-// Devolve false no fim do arquivo ou no erro.
-static bool le_linha(char *l, int tam)
+// Abre o arquivo na posicao pos. Uma falha de leitura do SD nao e fim de arquivo:
+// visto numa impressao real, a leitura falhou no byte 49152 de 560047 e a placa deu a
+// impressao por "concluida" na camada 2, com o bico e a mesa ligados.
+static FILE *abre_em(uint32_t pos)
 {
-    for (int tentativa = 0; tentativa < 6; tentativa++) {
-        if (s_arq && fgets(l, tam, s_arq)) return true;
-        if (s_arq && feof(s_arq) && !ferror(s_arq) && s_i.bytes >= s_i.total) return false;
+    FILE *f = fopen(s_caminho, "r");
+    if (f && fseek(f, pos, SEEK_SET) != 0) {
+        fclose(f);
+        f = NULL;
+    }
+    if (f) setvbuf(f, NULL, _IONBF, 0);   // le em blocos proprios: sem buffer do stdio
+    return f;
+}
+
+static void leitor(void *arg)
+{
+    FILE *f = (FILE *)arg;
+    uint8_t *buf = heap_caps_malloc(LEITURA_BLOCO, MALLOC_CAP_SPIRAM);
+    int falhas = 0;
+    while (buf && !s_leitor_parar) {
+        size_t n = f ? fread(buf, 1, LEITURA_BLOCO, f) : 0;
+        if (n > 0) {
+            falhas = 0;
+            s_lido += n;
+            size_t env = 0;
+            while (env < n && !s_leitor_parar)
+                env += xStreamBufferSend(s_reserva, buf + env, n - env, pdMS_TO_TICKS(100));
+            continue;
+        }
+        if (f && feof(f) && !ferror(f) && s_lido >= s_i.total) {
+            s_fim_arquivo = true;
+            break;
+        }
+        // erro de leitura: reabre na mesma posicao e tenta de novo
+        if (++falhas > 6) {
+            ESP_LOGE(TAG, "SD: desisto de ler %s no byte %lu", s_caminho, (unsigned long)s_lido);
+            s_erro_sd = true;
+            break;
+        }
         ESP_LOGE(TAG, "falha lendo o SD no byte %lu de %lu (tentativa %d): reabrindo",
-                 (unsigned long)s_i.bytes, (unsigned long)s_i.total, tentativa + 1);
-        if (s_arq) fclose(s_arq);
-        vTaskDelay(pdMS_TO_TICKS(300 * (tentativa + 1)));
-        s_arq = fopen(s_caminho, "r");
-        if (s_arq) {
-            setvbuf(s_arq, NULL, _IOFBF, 16 * 1024);
-            if (fseek(s_arq, s_i.bytes, SEEK_SET) != 0) {
-                fclose(s_arq);
-                s_arq = NULL;
+                 (unsigned long)s_lido, (unsigned long)s_i.total, falhas);
+        if (f) fclose(f);
+        vTaskDelay(pdMS_TO_TICKS(300 * falhas));
+        f = abre_em(s_lido);
+    }
+    if (!buf) s_erro_sd = true;
+    if (f) fclose(f);
+    free(buf);
+    s_leitor_ativo = false;
+    vTaskDelete(NULL);
+}
+
+// Proxima linha da reserva: 1 = linha em l; 0 = nada ainda (o leitor esta atras);
+// -1 = fim do arquivo ou erro do SD. Linha maior que o buffer (o bloco de configuracao
+// do fatiador no fim do arquivo tem comentarios de milhares de caracteres) e descartada
+// inteira: um pedaco dela viraria uma "linha de G-code" de lixo.
+static int pega_linha(char *l, size_t tam)
+{
+    while (true) {
+        if (s_ped_i == s_ped_n) {
+            s_ped_i = 0;
+            s_ped_n = xStreamBufferReceive(s_reserva, s_ped, sizeof s_ped, 0);
+            if (s_ped_n == 0) {
+                if (s_erro_sd) return -1;
+                if (s_fim_arquivo && xStreamBufferIsEmpty(s_reserva)) {
+                    if (s_lin_n && !s_lin_longa) {     // ultima linha sem '\n'
+                        s_lin[s_lin_n] = '\0';
+                        strlcpy(l, s_lin, tam);
+                        s_lin_n = 0;
+                        return 1;
+                    }
+                    return -1;
+                }
+                return 0;
             }
         }
+        char c = (char)s_ped[s_ped_i++];
+        s_i.bytes++;
+        if (c == '\n') {
+            bool longa = s_lin_longa;
+            s_lin[s_lin_n] = '\0';
+            s_lin_n = 0;
+            s_lin_longa = false;
+            if (longa) continue;
+            strlcpy(l, s_lin, tam);
+            return 1;
+        }
+        if (s_lin_n < sizeof s_lin - 1) s_lin[s_lin_n++] = c;
+        else s_lin_longa = true;
     }
-    s_erro_sd = true;
-    return false;
 }
 
 // Fonte de linhas para o marlin.c (roda na tarefa dele)
@@ -138,9 +218,14 @@ static bool proxima(char *saida, size_t tam)
     int camada = 0, total = 0;
     bool ok = false;
     trava();
-    while (s_i.estado == IMP_IMPRIMINDO && s_arq) {
+    while (s_i.estado == IMP_IMPRIMINDO) {
         char l[256];
-        if (!le_linha(l, sizeof l)) {
+        int r = pega_linha(l, sizeof l);
+        if (r == 0) {                     // a reserva esvaziou: o SD esta atrasado
+            s_reserva_vazia++;
+            break;
+        }
+        if (r < 0) {
             if (s_erro_sd) {
                 // como um cancelamento: espera a fila esvaziar, estaciona e desliga o aquecimento
                 s_i.estado = IMP_CANCELANDO;
@@ -149,15 +234,6 @@ static bool proxima(char *saida, size_t tam)
                 termina(IMP_CONCLUIDA, "Impressao concluida");
             }
             break;
-        }
-        s_i.bytes += strlen(l);
-        // Linha maior que o buffer (o bloco de configuracao do fatiador no fim do arquivo
-        // tem comentarios de milhares de caracteres): descarta o resto dela, senao o
-        // pedaco seguinte viraria uma "linha de G-code" de lixo.
-        if (!strchr(l, '\n')) {
-            int c;
-            while ((c = fgetc(s_arq)) != EOF && c != '\n') s_i.bytes++;
-            if (c == '\n') s_i.bytes++;
         }
         char *p = l;
         while (*p == ' ' || *p == '\t') p++;
@@ -200,6 +276,9 @@ esp_err_t imp_imprime(const char *nome, char *erro, size_t tam)
     marlin_estado(&m);
     char c[200];
     struct stat st;
+    FILE *arq = NULL;
+    // o leitor da impressao anterior ainda pode estar fechando o arquivo
+    for (int i = 0; i < 40 && s_leitor_ativo; i++) vTaskDelay(pdMS_TO_TICKS(50));
     trava();
     const char *motivo = NULL;
     if (imp_ativa()) motivo = "ja ha uma impressao em andamento";
@@ -207,19 +286,25 @@ esp_err_t imp_imprime(const char *nome, char *erro, size_t tam)
     else if (!m.conectada || !m.respondendo) motivo = "a TinyBee nao esta respondendo";
     else if (!sd_ok()) motivo = "sem cartao SD";
     else if (!arq_nome_valido(nome)) motivo = "nome de arquivo invalido";
+    else if (s_leitor_ativo) motivo = "a impressao anterior ainda esta fechando o arquivo";
+    else if (!s_reserva) motivo = "sem memoria para a leitura antecipada";
     if (!motivo) {
         arq_caminho(nome, c, sizeof c);
-        if (stat(c, &st) != 0 || !(s_arq = fopen(c, "r"))) motivo = "arquivo nao encontrado";
-        else strlcpy(s_caminho, c, sizeof s_caminho);
+        strlcpy(s_caminho, c, sizeof s_caminho);
+        if (stat(c, &st) != 0 || !(arq = abre_em(0))) motivo = "arquivo nao encontrado";
     }
     if (motivo) {
         solta();
         strlcpy(erro, motivo, tam);
         return ESP_FAIL;
     }
-    setvbuf(s_arq, NULL, _IOFBF, 16 * 1024);
     memset(&s_i, 0, sizeof s_i);
-    s_erro_sd = false;
+    s_erro_sd = s_fim_arquivo = s_leitor_parar = false;
+    s_lido = 0;
+    s_reserva_vazia = 0;
+    s_ped_i = s_ped_n = s_lin_n = 0;
+    s_lin_longa = false;
+    xStreamBufferReset(s_reserva);
     strlcpy(s_i.nome, nome, sizeof s_i.nome);
     s_i.total = st.st_size;
     s_i.estimado_s = arq_tempo_estimado(nome);
@@ -245,6 +330,16 @@ esp_err_t imp_imprime(const char *nome, char *erro, size_t tam)
     s_pausado_us = 0;
     s_i.estado = IMP_IMPRIMINDO;
     strlcpy(s_i.aviso, "Imprimindo", sizeof s_i.aviso);
+    s_leitor_ativo = true;
+    if (xTaskCreatePinnedToCore(leitor, "imp_leitor", 4096, arq, 4, NULL, 0) != pdPASS) {
+        s_leitor_ativo = false;
+        fclose(arq);
+        s_i.estado = IMP_ERRO;
+        strlcpy(s_i.aviso, "sem memoria para o leitor do arquivo", sizeof s_i.aviso);
+        solta();
+        strlcpy(erro, s_i.aviso, tam);
+        return ESP_FAIL;
+    }
     solta();
     ESP_LOGI(TAG, "imprimindo %s (%u bytes)", nome, (unsigned)st.st_size);
     if (s_cb_ciclo) s_cb_ciclo(true, nome);
@@ -373,6 +468,7 @@ static void tarefa(void *arg)
 void imp_inicia(void)
 {
     s_mtx = xSemaphoreCreateMutex();
+    s_reserva = xStreamBufferCreateWithCaps(RESERVA_BYTES, 1, MALLOC_CAP_SPIRAM);
     xTaskCreate(tarefa, "impressao", 4096, NULL, 5, NULL);
 }
 
