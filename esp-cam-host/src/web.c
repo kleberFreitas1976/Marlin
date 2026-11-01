@@ -236,7 +236,7 @@ static void trabalho_envio(void *arg)
 static void ws_envia(int fd, const char *txt, size_t n)
 {
     if (!s_srv) return;
-    envio_t *m = malloc(sizeof *m + n + 1);
+    envio_t *m = heap_caps_malloc(sizeof *m + n + 1, MALLOC_CAP_SPIRAM);   // pode acumular com a rede lenta
     if (!m) return;
     m->fd = fd;
     m->n = n;
@@ -299,7 +299,9 @@ static void linha_para_web(marlin_tipo_t tipo, const char *linha)
         s_hist_ini = (s_hist_ini + 1) % HIST_MAX;
         s_hist_n--;
     }
-    s_hist[pos] = strdup(j);
+    // na PSRAM: 200 linhas pequenas iam todas para a RAM interna (~26 KB, medido com "mem")
+    s_hist[pos] = heap_caps_malloc(n + 1, MALLOC_CAP_SPIRAM);
+    if (s_hist[pos]) memcpy(s_hist[pos], j, n + 1);
     s_hist_n++;
     xSemaphoreGive(s_ws_mtx);
     ws_envia(-1, j, n);

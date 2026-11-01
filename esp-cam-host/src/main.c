@@ -11,6 +11,8 @@
 #include "driver/uart.h"
 #include "esp_chip_info.h"
 #include "esp_flash.h"
+#include "esp_heap_caps.h"
+#include "esp_heap_task_info.h"
 #include "esp_log.h"
 #include "esp_psram.h"
 #include "esp_system.h"
@@ -29,6 +31,59 @@
 #include "web_interno.h"
 
 static const char *TAG = "principal";
+
+// "mem": quem usa a RAM interna. Precisa de CONFIG_HEAP_TASK_TRACKING (memoria por
+// tarefa) e CONFIG_FREERTOS_USE_TRACE_FACILITY (lista das tarefas e folga das pilhas).
+static void mostra_memoria(void)
+{
+    printf("RAM interna: livre %u, minimo %u, maior bloco %u | DMA livre %u | PSRAM livre %u\n",
+           (unsigned)heap_caps_get_free_size(MALLOC_CAP_INTERNAL),
+           (unsigned)heap_caps_get_minimum_free_size(MALLOC_CAP_INTERNAL),
+           (unsigned)heap_caps_get_largest_free_block(MALLOC_CAP_INTERNAL),
+           (unsigned)heap_caps_get_free_size(MALLOC_CAP_DMA),
+           (unsigned)heap_caps_get_free_size(MALLOC_CAP_SPIRAM));
+#if CONFIG_FREERTOS_USE_TRACE_FACILITY && CONFIG_HEAP_TASK_TRACKING
+    static TaskStatus_t tarefas[40];
+    static heap_task_totals_t tot[48];
+    UBaseType_t nt = uxTaskGetSystemState(tarefas, 40, NULL);
+    size_t n = 0;
+    memset(tot, 0, sizeof tot);          // a funcao soma sobre o que ja estiver na tabela
+    heap_task_info_params_t prm = {0};
+    prm.caps[0] = MALLOC_CAP_SPIRAM;     // regiao da PSRAM
+    prm.mask[0] = MALLOC_CAP_SPIRAM;
+    prm.caps[1] = 0;                     // o resto: RAM interna
+    prm.mask[1] = 0;
+    prm.totals = tot;
+    prm.num_totals = &n;
+    prm.max_totals = 48;
+    heap_caps_get_per_task_info(&prm);
+    printf("%-16s %9s %7s %9s %10s\n", "tarefa", "interna", "blocos", "psram", "pilha livre");
+    size_t soma = 0;
+    for (size_t i = 0; i < n; i++) {
+        const char *nome = "(apagada/boot)";
+        int folga = -1;
+        for (UBaseType_t k = 0; k < nt; k++)
+            if (tarefas[k].xHandle == tot[i].task) {
+                nome = tarefas[k].pcTaskName;
+                folga = tarefas[k].usStackHighWaterMark;
+            }
+        if (!tot[i].task) nome = "(antes do RTOS)";
+        soma += tot[i].size[1];
+        printf("%-16s %9u %7u %9u %10d\n", nome, (unsigned)tot[i].size[1], (unsigned)tot[i].count[1],
+               (unsigned)tot[i].size[0], folga);
+    }
+    printf("total interno alocado pelas tarefas: %u\n", (unsigned)soma);
+    printf("tarefas sem alocacao propria (pilha livre):");
+    for (UBaseType_t k = 0; k < nt; k++) {
+        bool tem = false;
+        for (size_t i = 0; i < n; i++) tem |= tot[i].task == tarefas[k].xHandle;
+        if (!tem) printf(" %s=%u", tarefas[k].pcTaskName, (unsigned)tarefas[k].usStackHighWaterMark);
+    }
+    printf("\n");
+#else
+    printf("(ative CONFIG_HEAP_TASK_TRACKING e CONFIG_FREERTOS_USE_TRACE_FACILITY para ver por tarefa)\n");
+#endif
+}
 
 static void mostra_info(void)
 {
@@ -248,6 +303,7 @@ static void executa(char *linha)
     char *arg = strtok(NULL, " \t");
     if (!cmd) return;
     if (!strcasecmp(cmd, "info")) mostra_info();
+    else if (!strcasecmp(cmd, "mem")) mostra_memoria();
     else if (!strcasecmp(cmd, "tb")) tb_estado();
     else if (!strcasecmp(cmd, "foto")) foto_serial(arg);
     else if (!strcasecmp(cmd, "fotosd")) foto_sd();
@@ -288,7 +344,7 @@ static void executa(char *linha)
     else if (!strcasecmp(cmd, "retoma")) imp_retoma();
     else if (!strcasecmp(cmd, "cancela")) imp_cancela();
     else
-        printf("comandos: info | foto [vga|svga|xga|hd|sxga|uxga|qxga|qsxga] | fotosd | "
+        printf("comandos: info | mem | foto [vga|svga|xga|hd|sxga|uxga|qxga|qsxga] | fotosd | "
                "sd [pasta] | formatar SIM | tb | m <G-code para a TinyBee> | gerateste | "
                "imprime <arq> | imp | pausa | retoma | cancela | reinicia\n");
 }
