@@ -147,6 +147,16 @@ static void le_area(const char *l)
     if (num_apos(mx, "z:", &v)) s_e.area_max[2] = v;
 }
 
+// Erros do protocolo de linhas (numero, checksum): o reenvio corrige, nao vao para o painel
+static bool erro_de_protocolo(const char *l)
+{
+    static const char *const P[] = {"Error:Line Number", "Error:checksum mismatch", "Error:No Checksum",
+                                    "Error:No Line Number", "Error:Serial status mismatch"};
+    for (size_t i = 0; i < sizeof P / sizeof P[0]; i++)
+        if (!strncmp(l, P[i], strlen(P[i]))) return true;
+    return false;
+}
+
 static void pede_inicio(void)
 {
     for (size_t i = 0; i < sizeof INICIO / sizeof INICIO[0]; i++) marlin_envia(INICIO[i], false);
@@ -232,8 +242,24 @@ static void processa(char *l)
     if ((p = strstr(l, "Flow:")) != NULL) s_e.fluxo = atoi(p + 5);
     if (strstr(l, "Bed Leveling ON")) s_e.compensacao = 1;
     if (strstr(l, "Bed Leveling OFF")) s_e.compensacao = 0;
+    if (tipo == MARLIN_ERRO && !erro_de_protocolo(l)) {
+        const char *t = !strncmp(l, "Error:", 6) ? l + 6 : l;
+        if (strcmp(t, s_e.erro)) {
+            strlcpy(s_e.erro_ant, s_e.erro, sizeof s_e.erro_ant);
+            strlcpy(s_e.erro, t, sizeof s_e.erro);
+        }
+        s_e.erro_us = esp_timer_get_time();
+    }
+    if (strstr(l, "Printer halted") || strstr(l, "kill() called")) s_e.parada = true;
+    if (!strncmp(l, "//action:notification ", 22) && l[22]) {
+        strlcpy(s_e.mensagem, l + 22, sizeof s_e.mensagem);
+        s_e.mensagem_us = esp_timer_get_time();
+    }
     bool reiniciou = !strcmp(l, "start");
     if (reiniciou) {
+        s_e.parada = false;        // reset da TinyBee: o erro anterior nao vale mais
+        s_e.erro[0] = s_e.erro_ant[0] = '\0';
+        s_e.erro_us = 0;
         zera_janela();
         zera_numeracao();          // o Marlin reiniciou: a numeracao dele voltou a zero
     }

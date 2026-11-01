@@ -46,6 +46,13 @@ typedef struct {
     uint32_t oks_perdidos;    // vagas liberadas por "ok" que nao chegou
     // area da maquina (M115 com M115_GEOMETRY_REPORT)
     float area_min[3], area_max[3];
+    // Para o painel: a TFT/LCD nao mostra nada quando a impressao vem pela placa
+    bool parada;              // "Printer halted" / kill: so volta com reset da TinyBee
+    char erro[96];            // ultimo "Error:" (fora os de protocolo, que se corrigem sozinhos)
+    char erro_ant[96];        // o anterior (o motivo costuma vir antes do "Printer halted")
+    int64_t erro_us;          // esp_timer de quando chegou (0 = nenhum)
+    char mensagem[96];        // ultima mensagem de tela (M117 vira //action:notification)
+    int64_t mensagem_us;
 } marlin_estado_t;
 
 // Recebe cada linha (enviada ou recebida), para o console web e o log.

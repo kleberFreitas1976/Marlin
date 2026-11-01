@@ -178,10 +178,16 @@ def linha(k, s):
     difunde({"t": "l", "k": k, "ms": int(time.time() * 1000), "s": s})
 
 
+# para ver a faixa de erro na pagina: TB_ERRO["parada"] = True etc. (rota /api/teste_erro)
+TB_ERRO = {"parada": False, "erro": "", "erroAnt": "", "msg": ""}
+
+
 def estado():
     m = MARLIN
     return {"t": "e", "tb": {"usb": True, "resp": True, "fw": "Marlin simulado (servidor_teste.py)",
-                             "ocupada": False, "fila": 0, "bico": round(m.bico, 1),
+                             "ocupada": False, "fila": 0, "parada": TB_ERRO["parada"], "erro": TB_ERRO["erro"],
+                             "erroAnt": TB_ERRO["erroAnt"], "erroHa": 5 if TB_ERRO["erro"] else -1,
+                             "msg": TB_ERRO["msg"], "msgHa": 5 if TB_ERRO["msg"] else -1, "bico": round(m.bico, 1),
                              "bicoAlvo": m.bico_alvo, "bicoPwm": m.pwm("bico"),
                              "mesa": round(m.mesa, 1), "mesaAlvo": m.mesa_alvo,
                              "mesaPwm": m.pwm("mesa"), "x": m.x, "y": m.y, "z": m.z, "e": m.e,
@@ -412,6 +418,12 @@ class Manipulador(BaseHTTPRequestHandler):
                        total=os.path.getsize(os.path.join(SD, "gcodes", nome)), camada=0,
                        camadas=m["camadas"], decorrido=0, estimado=m["tempo"], restante=m["tempo"],
                        aviso="Imprimindo")
+            return self.responde(200, "application/json", b'{"ok":true}')
+        if caminho == "/api/teste_erro":       # so no simulador: liga/desliga a faixa de erro
+            parar = q.get("parada", ["1"])[0] == "1"
+            TB_ERRO.update(parada=parar, erro="Printer halted. kill() called!" if parar else "",
+                           erroAnt="Probing Failed" if parar else "",
+                           msg="Malha falhou. Impressao parada." if parar else "")
             return self.responde(200, "application/json", b'{"ok":true}')
         if caminho == "/api/reles":
             acao, v = q.get("acao", [""])[0], q.get("valor", ["0"])[0]

@@ -155,14 +155,21 @@ static size_t estado_json(char *j, size_t tam)
 {
     marlin_estado_t e;
     marlin_estado(&e);
-    char fw[80], ssid[70];
+    char fw[80], ssid[70], erro[200], erro_ant[200], msg[200];
     json_esc(fw, sizeof fw, e.firmware);
+    json_esc(erro, sizeof erro, e.erro);
+    json_esc(erro_ant, sizeof erro_ant, e.erro_ant);
+    json_esc(msg, sizeof msg, e.mensagem);
+    int64_t agora = esp_timer_get_time();
+    int erro_ha = e.erro_us ? (int)((agora - e.erro_us) / 1000000) : -1;
+    int msg_ha = e.mensagem_us ? (int)((agora - e.mensagem_us) / 1000000) : -1;
     json_esc(ssid, sizeof ssid, rede_ssid());
     return snprintf(j, tam,
         "{\"t\":\"e\",\"tb\":{\"usb\":%s,\"resp\":%s,\"fw\":\"%s\",\"ocupada\":%s,\"fila\":%d,"
         "\"bico\":%.1f,\"bicoAlvo\":%.0f,\"bicoPwm\":%d,\"mesa\":%.1f,\"mesaAlvo\":%.0f,"
         "\"mesaPwm\":%d,\"x\":%.2f,\"y\":%.2f,\"z\":%.2f,\"e\":%.2f,\"vel\":%d,\"fluxo\":%d,"
-        "\"comp\":%d,\"min\":[%.1f,%.1f,%.1f],\"max\":[%.1f,%.1f,%.1f]},"
+        "\"comp\":%d,\"min\":[%.1f,%.1f,%.1f],\"max\":[%.1f,%.1f,%.1f],"
+        "\"parada\":%s,\"erro\":\"%s\",\"erroAnt\":\"%s\",\"erroHa\":%d,\"msg\":\"%s\",\"msgHa\":%d},"
         "\"cam\":{\"sensor\":\"%s\",\"ligada\":%s,\"larg\":%d,\"alt\":%d},"
         "\"sd\":{\"ok\":%s,\"livreMB\":%llu,\"totalMB\":%llu},"
         "\"rede\":{\"ssid\":\"%s\",\"ip\":\"%s\",\"rssi\":%d,\"ap\":%s},"
@@ -171,7 +178,8 @@ static size_t estado_json(char *j, size_t tam)
         e.ocupada ? "true" : "false", e.fila, e.bico, e.bico_alvo, e.bico_pwm, e.mesa,
         e.mesa_alvo, e.mesa_pwm, e.x, e.y, e.z, e.e, e.velocidade, e.fluxo, e.compensacao,
         e.area_min[0], e.area_min[1], e.area_min[2], e.area_max[0], e.area_max[1],
-        e.area_max[2], camera_nome(), camera_ligada() ? "true" : "false", camera_largura_max(),
+        e.area_max[2], e.parada ? "true" : "false", erro, erro_ant, erro_ha, msg, msg_ha,
+        camera_nome(), camera_ligada() ? "true" : "false", camera_largura_max(),
         camera_altura_max(), sd_ok() ? "true" : "false", sd_ok() ? sd_livre_bytes() >> 20 : 0ULL,
         sd_ok() ? sd_total_bytes() >> 20 : 0ULL, ssid, rede_ip(), rede_rssi(),
         rede_ap_ativo() ? "true" : "false", esp_timer_get_time() / 1000000,
@@ -697,7 +705,7 @@ esp_err_t web_inicia(void)
     }
     s_fila_linhas = xQueueCreateWithCaps(64, sizeof(linha_web_t), MALLOC_CAP_SPIRAM);
     xTaskCreate(tarefa_linhas, "web_linhas", 4096, NULL, 3, NULL);
-    xTaskCreate(tarefa_estado, "web_estado", 4096, NULL, 3, NULL);
+    xTaskCreate(tarefa_estado, "web_estado", 6144, NULL, 3, NULL);   // estado_json usa ~1 KB de pilha
     ESP_LOGI(TAG, "servidor web no ar (%u arquivos de interface)", (unsigned)WEB_N_ARQUIVOS);
     return ESP_OK;
 }

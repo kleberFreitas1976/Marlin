@@ -124,6 +124,16 @@ canvas { width:100%; display:block; }
 .aviso.mostra { transform:translateX(-50%) translateY(0); }
 .aviso.erro { border-color:var(--erro); }
 
+/* erros e mensagens da TinyBee */
+.faixaTb { border-radius:12px; padding:12px 16px; margin-bottom:14px; border:1px solid var(--borda);
+  background:var(--painel2); }
+.faixaTb b { display:block; font-size:16px; margin-bottom:4px; }
+.faixaTb div { margin-top:2px; }
+.faixaTb.erro { background:#46201f; border-color:var(--erro); }
+.faixaTb.erro b { color:#ffb1b1; }
+.faixaTb.aviso { background:#3b3218; border-color:var(--aviso); }
+.faixaTb.aviso b { color:#ffe08a; }
+
 /* impressao */
 .impressao { margin-bottom:14px; }
 .impCorpo { display:flex; gap:14px; align-items:flex-start; }

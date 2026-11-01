@@ -57,10 +57,43 @@ function chip(id, classe, texto) {
   c.textContent = texto;
 }
 
+// Faixa no topo do painel: TinyBee parada (vermelha) ou um erro/mensagem recente (amarela)
+function faixaTb(tb) {
+  const f = $('faixaTb');
+  const recente = (ha) => ha >= 0 && ha < 300;
+  const linhas = [];
+  if (tb.msg && (tb.parada || recente(tb.msgHa))) linhas.push('Mensagem da impressora: ' + tb.msg);
+  if (tb.erro && (tb.parada || recente(tb.erroHa))) linhas.push('Erro: ' + tb.erro);
+  if (tb.erroAnt && tb.parada) linhas.push('Antes: ' + tb.erroAnt);
+  if (tb.parada) {
+    f.className = 'faixaTb erro';
+    $('faixaTbTitulo').textContent = 'A TinyBee parou e não aceita mais comandos';
+    $('faixaTbDica').textContent = 'Aquecimento e motores ficam desligados. Para voltar: desligue e ligue a ' +
+      'impressora (ou aperte o reset da TinyBee). A placa reconecta sozinha.';
+  } else if (tb.usb && !tb.resp) {
+    f.className = 'faixaTb aviso';
+    $('faixaTbTitulo').textContent = 'A TinyBee está ligada na USB mas não responde';
+    $('faixaTbDica').textContent = 'Ela pode ter parado por um erro antes desta placa ligar (a TFT pode mostrar o motivo), ' +
+      'ou a impressora está desligada e a TinyBee alimentada só pela USB. Desligue e ligue a impressora.';
+  } else if (linhas.length) {
+    f.className = 'faixaTb aviso';
+    $('faixaTbTitulo').textContent = 'Aviso da TinyBee';
+    $('faixaTbDica').textContent = '';
+  } else {
+    f.hidden = true;
+    return;
+  }
+  const t = $('faixaTbTexto');
+  t.replaceChildren(...linhas.map((l) => { const d = document.createElement('div'); d.textContent = l; return d; }));
+  f.hidden = false;
+}
+
 function atualiza(e) {
   S.estado = e;
   const tb = e.tb;
+  if (tb.parada !== undefined) faixaTb(tb);
   if (!tb.usb) chip('chipTb', 'erro', 'TinyBee desconectada');
+  else if (tb.parada) chip('chipTb', 'erro', 'TinyBee parada');
   else if (!tb.resp) chip('chipTb', 'aviso', 'TinyBee sem resposta');
   // "busy" do Marlin: home, malha, espera de movimentos longos. E normal no inicio da impressao.
   else chip('chipTb', 'ok', tb.ocupada ? 'TinyBee trabalhando' : 'TinyBee ok');
