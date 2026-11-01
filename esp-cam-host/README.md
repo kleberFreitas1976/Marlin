@@ -73,8 +73,15 @@ linhas corrompidas pedidas de novo e reenviadas. Achados e correções:
   alvo, hora do término no cartão da impressão, desligar a impressora N minutos depois
   de uma impressão concluída (aba Controle, Energia e luz).
 
+Impressões reais seguintes (31/10/2026): uma parou ~18 s com uma queda do Wi-Fi e
+deixou um caroço; outra foi dada por "concluída" na camada 2 por uma falha de leitura
+do SD. Correções: a impressão não espera mais a página nem o cartão (fila separada
+para as linhas do console; G-code lido com até 128 KB de antecedência para a PSRAM),
+malloc grande e buffers do Wi-Fi na PSRAM, falha do SD para com segurança. Depois
+disso, cable_tie_screw_base (18 min, 39 camadas) saiu sem caroço, com time-lapse de
+39 fotos 1600×1200.
+
 Falta testar com alguém olhando a impressora:
-- o time-lapse completo de uma impressão real (as fotos falharam na primeira);
 - o envio direto pelo OrcaSlicer (cadastro da impressora OctoPrint);
 - os relés (ainda não instalados) e a luz;
 - o site na hospedagem (o PHP não roda neste PC);
