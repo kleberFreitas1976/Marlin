@@ -26,6 +26,7 @@
 #include "timelapse.h"
 #include "arquivos.h"
 #include "impressao.h"
+#include "malhas.h"
 #include "marlin.h"
 #include "web.h"
 #include "web_interno.h"
@@ -199,6 +200,7 @@ static void marlin_linha(marlin_tipo_t tipo, const char *linha)
         printf("%s %s\n", tipo == MARLIN_TX ? "TB>" : "TB<", linha);
     web_linha_marlin(tipo, linha);
     imp_linha_marlin(tipo, linha);
+    malhas_linha(tipo, linha);
 }
 
 static void tb_envia(const char *gcode)
@@ -430,6 +432,7 @@ void app_main(void)
     nuvem_inicia(web_estado_completo);
     imp_inicia();
     tl_inicia();
+    malhas_inicia();
     imp_ouvintes(tl_camada, tl_foto, ciclo_impressao);
     marlin_inicia(marlin_linha);
     mostra_info();
