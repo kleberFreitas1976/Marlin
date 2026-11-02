@@ -17,6 +17,7 @@ static int s_larg_max, s_alt_max;
 static framesize_t s_maximo = FRAMESIZE_SVGA;
 static framesize_t s_tam = FRAMESIZE_SVGA;   // resolucao das fotos e do video
 static int s_usuarios;
+static volatile int s_fotos;   // fotos em andamento: o video ao vivo espera
 static int64_t s_ultimo_uso;
 static bool s_girar = true;   // camera montada de cabeca para baixo no quadro
 static SemaphoreHandle_t s_mtx;
@@ -238,12 +239,25 @@ void camera_solta(void)
     xSemaphoreGive(s_mtx);
 }
 
+static void conta_foto(int d)
+{
+    xSemaphoreTake(s_mtx, portMAX_DELAY);
+    s_fotos += d;
+    xSemaphoreGive(s_mtx);
+}
+
 camera_fb_t *camera_foto(void)
 {
     if (camera_usa() != ESP_OK) return NULL;
+    // Sao so dois buffers: com o video ao vivo segurando um enquanto envia e a foto
+    // segurando o outro, o driver ficava sem onde capturar ("Failed to get frame").
+    conta_foto(1);
     descarta(2);       // os dois buffers podem guardar quadros de antes do pedido
     camera_fb_t *fb = esp_camera_fb_get();
-    if (!fb) camera_solta();
+    if (!fb) {
+        conta_foto(-1);
+        camera_solta();
+    }
     return fb;
 }
 
@@ -251,5 +265,13 @@ void camera_devolve(camera_fb_t *fb)
 {
     if (!fb) return;
     esp_camera_fb_return(fb);
+    conta_foto(-1);
     camera_solta();
+}
+
+camera_fb_t *camera_quadro_video(void)
+{
+    // a foto tem a vez; o video perde alguns quadros
+    for (int i = 0; s_fotos > 0 && i < 500; i++) vTaskDelay(pdMS_TO_TICKS(20));
+    return esp_camera_fb_get();
 }

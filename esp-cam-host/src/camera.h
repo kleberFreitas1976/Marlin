@@ -39,3 +39,6 @@ void camera_solta(void);
 // que ja estavam no buffer (importante no time-lapse). Devolver com camera_devolve().
 camera_fb_t *camera_foto(void);
 void camera_devolve(camera_fb_t *fb);
+// Quadro do video ao vivo (entre camera_usa e camera_solta): espera as fotos em andamento.
+// Devolver com esp_camera_fb_return().
+camera_fb_t *camera_quadro_video(void);

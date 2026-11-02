@@ -527,7 +527,7 @@ static esp_err_t pag_stream(httpd_req_t *req)
         int64_t espera = proximo - esp_timer_get_time();
         if (espera > 0) vTaskDelay(pdMS_TO_TICKS(espera / 1000));
         proximo = esp_timer_get_time() + 1000000 / STREAM_FPS;
-        camera_fb_t *fb = esp_camera_fb_get();
+        camera_fb_t *fb = camera_quadro_video();
         if (!fb) break;
         int n = snprintf(cab, sizeof cab, "--" LIMITE "\r\nContent-Type: image/jpeg\r\n"
                          "Content-Length: %u\r\n\r\n", (unsigned)fb->len);
