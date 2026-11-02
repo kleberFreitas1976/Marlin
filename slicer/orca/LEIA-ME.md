@@ -10,6 +10,7 @@ continua sendo a fonte de verdade.
 | `CoreXY MKS TinyBee.json` | impressora |
 | `CoreXY MKS TinyBee (time-lapse).json` | impressora, com estacionamento a cada camada para o time-lapse |
 | `CoreXY TinyBee 0.20mm.json` | processo (perfil de impressão) |
+| `CoreXY TinyBee 0.16mm.json` | processo: o 0.20mm com camada de 0,16 (múltiplo de 0,04 mm, o passo inteiro do Z) e uma camada a mais no topo e no fundo |
 | `PLA Speed Plus GTMax3D.json` | filamento — o rolo em uso, diâmetro medido 1,88 |
 | `PETG CoreXY TinyBee.json` | filamento |
 | `PLA CoreXY TinyBee.json` | filamento |
@@ -20,7 +21,7 @@ continua sendo a fonte de verdade.
 0. A impressora genérica **Generic Marlin Printer** (MyMarlin 0.4 nozzle) precisa
    estar ativada no Orca: os perfis herdam dela e dos filamentos genéricos.
 1. Orca → **Arquivo → Importar → Importar configurações**.
-2. Selecione os **seis `.json`** desta pasta de uma vez.
+2. Selecione todos os `.json` desta pasta de uma vez.
 3. Selecione a impressora **CoreXY MKS TinyBee**, o processo **CoreXY TinyBee
    0.20mm** e o filamento.
 
