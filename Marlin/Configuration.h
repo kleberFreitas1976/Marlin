@@ -1870,14 +1870,17 @@
  * Example: 'M851 Z-5' with a CLEARANCE of 4  =>  9mm from bed to nozzle.
  *     But: 'M851 Z+1' with a CLEARANCE of 2  =>  2mm from bed to nozzle.
  */
-#define Z_CLEARANCE_DEPLOY_PROBE   15 // (mm) Dimensionado para o pior caso do D
-                                      // ainda nao medido (ate ~7mm): 15 - 7 = 8mm
-                                      // de folga ao acionar o braco.
-#define Z_CLEARANCE_BETWEEN_PROBES 12 // (mm) Com Z_SERVO_INTERMEDIATE_STOW o braco
-                                      // aciona e recolhe a CADA ponto da malha. Em 8
-                                      // um D de 7mm deixaria a ponta a 1mm da mesa,
-                                      // abaixo dos 4mm dos parafusos de fixacao.
-#define Z_CLEARANCE_MULTI_PROBE    12 // (mm) idem, no M48 e nas repeticoes
+#define Z_CLEARANCE_DEPLOY_PROBE    8 // (mm) Era 15, para um D ainda nao medido (ate ~7mm).
+                                      // Com D = 4.16 medido, a ponta acionada fica ~3.8mm
+                                      // acima do vidro, menos o curso livre da haste.
+                                      // Sem MULTIPLE_PROBING a descida inteira e na
+                                      // velocidade lenta (2mm/s, probe.cpp:778 so desce
+                                      // rapido acima de 15+5): de 15 eram ~5.4s por ponto.
+#define Z_CLEARANCE_BETWEEN_PROBES  8 // (mm) Com Z_SERVO_INTERMEDIATE_STOW o braco
+                                      // aciona e recolhe a CADA ponto, sempre sobre o
+                                      // ponto (os pontos ficam a 15mm das bordas, longe
+                                      // dos parafusos de fixacao). Era 12.
+#define Z_CLEARANCE_MULTI_PROBE     8 // (mm) idem, no M48 e nas repeticoes
 #define Z_PROBE_ERROR_TOLERANCE     3 // (mm) Tolerance for early trigger (<= -probe.offset.z + ZPET)
 //#define Z_AFTER_PROBING           5 // (mm) Z position after probing is done
 
