@@ -25,7 +25,7 @@
     "inherits": "MyMarlin 0.4 nozzle",
     "instantiation": "true",
     "is_custom_defined": "0",
-    "layer_change_gcode": "G92 E0 ; exigido pela extrusao relativa: zera o acumulador do E a cada camada\nM118 P1 TL:CAMADA {layer_num+1}/{total_layer_count} ; camada para a ESP32-S3-CAM\n; time-lapse: sobe, estaciona no fundo-esquerda, espera os movimentos, fotografa\n; e desce. O proximo deslocamento do arquivo leva o bico de volta para a peca.\n; O fatiador ja recolheu o filamento na troca de camada (retract_layer_change).\n; G90 do Marlin tambem volta o E para absoluto (desfaz o M83): por isso o M83 depois de\n; cada G90. Sem ele, desde 30/10 as impressoes com time-lapse extrudavam como E absoluto\n; e o bico quase nao saia plastico (soldado).\nG91\nG1 Z0.6 F600\nG90\nM83\nG1 X5 Y176 F8400\nM400\nM118 P1 TL:FOTO\nG4 P400\nG91\nG1 Z-0.6 F600\nG90\nM83",
+    "layer_change_gcode": "G92 E0 ; exigido pela extrusao relativa: zera o acumulador do E a cada camada\nM118 P1 TL:CAMADA {layer_num+1}/{total_layer_count} ; camada para a ESP32-S3-CAM",
     "machine_end_gcode": "; ===== FIM DA IMPRESSAO =====\nM104 S0 ; desliga o bico\nM140 S0 ; desliga a mesa\nM107 ; ventoinha de peca (o dissipador e automatico via E0_AUTO_FAN)\nG91\nG1 E-2 F1800\nG1 Z0.5 F600 ; sobe pouco e sai rapido: o fio estica e parte perto da peca\nG90\nM83\nG1 X5 Y176 F8400 ; (a ultima camada e a mais alta da mesa: nada no caminho)\nG91\nG1 Z10 F600\nG90\nM83\nM84\nM118 P1 TL:FIM ; avisa a ESP32-S3-CAM\n; ===== FIM =====",
     "machine_max_acceleration_e": [
         "1000"
@@ -125,7 +125,7 @@
         "1"
     ],
     "retraction_length": [
-        "3"
+        "6"
     ],
     "retraction_minimum_travel": [
         "2"
@@ -135,6 +135,7 @@
     ],
     "silent_mode": "0",
     "single_extruder_multi_material": "1",
+    "time_lapse_gcode": "; time-lapse: sobe, estaciona no fundo-esquerda, espera os movimentos, fotografa\n; e desce. O proximo deslocamento do arquivo leva o bico de volta para a peca.\n; O fatiador ja recolheu o filamento na troca de camada (retract_layer_change).\n; G90 do Marlin tambem volta o E para absoluto (desfaz o M83): por isso o M83 depois de\n; cada G90. Sem ele, desde 30/10 as impressoes com time-lapse extrudavam como E absoluto\n; e o bico quase nao saia plastico (soldado).\nG91\nG1 Z0.6 F600\nG90\nM83\nG1 X5 Y176 F8400\nM400\nM118 P1 TL:FOTO\nG4 P400\nG91\nG1 Z-0.6 F600\nG90\nM83",
     "type": "machine",
     "use_relative_e_distances": "1",
     "version": "2.4.2.0",

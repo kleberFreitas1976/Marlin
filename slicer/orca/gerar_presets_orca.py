@@ -197,7 +197,14 @@ grava(finaliza(maquina, "CoreXY MKS TinyBee", "machine", "printer_settings_id",
 PT = sec.get("printer:CoreXY MKS TinyBee (time-lapse)")
 if PT:
     tl = dict(maquina)
-    tl["layer_change_gcode"] = gcode(PT["layer_gcode"])
+    # O Orca tem campo proprio para o time-lapse (time_lapse_gcode). No modo "Suave"
+    # do processo (time-lapse) ele roda junto da torre de purga e, ao voltar da foto,
+    # o bico imprime a torre antes da peca: o que escorreu no estacionamento fica nela.
+    # O layer_gcode do bundle (PrusaSlicer, sem torre) junta as duas coisas; aqui ele
+    # e dividido no comentario "; time-lapse:".
+    troca, foto = PT["layer_gcode"].split(BS + "n; time-lapse:", 1)
+    tl["layer_change_gcode"] = gcode(troca)
+    tl["time_lapse_gcode"] = gcode("; time-lapse:" + foto)
     tl["printer_notes"] = gcode(PT["printer_notes"])
     grava(finaliza(tl, "CoreXY MKS TinyBee (time-lapse)", "machine", "printer_settings_id",
                    "MyMarlin 0.4 nozzle"),
@@ -273,6 +280,19 @@ for NOME in ("CoreXY TinyBee 0.20mm", "CoreXY TinyBee 0.16mm"):
   grava(finaliza(proc, NOME, "process", "print_settings_id",
                  "0.20mm Standard @MyMarlin"),
         NOME + ".json")
+  # Variante para a impressora (time-lapse): torre de purga com o time-lapse "Suave".
+  # Sem extrusor extra, o Orca so faz a torre neste modo. Chaves gravadas direto: o
+  # Orca 2.5 nao tem JSONs soltos e elas nao estao nos arquivos usados de base.
+  tlp = dict(proc)
+  tlp.update({
+      "timelapse_type": "1",                   # 0 tradicional, 1 suave (com torre)
+      "enable_prime_tower": "1",
+      "prime_tower_width": "15",               # o padrao (60) e para troca de filamento
+      "prime_tower_brim_width": "3",
+  })
+  grava(finaliza(tlp, NOME + " (time-lapse)", "process", "print_settings_id",
+                 "0.20mm Standard @MyMarlin"),
+        NOME + " (time-lapse).json")
 
 # ---------------------------------------------------------------- filamentos
 PLACAS = [k for k in ("hot_plate_temp", "cool_plate_temp", "eng_plate_temp",
