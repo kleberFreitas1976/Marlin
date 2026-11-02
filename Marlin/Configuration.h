@@ -1338,7 +1338,11 @@
  *
  * :[2,3,4,5,6,7]
  */
-//#define ENDSTOP_NOISE_THRESHOLD 2
+#define ENDSTOP_NOISE_THRESHOLD 5   // A sonda otica dava pulsos de ruido no ar: o bico comecava a
+                                    // descer e o G30 falhava em ~4s ("Probing Failed", disparo mais de
+                                    // 3mm acima do esperado), ~1 em 5 sondagens. Os fins de curso sao
+                                    // lidos a 1kHz: o sinal tem que ficar 5 leituras (~5ms) igual para
+                                    // valer. Descendo a 2mm/s isso atrasa o disparo ~0.01mm, sempre igual.
 
 // Check for stuck or disconnected endstops during homing moves.
 //#define DETECT_BROKEN_ENDSTOP
@@ -1870,17 +1874,18 @@
  * Example: 'M851 Z-5' with a CLEARANCE of 4  =>  9mm from bed to nozzle.
  *     But: 'M851 Z+1' with a CLEARANCE of 2  =>  2mm from bed to nozzle.
  */
-#define Z_CLEARANCE_DEPLOY_PROBE    8 // (mm) Era 15, para um D ainda nao medido (ate ~7mm).
-                                      // Com D = 4.16 medido, a ponta acionada fica ~3.8mm
-                                      // acima do vidro, menos o curso livre da haste.
+#define Z_CLEARANCE_DEPLOY_PROBE   10 // (mm) Era 15, para um D ainda nao medido (ate ~7mm).
+                                      // Medido com paquimetro: com o bico em Z8 a ponta
+                                      // acionada fica a menos de 2mm do vidro (a haste sobe
+                                      // ~2mm antes de cortar o sensor). Em 10 sobram ~4mm.
                                       // Sem MULTIPLE_PROBING a descida inteira e na
                                       // velocidade lenta (2mm/s, probe.cpp:778 so desce
                                       // rapido acima de 15+5): de 15 eram ~5.4s por ponto.
-#define Z_CLEARANCE_BETWEEN_PROBES  8 // (mm) Com Z_SERVO_INTERMEDIATE_STOW o braco
+#define Z_CLEARANCE_BETWEEN_PROBES 10 // (mm) Com Z_SERVO_INTERMEDIATE_STOW o braco
                                       // aciona e recolhe a CADA ponto, sempre sobre o
                                       // ponto (os pontos ficam a 15mm das bordas, longe
                                       // dos parafusos de fixacao). Era 12.
-#define Z_CLEARANCE_MULTI_PROBE     8 // (mm) idem, no M48 e nas repeticoes
+#define Z_CLEARANCE_MULTI_PROBE    10 // (mm) idem, no M48 e nas repeticoes
 #define Z_PROBE_ERROR_TOLERANCE     3 // (mm) Tolerance for early trigger (<= -probe.offset.z + ZPET)
 //#define Z_AFTER_PROBING           5 // (mm) Z position after probing is done
 
@@ -1928,7 +1933,7 @@
 //#define PROBING_FANS_OFF          // Turn fans off when probing
 //#define PROBING_ESTEPPERS_OFF     // Turn all extruder steppers off when probing
 //#define PROBING_STEPPERS_OFF      // Turn all steppers off (unless needed to hold position) when probing (including extruders)
-//#define DELAY_BEFORE_PROBING 200  // (ms) To prevent vibrations from triggering piezo sensors
+#define DELAY_BEFORE_PROBING 200    // (ms) Haste da sonda assenta (o servo e desligado depois de mover) antes de descer
 
 // Require minimum nozzle and/or bed temperature for probing
 //#define PREHEAT_BEFORE_PROBING
