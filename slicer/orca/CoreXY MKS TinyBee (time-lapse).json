@@ -102,7 +102,7 @@
         "0x181"
     ],
     "printable_height": "250",
-    "printer_notes": "Marlin bugfix-2.1.x / MKS TinyBee / CoreXY / fonte 12V.\nMalha cobre a mesa ate X=142 (o probe fica 54mm a esquerda do bico).\nVentoinha de peca so funciona em 0% ou 100%.\nVariante com estacionamento a cada camada para o time-lapse da ESP32-S3-CAM (~2 a 3 s por camada).",
+    "printer_notes": "Marlin bugfix-2.1.x / MKS TinyBee / CoreXY / fonte 12V.\nMalha cobre a mesa ate X=142 (o probe fica 54mm a esquerda do bico).\nVentoinha de peca so funciona em 0% ou 100%.\nVariante com foto a cada camada para o time-lapse da ESP32-S3-CAM (sem estacionar o carro).",
     "printer_settings_id": "CoreXY MKS TinyBee (time-lapse)",
     "printer_structure": "corexy",
     "printer_technology": "FFF",
@@ -135,7 +135,7 @@
     ],
     "silent_mode": "0",
     "single_extruder_multi_material": "1",
-    "time_lapse_gcode": "; time-lapse: sobe, estaciona no fundo-esquerda, espera os movimentos, fotografa\n; e desce. O proximo deslocamento do arquivo leva o bico de volta para a peca.\n; O fatiador ja recolheu o filamento na troca de camada (retract_layer_change).\n; G90 do Marlin tambem volta o E para absoluto (desfaz o M83): por isso o M83 depois de\n; cada G90. Sem ele, desde 30/10 as impressoes com time-lapse extrudavam como E absoluto\n; e o bico quase nao saia plastico (soldado).\nG91\nG1 Z0.6 F600\nG90\nM83\nG1 X5 Y176 F8400\nM400\nM118 P1 TL:FOTO\nG4 P400\nG91\nG1 Z-0.6 F600\nG90\nM83",
+    "time_lapse_gcode": "; time-lapse: so pede a foto, com o carro onde estiver (sem estacionar nem esperar).\n; Estacionar no canto deixava plastico escorrido na peca ao voltar.\nM118 P1 TL:FOTO",
     "type": "machine",
     "use_relative_e_distances": "1",
     "version": "2.4.2.0",

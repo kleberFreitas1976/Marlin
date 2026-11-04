@@ -8,10 +8,9 @@ continua sendo a fonte de verdade.
 | Arquivo | Tipo |
 |---|---|
 | `CoreXY MKS TinyBee.json` | impressora |
-| `CoreXY MKS TinyBee (time-lapse).json` | impressora, com estacionamento a cada camada para o time-lapse |
+| `CoreXY MKS TinyBee (time-lapse).json` | impressora, com foto a cada camada para o time-lapse |
 | `CoreXY TinyBee 0.20mm.json` | processo (perfil de impressão) |
 | `CoreXY TinyBee 0.16mm.json` | processo: o 0.20mm com camada de 0,16 (múltiplo de 0,04 mm, o passo inteiro do Z) e uma camada a mais no topo e no fundo |
-| `CoreXY TinyBee 0.20mm (time-lapse).json`, `0.16mm (time-lapse)` | processo igual, com torre de purga e time-lapse "Suave" (use com a impressora time-lapse) |
 | `PLA Speed Plus GTMax3D.json` | filamento — o rolo em uso, diâmetro medido 1,88 |
 | `PETG CoreXY TinyBee.json` | filamento |
 | `PLA CoreXY TinyBee.json` | filamento |
@@ -84,17 +83,11 @@ impressões feitas pela TFT24:
 | Troca de camada | `M118 P1 TL:CAMADA {layer_num+1}/{total_layer_count}` |
 | Fim | `M118 P1 TL:FIM` |
 
-A variante **(time-lapse)** acrescenta, a cada camada: sobe 0,6 mm, estaciona no
-fundo-esquerda (X5 Y176), `M400`, `M118 P1 TL:FOTO`, espera 0,4 s e desce. O
-próximo deslocamento do arquivo leva o bico de volta. Custa uns 2 a 3 s por
-camada. Use-a só quando quiser o vídeo.
-
-No Orca, o estacionamento fica no campo **G-code do time-lapse** (`time_lapse_gcode`),
-não na troca de camada. Com o processo **(time-lapse)** (modo "Suave" e torre de
-purga de 15 mm), o bico imprime a torre ao voltar da foto, antes da peça: o que
-escorreu no estacionamento fica na torre. Arraste a torre para perto do canto do
-estacionamento (fundo-esquerda). Com o processo normal (modo tradicional), a foto
-continua a cada camada, sem torre.
+A variante **(time-lapse)** acrescenta, a cada camada, só `M118 P1 TL:FOTO`: a
+ESP32-S3-CAM fotografa com o carro onde estiver, sem estacionar nem esperar, e
+a impressão não perde tempo. No Orca a linha fica no campo **G-code do time-lapse**
+(`time_lapse_gcode`). Antes o bico estacionava no fundo-esquerda (X5 Y176) para a
+foto, mas voltava com plástico escorrido e o deixava na peça.
 
 ## Diferenças em relação ao PrusaSlicer
 
