@@ -41,7 +41,7 @@
         "100"
     ],
     "fan_min_speed": [
-        "100"
+        "60"
     ],
     "filament_cost": [
         "0"
@@ -139,7 +139,7 @@
     ],
     "from": "User",
     "full_fan_speed_layer": [
-        "0"
+        "4"
     ],
     "hot_plate_temp": [
         "55"
