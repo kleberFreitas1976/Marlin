@@ -651,8 +651,10 @@
  * gets it spinning reliably for a short time before setting the requested speed.
  * (Does not work on Sanguinololu with FAN_SOFT_PWM.)
  */
-//#define FAN_KICKSTART_TIME  100  // (ms)
-//#define FAN_KICKSTART_POWER 180  // 64-255
+// 5015 da ventoinha de peca: sem o tranco ela nao arranca em velocidade intermediaria
+// (parecia funcionar so em 0 ou 100%). Com ele gira de 6 a 100%, PWM de 1000 Hz (05/11/2026).
+#define FAN_KICKSTART_TIME  200  // (ms) a 5015 parte a 100% antes de cair para a velocidade pedida
+#define FAN_KICKSTART_POWER 255  // 64-255
 //#define FAN_KICKSTART_LINEAR     // Set kickstart time linearly based on the speed, e.g., for 20% (51) it will be FAN_KICKSTART_TIME * 0.2.
                                    // Useful for quick speed up to low speed. Kickstart power must be set to 255.
 
