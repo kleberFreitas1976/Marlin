@@ -35,10 +35,10 @@
         "20"
     ],
     "fan_max_speed": [
-        "100"
+        "50"
     ],
     "fan_min_speed": [
-        "100"
+        "35"
     ],
     "filament_cost": [
         "0"
@@ -136,7 +136,7 @@
     ],
     "from": "User",
     "full_fan_speed_layer": [
-        "0"
+        "4"
     ],
     "hot_plate_temp": [
         "75"
@@ -152,7 +152,7 @@
         "230"
     ],
     "nozzle_temperature_initial_layer": [
-        "240"
+        "235"
     ],
     "nozzle_temperature_range_high": [
         "260"

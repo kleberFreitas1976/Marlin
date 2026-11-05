@@ -102,7 +102,7 @@
         "0x181"
     ],
     "printable_height": "250",
-    "printer_notes": "Marlin bugfix-2.1.x / MKS TinyBee / CoreXY / fonte 12V.\nMalha cobre a mesa ate X=142 (o probe fica 54mm a esquerda do bico).\nVentoinha de peca so funciona em 0% ou 100%.\nVariante com foto a cada camada para o time-lapse da ESP32-S3-CAM (sem estacionar o carro).",
+    "printer_notes": "Marlin bugfix-2.1.x / MKS TinyBee / CoreXY / fonte 12V.\nMalha cobre a mesa ate X=142 (o probe fica 54mm a esquerda do bico).\nVentoinha de peca: 6 a 100% (tranco de partida no firmware).\nVariante com foto a cada camada para o time-lapse da ESP32-S3-CAM (sem estacionar o carro).",
     "printer_settings_id": "CoreXY MKS TinyBee (time-lapse)",
     "printer_structure": "corexy",
     "printer_technology": "FFF",
