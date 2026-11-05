@@ -7,6 +7,7 @@
 
 #include "arquivos.h"
 #include "cartao_sd.h"
+#include "diario.h"
 #include "esp_heap_caps.h"
 #include "esp_log.h"
 #include "esp_timer.h"
@@ -115,6 +116,8 @@ static void termina(imp_estado_t fim, const char *aviso)
     s_i.decorrido_s = (int)((esp_timer_get_time() - s_inicio_us - s_pausado_us) / 1000000);
     s_i.restante_s = 0;
     marca_fim(fim == IMP_CONCLUIDA);
+    diario_evento("=== %s: %s (camada %d de %d, %d min)", s_i.nome, aviso, s_i.camada, s_i.camadas,
+                  s_i.decorrido_s / 60);
     ESP_LOGI(TAG, "%s: %s (a TinyBee esperou o SD %lu vezes)", s_i.nome, aviso,
              (unsigned long)s_reserva_vazia);
 }
@@ -256,6 +259,7 @@ static bool proxima(char *saida, size_t tam)
         memcpy(saida, p, n);
         saida[n] = '\0';
         acompanha(saida);
+        diario_gcode(saida);
         s_i.linhas++;
         ok = true;
         break;
@@ -342,6 +346,7 @@ esp_err_t imp_imprime(const char *nome, char *erro, size_t tam)
     }
     solta();
     ESP_LOGI(TAG, "imprimindo %s (%u bytes)", nome, (unsigned)st.st_size);
+    diario_evento("=== impressao pela placa: %s (%u bytes, %d camadas)", nome, (unsigned)st.st_size, s_i.camadas);
     if (s_cb_ciclo) s_cb_ciclo(true, nome);
     marlin_fonte(proxima);
     return ESP_OK;
@@ -354,6 +359,7 @@ void imp_pausa(void)
         s_i.estado = IMP_PAUSANDO;          // proxima() para de entregar linhas
         strlcpy(s_i.aviso, "Pausando: terminando os movimentos ja enviados", sizeof s_i.aviso);
         s_pausa_desde_us = esp_timer_get_time();
+        diario_evento("pausa pedida (camada %d)", s_i.camada);
     }
     solta();
 }
@@ -389,6 +395,7 @@ void imp_retoma(void)
     s_pausado_us += esp_timer_get_time() - s_pausa_desde_us;
     s_i.estado = IMP_IMPRIMINDO;
     strlcpy(s_i.aviso, "Imprimindo", sizeof s_i.aviso);
+    diario_evento("retomada (camada %d)", s_i.camada);
     solta();
     marlin_fonte(proxima);
 }
@@ -401,6 +408,7 @@ void imp_cancela(void)
             s_pausado_us += esp_timer_get_time() - s_pausa_desde_us;
         s_i.estado = IMP_CANCELANDO;
         strlcpy(s_i.aviso, "Cancelando", sizeof s_i.aviso);
+        diario_evento("cancelamento pedido (camada %d)", s_i.camada);
         marlin_fonte(NULL);
         // M410 descarta os movimentos ja planejados: sem ele o bico termina ate 16
         // movimentos antes de parar. Na pausa nao: cortar movimentos deixaria falha

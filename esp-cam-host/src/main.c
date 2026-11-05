@@ -27,6 +27,7 @@
 #include "arquivos.h"
 #include "impressao.h"
 #include "malhas.h"
+#include "diario.h"
 #include "marlin.h"
 #include "web.h"
 #include "web_interno.h"
@@ -201,6 +202,7 @@ static void marlin_linha(marlin_tipo_t tipo, const char *linha)
     web_linha_marlin(tipo, linha);
     imp_linha_marlin(tipo, linha);
     malhas_linha(tipo, linha);
+    diario_linha(tipo, linha);
 }
 
 static void tb_envia(const char *gcode)
@@ -433,6 +435,7 @@ void app_main(void)
     imp_inicia();
     tl_inicia();
     malhas_inicia();
+    diario_inicia();
     imp_ouvintes(tl_camada, tl_foto, ciclo_impressao);
     marlin_inicia(marlin_linha);
     mostra_info();
