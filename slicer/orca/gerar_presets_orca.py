@@ -275,6 +275,11 @@ for NOME in ("CoreXY TinyBee 0.20mm", "CoreXY TinyBee 0.16mm"):
       "reduce_crossing_wall": S["avoid_crossing_perimeters"],
       "reduce_infill_retraction": S["only_retract_when_crossing_perimeters"],
   }, "process")
+  # Orca 2.5. Gravadas direto: nao estao nos arquivos usados de base (nem no 2.4).
+  # high_precision_gcode: E com 6 casas; com E relativo o arredondamento de cada linha
+  # se acumula na seguinte. Arcos so no preenchimento esparso: bem menos linhas para a
+  # ESP mandar, sem mexer nas paredes (o Marlin tem ARC_SUPPORT; a ESP acompanha G2/G3).
+  proc.update({"high_precision_gcode": "1", "enable_arc_fitting": "sparse_infill"})
   grava(finaliza(proc, NOME, "process", "print_settings_id",
                  "0.20mm Standard @MyMarlin"),
         NOME + ".json")
