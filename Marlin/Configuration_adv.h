@@ -462,9 +462,8 @@
    * 5. Enable PID_FAN_SCALING_ALTERNATIVE_DEFINITION and enter the two identified Kf-values in
    *    PID_FAN_SCALING_AT_FULL_SPEED and PID_FAN_SCALING_AT_MIN_SPEED. Enter the minimum speed in PID_FAN_SCALING_MIN_SPEED
    */
-  // Ligado em 05/11/2026: com PETG a 230 a ventoinha de peca (5015, so 0 ou 100%)
-  // ligando na camada 2 dava Thermal Runaway. O M303 a 235 com a ventoinha a 100%
-  // precisou de ~85% da potencia (bias 203-230/255) so para manter a temperatura.
+  // Ligado em 05/11/2026, quando o cartucho de 30W nao dava conta da ventoinha.
+  // Com o de 50W (08/11) a ventoinha a 100% pede 16/255 a mais a 230 C: Kf 16.
   // O Kf vem da EEPROM (M301 F<valor>, M500); DEFAULT_KF so vale depois de um M502.
   #define PID_FAN_SCALING
   #if ENABLED(PID_FAN_SCALING)
@@ -483,7 +482,7 @@
 
     #else
       #define PID_FAN_SCALING_LIN_FACTOR (0)             // Power-loss due to cooling = Kf * (fan_speed)
-      #define DEFAULT_KF 0                               // A constant value added to the PID-tuner (medir: teste_ventoinha)
+      #define DEFAULT_KF 16                              // A constant value added to the PID-tuner (medido a 230 C)
       #define PID_FAN_SCALING_MIN_SPEED 10               // Minimum fan speed at which to enable PID_FAN_SCALING
     #endif
   #endif

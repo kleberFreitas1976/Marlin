@@ -32,13 +32,13 @@
         "75"
     ],
     "fan_cooling_layer_time": [
-        "0"
+        "20"
     ],
     "fan_max_speed": [
-        "0"
+        "50"
     ],
     "fan_min_speed": [
-        "0"
+        "35"
     ],
     "filament_cost": [
         "0"
@@ -136,7 +136,7 @@
     ],
     "from": "User",
     "full_fan_speed_layer": [
-        "0"
+        "4"
     ],
     "hot_plate_temp": [
         "75"
@@ -161,7 +161,7 @@
         "220"
     ],
     "overhang_fan_speed": [
-        "60"
+        "100"
     ],
     "overhang_fan_threshold": [
         "95%"

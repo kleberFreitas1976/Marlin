@@ -725,10 +725,12 @@
     #define DEFAULT_KI_LIST {   1.08,   1.08 }
     #define DEFAULT_KD_LIST { 114.00, 114.00 }
   #else
-    // Medidos na maquina com M303 E0 S210 C8 (8 ciclos), ventoinha de peca desligada.
-    #define DEFAULT_KP  23.97
-    #define DEFAULT_KI   1.66
-    #define DEFAULT_KD  86.64
+    // Cartucho 12V/50W (08/11/2026; o de 30W nao segurava PETG com ventoinha).
+    // Medidos com M303 E0 S230 C8, ventoinha de peca desligada. A 230: 50% da
+    // potencia sem ventoinha, 57% com ela a 100%, temperatura em +-1 C.
+    #define DEFAULT_KP  23.15
+    #define DEFAULT_KI   2.44
+    #define DEFAULT_KD  54.87
   #endif
 #else
   #define BANG_MAX 255    // Limit hotend current while in bang-bang mode; 255=full current
