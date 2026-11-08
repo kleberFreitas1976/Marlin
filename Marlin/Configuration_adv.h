@@ -672,7 +672,10 @@
  *
  * Define one or both of these to override the default 0-255 range.
  */
-//#define FAN_MIN_PWM 50
+// 5015: em 35-50% ela parava no meio da impressao e o tranco so vem saindo do zero.
+// Com o minimo em ~20% o menor M106 ainda tem forca para manter a rotacao (08/11/2026).
+// Fica 1-255 -> 50-255: S89 (35%) vira ~48%, S128 (50%) vira ~60%.
+#define FAN_MIN_PWM 50
 //#define FAN_MAX_PWM 128
 
 /**
