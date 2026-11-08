@@ -82,7 +82,8 @@ static void acompanha(const char *l)
     else if (!strncmp(l, "G92", 3)) {
         const char *p = strchr(l, 'E');
         if (p) s_e = strtof(p + 1, NULL);
-    } else if ((l[0] == 'G' && (l[1] == '0' || l[1] == '1') && (l[2] == ' ' || l[2] == '\0'))) {
+    } else if (l[0] == 'G' && l[1] >= '0' && l[1] <= '3' && (l[2] == ' ' || l[2] == '\0')) {
+        // G2/G3 (arc fitting do fatiador): X/Y e o fim do arco; I/J (centro) nao mudam a posicao
         for (const char *p = l + 2; *p; p++) {
             if (p[-1] != ' ') continue;
             float v = strtof(p + 1, NULL);
