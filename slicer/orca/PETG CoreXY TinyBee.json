@@ -164,7 +164,7 @@
         "100"
     ],
     "overhang_fan_threshold": [
-        "95%"
+        "25%"
     ],
     "reduce_fan_stop_start_freq": [
         "1"

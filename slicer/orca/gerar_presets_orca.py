@@ -304,6 +304,9 @@ def filamento(secao, nome, base, extra=None):
         "fan_min_speed": F["min_fan_speed"],
         "fan_max_speed": F["max_fan_speed"],
         "overhang_fan_speed": F["bridge_fan_speed"],
+        # ventoinha da saliencia a partir de 25% sem apoio. O Generic PETG herda 95% (so quase
+        # ponte), e uma rampa de 45 graus saia com 35% de ventoinha e caia (teste de 08/11/2026)
+        "overhang_fan_threshold": "25%",
         "close_fan_the_first_x_layers": F["disable_fan_first_layers"],
         "full_fan_speed_layer": F["full_fan_speed_layer"],
         "fan_cooling_layer_time": F["fan_below_layer_time"],
