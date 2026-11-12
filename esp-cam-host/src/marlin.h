@@ -48,6 +48,7 @@ typedef struct {
     float area_min[3], area_max[3];
     // Para o painel: a TFT/LCD nao mostra nada quando a impressao vem pela placa
     bool parada;              // "Printer halted" / kill: so volta com reset da TinyBee
+    uint32_t sem_referencia;  // "echo:Home XYZ First" recebidos: o Marlin recusou movimento
     char erro[96];            // ultimo "Error:" (fora os de protocolo, que se corrigem sozinhos)
     char erro_ant[96];        // o anterior (o motivo costuma vir antes do "Printer halted")
     int64_t erro_us;          // esp_timer de quando chegou (0 = nenhum)

@@ -251,6 +251,9 @@ static void processa(char *l)
         s_e.erro_us = esp_timer_get_time();
     }
     if (strstr(l, "Printer halted") || strstr(l, "kill() called")) s_e.parada = true;
+    // NO_MOTION_BEFORE_HOMING: os motores desligaram (M84/tempo ocioso) e o Marlin recusa
+    // todo movimento ate um G28. Contado para a impressao parar em vez de "imprimir" no ar.
+    if (!strncmp(l, "echo:Home ", 10) && strstr(l, " First")) s_e.sem_referencia++;
     if (!strncmp(l, "//action:notification ", 22) && l[22]) {
         strlcpy(s_e.mensagem, l + 22, sizeof s_e.mensagem);
         s_e.mensagem_us = esp_timer_get_time();

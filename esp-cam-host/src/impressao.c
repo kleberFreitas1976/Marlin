@@ -23,6 +23,10 @@ static const char *TAG = "impressao";
 #define PARK_X 5.0f
 #define PARK_Y 176.0f
 #define PARK_Z_SOBE 10.0f
+// DEFAULT_STEPPER_TIMEOUT_SEC do Configuration_adv.h (desligamento dos motores parados)
+#define TEMPO_MOTORES_S 120
+#define STR_(x) #x
+#define STR(x) STR_(x)
 #define RETRACAO 2.0f
 
 static SemaphoreHandle_t s_mtx;
@@ -46,6 +50,8 @@ static char s_lin[256];
 static size_t s_lin_n;
 static bool s_lin_longa;
 static int64_t s_inicio_us, s_pausado_us, s_pausa_desde_us;
+static uint32_t s_sem_ref_inicio;   // marlin_estado.sem_referencia no inicio da impressao
+static bool s_sem_ref;              // parou porque o Marlin perdeu a referencia (G28)
 static int64_t s_tft_inicio_us;
 static imp_camada_cb_t s_cb_camada;
 static imp_foto_cb_t s_cb_foto;
@@ -344,6 +350,8 @@ esp_err_t imp_imprime(const char *nome, char *erro, size_t tam)
     s_tem_xy = s_tem_z = false;
     s_inicio_us = esp_timer_get_time();
     s_pausado_us = 0;
+    s_sem_ref_inicio = m.sem_referencia;
+    s_sem_ref = false;
     s_i.estado = IMP_IMPRIMINDO;
     strlcpy(s_i.aviso, "Imprimindo", sizeof s_i.aviso);
     s_leitor_ativo = true;
@@ -384,6 +392,7 @@ void imp_retoma(void)
         return;
     }
     char l[80];
+    marlin_envia("M84 S" STR(TEMPO_MOTORES_S), false);   // volta o desligamento por ociosidade
     marlin_envia("G90", false);
     if (s_tem_xy) {
         snprintf(l, sizeof l, "G1 X%.3f Y%.3f F6000", s_x, s_y);
@@ -434,6 +443,12 @@ void imp_cancela(void)
 static void estaciona(bool desliga)
 {
     char l[64];
+    // Na pausa os motores nao podem desligar: o Marlin desliga X/Y/Z apos 120 s parado e,
+    // com HOME_AFTER_DEACTIVATE + NO_MOTION_BEFORE_HOMING, recusa todo movimento ate um
+    // G28. Foi o que aconteceu na troca de filamento de 12/11/2026: o Retomar mandou o
+    // resto do arquivo, o Marlin recusou cada linha e o carro ficou no canto. M84 S0 tira
+    // o limite; o Retomar e o cancelamento devolvem o valor do firmware.
+    marlin_envia(desliga ? "M84 S" STR(TEMPO_MOTORES_S) : "M84 S0", false);
     if (desliga) {
         marlin_envia("M104 S0", false);
         marlin_envia("M140 S0", false);
@@ -465,10 +480,25 @@ static void tarefa(void *arg)
             strlcpy(s_i.aviso, "Pausada: bico estacionado, aquecimento mantido", sizeof s_i.aviso);
         } else if (s_i.estado == IMP_CANCELANDO && marlin_ocioso()) {
             estaciona(true);
-            if (s_erro_sd) termina(IMP_ERRO, "Parada: falha lendo o cartao SD (aquecimento desligado)");
+            if (s_sem_ref) termina(IMP_ERRO, "Parada: os motores desligaram e o Marlin pede G28 (aquecimento desligado)");
+            else if (s_erro_sd) termina(IMP_ERRO, "Parada: falha lendo o cartao SD (aquecimento desligado)");
             else termina(IMP_CANCELADA, "Impressao cancelada");
             avisar = s_cb_ciclo;
             strlcpy(nome, s_i.nome, sizeof nome);
+        }
+        if (s_i.estado == IMP_IMPRIMINDO) {
+            marlin_estado_t m;
+            marlin_estado(&m);
+            if (m.sem_referencia != s_sem_ref_inicio) {
+                // o Marlin esta recusando os movimentos: seguir mandaria o arquivo inteiro
+                // "no ar" com o bico quente. Para como um cancelamento.
+                s_sem_ref = true;
+                s_i.estado = IMP_CANCELANDO;
+                strlcpy(s_i.aviso, "Parando: o Marlin recusou movimento (pede G28)", sizeof s_i.aviso);
+                diario_evento("parada: Marlin pede G28 (camada %d)", s_i.camada);
+                marlin_fonte(NULL);
+                marlin_envia("M410", true);
+            }
         }
         if (s_i.estado == IMP_IMPRIMINDO) {
             int64_t agora = esp_timer_get_time();
