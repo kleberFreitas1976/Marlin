@@ -256,6 +256,17 @@ static bool proxima(char *saida, size_t tam)
         while (n && (p[n - 1] == ' ' || p[n - 1] == '\t')) n--;
         p[n] = '\0';
         if (!n) continue;
+        // Pausa pedida pelo arquivo (troca manual de filamento): M601 e o "Pause G-code" do
+        // Orca; M600 vem da troca de cor do Orca. O Marlin desta placa nao tem a pausa
+        // avancada (sem LCD nem EMERGENCY_PARSER), entao a pausa e a da ESP: termina os
+        // movimentos ja enviados, estaciona mantendo o aquecimento e espera "Retomar".
+        if ((p[0] == 'M' || p[0] == 'm') && (!strcmp(p + 1, "600") || !strcmp(p + 1, "601"))) {
+            s_i.estado = IMP_PAUSANDO;
+            strlcpy(s_i.aviso, "Pausa do arquivo (troca de filamento): estacionando", sizeof s_i.aviso);
+            s_pausa_desde_us = esp_timer_get_time();
+            diario_evento("pausa do arquivo %s (camada %d)", p, s_i.camada);
+            break;
+        }
         if (n >= tam) n = tam - 1;   // linha absurda: o Marlin recusaria de qualquer jeito
         memcpy(saida, p, n);
         saida[n] = '\0';
