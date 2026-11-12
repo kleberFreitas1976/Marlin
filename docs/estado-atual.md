@@ -1,4 +1,4 @@
-# Estado atual da impressora CoreXY TinyBee (08/11/2026)
+# Estado atual da impressora CoreXY TinyBee (atualizado em 12/11/2026)
 
 Ponto de partida para continuar o trabalho em outro computador/conversa. O `AGENTS.md`
 descreve o Marlin em geral; este arquivo descreve **esta impressora** e o que ficou pendente.
@@ -23,6 +23,20 @@ descreve o Marlin em geral; este arquivo descreve **esta impressora** e o que fi
 
 Pelo console da ESP, `m <G-code>` manda uma linha para a TinyBee (vai pela mesma fila
 numerada da impressao, pode ser usado durante a impressao).
+
+### Pausa para troca manual de filamento (12/11/2026)
+
+O Marlin da TinyBee **nao tem `M600`** (`ADVANCED_PAUSE_FEATURE` desligado: sem LCD nem
+`EMERGENCY_PARSER`). Quem pausa e a ESP: ao ler `M600` ou `M601` no arquivo
+(`esp-cam-host/src/impressao.c`, em `proxima()`), ela nao manda a linha para o Marlin,
+termina os movimentos ja enviados, recolhe 6 mm, sobe 10 mm e estaciona em X5 Y176,
+**mantendo bico e mesa quentes**. Retomar pela pagina (ou `retoma` no console): volta
+ao ponto, devolve os 6 mm e segue o arquivo.
+
+- No Orca: pre-visualizacao, barra de camadas na camada desejada, botao direito no `+`,
+  **Adicionar pausa**. O perfil da impressora ja gera `M601` (`machine_pause_gcode`).
+- Na troca: puxar o filamento velho com o bico quente, empurrar o novo ate sair a cor
+  limpa, esperar parar de pingar, tirar a gota com pinca e retomar logo.
 
 ## Firmware (valores que importam)
 
