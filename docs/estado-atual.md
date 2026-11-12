@@ -44,7 +44,7 @@ ao ponto, devolve os 6 mm e segue o arquivo.
   `echo:Home ... First` durante a impressao, para como cancelamento (aquecimento desligado).
 - Peca interrompida assim pode ser salva com um arquivo de retomada: `G28 R0` (nao mexe
   no Z antes), a sonda referencia o Z em cima da peca no meio da mesa e `G92 Z` soma a
-  altura dela. Exemplo: `C:	mpd\chaveiro_luan_RETOMA_camada11.gcode` (funcionou).
+  altura dela. Exemplo: `C:/tmp/3d/chaveiro_luan_RETOMA_camada11.gcode` (funcionou).
 
 ## Firmware (valores que importam)
 
