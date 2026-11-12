@@ -1781,7 +1781,7 @@
 //   X = -38 : probe 38mm a ESQUERDA do bico
 //   Y = +10 : probe 10mm ATRAS do bico
 //   Z = -0.62 : probe dispara 0.62mm ACIMA do ponto em que o bico encosta
-#define NOZZLE_TO_PROBE_OFFSET { -54, -10, -4.16 } // (mm) X, Y, Z do bico ao ponto de disparo
+#define NOZZLE_TO_PROBE_OFFSET { -54, -10, -4.21 } // (mm) X, Y, Z do bico ao ponto de disparo. -4.16 -> -4.21 em 12/11/2026 (1a camada alta, linhas sem emendar)
   // X -54: medido com paquimetro, probe a ESQUERDA do bico.
   // Y -10: o probe vem antes do bico no sentido do Y, ou seja fica do lado do
   //        Y menor (a frente). Era +10, que espelhava a malha em 20mm.

@@ -37,6 +37,14 @@ ao ponto, devolve os 6 mm e segue o arquivo.
   **Adicionar pausa**. O perfil da impressora ja gera `M601` (`machine_pause_gcode`).
 - Na troca: puxar o filamento velho com o bico quente, empurrar o novo ate sair a cor
   limpa, esperar parar de pingar, tirar a gota com pinca e retomar logo.
+- **Motores ligados na pausa:** o Marlin desliga X/Y/Z apos 120 s parado e, com
+  `HOME_AFTER_DEACTIVATE` + `NO_MOTION_BEFORE_HOMING`, recusa tudo ate um G28. Na 1a troca
+  (12/11) o Retomar "imprimiu" o resto no ar com o carro no canto. Agora a ESP manda
+  `M84 S0` ao estacionar (Retomar/cancelar devolvem `M84 S120`) e, se receber
+  `echo:Home ... First` durante a impressao, para como cancelamento (aquecimento desligado).
+- Peca interrompida assim pode ser salva com um arquivo de retomada: `G28 R0` (nao mexe
+  no Z antes), a sonda referencia o Z em cima da peca no meio da mesa e `G92 Z` soma a
+  altura dela. Exemplo: `C:	mpd\chaveiro_luan_RETOMA_camada11.gcode` (funcionou).
 
 ## Firmware (valores que importam)
 
@@ -48,6 +56,8 @@ ao ponto, devolve os 6 mm e segue o arquivo.
 - Ventoinha 5015: `FAN_KICKSTART_TIME 200` / `POWER 255` (tranco ao sair do zero) e
   **`FAN_MIN_PWM 50`** (08/11/2026): em 35-50% ela parava no meio da impressao e so voltava
   com `M106 S255`. Agora 1-255 vira 50-255 de PWM.
+- Sonda: `M851 Z-4.21` (12/11/2026, era -4.16: 1a camada alta, linhas sem emendar), na
+  EEPROM e em `Configuration.h`.
 - `ARC_SUPPORT` ligado (G2/G3). `CANCEL_OBJECTS` desligado.
 
 ## Fatiadores
@@ -62,7 +72,11 @@ ao ponto, devolve os 6 mm e segue o arquivo.
 - Orca: `high_precision_gcode` ligado e `enable_arc_fitting = sparse_infill` (arcos so no
   preenchimento; a ESP acompanha G2/G3 para a retomada da pausa).
 - Ventoinha da saliencia a partir de **25%** sem apoio (o Generic PETG herdava 95%).
-- PLA: ventoinha 60-100%, desligada nas 2 primeiras camadas, cheia na camada 4.
+- **PLA: ventoinha 100% a partir da camada 3** (12/11/2026; desligada nas 2 primeiras). Em
+  60-73% a 5015 parou de novo no chaveiro.
+- Largura da linha da 1a camada **0,50 mm** (era 0,42).
+- Fim da purga do G-code inicial: recolhe 2 mm e limpa 15 mm por cima da linha antes de
+  subir (o fiapo da purga era grande); devolve os 2 mm antes da 1a camada.
 - **PETG: 235/230 C, ventoinha 100% a partir da camada 2** (desligada na 1a).
 - ABS: sem ventoinha.
 
@@ -81,7 +95,7 @@ ao ponto, devolve os 6 mm e segue o arquivo.
 
 1. **Secar o PETG** (65 C, 4-6 h), limpar o bico quente com escova de latao, colocar meia
    de silicone, e repetir a peca de teste fatiada de novo no Orca (perfil de ventoinha 100%).
-2. Verificar a 5015 com a impressora desligada: fiapo nas pas ou encostando no duto.
+2. Verificar a 5015 (parou de novo em 60-73% no PLA em 12/11) com a impressora desligada: fiapo nas pas ou encostando no duto.
 3. **Cabecote novo** (Stealthburner para MK8 com cortador FilamAtrix/Filametrix, arquivos em
    `C:\tmp\3d\new\filamatrix...`): imprimir a versao **sem porca M3**
    (`sb-c-mk8-th-front_filamatrix.stl` e `sb-c-mk8-th-rear-cw2_filamatrix.stl`), em PETG
