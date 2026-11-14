@@ -11,6 +11,7 @@ continua sendo a fonte de verdade.
 | `CoreXY MKS TinyBee (time-lapse).json` | impressora, com foto a cada camada para o time-lapse |
 | `CoreXY TinyBee 0.20mm.json` | processo (perfil de impressão) |
 | `CoreXY TinyBee 0.16mm.json` | processo: o 0.20mm com camada de 0,16 (múltiplo de 0,04 mm, o passo inteiro do Z) e uma camada a mais no topo e no fundo |
+| `CoreXY TinyBee 0.28mm Rapido.json` | processo rápido: camada de 0,28, paredes 45/70 mm/s, aceleração 2500 na externa e no topo; serve para PLA e PETG (a vazão de cada filamento limita a velocidade) |
 | `PLA Speed Plus GTMax3D.json` | filamento — o rolo em uso, diâmetro medido 1,88 |
 | `PETG CoreXY TinyBee.json` | filamento |
 | `PLA CoreXY TinyBee.json` | filamento |

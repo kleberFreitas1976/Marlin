@@ -209,9 +209,10 @@ if PT:
           "CoreXY MKS TinyBee (time-lapse).json")
 
 # ---------------------------------------------------------------- processo
-# Os processos so mudam a altura da camada e as cascas; a base e sempre a do 0.20mm
+# Os processos mudam altura da camada, cascas, velocidades e larguras (tudo vem do bundle);
+# a base e sempre a do 0.20mm
 # (sem o Orca instalado, o arquivo do 0.20mm ja gerado).
-for NOME in ("CoreXY TinyBee 0.20mm", "CoreXY TinyBee 0.16mm"):
+for NOME in ("CoreXY TinyBee 0.20mm", "CoreXY TinyBee 0.16mm", "CoreXY TinyBee 0.28mm Rapido"):
   S = sec["print:" + NOME]
   proc = aplica(base_de("0.20mm Standard @MyMarlin", "Custom", "CoreXY TinyBee 0.20mm.json"), {
       "layer_height": S["layer_height"],

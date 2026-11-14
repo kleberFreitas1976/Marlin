@@ -78,6 +78,10 @@ ao ponto, devolve os 6 mm e segue o arquivo.
 - Fim da purga do G-code inicial: recolhe 2 mm e limpa 15 mm por cima da linha antes de
   subir (o fiapo da purga era grande); devolve os 2 mm antes da 1a camada.
 - **PETG: 235/230 C, ventoinha 100% a partir da camada 2** (desligada na 1a).
+- Processo **CoreXY TinyBee 0.28mm Rapido** (14/11/2026, tambem com variante time-lapse no
+  Orca): camada 0,28, paredes 45/70 mm/s, solido 70 a 0,55 mm, aceleracao 2500 na externa e
+  no topo, deslocamento 110. Serve para PLA e PETG; a vazao do filamento limita (PLA ~63 mm/s,
+  PETG ~44 mm/s). Na Bandeja Aura (0.20mm: 9h09) as paredes eram 55% do tempo.
 - ABS: sem ventoinha.
 
 ## Testes recentes e diagnosticos
